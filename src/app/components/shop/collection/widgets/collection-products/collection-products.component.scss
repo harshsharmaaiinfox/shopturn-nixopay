@@ -1,0 +1,33 @@
+// Responsive Product Grid Styles
+.product-list-section {
+    @media (max-width: 767px) {
+        gap: 16px !important;
+        
+        // Ensure one product per row on mobile
+        > * {
+            width: 100%;
+            max-width: 100%;
+            flex: 0 0 100%;
+        }
+        
+        // Product box responsive adjustments
+        .product-box {
+            width: 100%;
+            margin: 0;
+            
+            .product-image {
+                width: 100%;
+                img {
+                    width: 100%;
+                    height: auto;
+                    object-fit: cover;
+                }
+            }
+        }
+    }
+    
+    @media (min-width: 768px) and (max-width: 991px) {
+        gap: 20px !important;
+    }
+}
+

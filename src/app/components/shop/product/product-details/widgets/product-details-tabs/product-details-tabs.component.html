@@ -1,0 +1,15 @@
+<div class="product-section-box mt-0">
+    <ul ngbNav #nav="ngbNav" [(activeId)]="active" class="nav nav-tabs custom-nav">
+            <li ngbNavItem="description">
+                <a ngbNavLink>{{ 'Description' | translate }}</a>
+                <ng-template ngbNavContent>
+                    <div class="product-description">
+                        <div *ngIf="product?.description" class="nav-desh ckeditor-content" id="description" #description
+                            [innerHTML]="getTrustedHtml(product?.description)">
+                        </div>
+                    </div>
+                </ng-template>
+            </li>
+    </ul>
+  <div [ngbNavOutlet]="nav" class="custom-tab"></div>
+</div>

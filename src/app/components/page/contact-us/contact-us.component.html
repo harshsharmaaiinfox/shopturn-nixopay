@@ -1,0 +1,195 @@
+<!-- Breadcrumb Section -->
+<app-breadcrumb [breadcrumb]="breadcrumb"></app-breadcrumb>
+
+<!-- Contact Us Hero Section -->
+<section class="contact-hero-section">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <div class="contact-hero-content text-center">
+                    <h1 class="contact-hero-title">Contact Shop Turn Life</h1>
+                    <p class="contact-hero-subtitle">We're Here to Help You</p>
+                    <div class="contact-hero-divider"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Contact Information Section -->
+<section class="contact-info-section section-b-space">
+    <div class="container-fluid">
+        <div class="row g-4">
+            <!-- Contact Details -->
+            <div class="col-lg-3 col-md-6">
+                <div class="contact-info-card">
+                    <div class="contact-info-icon">
+                        <i class="ri-mail-line"></i>
+                    </div>
+                    <h3 class="contact-info-title">Email Us</h3>
+                    <p class="contact-info-text">
+                        <a href="mailto:info&#64;shopturnlife.com">info&#64;shopturnlife.com</a>
+                    </p>
+                    <p class="contact-info-desc">Send us an email anytime</p>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6">
+                <div class="contact-info-card">
+                    <div class="contact-info-icon">
+                        <i class="ri-phone-line"></i>
+                    </div>
+                    <h3 class="contact-info-title">Call Us</h3>
+                    <p class="contact-info-text">
+                        <a href="tel:8791002642">8791002642</a>
+                    </p>
+                    <p class="contact-info-desc">Contact us for any query</p>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6">
+                <div class="contact-info-card">
+                    <div class="contact-info-icon">
+                        <i class="ri-map-pin-line"></i>
+                    </div>
+                    <h3 class="contact-info-title">Visit Us</h3>
+                    <p class="contact-info-text">
+                        Unit No - 11112 Gaur City Mall<br>
+                        Noida Greater Noida Link Road<br>
+                        Sector 4 Greater Noida Gautambuddha Nagar<br>
+                        Uttar Pradesh<br>
+                        201318
+                    </p>
+                    <p class="contact-info-desc">Our office location</p>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6">
+                <div class="contact-info-card">
+                    <div class="contact-info-icon">
+                        <i class="ri-global-line"></i>
+                    </div>
+                    <h3 class="contact-info-title">Website</h3>
+                    <p class="contact-info-text">
+                        <a href="https://shopturnlife.com" target="_blank" rel="noopener">shopturnlife.com</a>
+                    </p>
+                    <p class="contact-info-desc">Visit our online store</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Contact Form Section -->
+<section class="contact-form-section section-b-space">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-8 mx-auto">
+                <div class="contact-form-wrapper">
+                    <div class="form-header text-center">
+                        <h2 class="form-title">Get In Touch</h2>
+                        <p class="form-subtitle">Fill out the form below and we'll get back to you as soon as possible
+                        </p>
+                    </div>
+                    <div class="contact-form-box">
+                        <form [formGroup]="form">
+                            <div class="row g-3">
+                                <div class="col-12">
+                                    <div class="form-group">
+                                        <label for="fullname" class="form-label">
+                                            <i class="ri-user-3-fill"></i>
+                                            {{ 'full_name' | translate }}
+                                        </label>
+                                        <input type="text" class="form-control" id="fullname"
+                                            placeholder="{{ 'enter_full_name' | translate }}" formControlName="name">
+                                        <div class="invalid-feedback"
+                                            *ngIf="form.controls['name'].touched && form.controls['name'].errors?.['required']">
+                                            {{ 'name_is_required' | translate }}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="email" class="form-label">
+                                            <i class="ri-mail-fill"></i>
+                                            {{ 'email_address' | translate }}
+                                        </label>
+                                        <input type="email" class="form-control" id="email"
+                                            placeholder="{{ 'enter_email_address' | translate }}"
+                                            formControlName="email">
+                                        <div class="invalid-feedback"
+                                            *ngIf="form.controls['email'].touched && form.controls['email'].errors?.['required']">
+                                            {{ 'email_is_required' | translate }}
+                                        </div>
+                                        <div class="invalid-feedback" *ngIf="form.controls['email'].errors?.['email']">
+                                            {{ 'invalid_email' | translate }}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="phonenumber" class="form-label">
+                                            <i class="ri-smartphone-line"></i>
+                                            {{ 'phone_number' | translate }}
+                                        </label>
+                                        <input type="tel" class="form-control" id="phonenumber"
+                                            placeholder="{{ 'enter_your_phone_number' | translate }}"
+                                            formControlName="phone">
+                                        <div class="invalid-feedback"
+                                            *ngIf="form.controls['phone'].touched && form.controls['phone'].errors?.['required']">
+                                            {{ 'phone_number_is_required' | translate }}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="form-group">
+                                        <label for="subject" class="form-label">
+                                            <i class="ri-file-list-line"></i>
+                                            {{ 'subject' | translate }}
+                                        </label>
+                                        <input type="text" class="form-control" id="subject"
+                                            placeholder="{{ 'enter_subject' | translate }}" formControlName="subject">
+                                        <div class="invalid-feedback"
+                                            *ngIf="form.controls['subject'].touched && form.controls['subject'].errors?.['required']">
+                                            {{ 'subject_is_required' | translate }}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="form-group">
+                                        <label for="message" class="form-label">
+                                            <i class="ri-message-2-line"></i>
+                                            {{ 'message' | translate }}
+                                        </label>
+                                        <textarea class="form-control" id="message"
+                                            placeholder="{{ 'enter_your_message' | translate }}" rows="6"
+                                            formControlName="message"></textarea>
+                                        <div class="invalid-feedback"
+                                            *ngIf="form.controls['message'].touched && form.controls['message'].errors?.['required']">
+                                            {{ 'message_is_required' | translate }}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12 text-center">
+                                    <app-button [class]="'btn btn-submit btn-lg'" [type]="'button'"
+                                        [id]="'send_message'" [spinner]="true" (click)="submit()">
+                                        {{ 'send_message' | translate }}
+                                    </app-button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Map Section -->
+<section class="map-section">
+    <div class="container-fluid p-0">
+        <div class="map-box">
+            <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3506.123456789!2d77.123456!3d28.123456!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjjCsDA3JzI0LjQiTiA3N8KwMDcnMjQuNCJF!5e0!3m2!1sen!2sin!4v1234567890123!5m2!1sen!2sin"
+                style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+            </iframe>
+        </div>
+    </div>
+</section>

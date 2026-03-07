@@ -1,0 +1,44 @@
+// Link box component styling for dropdown menu
+.dropdown-header {
+  color: #CB7A43 !important;
+  font-weight: 600 !important;
+  font-size: 16px !important;
+  margin-bottom: 16px !important;
+  padding: 0 0 10px 0 !important;
+  border-bottom: 2px solid #CB7A43 !important;
+  text-transform: capitalize;
+}
+
+.dropdown-item {
+  color: #333 !important;
+  font-size: 15px !important;
+  padding: 8px 20px !important;
+  transition: all 0.2s ease !important;
+  text-decoration: none !important;
+  display: block !important;
+  border-radius: 4px;
+  
+  &:hover {
+    color: #CB7A43 !important;
+    background-color: rgba(203, 122, 67, 0.05) !important;
+    padding-left: 25px !important;
+  }
+  
+  &:active,
+  &:focus {
+    color: #CB7A43 !important;
+    background-color: rgba(203, 122, 67, 0.1) !important;
+  }
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  
+  li {
+    margin: 0;
+    padding: 0;
+  }
+}
+

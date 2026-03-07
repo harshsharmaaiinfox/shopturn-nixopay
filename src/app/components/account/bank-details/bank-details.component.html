@@ -1,0 +1,159 @@
+<div class="bank-details-container">
+  <div class="bank-details-header">
+    <div class="header-content">
+      <div class="header-icon-wrapper">
+        <i class="ri-wallet-3-line"></i>
+      </div>
+      <div class="header-text">
+        <h2>{{ 'Bank Details' | translate }}</h2>
+        <p>{{ 'Manage your payment and banking information securely' | translate }}</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="bank-details-content">
+    <!-- Bank Information Section -->
+    <div class="payment-section">
+      <div class="section-header">
+        <div class="section-icon">
+          <i class="ri-bank-line"></i>
+        </div>
+        <h3>{{ 'Bank Information' | translate }}</h3>
+      </div>
+      
+      <form class="bank-form" [formGroup]="form" (ngSubmit)="submit()">
+        <div class="form-grid">
+          <div class="form-group">
+            <label for="bank_account_no" class="form-label">
+              <i class="ri-numbers-line"></i>
+              {{ 'Bank Account No.' | translate }}
+            </label>
+            <input 
+              type="text" 
+              class="form-control" 
+              id="bank_account_no" 
+              placeholder="{{ 'Enter bank Account Number' | translate }}" 
+              formControlName="bank_account_no" 
+              (keydown)="allowOnlyDigits($event)" 
+              (input)="sanitizeDigitsInput($event, 'bank_account_no')" 
+              (paste)="sanitizeDigitsPaste($event)"
+              [class.is-invalid]="form.get('bank_account_no')?.invalid && form.get('bank_account_no')?.touched">
+            <div class="invalid-feedback" *ngIf="form.get('bank_account_no')?.invalid && form.get('bank_account_no')?.touched">
+              {{ 'Please enter a valid account number' | translate }}
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="bank_name" class="form-label">
+              <i class="ri-building-line"></i>
+              {{ 'Bank Name' | translate }}
+            </label>
+            <input 
+              type="text" 
+              class="form-control" 
+              id="bank_name" 
+              placeholder="{{ 'Enter Bank Name' | translate }}" 
+              formControlName="bank_name" 
+              (keydown)="allowOnlyLetters($event)" 
+              (input)="sanitizeLettersInput($event, 'bank_name')" 
+              (paste)="sanitizeLettersPaste($event)"
+              [class.is-invalid]="form.get('bank_name')?.invalid && form.get('bank_name')?.touched">
+            <div class="invalid-feedback" *ngIf="form.get('bank_name')?.invalid && form.get('bank_name')?.touched">
+              {{ 'Please enter a valid bank name' | translate }}
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="bank_holder_name" class="form-label">
+              <i class="ri-user-line"></i>
+              {{ 'Account Holder Name' | translate }}
+            </label>
+            <input 
+              type="text" 
+              class="form-control" 
+              id="bank_holder_name" 
+              placeholder="{{ 'Enter Account Holder Name' | translate }}" 
+              formControlName="bank_holder_name" 
+              (keydown)="allowOnlyLetters($event)" 
+              (input)="sanitizeLettersInput($event, 'bank_holder_name')" 
+              (paste)="sanitizeLettersPaste($event)"
+              [class.is-invalid]="form.get('bank_holder_name')?.invalid && form.get('bank_holder_name')?.touched">
+            <div class="invalid-feedback" *ngIf="form.get('bank_holder_name')?.invalid && form.get('bank_holder_name')?.touched">
+              {{ 'Please enter a valid holder name' | translate }}
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="swift" class="form-label">
+              <i class="ri-global-line"></i>
+              {{ 'SWIFT Code' | translate }}
+            </label>
+            <input 
+              type="text" 
+              class="form-control" 
+              id="swift" 
+              placeholder="{{ 'Enter SWIFT Code' | translate }}" 
+              formControlName="swift"
+              [class.is-invalid]="form.get('swift')?.invalid && form.get('swift')?.touched">
+          </div>
+
+          <div class="form-group">
+            <label for="ifsc" class="form-label">
+              <i class="ri-code-line"></i>
+              {{ 'IFSC Code' | translate }}
+            </label>
+            <input 
+              type="text" 
+              class="form-control" 
+              id="ifsc" 
+              placeholder="{{ 'Enter IFSC Code' | translate }}" 
+              formControlName="ifsc"
+              [class.is-invalid]="form.get('ifsc')?.invalid && form.get('ifsc')?.touched">
+          </div>
+        </div>
+      </form>
+    </div>
+
+    <!-- PayPal Information Section -->
+    <div class="payment-section">
+      <div class="section-header">
+        <div class="section-icon paypal-icon">
+          <i class="ri-paypal-line"></i>
+        </div>
+        <h3>{{ 'PayPal Details' | translate }}</h3>
+      </div>
+      
+      <form class="bank-form" [formGroup]="form" (ngSubmit)="submit()">
+        <div class="form-grid">
+          <div class="form-group full-width">
+            <label for="paypal_email" class="form-label">
+              <i class="ri-mail-line"></i>
+              {{ 'PayPal Email' | translate }}
+            </label>
+            <input 
+              type="email" 
+              class="form-control" 
+              id="paypal_email" 
+              placeholder="{{ 'Enter PayPal Email' | translate }}" 
+              formControlName="paypal_email"
+              [class.is-invalid]="form.get('paypal_email')?.invalid && form.get('paypal_email')?.touched">
+            <div class="invalid-feedback" *ngIf="form.get('paypal_email')?.invalid && form.get('paypal_email')?.touched">
+              {{ 'Please enter a valid email address' | translate }}
+            </div>
+          </div>
+        </div>
+
+        <div class="form-actions">
+          <app-button 
+            [class]="'btn btn-save btn-animation btn-md'" 
+            [id]="'payout_btn'"
+            [type]="'submit'"
+            [spinner]="true">
+            <i class="ri-save-line me-2"></i>
+            {{ 'Save Changes' | translate }}
+          </app-button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

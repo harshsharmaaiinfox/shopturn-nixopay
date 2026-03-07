@@ -1,0 +1,13 @@
+<div class="modern-price-filter">
+    <div class="price-filter-buttons">
+        <button 
+            *ngFor="let price of prices"
+            type="button"
+            class="price-filter-btn"
+            [class.active]="checked(price?.value!)"
+            [value]="price?.value"
+            (click)="togglePriceFilter(price?.value!)">
+            {{ price?.text }} {{ price?.price | currencySymbol }}
+        </button>
+    </div>
+</div>

@@ -1,0 +1,83 @@
+<section class="modern-search-page">
+  <div class="container-fluid">
+    <!-- Modern Search Header -->
+    <div class="search-header">
+      <div class="search-header-content">
+        <h1 class="search-title">
+          <span *ngIf="search.value && search.value.trim().length > 0">
+            {{ 'search_for_products' | translate }}: "<span class="search-term">{{ search.value }}</span>"
+          </span>
+          <span *ngIf="!search.value || search.value.trim().length === 0">
+            {{ 'search_for_products' | translate }}
+          </span>
+        </h1>
+        <p class="search-subtitle" *ngIf="products?.length">
+          {{ products.length }} {{ products.length === 1 ? 'product' : 'products' }} found
+        </p>
+      </div>
+      
+      <!-- Enhanced Search Box -->
+      <div class="modern-search-box">
+        <div class="search-input-wrapper">
+          <i class="ri-search-line search-icon"></i>
+          <input 
+            type="text" 
+            class="form-control modern-search-input" 
+            [formControl]="search"
+            [placeholder]="'Try Saree, Kurti or Search by Product Code' | translate"
+            (keydown.enter)="searchProduct()">
+          <app-button
+            [class]="'btn search-submit-btn'"
+            [type]="'button'"
+            [id]="'search-btn'"
+            [spinner]="false"
+            (click)="searchProduct()">
+            <i class="ri-search-line"></i>
+            <span>{{ 'search' | translate }}</span>
+          </app-button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Products Section -->
+    <div class="products-section" *ngIf="products?.length || productService.skeletonLoader">
+      <div
+        [ngClass]="{ 
+          'full_border': (themeOption$ | async)?.product?.full_border,
+          'product_img_bg': (themeOption$ | async)?.product?.image_bg,
+          'full_bg': (themeOption$ | async)?.product?.product_box_bg,
+          'product_border': (themeOption$ | async)?.product?.product_box_border }">
+        <div [class]="gridClass">
+          <ng-container *ngIf="productService.skeletonLoader else productContent">
+            <app-skeleton-product-box *ngFor="let item of skeletonItems"></app-skeleton-product-box>
+          </ng-container>
+          <ng-template #productContent>
+            <div class="col" *ngFor="let product of products">
+              <div class="search-product product-wrapper">
+                <app-product-box [product]="product" [style]="'horizontal'"></app-product-box>
+              </div>
+            </div>
+          </ng-template>
+        </div>
+      </div>
+    </div>
+
+    <!-- No Results Section -->
+    <app-no-data
+      [class]="'no-data-added collection-no-data'"
+      [image]="'assets/svg/no-product.svg'"
+      [text]="'Sorry Cant Find Products Looking'"
+      [description]="'Please Check Misspelt Something Searching Other Way'"
+      *ngIf="!products?.length && !productService.skeletonLoader && (search.value && search.value.trim().length > 0)">
+    </app-no-data>
+
+    <!-- Empty State -->
+    <div class="empty-search-state" *ngIf="!products?.length && !productService.skeletonLoader && (!search.value || search.value.trim().length === 0)">
+      <div class="empty-state-content">
+        <i class="ri-search-line empty-icon"></i>
+        <h3>{{ 'search_for_products' | translate }}</h3>
+        <p>Enter keywords above to find products</p>
+      </div>
+    </div>
+  </div>
+</section>

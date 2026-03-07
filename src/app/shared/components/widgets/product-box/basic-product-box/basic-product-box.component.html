@@ -1,0 +1,45 @@
+<div class="product-box" [class]="class">
+    <div class="label-tag" [ngClass]="product.is_sale_enable ? 'sale-tag' : product.is_trending ?
+        'trending-tag' : '' " *ngIf="product.is_trending || product.is_sale_enable">
+        <span>{{ (product.is_sale_enable ? 'sale' : product.is_trending ? 'trending' : '' ) | translate }}</span>
+    </div>
+    <div class="product-image">
+        <a [routerLink]="['/product/', product.slug]">
+            <img [src]="product.product_thumbnail ?
+                        product.product_thumbnail.original_url :
+                        'assets/images/product.png'" class="img-fluid" [alt]="'product'">
+        </a>
+        <div class="product-header-top" *ngIf="close">
+            <app-button [class]="'btn wishlist-button close_button'" [spinner]="false" [id]="'close_btn'"
+                (click)="removeWishlist(product.id)">
+                <i class="ri-close-line"></i>
+            </app-button>
+        </div>
+        <app-product-hover-action [product]="product" *ngIf="!close"></app-product-hover-action>
+    </div>
+    <div class="product-detail">
+        <a [routerLink]="['/product/', product.slug]">
+            <h6 class="product-title" [title]="product.name">{{ product.name }}</h6>
+        </a>
+
+        <div class="product-rating">
+            <ngb-rating [rate]="product.rating_count || 0"></ngb-rating>
+            <span class="rating-value">({{ (product.rating_count || 0) | number:'1.1-1' }})</span>
+        </div>
+
+        <h5 class="product-price">
+            <span class="price">{{ product.sale_price | currencySymbol }}</span>
+            <del *ngIf="product.discount" class="original-price">{{ product.price | currencySymbol }}</del>
+            <span class="offer-tag" *ngIf="product.discount">{{ product.discount }}% Off</span>
+        </h5>
+
+        <div class="add-to-cart-section">
+            <app-button [class]="'btn btn-add-to-cart'" [spinner]="false" (click)="openCartPopupModal()">
+                Add to Cart
+            </app-button>
+        </div>
+    </div>
+</div>
+<app-product-detail-modal #productDetailModal [product]="product"></app-product-detail-modal>
+<app-variation-modal #variationModal></app-variation-modal>
+<app-cart-popup-modal #cartPopupModal></app-cart-popup-modal>

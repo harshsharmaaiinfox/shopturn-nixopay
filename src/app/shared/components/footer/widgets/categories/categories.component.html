@@ -1,0 +1,13 @@
+<ul>
+    <li *ngFor="let category of categories">
+        <a [routerLink]="['/collections']" 
+           [queryParams]="{ category: getUrlFriendlySlug(category?.slug) }" 
+           class="text-content" 
+           [class.disabled]="isCategoryDisabled(category?.name)"
+           [style.pointer-events]="isCategoryDisabled(category?.name) ? 'none' : 'auto'"
+           [style.opacity]="isCategoryDisabled(category?.name) ? '0.6' : '1'"
+           [title]="category.name" 
+           [href]="'/collections?category=' + getUrlFriendlySlug(category?.slug)"
+           (click)="isCategoryDisabled(category?.name) && $event.preventDefault()">{{ category.name }}</a>
+    </li>
+</ul>

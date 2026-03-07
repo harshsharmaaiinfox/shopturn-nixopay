@@ -1,0 +1,263 @@
+// Modern Search Page Styles
+.modern-search-page {
+  padding: 40px 0 60px;
+  min-height: 60vh;
+  background: linear-gradient(to bottom, #f8f9fa 0%, #ffffff 100%);
+
+  .container-fluid {
+    max-width: 1400px;
+  }
+}
+
+// Search Header Section
+.search-header {
+  margin-bottom: 40px;
+  
+  .search-header-content {
+    text-align: center;
+    margin-bottom: 30px;
+    
+    .search-title {
+      font-size: 32px;
+      font-weight: 700;
+      color: #2c2c2c;
+      margin: 0 0 12px 0;
+      line-height: 1.3;
+      
+      .search-term {
+        color: var(--theme-color, #D38E60);
+        font-weight: 700;
+      }
+      
+      @media (max-width: 767px) {
+        font-size: 24px;
+      }
+    }
+    
+    .search-subtitle {
+      font-size: 16px;
+      color: #6b7280;
+      margin: 0;
+      font-weight: 400;
+    }
+  }
+}
+
+// Modern Search Box
+.modern-search-box {
+  max-width: 800px;
+  margin: 0 auto;
+  
+  .search-input-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+    background: #ffffff;
+    border: 2px solid #e5e7eb;
+    border-radius: 12px;
+    padding: 4px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    transition: all 0.3s ease;
+    
+    &:focus-within {
+      border-color: var(--theme-color, #D38E60);
+      box-shadow: 0 6px 20px rgba(211, 142, 96, 0.15);
+    }
+    
+    .search-icon {
+      position: absolute;
+      left: 20px;
+      font-size: 20px;
+      color: #9ca3af;
+      z-index: 1;
+      pointer-events: none;
+    }
+    
+    .modern-search-input {
+      flex: 1;
+      border: none;
+      outline: none;
+      padding: 16px 20px 16px 55px;
+      font-size: 16px;
+      color: #1f2937;
+      background: transparent;
+      height: auto;
+      
+      &::placeholder {
+        color: #9ca3af;
+        font-size: 15px;
+      }
+      
+      &:focus {
+        border: none;
+        outline: none;
+        box-shadow: none;
+      }
+    }
+    
+    .search-submit-btn {
+      background: var(--theme-color, #D38E60);
+      color: #ffffff;
+      border: none;
+      padding: 14px 28px;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 15px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      white-space: nowrap;
+      margin: 0;
+      
+      i {
+        font-size: 18px;
+      }
+      
+      &:hover {
+        background: #c07a4f;
+        transform: translateY(-1px);
+        box-shadow: 0 4px 12px rgba(211, 142, 96, 0.3);
+      }
+      
+      &:active {
+        transform: translateY(0);
+      }
+      
+      @media (max-width: 575px) {
+        padding: 12px 20px;
+        font-size: 14px;
+        
+        span {
+          display: none;
+        }
+      }
+    }
+  }
+}
+
+// Products Section
+.products-section {
+  margin-top: 50px;
+  
+  .search-product {
+    height: 100%;
+    
+    .product-wrapper {
+      height: 100%;
+    }
+  }
+}
+
+// Empty Search State
+.empty-search-state {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 400px;
+  text-align: center;
+  padding: 60px 20px;
+  
+  .empty-state-content {
+    max-width: 500px;
+    
+    .empty-icon {
+      font-size: 80px;
+      color: #d1d5db;
+      margin-bottom: 24px;
+      display: block;
+    }
+    
+    h3 {
+      font-size: 24px;
+      font-weight: 600;
+      color: #374151;
+      margin: 0 0 12px 0;
+    }
+    
+    p {
+      font-size: 16px;
+      color: #6b7280;
+      margin: 0;
+    }
+  }
+}
+
+// Responsive Adjustments
+@media (max-width: 1199px) {
+  .modern-search-page {
+    padding: 30px 0 50px;
+  }
+  
+  .search-header {
+    margin-bottom: 30px;
+  }
+  
+  .products-section {
+    margin-top: 40px;
+  }
+}
+
+@media (max-width: 767px) {
+  .modern-search-page {
+    padding: 20px 0 40px;
+  }
+  
+  .search-header {
+    margin-bottom: 25px;
+    
+    .search-header-content {
+      margin-bottom: 20px;
+    }
+  }
+  
+  .modern-search-box {
+    .search-input-wrapper {
+      border-radius: 10px;
+      padding: 3px;
+      
+      .search-icon {
+        left: 16px;
+        font-size: 18px;
+      }
+      
+      .modern-search-input {
+        padding: 14px 16px 14px 48px;
+        font-size: 15px;
+      }
+    }
+  }
+  
+  .products-section {
+    margin-top: 30px;
+  }
+  
+  .empty-search-state {
+    min-height: 300px;
+    padding: 40px 20px;
+    
+    .empty-state-content {
+      .empty-icon {
+        font-size: 60px;
+        margin-bottom: 20px;
+      }
+      
+      h3 {
+        font-size: 20px;
+      }
+      
+      p {
+        font-size: 14px;
+      }
+    }
+  }
+}
+
+// Override default product grid spacing for search page
+.modern-search-page {
+  .product-list-section {
+    margin: 0;
+  }
+}
+

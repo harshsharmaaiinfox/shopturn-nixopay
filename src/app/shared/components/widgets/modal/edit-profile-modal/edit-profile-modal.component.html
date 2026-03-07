@@ -1,0 +1,118 @@
+<ng-template #profileModal let-modal>
+  <div class="edit-profile-modal-wrapper">
+    <div class="modal-header-custom">
+      <div class="header-content">
+        <div class="header-icon">
+          <i class="ri-user-settings-line"></i>
+        </div>
+        <h3 class="modal-title">{{ 'Edit Profile' | translate }}</h3>
+      </div>
+      <app-button 
+        [class]="'btn btn-close-custom'" 
+        [spinner]="false" 
+        [id]="'profile_modal_close_btn'"
+        (click)="modal.dismiss('Cross click')">
+        <i class="ri-close-line"></i>
+      </app-button>
+    </div>
+
+    <form [formGroup]="form" (ngSubmit)="submit()" *ngIf="!flicker">
+      <div class="modal-body-custom">
+        <div class="form-grid">
+          <!-- Full Name -->
+          <div class="form-group full-width">
+            <label class="form-label" for="name">
+              <i class="ri-user-line"></i>
+              {{ 'Full Name' | translate }}
+            </label>
+            <input 
+              class="form-control-custom" 
+              id="name" 
+              type="text" 
+              placeholder="{{ 'Enter Name' | translate }}" 
+              formControlName="name" 
+              (keydown)="allowOnlyLetters($event)" 
+              (input)="sanitizeLettersInput($event)" 
+              (paste)="sanitizeLettersPaste($event)"
+              [class.is-invalid]="form?.controls?.['name']?.touched && form.controls['name']?.invalid">
+            <div class="invalid-feedback" 
+              *ngIf="form?.controls?.['name']?.touched && form.controls['name']?.errors?.['required']">
+              {{ 'Name is Required' | translate }}
+            </div>
+            <div class="invalid-feedback" 
+              *ngIf="form?.controls?.['name']?.touched && form.controls['name']?.errors?.['pattern']">
+              {{ 'Only letters and spaces are allowed' | translate }}
+            </div>
+          </div>
+
+          <!-- Email Address -->
+          <div class="form-group full-width">
+            <label class="form-label" for="email">
+              <i class="ri-mail-line"></i>
+              {{ 'Email Address' | translate }}
+            </label>
+            <input 
+              class="form-control-custom" 
+              id="email" 
+              type="email" 
+              placeholder="{{ 'Enter Email Address' | translate }}" 
+              formControlName="email"
+              [class.is-invalid]="form?.controls?.['email']?.touched && form.controls['email']?.invalid">
+            <div class="invalid-feedback" 
+              *ngIf="form?.controls?.['email']?.touched && form.controls['email']?.errors?.['required']">
+              {{ 'Email Address is Required' | translate }}
+            </div>
+            <div class="invalid-feedback" 
+              *ngIf="form.controls['email'].touched && form.controls['email'].errors?.['email']">
+              {{ 'Please Enter Valid Email' | translate }}
+            </div>
+          </div>
+
+          <!-- Phone Number -->
+          <div class="form-group full-width">
+            <label class="form-label" for="phone">
+              <i class="ri-phone-line"></i>
+              {{ 'Phone Number' | translate }}
+            </label>
+            <input 
+              type="tel" 
+              class="form-control-custom" 
+              formControlName="phone" 
+              placeholder="{{ 'Enter Phone' | translate }}" 
+              name="phone" 
+              (keydown)="allowOnlyDigits($event)" 
+              (input)="sanitizeDigitsInput($event)" 
+              (paste)="sanitizeDigitsPaste($event)"
+              [class.is-invalid]="form.controls['phone'].touched && form.controls['phone'].invalid">
+            <div class="invalid-feedback" 
+              *ngIf="form.controls['phone'].touched && form.controls['phone'].errors?.['required']">
+              {{ 'Phone Number is Required' | translate }}
+            </div>
+            <div class="invalid-feedback" 
+              *ngIf="form.controls['phone'].touched && form.controls['phone'].errors?.['pattern']">
+              {{ 'Phone Number is Invalid' | translate }}
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal-footer-custom">
+        <app-button 
+          [class]="'btn btn-cancel'" 
+          [type]="'button'" 
+          [spinner]="false"
+          [id]="'cancel_profile_btn'" 
+          (click)="modal.dismiss('Cancel')">
+          {{ 'Cancel' | translate }}
+        </app-button>
+        <app-button 
+          [class]="'btn btn-submit'" 
+          [id]="'submit_profile_btn'"
+          [type]="'submit'">
+          <i class="ri-check-line me-2"></i>
+          {{ 'Submit' | translate }}
+        </app-button>
+      </div>
+    </form>
+  </div>
+</ng-template>

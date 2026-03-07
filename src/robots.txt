@@ -1,0 +1,42 @@
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://shopturnlife.com/sitemap.xml
+
+# Disallow non-indexable areas
+Disallow: /admin/
+Disallow: /api/
+Disallow: /cart
+Disallow: /checkout
+Disallow: /order/checkout-success
+Disallow: /auth/
+Disallow: /account/
+Disallow: /wishlist
+Disallow: /compare
+Disallow: /404
+Disallow: /maintenance
+Disallow: /search
+
+# Allow important public pages
+Allow: /about-us
+Allow: /contact-us
+Allow: /privacy-policy
+Allow: /term-condition
+Allow: /return-policy
+Allow: /refund-and-cancellation
+Allow: /shipping-policy
+Allow: /become-a-supplier
+Allow: /investor-relations
+Allow: /offers
+Allow: /blogs
+Allow: /blog/
+Allow: /faq
+Allow: /product/
+Allow: /collections
+Allow: /collections/
+Allow: /category/
+Allow: /order/tracking
+
+# Crawl delay
+Crawl-delay: 1

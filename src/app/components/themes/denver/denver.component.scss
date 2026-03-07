@@ -1,0 +1,1435 @@
+// Hero Image Styles
+.hero-image-section {
+    position: relative;
+    overflow: hidden;
+
+    .hero-image {
+        position: relative;
+        width: 100%;
+        height: auto;
+        overflow: hidden;
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+
+        img {
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+            display: block;
+        }
+    }
+}
+
+.outer {
+    padding: 10px;
+}
+
+// Features Banner Section Styles
+.features-banner-section {
+    position: relative;
+    padding: 0;
+    margin: 0;
+
+    .features-banner-box {
+        background-color: #ffffff;
+        border: 1px solid #FFE5E5;
+        border-radius: 5px;
+        max-width: 100%;
+        margin: 0 auto;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.03);
+
+        .row {
+            align-items: center;
+            margin: 0;
+            justify-content: center;
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            position: relative;
+
+            @media (min-width: 992px) {
+                &:not(:last-child)::after {
+                    content: '';
+                    position: absolute;
+                    right: 0;
+                    top: 50%;
+                    transform: translateY(-50%);
+                    width: 1px;
+                    height: 50px;
+                    background-color: #E8E8E8;
+                }
+            }
+
+            .feature-icon {
+                flex-shrink: 0;
+                width: 49px;
+                height: 48px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+
+                img {
+                    width: 75%;
+                    height: 100%;
+                    object-fit: contain;
+                }
+            }
+
+            .feature-text {
+                span {
+                    color: #4a5568;
+                    font-size: 16px;
+                    font-weight: 500;
+                    line-height: 1.5;
+                    white-space: nowrap;
+                }
+            }
+        }
+    }
+
+    // Responsive styles
+    @media (max-width: 991px) {
+        .container-fluid {
+            padding: 40px 15px 25px;
+        }
+
+        .features-banner-box {
+            padding: 30px 20px;
+            margin-top: 0;
+
+            .feature-item {
+                padding: 15px 15px;
+                justify-content: center;
+                flex-direction: column;
+                text-align: center;
+                gap: 12px;
+
+                &:not(:last-child)::after {
+                    display: none;
+                }
+
+                &:not(:last-child) {
+                    border-bottom: 1px solid #E8E8E8;
+                    padding-bottom: 25px;
+                    margin-bottom: 25px;
+                }
+
+                .feature-icon {
+                    width: 45px;
+                    height: 44px;
+                }
+
+                .feature-text {
+                    span {
+                        font-size: 15px;
+                        white-space: normal;
+                    }
+                }
+            }
+        }
+    }
+
+    @media (max-width: 575px) {
+        .container-fluid {
+            padding: 30px 12px 20px;
+        }
+
+        .features-banner-box {
+            padding: 25px 15px;
+
+            .feature-item {
+                padding: 12px 10px;
+                gap: 10px;
+
+                &:not(:last-child) {
+                    padding-bottom: 20px;
+                    margin-bottom: 20px;
+                }
+
+                .feature-icon {
+                    width: 40px;
+                    height: 39px;
+                }
+
+                .feature-text {
+                    span {
+                        font-size: 14px;
+                    }
+                }
+            }
+        }
+    }
+}
+
+// Category Showcase Section Styles
+.category-showcase-section {
+    padding: 30px 0;
+    background-color: #ffffff;
+
+    .container-fluid {
+        padding: 0 5px;
+    }
+
+    .category-showcase-wrapper {
+        max-width: 100%;
+        margin: 0 auto;
+    }
+
+    .category-showcase-item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        cursor: pointer;
+        transition: transform 0.3s ease;
+
+        &:hover {
+            transform: translateY(-5px);
+        }
+
+        .category-image-wrapper {
+            position: relative;
+            width: 100%;
+            max-width: 120px;
+            height: 120px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 8px;
+
+            .category-image-bg {
+                position: absolute;
+                bottom: 0;
+                left: 50%;
+                transform: translateX(-50%);
+                width: 100px;
+                height: 50px;
+                background-color: #FFE5E5;
+                border-radius: 50px 50px 0 0;
+                z-index: 1;
+            }
+
+            &.with-square {
+                padding: 8px;
+                background-color: #000000;
+                border-radius: 12px;
+                max-width: 136px;
+                height: 136px;
+
+                .category-image-bg {
+                    width: 100px;
+                    height: 50px;
+                }
+            }
+
+            .category-image {
+                position: relative;
+                z-index: 2;
+                height: auto;
+                max-height: 122px;
+                object-fit: contain;
+                border-radius: 5px;
+            }
+        }
+
+        .category-label {
+            margin-top: 8px;
+
+            span {
+                color: #222222;
+                font-size: 14px;
+                font-weight: 500;
+                line-height: 1.4;
+                text-align: center;
+            }
+        }
+    }
+
+    // Responsive styles
+    @media (max-width: 1199px) {
+        .category-showcase-item {
+            .category-image-wrapper {
+                max-width: 100px;
+                height: 100px;
+
+                .category-image-bg {
+                    width: 85px;
+                    height: 42px;
+                }
+
+                &.with-square {
+                    max-width: 116px;
+                    height: 116px;
+                    padding: 6px;
+
+                }
+
+                .category-image {
+                    max-width: 85px;
+                    max-height: 85px;
+                }
+            }
+
+            .category-label {
+                span {
+                    font-size: 13px;
+                }
+            }
+        }
+    }
+
+    @media (max-width: 991px) {
+        padding: 25px 0;
+
+        .category-showcase-item {
+            .category-image-wrapper {
+                max-width: 90px;
+                height: 90px;
+
+                .category-image-bg {
+                    width: 75px;
+                    height: 37px;
+                }
+
+                &.with-square {
+                    max-width: 106px;
+                    height: 106px;
+                    padding: 5px;
+
+                }
+
+                .category-image {
+                    max-width: 75px;
+                    max-height: 75px;
+                }
+            }
+
+            .category-label {
+                span {
+                    font-size: 12px;
+                }
+            }
+        }
+    }
+
+    @media (max-width: 575px) {
+        padding: 20px 0;
+
+        .category-showcase-item {
+            .category-image-wrapper {
+                max-width: 80px;
+                height: 80px;
+
+                .category-image-bg {
+                    width: 65px;
+                    height: 32px;
+                }
+
+                &.with-square {
+                    max-width: 96px;
+                    height: 96px;
+                    padding: 4px;
+
+                    .category-image-bg {
+                        width: 65px;
+                        height: 32px;
+                    }
+                }
+
+            }
+
+            .category-label {
+                margin-top: 6px;
+
+                span {
+                    font-size: 11px;
+                }
+            }
+        }
+    }
+}
+
+// Gold Promotional Banner Section Styles
+.gold-promotional-section {
+    padding: 30px 0;
+    background-color: #ffffff;
+
+    .container-fluid {
+        padding: 0 5px;
+    }
+
+    .gold-promotional-wrapper {
+        max-width: 100%;
+        margin: 0 auto;
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    }
+
+    // Main Banner
+    .gold-main-banner {
+        position: relative;
+        width: 100%;
+        min-height: 500px;
+        overflow: hidden;
+
+        .gold-banner-image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+
+            img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                display: block;
+            }
+        }
+
+        // Categories Overlay - Top Right
+        .gold-categories-overlay {
+            position: absolute;
+            top: 35px;
+            right: 70px;
+            z-index: 0;
+            width: 58%;
+            max-width: 600px;
+            padding: 25px 20px;
+
+            // background: linear-gradient(to bottom, rgba(139, 69, 19, 0.75) 0%, rgba(139, 69, 19, 0.6) 50%, transparent 100%);
+            .gold-categories-grid {
+                display: grid;
+                grid-template-columns: repeat(2, 1fr);
+                gap: 15px;
+                width: 100%;
+            }
+
+            .gold-category-card {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                text-align: center;
+                cursor: pointer;
+                transition: transform 0.3s ease;
+                padding: 8px;
+
+                &:hover {
+                    transform: translateY(-5px);
+                }
+
+                .gold-category-image-wrapper {
+                    position: relative;
+                    width: 100%;
+                    max-width: 130px;
+                    height: 130px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    margin-bottom: 8px;
+
+                    .gold-category-image-bg {
+                        position: absolute;
+                        bottom: 0;
+                        left: 50%;
+                        transform: translateX(-50%);
+                        width: 110px;
+                        height: 55px;
+                        background-color: #ffffff;
+                        border-radius: 55px 55px 0 0;
+                        z-index: 1;
+                    }
+
+                    .gold-category-image {
+                        position: relative;
+                        z-index: 2;
+                        width: 100%;
+                        height: auto;
+                        max-height: 130px;
+                        object-fit: contain;
+                    }
+                }
+
+                .gold-category-label {
+                    margin-top: 5px;
+
+                    span {
+                        color: #ffffff;
+                        font-size: 14px;
+                        font-weight: 600;
+                        line-height: 1.4;
+                        text-align: center;
+                        text-transform: capitalize;
+                        text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+                    }
+                }
+            }
+        }
+
+        // Brand Content - Bottom Left
+        .gold-banner-content {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            z-index: 2;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            padding: 40px 50px;
+            width: 65%;
+            max-width: 600px;
+
+            .gold-logo-wrapper {
+                display: flex;
+                align-items: center;
+                gap: 12px;
+                margin-bottom: 15px;
+
+                .gold-star-icon {
+                    width: 36px;
+                    height: 36px;
+                    color: #D4AF37;
+                    filter: drop-shadow(0 2px 6px rgba(212, 175, 55, 0.6));
+                }
+
+                .gold-brand-name {
+                    font-size: 72px;
+                    font-weight: 700;
+                    color: #D4AF37;
+                    margin: 0;
+                    text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.4);
+                    letter-spacing: -2px;
+                    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+                }
+            }
+
+            .gold-tagline {
+                font-size: 18px;
+                color: #ffffff;
+                margin: 0 0 25px 0;
+                font-weight: 400;
+                font-style: italic;
+                text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5);
+                line-height: 1.6;
+            }
+
+            .gold-shop-now-btn {
+                background-color: #8B4513;
+                color: #ffffff;
+                border: 2px solid #D4AF37;
+                padding: 14px 32px;
+                font-size: 16px;
+                font-weight: 600;
+                border-radius: 6px;
+                cursor: pointer;
+                transition: all 0.3s ease;
+                width: fit-content;
+                box-shadow: 0 4px 12px rgba(139, 69, 19, 0.4);
+
+                &:hover {
+                    background-color: #A0522D;
+                    border-color: #F4D03F;
+                    transform: translateY(-2px);
+                    box-shadow: 0 6px 16px rgba(139, 69, 19, 0.5);
+                }
+
+                &:active {
+                    transform: translateY(0);
+                }
+            }
+        }
+    }
+
+    // Responsive styles
+    @media (max-width: 1199px) {
+        .gold-main-banner {
+            min-height: 450px;
+
+            .gold-categories-overlay {
+                width: 38%;
+                padding: 22px 18px;
+                max-width: 350px;
+
+                .gold-categories-grid {
+                    gap: 12px;
+                }
+
+                .gold-category-card {
+                    padding: 6px;
+
+                    .gold-category-image-wrapper {
+                        max-width: 110px;
+                        height: 110px;
+
+                        .gold-category-image-bg {
+                            width: 95px;
+                            height: 47px;
+                        }
+
+                        .gold-category-image {
+                            max-height: 110px;
+                        }
+                    }
+
+                    .gold-category-label {
+                        span {
+                            font-size: 13px;
+                        }
+                    }
+                }
+            }
+
+            .gold-banner-content {
+                width: 62%;
+                padding: 35px 40px;
+
+                .gold-logo-wrapper {
+                    .gold-star-icon {
+                        width: 32px;
+                        height: 32px;
+                    }
+
+                    .gold-brand-name {
+                        font-size: 64px;
+                    }
+                }
+
+                .gold-tagline {
+                    font-size: 17px;
+                }
+            }
+        }
+    }
+
+    @media (max-width: 991px) {
+        padding: 25px 0;
+
+        .gold-main-banner {
+            min-height: 400px;
+
+            .gold-categories-overlay {
+                width: 40%;
+                padding: 20px 15px;
+                max-width: 300px;
+
+                .gold-categories-grid {
+                    gap: 10px;
+                }
+
+                .gold-category-card {
+                    padding: 5px;
+
+                    .gold-category-image-wrapper {
+                        max-width: 95px;
+                        height: 95px;
+                        margin-bottom: 6px;
+
+                        .gold-category-image-bg {
+                            width: 80px;
+                            height: 40px;
+                        }
+
+                        .gold-category-image {
+                            max-height: 95px;
+                        }
+                    }
+
+                    .gold-category-label {
+                        margin-top: 4px;
+
+                        span {
+                            font-size: 12px;
+                        }
+                    }
+                }
+            }
+
+            .gold-banner-content {
+                width: 60%;
+                padding: 30px 35px;
+
+                .gold-logo-wrapper {
+                    gap: 10px;
+                    margin-bottom: 12px;
+
+                    .gold-star-icon {
+                        width: 28px;
+                        height: 28px;
+                    }
+
+                    .gold-brand-name {
+                        font-size: 56px;
+                    }
+                }
+
+                .gold-tagline {
+                    font-size: 16px;
+                    margin-bottom: 20px;
+                }
+
+                .gold-shop-now-btn {
+                    padding: 12px 28px;
+                    font-size: 15px;
+                }
+            }
+        }
+    }
+
+    @media (max-width: 767px) {
+        padding: 15px 0;
+
+        .container-fluid {
+            padding: 0 10px;
+        }
+
+        .gold-promotional-wrapper {
+            border-radius: 12px;
+        }
+
+        .gold-main-banner {
+            min-height: auto;
+            display: flex;
+            flex-direction: column;
+
+            .gold-banner-image {
+                position: relative;
+                width: 100%;
+                height: 250px;
+                min-height: 250px;
+
+                img {
+                    object-fit: cover;
+                    border-radius: 12px 12px 0 0;
+                }
+            }
+
+            .gold-categories-overlay {
+                position: relative;
+                top: 0;
+                right: 0;
+                width: 100%;
+                max-width: 100%;
+                padding: 20px 12px;
+                background: rgba(139, 69, 19, 0.95);
+                border-radius: 0 0 12px 12px;
+
+                .gold-categories-grid {
+                    grid-template-columns: repeat(4, 1fr);
+                    gap: 8px;
+                }
+
+                .gold-category-card {
+                    padding: 8px 4px;
+
+                    .gold-category-image-wrapper {
+                        max-width: 65px;
+                        width: 100%;
+                        height: 65px;
+                        margin: 0 auto 6px;
+
+                        .gold-category-image-bg {
+                            width: 55px;
+                            height: 28px;
+                        }
+
+                        .gold-category-image {
+                            max-height: 65px;
+                            width: auto;
+                        }
+                    }
+
+                    .gold-category-label {
+                        margin-top: 4px;
+
+                        span {
+                            font-size: 10px;
+                            line-height: 1.3;
+                            display: block;
+                            word-break: break-word;
+                        }
+                    }
+                }
+            }
+
+            .gold-banner-content {
+                position: relative;
+                width: 100%;
+                padding: 20px 15px;
+                background: transparent;
+
+                .gold-logo-wrapper {
+                    gap: 8px;
+                    margin-bottom: 10px;
+                    justify-content: center;
+
+                    .gold-star-icon {
+                        width: 24px;
+                        height: 24px;
+                    }
+
+                    .gold-brand-name {
+                        font-size: 42px;
+                    }
+                }
+
+                .gold-tagline {
+                    font-size: 14px;
+                    margin-bottom: 15px;
+                    text-align: center;
+                }
+
+                .gold-shop-now-btn {
+                    padding: 10px 20px;
+                    font-size: 13px;
+                    margin: 0 auto;
+                    display: block;
+                    width: fit-content;
+                }
+            }
+        }
+    }
+
+    @media (max-width: 575px) {
+        padding: 12px 0;
+
+        .container-fluid {
+            padding: 0 8px;
+        }
+
+        .gold-promotional-wrapper {
+            border-radius: 10px;
+        }
+
+        .gold-main-banner {
+            min-height: auto;
+
+            .gold-banner-image {
+                height: 200px;
+                min-height: 200px;
+
+                img {
+                    border-radius: 10px 10px 0 0;
+                }
+            }
+
+            .gold-categories-overlay {
+                padding: 16px 8px;
+                border-radius: 0 0 10px 10px;
+
+                .gold-categories-grid {
+                    grid-template-columns: repeat(2, 1fr);
+                    gap: 12px;
+                }
+
+                .gold-category-card {
+                    padding: 10px 6px;
+
+                    .gold-category-image-wrapper {
+                        max-width: 90px;
+                        width: 100%;
+                        height: 90px;
+                        margin: 0 auto 8px;
+
+                        .gold-category-image-bg {
+                            width: 75px;
+                            height: 38px;
+                        }
+
+                        .gold-category-image {
+                            max-height: 90px;
+                        }
+                    }
+
+                    .gold-category-label {
+                        margin-top: 6px;
+
+                        span {
+                            font-size: 12px;
+                            line-height: 1.4;
+                            font-weight: 600;
+                        }
+                    }
+                }
+            }
+
+            .gold-banner-content {
+                padding: 18px 12px;
+
+                .gold-logo-wrapper {
+                    gap: 6px;
+                    margin-bottom: 8px;
+                    flex-wrap: wrap;
+
+                    .gold-star-icon {
+                        width: 20px;
+                        height: 20px;
+                    }
+
+                    .gold-brand-name {
+                        font-size: 32px;
+                        line-height: 1.1;
+                    }
+                }
+
+                .gold-tagline {
+                    font-size: 13px;
+                    margin-bottom: 12px;
+                }
+
+                .gold-shop-now-btn {
+                    padding: 10px 18px;
+                    font-size: 12px;
+                }
+            }
+        }
+    }
+
+    @media (max-width: 375px) {
+        .gold-main-banner {
+            .gold-banner-image {
+                height: 180px;
+                min-height: 180px;
+            }
+
+            .gold-categories-overlay {
+                padding: 12px 6px;
+
+                .gold-categories-grid {
+                    gap: 8px;
+                }
+
+                .gold-category-card {
+                    padding: 8px 4px;
+
+                    .gold-category-image-wrapper {
+                        max-width: 75px;
+                        height: 75px;
+
+                        .gold-category-image-bg {
+                            width: 65px;
+                            height: 32px;
+                        }
+
+                        .gold-category-image {
+                            max-height: 75px;
+                        }
+                    }
+
+                    .gold-category-label {
+                        span {
+                            font-size: 11px;
+                        }
+                    }
+                }
+            }
+
+            .gold-banner-content {
+                padding: 15px 10px;
+
+                .gold-logo-wrapper {
+                    .gold-brand-name {
+                        font-size: 28px;
+                    }
+                }
+
+                .gold-tagline {
+                    font-size: 12px;
+                }
+            }
+        }
+    }
+}
+
+// SEO Content Section Styles
+.home-seo-section {
+    padding: 60px 0;
+    background-color: #fbfbfb;
+
+    .seo-content-box {
+        max-width: 800px;
+        margin: 0 auto;
+
+        .seo-title {
+            font-size: 32px;
+            font-weight: 700;
+            color: #222;
+            margin-bottom: 20px;
+            line-height: 1.2;
+            text-transform: capitalize;
+        }
+
+        .seo-description {
+            font-size: 18px;
+            color: #4a5568;
+            line-height: 1.8;
+            margin: 0;
+        }
+    }
+
+    @media (max-width: 991px) {
+        padding: 40px 0;
+
+        .seo-content-box {
+            .seo-title {
+                font-size: 26px;
+                margin-bottom: 15px;
+            }
+
+            .seo-description {
+                font-size: 16px;
+            }
+        }
+    }
+
+    @media (max-width: 575px) {
+        padding: 30px 15px;
+
+        .seo-content-box {
+            .seo-title {
+                font-size: 22px;
+            }
+
+            .seo-description {
+                font-size: 14px;
+            }
+        }
+    }
+}
+
+// App Promotional Banner Section Styles
+.app-promotional-section {
+    padding: 30px 0;
+    background-color: #ffffff;
+
+    .container-fluid {
+        padding: 0 5px;
+    }
+
+    .app-promotional-wrapper {
+        max-width: 100%;
+        margin: 0 auto;
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    }
+
+    // Left Side - Orange Discount Section
+    .app-discount-section {
+        background-color: #d07a44;
+        padding: 50px 40px;
+        position: relative;
+        min-height: 400px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+        .app-discount-content {
+            text-align: center;
+            width: 100%;
+            max-width: 300px;
+
+            .app-discount-label {
+                color: #2E6463;
+                font-size: 24px;
+                font-weight: 600;
+                margin-bottom: 10px;
+                text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.3);
+            }
+
+            .app-discount-amount {
+                color: #2E6463;
+                font-size: 72px;
+                font-weight: 800;
+                line-height: 1;
+                margin: 15px 0;
+                text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.3);
+                letter-spacing: -2px;
+            }
+
+            .app-discount-subtext {
+                color: #2E6463;
+                font-size: 18px;
+                font-weight: 500;
+                margin-bottom: 8px;
+                text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.3);
+            }
+
+            .app-discount-note {
+                color: #2E6463;
+                font-size: 14px;
+                font-weight: 400;
+                margin-bottom: 30px;
+                text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.3);
+            }
+
+            .app-download-btn {
+                background-color: #ffffff;
+                color: #2E6463;
+                border: none;
+                padding: 14px 40px;
+                font-size: 16px;
+                font-weight: 600;
+                border-radius: 8px;
+                cursor: pointer;
+                transition: all 0.3s ease;
+                width: 100%;
+                max-width: 250px;
+                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+
+                &:hover {
+                    background-color: #f8f8f8;
+                    transform: translateY(-2px);
+                    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+                }
+
+                &:active {
+                    transform: translateY(0);
+                }
+            }
+        }
+
+        .app-terms-text {
+            position: absolute;
+            left: 15px;
+            bottom: 20px;
+            writing-mode: vertical-rl;
+            text-orientation: mixed;
+            color: #2E6463;
+            font-size: 12px;
+            font-weight: 400;
+            text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.3);
+        }
+    }
+
+    // Right Side - Purple Categories Section
+    .app-categories-section {
+        background-color: #2e6463;
+        padding: 30px 20px 20px;
+        min-height: 448px;
+        display: flex;
+        align-items: flex-start;
+        justify-content: center;
+
+        .app-categories-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            width: 100%;
+            max-width: 100%;
+
+            .app-category-panel {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: flex-start;
+                gap: 12px;
+
+                .app-category-image-wrapper {
+                    width: 100%;
+                    background-color: #ffffff;
+                    border: 2px solid #FFF8E1;
+                    border-radius: 12px;
+                    padding: 10px;
+                    display: flex;
+                    align-items: flex-end;
+                    justify-content: center;
+                    min-height: 250px;
+                    position: relative;
+                    overflow: hidden;
+
+                    .app-category-image {
+                        width: 100%;
+                        height: auto;
+                        object-fit: contain;
+                        object-position: bottom;
+                        max-height: 240px;
+                    }
+                }
+
+                .app-category-btn {
+                    background-color: #ffffff;
+                    color: #2E6463;
+                    border: none;
+                    padding: 10px 20px;
+                    font-size: 14px;
+                    font-weight: 600;
+                    border-radius: 8px;
+                    cursor: pointer;
+                    transition: all 0.3s ease;
+                    width: 100%;
+                    max-width: 150px;
+                    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+
+                    &:hover {
+                        background-color: #f8f8f8;
+                        transform: translateY(-2px);
+                        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+                    }
+
+                    &:active {
+                        transform: translateY(0);
+                    }
+                }
+            }
+        }
+    }
+
+    // Responsive styles
+    @media (max-width: 1199px) {
+        .app-discount-section {
+            padding: 40px 30px;
+            min-height: 380px;
+
+            .app-discount-content {
+                .app-discount-amount {
+                    font-size: 64px;
+                }
+
+                .app-discount-label {
+                    font-size: 22px;
+                }
+            }
+        }
+
+        .app-categories-section {
+            padding: 25px 15px;
+
+            .app-categories-grid {
+                gap: 12px;
+
+                .app-category-panel {
+                    gap: 12px;
+
+                    .app-category-image-wrapper {
+                        min-height: 220px;
+                        padding: 8px;
+                        align-items: flex-end;
+
+                        .app-category-image {
+                            max-height: 210px;
+                            object-position: bottom;
+                        }
+                    }
+
+                    .app-category-btn {
+                        font-size: 13px;
+                        padding: 9px 18px;
+                    }
+                }
+            }
+        }
+    }
+
+    @media (max-width: 991px) {
+        padding: 25px 0;
+
+        .app-discount-section {
+            padding: 35px 25px;
+            min-height: 350px;
+
+            .app-discount-content {
+                .app-discount-amount {
+                    font-size: 56px;
+                }
+
+                .app-discount-label {
+                    font-size: 20px;
+                }
+
+                .app-discount-subtext {
+                    font-size: 16px;
+                }
+
+                .app-download-btn {
+                    padding: 12px 35px;
+                    font-size: 15px;
+                }
+            }
+        }
+
+        .app-categories-section {
+            padding: 20px 15px 15px;
+
+            .app-categories-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 15px;
+
+                .app-category-panel {
+                    gap: 12px;
+
+                    .app-category-image-wrapper {
+                        min-height: 200px;
+                        padding: 10px;
+                        align-items: flex-end;
+
+                        .app-category-image {
+                            max-height: 190px;
+                            object-position: bottom;
+                        }
+                    }
+
+                    .app-category-btn {
+                        font-size: 13px;
+                        padding: 10px 20px;
+                        max-width: 180px;
+                    }
+                }
+            }
+        }
+    }
+
+    @media (max-width: 767px) {
+        .app-discount-section {
+            padding: 30px 20px;
+            min-height: 320px;
+
+            .app-discount-content {
+                .app-discount-amount {
+                    font-size: 48px;
+                }
+
+                .app-discount-label {
+                    font-size: 18px;
+                }
+
+                .app-discount-subtext {
+                    font-size: 15px;
+                }
+
+                .app-discount-note {
+                    font-size: 13px;
+                }
+
+                .app-download-btn {
+                    padding: 11px 30px;
+                    font-size: 14px;
+                }
+            }
+
+            .app-terms-text {
+                font-size: 11px;
+                left: 10px;
+                bottom: 15px;
+            }
+        }
+
+        .app-categories-section {
+            padding: 20px 12px 12px;
+
+            .app-categories-grid {
+                gap: 12px;
+
+                .app-category-panel {
+                    gap: 10px;
+
+                    .app-category-image-wrapper {
+                        min-height: 180px;
+                        padding: 8px;
+                        border-radius: 10px;
+                        align-items: flex-end;
+
+                        .app-category-image {
+                            max-height: 170px;
+                            object-position: bottom;
+                        }
+                    }
+
+                    .app-category-btn {
+                        font-size: 12px;
+                        padding: 9px 18px;
+                        max-width: 160px;
+                    }
+                }
+            }
+        }
+    }
+
+    @media (max-width: 575px) {
+        padding: 20px 0;
+
+        .app-discount-section {
+            padding: 25px 15px;
+            min-height: 300px;
+
+            .app-discount-content {
+                .app-discount-amount {
+                    font-size: 42px;
+                }
+
+                .app-discount-label {
+                    font-size: 16px;
+                }
+
+                .app-discount-subtext {
+                    font-size: 14px;
+                }
+
+                .app-discount-note {
+                    font-size: 12px;
+                    margin-bottom: 25px;
+                }
+
+                .app-download-btn {
+                    padding: 10px 25px;
+                    font-size: 13px;
+                    max-width: 200px;
+                }
+            }
+
+            .app-terms-text {
+                font-size: 10px;
+                left: 8px;
+                bottom: 12px;
+            }
+        }
+
+        .app-categories-section {
+            padding: 15px 10px 10px;
+
+            .app-categories-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 10px;
+
+                .app-category-panel {
+                    gap: 8px;
+
+                    .app-category-image-wrapper {
+                        min-height: 160px;
+                        padding: 6px;
+                        border-radius: 8px;
+                        border-width: 1.5px;
+                        align-items: flex-end;
+
+                        .app-category-image {
+                            max-height: 150px;
+                            object-position: bottom;
+                        }
+                    }
+
+                    .app-category-btn {
+                        font-size: 11px;
+                        padding: 8px 15px;
+                        max-width: 140px;
+                    }
+                }
+            }
+        }
+    }
+}
+
+// Hide sort controls on Denver page collection section
+#filtered_products {
+    app-collection-products {
+        app-collection-sort {
+            display: none;
+        }
+    }
+}

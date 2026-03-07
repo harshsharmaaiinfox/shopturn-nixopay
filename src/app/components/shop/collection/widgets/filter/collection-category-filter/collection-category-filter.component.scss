@@ -1,0 +1,269 @@
+// Modern Category Filter Design
+.modern-category-filter {
+  width: 100%;
+
+  // Search Box
+  .modern-search-box {
+    position: relative;
+    margin-bottom: 20px;
+    width: 100%;
+
+    .search-icon {
+      position: absolute;
+      left: 14px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: #999;
+      font-size: 18px;
+      pointer-events: none;
+      z-index: 1;
+
+      html.dark & {
+        color: #aaa;
+      }
+    }
+
+    .modern-search-input {
+      width: 100%;
+      padding: 12px 16px 12px 42px;
+      border: 1px solid #e0e0e0;
+      border-radius: 8px;
+      font-size: 14px;
+      color: #333;
+      background: #ffffff;
+      transition: all 0.3s ease;
+
+      html.dark & {
+        background: #1d1d22;
+        border-color: #3a3d3d;
+        color: #ddd;
+      }
+
+      &::placeholder {
+        color: #999;
+        font-size: 14px;
+
+        html.dark & {
+          color: #777;
+        }
+      }
+
+      &:focus {
+        outline: none;
+        border-color: var(--theme-color);
+        box-shadow: 0 0 0 3px rgba(217, 159, 70, 0.1);
+        background: #fafafa;
+
+        html.dark & {
+          background: #252525;
+          box-shadow: 0 0 0 3px rgba(217, 159, 70, 0.15);
+        }
+      }
+
+      &:hover {
+        border-color: #ccc;
+
+        html.dark & {
+          border-color: #4a4d4d;
+        }
+      }
+    }
+  }
+
+  // Category List
+  .modern-category-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+
+    .modern-category-item {
+      padding: 0;
+      margin: 0;
+      list-style: none;
+
+      .modern-checkbox-wrapper {
+        display: flex;
+        align-items: center;
+        padding: 10px 0;
+        cursor: pointer;
+        transition: background-color 0.2s ease;
+        border-radius: 6px;
+        padding-left: 4px;
+        margin-left: -4px;
+
+        &:hover {
+          background-color: #f8f9fa;
+
+          html.dark & {
+            background-color: #252525;
+          }
+        }
+      }
+
+      // Modern Checkbox
+      .modern-checkbox {
+        width: 18px;
+        height: 18px;
+        margin: 0;
+        margin-right: 12px;
+        cursor: pointer;
+        appearance: none;
+        border: 2px solid #d0d0d0;
+        border-radius: 4px;
+        background: #ffffff;
+        position: relative;
+        flex-shrink: 0;
+        transition: all 0.2s ease;
+
+        html.dark & {
+          background: #2a2d2d;
+          border-color: #4a4d4d;
+        }
+
+        &:hover {
+          border-color: var(--theme-color);
+        }
+
+        &:checked {
+          background: var(--theme-color);
+          border-color: var(--theme-color);
+
+          &::after {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%) rotate(45deg);
+            width: 5px;
+            height: 10px;
+            border: solid white;
+            border-width: 0 2px 2px 0;
+          }
+        }
+
+        &:focus {
+          outline: none;
+          box-shadow: 0 0 0 3px rgba(217, 159, 70, 0.1);
+        }
+      }
+
+      .modern-checkbox-label {
+        flex: 1;
+        cursor: pointer;
+        margin: 0;
+        display: flex;
+        align-items: center;
+        user-select: none;
+
+        .category-name {
+          font-size: 14px;
+          color: #555;
+          font-weight: 400;
+          line-height: 1.5;
+          transition: color 0.2s ease;
+
+          html.dark & {
+            color: #ccc;
+          }
+        }
+      }
+
+      // Sub-categories
+      .modern-sub-category-list {
+        list-style: none;
+        padding: 0;
+        margin: 8px 0 0 30px;
+        display: flex;
+        flex-direction: column;
+        gap: 2px;
+
+        .modern-category-item {
+          .modern-checkbox-wrapper {
+            padding: 8px 0;
+          }
+
+          .category-name {
+            font-size: 13px;
+            color: #666;
+
+            html.dark & {
+              color: #bbb;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  // Search Not Found
+  .modern-search-not-found {
+    padding: 20px;
+    text-align: center;
+
+    h5 {
+      margin: 0;
+      color: #999;
+      font-size: 14px;
+      font-weight: 400;
+
+      html.dark & {
+        color: #777;
+      }
+    }
+  }
+
+  // Responsive Design
+  @media (max-width: 575px) {
+    .modern-search-box {
+      margin-bottom: 16px;
+
+      .modern-search-input {
+        padding: 10px 14px 10px 38px;
+        font-size: 13px;
+      }
+
+      .search-icon {
+        left: 12px;
+        font-size: 16px;
+      }
+    }
+
+    .modern-category-list {
+      .modern-category-item {
+        .modern-checkbox-wrapper {
+          padding: 8px 0;
+        }
+
+        .modern-checkbox {
+          width: 16px;
+          height: 16px;
+          margin-right: 10px;
+        }
+
+        .modern-checkbox-label {
+          .category-name {
+            font-size: 13px;
+          }
+        }
+
+        .modern-sub-category-list {
+          margin-left: 26px;
+
+          .modern-category-item {
+            .modern-checkbox-wrapper {
+              padding: 6px 0;
+            }
+
+            .category-name {
+              font-size: 12px;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+

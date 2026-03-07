@@ -1,0 +1,360 @@
+// Brand Colors
+$primary-teal: #2B5F5E;
+$secondary-orange: #C77640;
+$teal-light: rgba(43, 95, 94, 0.1);
+$orange-light: rgba(199, 118, 64, 0.1);
+$teal-dark: #1f4544;
+$orange-dark: #a85d2a;
+
+.orders-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem 2rem 1rem;
+  overflow-x: hidden;
+  width: 100%;
+  box-sizing: border-box;
+
+  @media (min-width: 768px) {
+    padding: 0 2rem 3rem 2rem;
+  }
+}
+
+.orders-header {
+  background: linear-gradient(135deg, $primary-teal 0%, $teal-dark 100%);
+  border-radius: 16px;
+  padding: 2.5rem 2rem;
+  margin-bottom: 2rem;
+  box-shadow: 0 8px 24px rgba(43, 95, 94, 0.2);
+  color: white;
+  position: relative;
+  transition: all 0.3s ease;
+
+  // Specific style when there are no orders to accommodate the overlap
+  &.has-no-orders {
+    padding-bottom: 6rem; // Extra space for better overlap visual
+    margin-bottom: 3rem;
+  }
+
+  .header-content {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+
+    .header-icon-wrapper {
+      width: 64px;
+      height: 64px;
+      background: rgba(255, 255, 255, 0.2);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      backdrop-filter: blur(10px);
+
+      i {
+        font-size: 2rem;
+        color: white;
+      }
+    }
+
+    .header-text {
+      flex: 1;
+
+      h2 {
+        font-size: 2rem;
+        font-weight: 700;
+        margin: 0 0 0.5rem 0;
+        color: white;
+      }
+
+      p {
+        font-size: 1rem;
+        margin: 0;
+        opacity: 0.9;
+        color: rgba(255, 255, 255, 0.95);
+      }
+    }
+  }
+
+  @media (max-width: 768px) {
+    padding: 1.5rem 1rem;
+
+    &.has-no-orders {
+      padding-bottom: 4rem;
+    }
+
+    .header-content {
+      flex-direction: column;
+      text-align: center;
+      gap: 1rem;
+
+      .header-icon-wrapper {
+        width: 56px;
+        height: 56px;
+
+        i {
+          font-size: 1.5rem;
+        }
+      }
+
+      .header-text h2 {
+        font-size: 1.5rem;
+      }
+    }
+  }
+}
+
+.orders-content {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.orders-table-card {
+  background: white;
+  border-radius: 16px;
+  padding: 2rem;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+  border: 1px solid #f0f0f0;
+  overflow-x: auto;
+
+  @media (max-width: 768px) {
+    padding: 1rem;
+  }
+}
+
+.orders-table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 800px;
+
+  thead {
+    background: linear-gradient(135deg, $teal-light 0%, rgba(43, 95, 94, 0.05) 100%);
+    border-radius: 8px;
+
+    tr {
+      border-bottom: 2px solid $primary-teal;
+    }
+
+    th {
+      padding: 1rem;
+      text-align: left;
+      font-weight: 600;
+      font-size: 0.95rem;
+      color: $primary-teal;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+
+      &:first-child {
+        border-top-left-radius: 8px;
+      }
+
+      &:last-child {
+        border-top-right-radius: 8px;
+      }
+    }
+  }
+
+  tbody {
+    tr {
+      border-bottom: 1px solid #f0f0f0;
+      transition: all 0.2s ease;
+
+      &:hover {
+        background: #fafafa;
+        transform: translateX(2px);
+      }
+
+      &:last-child {
+        border-bottom: none;
+      }
+    }
+
+    td {
+      padding: 1.25rem 1rem;
+      font-size: 0.95rem;
+      color: #333;
+      vertical-align: middle;
+
+      .order-number {
+        font-weight: 700;
+        color: $primary-teal;
+        font-size: 1rem;
+      }
+
+      .order-date {
+        color: #666;
+      }
+
+      .order-amount {
+        font-weight: 600;
+        color: #222;
+        font-size: 1rem;
+      }
+
+      .status-badge {
+        display: inline-block;
+        padding: 0.5rem 1rem;
+        border-radius: 20px;
+        font-size: 0.85rem;
+        font-weight: 600;
+        text-transform: capitalize;
+
+        &.status-pending {
+          background: rgba(255, 193, 7, 0.15);
+          color: #f57c00;
+        }
+
+        &.status-completed,
+        &.status-paid {
+          background: rgba(76, 175, 80, 0.15);
+          color: #2e7d32;
+        }
+
+        &.status-failed,
+        &.status-cancelled {
+          background: rgba(244, 67, 54, 0.15);
+          color: #c62828;
+        }
+
+        &.status-processing {
+          background: rgba(33, 150, 243, 0.15);
+          color: #1565c0;
+        }
+      }
+
+      .payment-method {
+        color: #666;
+        font-size: 0.9rem;
+      }
+
+      .view-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.5rem 1rem;
+        background: linear-gradient(135deg, $primary-teal 0%, $teal-dark 100%);
+        color: white;
+        border-radius: 8px;
+        text-decoration: none;
+        font-size: 0.9rem;
+        font-weight: 500;
+        transition: all 0.3s ease;
+        box-shadow: 0 2px 8px rgba(43, 95, 94, 0.2);
+
+        &:hover {
+          transform: translateY(-2px);
+          box-shadow: 0 4px 12px rgba(43, 95, 94, 0.3);
+          background: linear-gradient(135deg, $teal-dark 0%, $primary-teal 100%);
+        }
+
+        i {
+          font-size: 1.1rem;
+        }
+
+        .btn-text {
+          @media (max-width: 768px) {
+            display: none;
+          }
+        }
+      }
+    }
+  }
+}
+
+.pagination-wrapper {
+  display: flex;
+  justify-content: center;
+  padding: 1rem 0;
+}
+
+.empty-orders-container {
+  background: white;
+  border-radius: 16px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+  border: 1px solid #f0f0f0;
+  text-align: center;
+  position: relative;
+  margin-top: -4rem; // Overlap with the header
+  z-index: 2;
+  padding: 3rem 2rem;
+  max-width: 900px;
+  margin-left: auto;
+  margin-right: auto;
+
+  .empty-image-wrapper {
+    margin-top: -6rem; // Pull visually up
+    margin-bottom: 2rem;
+
+    img {
+      max-width: 300px;
+      width: 100%;
+      height: auto;
+      filter: drop-shadow(0 10px 15px rgba(0, 0, 0, 0.1));
+    }
+  }
+
+  h3 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: $primary-teal;
+    margin-bottom: 0.5rem;
+  }
+
+  p {
+    font-size: 1rem;
+    color: #666;
+    margin-bottom: 0;
+  }
+
+  @media (max-width: 768px) {
+    margin-top: -3rem;
+    padding: 2rem 1rem;
+
+    .empty-image-wrapper {
+      margin-top: -4rem;
+
+      img {
+        max-width: 200px;
+      }
+    }
+  }
+}
+
+
+// Full width layout when sidebar is hidden
+:host-context(.orders-full-width) {
+  .orders-container {
+    padding-top: 0;
+  }
+}
+
+// Responsive adjustments
+@media (max-width: 768px) {
+  .orders-table-card {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .orders-table {
+    font-size: 0.85rem;
+
+    thead th,
+    tbody td {
+      padding: 0.75rem 0.5rem;
+    }
+  }
+}
+
+@media (max-width: 576px) {
+  .orders-container {
+    padding: 0 0.5rem 1rem 0.5rem;
+  }
+
+  .orders-header {
+    padding: 1.5rem 1rem;
+  }
+
+  .orders-table-card {
+    padding: 0.75rem;
+  }
+}

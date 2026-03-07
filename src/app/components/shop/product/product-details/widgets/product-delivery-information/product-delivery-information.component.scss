@@ -1,0 +1,89 @@
+// Modern Delivery Information Styles
+$primary-teal: #2B5F5E;
+$primary-brown: #C77640;
+$teal-light: rgba(43, 95, 94, 0.1);
+$border-gray: #e8e8e8;
+$text-dark: #222;
+$text-medium: #666;
+
+.delivery-info {
+  background: white;
+  border-radius: 16px;
+  padding: 1.5rem;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+  border: 1px solid $border-gray;
+  margin-bottom: 1.5rem;
+
+  .product-title {
+    margin-bottom: 1.25rem;
+    padding-bottom: 1rem;
+    border-bottom: 2px solid $border-gray;
+    position: relative;
+
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      width: 60px;
+      height: 2px;
+      background: linear-gradient(90deg, $primary-teal 0%, $primary-brown 100%);
+    }
+
+    h4 {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: $text-dark;
+      margin: 0;
+    }
+  }
+
+  ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+
+    li {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 0.75rem;
+      background: #f8f9fa;
+      border-radius: 8px;
+      font-size: 0.95rem;
+      color: $text-dark;
+      transition: all 0.2s ease;
+
+      &:hover {
+        background: $teal-light;
+        transform: translateX(4px);
+      }
+
+      i {
+        font-size: 1.25rem;
+        color: $primary-teal;
+        flex-shrink: 0;
+      }
+    }
+  }
+}
+
+// Responsive
+@media (max-width: 768px) {
+  .delivery-info {
+    padding: 1.25rem;
+
+    .product-title h4 {
+      font-size: 1.1rem;
+    }
+
+    ul li {
+      font-size: 0.875rem;
+      padding: 0.625rem;
+    }
+  }
+}
+

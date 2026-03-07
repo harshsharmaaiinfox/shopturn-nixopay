@@ -1,0 +1,56 @@
+// Simple Breadcrumb Styles
+$primary-teal: #2B5F5E;
+$primary-brown: #C77640;
+
+.breadcrumb-section-simple {
+  padding: 1rem 0;
+  border-top: 1px solid #e0e0e0;
+  background: white;
+
+  @media (max-width: 768px) {
+    padding: 0.75rem 0;
+  }
+}
+
+.breadcrumb-simple {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  font-size: 0.95rem;
+  line-height: 1.5;
+
+  @media (max-width: 480px) {
+    font-size: 0.85rem;
+    gap: 0.35rem;
+  }
+}
+
+.breadcrumb-item-link {
+  color: $primary-teal;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.2s ease;
+
+  &:hover {
+    color: $primary-brown;
+    text-decoration: underline;
+  }
+}
+
+.breadcrumb-item {
+  color: $primary-teal;
+  font-weight: 500;
+
+  &.active {
+    color: #333;
+    font-weight: 500;
+  }
+}
+
+.breadcrumb-separator {
+  color: #999;
+  margin: 0 0.25rem;
+  font-weight: 400;
+}
+

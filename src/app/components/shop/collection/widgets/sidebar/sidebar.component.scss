@@ -1,0 +1,348 @@
+// Modern Sidebar Design
+.modern-sidebar {
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 24px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
+  transition: all 0.3s ease;
+
+  // Dark mode support
+  html.dark & {
+    background: #2a2d2d;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.2);
+  }
+
+  // Back button styling
+  .back-button {
+    margin-bottom: 24px;
+    padding-bottom: 20px;
+    border-bottom: 2px solid #f0f0f0;
+
+    html.dark & {
+      border-bottom-color: #3a3d3d;
+    }
+
+    h3 {
+      margin: 0;
+      
+      a {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        color: #666;
+        font-size: 15px;
+        font-weight: 500;
+        text-decoration: none;
+        transition: all 0.3s ease;
+        padding: 8px 12px;
+        border-radius: 8px;
+        background: #f8f9fa;
+
+        html.dark & {
+          color: #ddd;
+          background: #1d1d22;
+        }
+
+        &:hover {
+          color: var(--theme-color);
+          background: rgba(217, 159, 70, 0.1);
+          transform: translateX(-3px);
+
+          html.dark & {
+            background: rgba(217, 159, 70, 0.15);
+          }
+        }
+
+        i {
+          font-size: 18px;
+          transition: transform 0.3s ease;
+        }
+
+        &:hover i {
+          transform: scale(1.1);
+        }
+      }
+    }
+  }
+
+  // Filter category section
+  .filter-category {
+    margin-bottom: 24px;
+  }
+
+  // Modern Accordion Styles
+  .modern-accordion {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-top: 0;
+
+    .modern-accordion-item {
+      background: #ffffff;
+      border: 1px solid #e8e8e8;
+      border-radius: 12px;
+      overflow: hidden;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+
+      html.dark & {
+        background: #2a2d2d;
+        border-color: #3a3d3d;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+      }
+
+      &:hover {
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        transform: translateY(-2px);
+        border-color: rgba(217, 159, 70, 0.3);
+
+        html.dark & {
+          box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+          border-color: rgba(217, 159, 70, 0.4);
+        }
+      }
+
+      // Accordion Header
+      .accordion-header {
+        margin: 0;
+
+        .modern-accordion-button {
+          width: 100%;
+          padding: 18px 20px;
+          background: transparent;
+          border: none;
+          border-bottom: none !important;
+          display: flex;
+          align-items: center;
+          gap: 12px;
+          font-size: 16px;
+          font-weight: 600;
+          color: #333;
+          cursor: pointer;
+          transition: all 0.3s ease;
+          position: relative;
+          text-align: left;
+          box-shadow: none !important;
+
+          html.dark & {
+            color: #ffffff;
+          }
+
+          i {
+            font-size: 20px;
+            color: var(--theme-color);
+            transition: transform 0.3s ease;
+            flex-shrink: 0;
+          }
+
+          span {
+            flex: 1;
+            font-weight: 600;
+            letter-spacing: 0.3px;
+          }
+
+          // Hide default ngb-accordion arrow
+          &::before {
+            display: none !important;
+          }
+
+          // Custom single chevron icon
+          &::after {
+            content: '';
+            width: 0;
+            height: 0;
+            border-left: 5px solid transparent;
+            border-right: 5px solid transparent;
+            border-top: 6px solid #666;
+            transition: transform 0.3s ease;
+            margin-left: auto;
+            flex-shrink: 0;
+            background-image: none !important;
+
+            html.dark & {
+              border-top-color: #ddd;
+            }
+          }
+
+          &:not(.collapsed) {
+            background: linear-gradient(135deg, rgba(217, 159, 70, 0.05) 0%, rgba(217, 159, 70, 0.02) 100%);
+            color: var(--theme-color);
+
+            html.dark & {
+              background: linear-gradient(135deg, rgba(217, 159, 70, 0.15) 0%, rgba(217, 159, 70, 0.08) 100%);
+            }
+
+            &::after {
+              transform: rotate(180deg);
+              border-top-color: var(--theme-color);
+            }
+
+            i {
+              transform: scale(1.1);
+            }
+          }
+
+          &:hover {
+            background: rgba(217, 159, 70, 0.08);
+            color: var(--theme-color);
+
+            html.dark & {
+              background: rgba(217, 159, 70, 0.12);
+            }
+
+            i {
+              transform: scale(1.15);
+            }
+          }
+
+          &:focus {
+            box-shadow: 0 0 0 3px rgba(217, 159, 70, 0.1);
+            outline: none;
+          }
+        }
+      }
+
+      // Accordion Body
+      .modern-accordion-body {
+        padding: 20px;
+        background: #ffffff;
+        border-top: 1px solid #e8e8e8;
+
+        html.dark & {
+          background: #2a2d2d;
+          border-top-color: #3a3d3d;
+        }
+
+        // Smooth animation
+        animation: slideDown 0.3s ease-out;
+
+        @keyframes slideDown {
+          from {
+            opacity: 0;
+            transform: translateY(-10px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+      }
+    }
+  }
+
+  // Responsive Design
+  @media (max-width: 991px) {
+    padding: 20px;
+    border-radius: 0;
+
+    .back-button {
+      margin-bottom: 20px;
+      padding-bottom: 16px;
+    }
+
+    .modern-accordion {
+      gap: 12px;
+
+      .modern-accordion-item {
+        border-radius: 10px;
+
+        .accordion-header {
+          .modern-accordion-button {
+            padding: 16px 18px;
+            font-size: 15px;
+
+            i {
+              font-size: 18px;
+            }
+          }
+        }
+
+        .modern-accordion-body {
+          padding: 16px 18px;
+        }
+      }
+    }
+  }
+
+  @media (max-width: 575px) {
+    padding: 16px;
+
+    .back-button {
+      margin-bottom: 16px;
+      padding-bottom: 12px;
+
+      h3 a {
+        font-size: 14px;
+        padding: 6px 10px;
+      }
+    }
+
+    .modern-accordion {
+      gap: 10px;
+
+      .modern-accordion-item {
+        border-radius: 8px;
+
+        .accordion-header {
+          .modern-accordion-button {
+            padding: 14px 16px;
+            font-size: 14px;
+            gap: 10px;
+
+            i {
+              font-size: 16px;
+            }
+          }
+        }
+
+        .modern-accordion-body {
+          padding: 14px 16px;
+        }
+      }
+    }
+  }
+}
+
+  // Override default accordion styles for modern look
+.modern-accordion {
+  .accordion-item {
+    border: none !important;
+    margin-bottom: 0 !important;
+
+    &:first-child {
+      border-top-left-radius: 12px;
+      border-top-right-radius: 12px;
+    }
+
+    &:last-child {
+      border-bottom-left-radius: 12px;
+      border-bottom-right-radius: 12px;
+    }
+  }
+
+  .accordion-button {
+    box-shadow: none !important;
+    border-bottom: none !important;
+
+    // Hide default Bootstrap/ngb-accordion arrow
+    &::before {
+      display: none !important;
+      content: none !important;
+      background-image: none !important;
+    }
+
+    // Ensure only our custom arrow shows
+    &::after {
+      background-image: none !important;
+    }
+
+    &:not(.collapsed) {
+      box-shadow: none !important;
+      border-bottom: none !important;
+    }
+  }
+
+  .accordion-header {
+    border-bottom: none !important;
+  }
+}

@@ -1,0 +1,121 @@
+// Product Details Tabs Styles
+$primary-brown: #CE7C49;
+$primary-teal: #276267;
+$teal-light: rgba(39, 98, 103, 0.1);
+$border-gray: #e8e8e8;
+$text-dark: #222;
+$text-medium: #666;
+
+.product-section-box {
+  margin-top: 2rem;
+  background: white;
+  border-radius: 16px;
+  padding: 2rem;
+  border: 1px solid $border-gray;
+
+  .custom-nav {
+    border-bottom: 2px solid $border-gray;
+    margin-bottom: 0;
+
+    .nav-item {
+      .nav-link {
+        color: $text-medium;
+        font-size: 1rem;
+        font-weight: 500;
+        padding: 1rem 1.5rem;
+        border: none;
+        border-radius: 0;
+        position: relative;
+        transition: all 0.3s ease;
+
+        &:hover {
+          color: $primary-teal;
+        }
+
+        &.active {
+          color: $primary-teal;
+          font-weight: 700;
+          background: transparent;
+          border: none;
+          border-bottom: 3px solid $primary-brown;
+          position: relative;
+
+          &::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, $primary-brown 0%, $primary-teal 100%);
+          }
+        }
+      }
+    }
+  }
+
+  .custom-tab {
+    padding-top: 1.5rem;
+
+    .product-description {
+      color: $text-dark;
+      line-height: 1.8;
+      font-size: 1rem;
+
+      .nav-desh {
+        color: $text-dark;
+        line-height: 1.8;
+
+        p {
+          margin-bottom: 1rem;
+          color: $text-dark;
+          line-height: 1.8;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+          color: $text-dark;
+          font-weight: 600;
+          margin-bottom: 0.75rem;
+        }
+
+        ul, ol {
+          margin-bottom: 1rem;
+          padding-left: 1.5rem;
+
+          li {
+            margin-bottom: 0.5rem;
+            color: $text-dark;
+            line-height: 1.8;
+          }
+        }
+      }
+
+    }
+  }
+}
+
+// Responsive Design
+@media (max-width: 768px) {
+  .product-section-box {
+    padding: 1.5rem;
+    margin-top: 1.5rem;
+
+    .custom-nav {
+      .nav-item {
+        .nav-link {
+          padding: 0.875rem 1.25rem;
+          font-size: 0.95rem;
+        }
+      }
+    }
+
+    .custom-tab {
+      padding-top: 1.25rem;
+
+      .product-description {
+        font-size: 0.95rem;
+      }
+    }
+  }
+}
+

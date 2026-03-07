@@ -1,0 +1,69 @@
+<ng-template #payModal let-modal>
+  <div class="pay-modal-wrapper">
+    <div class="modal-header-custom">
+      <div class="header-content">
+        <div class="header-icon">
+          <i class="ri-wallet-3-line"></i>
+        </div>
+        <h3 class="modal-title">{{ 'Pay Now' | translate }}</h3>
+      </div>
+      <app-button
+          [class]="'btn btn-close-custom'"
+          [spinner]="false"
+          [id]="'profile_modal_close_btn'"
+          (click)="modal.dismiss('Cross click')">
+          <i class="ri-close-line"></i>
+      </app-button>
+    </div>
+
+    <div class="modal-body-custom">
+      <p class="modal-description">{{ 'Select your preferred payment method' | translate }}</p>
+      
+      <div class="payment-methods-grid">
+        <ng-container *ngFor="let payment of (setting$ |async)?.payment_methods; let i = index;">
+          <div class="payment-method-card" *ngIf="payment.status">
+            <div class="form-check-custom">
+              <input class="form-check-input-custom" 
+                     type="radio" 
+                     name="payment_method" 
+                     [value]="payment.name" 
+                     [id]="payment.name" 
+                     [formControl]="paymentType">
+              <label class="form-check-label-custom" for="{{payment.name}}">
+                <div class="payment-content">
+                  <div class="payment-icon-wrapper">
+                    <i class="ri-bank-card-line"></i>
+                  </div>
+                  <span class="payment-name">{{ (payment.title ? payment.title : payment.name) | uppercase }}</span>
+                </div>
+              </label>
+            </div>
+          </div>
+        </ng-container>
+      </div>
+
+      <div class="error-message" *ngIf="paymentType?.touched && paymentType.errors?.['required']">
+        <i class="ri-error-warning-line me-2"></i>
+        {{ 'select_payment_method_is_required' | translate }}
+      </div>
+    </div>
+
+    <div class="modal-footer-custom">
+      <app-button 
+        [class]="'btn btn-cancel'" 
+        [type]="'button'" 
+        [spinner]="false"
+        [id]="'cancel_profile_btn'" 
+        (click)="modal.dismiss('Cancel')">
+        {{ 'Cancel' | translate }}
+      </app-button>
+      <app-button 
+        [class]="'btn btn-submit'" 
+        [id]="'submit_profile_btn'" 
+        (click)="submit()">
+        <i class="ri-check-line me-2"></i>
+        {{ 'Submit' | translate }}
+      </app-button>
+    </div>
+  </div>
+</ng-template>

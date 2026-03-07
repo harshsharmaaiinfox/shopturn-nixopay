@@ -1,0 +1,147 @@
+// Modern Filter Design
+$primary-teal: #2B5F5E;
+$primary-brown: #C77640;
+$light-gray: #f5f5f5;
+$border-gray: #e0e0e0;
+$text-dark: #333;
+$text-medium: #666;
+
+.filters-container {
+  background: white;
+  border-radius: 12px;
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  border: 1px solid $border-gray;
+}
+
+.filters-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1.25rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 2px solid $text-dark;
+
+  .filters-title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: $text-dark;
+    margin: 0;
+    line-height: 1.2;
+    position: relative;
+    padding-bottom: 0.5rem;
+
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: -0.75rem;
+      left: 0;
+      width: 60px;
+      height: 2px;
+      background: $primary-teal;
+    }
+  }
+
+  .clear-all-link {
+    color: $text-dark;
+    text-decoration: none;
+    font-size: 0.95rem;
+    font-weight: 500;
+    transition: all 0.2s ease;
+    cursor: pointer;
+
+    &:hover {
+      color: $primary-teal;
+      text-decoration: underline;
+    }
+  }
+}
+
+.filters-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.filter-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: $light-gray;
+  border-radius: 8px;
+  padding: 0.5rem 0.75rem;
+  font-size: 0.9rem;
+  color: $text-medium;
+  transition: all 0.2s ease;
+
+  &:hover {
+    background: rgba(43, 95, 94, 0.1);
+  }
+
+  .filter-tag-text {
+    font-weight: 500;
+    color: $text-dark;
+  }
+
+  .filter-tag-close {
+    font-size: 1rem;
+    color: $text-medium;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: rgba(0, 0, 0, 0.05);
+
+    &:hover {
+      color: white;
+      background: $primary-teal;
+      transform: rotate(90deg);
+    }
+  }
+}
+
+// Responsive Design
+@media (max-width: 768px) {
+  .filters-container {
+    padding: 1.25rem;
+    margin-bottom: 1.25rem;
+  }
+
+  .filters-header {
+    margin-bottom: 1rem;
+    padding-bottom: 0.625rem;
+
+    .filters-title {
+      font-size: 1.1rem;
+
+      &::after {
+        width: 50px;
+      }
+    }
+
+    .clear-all-link {
+      font-size: 0.875rem;
+    }
+  }
+
+  .filters-tags {
+    gap: 0.625rem;
+  }
+
+  .filter-tag {
+    padding: 0.45rem 0.65rem;
+    font-size: 0.85rem;
+
+    .filter-tag-close {
+      width: 16px;
+      height: 16px;
+      font-size: 0.9rem;
+    }
+  }
+}
+

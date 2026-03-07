@@ -1,0 +1,295 @@
+<!-- Home Section Start -->
+
+<!-- Hero Image Start -->
+<section class="hero-image-section pt-0">
+    <div class="container-fluid">
+        <div class="hero-image">
+            <img src="assets/images/banner-hero.png" alt="Shop Turn Life Hero Banner" class="img-fluid w-100"
+                loading="lazy">
+        </div>
+    </div>
+</section>
+<!-- Hero Image End -->
+
+<!-- Features Banner Section Start -->
+<section class="features-banner-section">
+    <div class="features-banner-bg"></div>
+    <div class="container-fluid outer">
+        <div class="features-banner-box">
+            <div class="row g-0">
+                <div class="col-md-4 col-12">
+                    <div class="feature-item">
+                        <div class="feature-icon">
+                            <img src="assets/images/trending.png" alt="Trending Fashion Styles Icon" class="img-fluid">
+                        </div>
+                        <div class="feature-text">
+                            <span>Trending Fashion Styles</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 col-12">
+                    <div class="feature-item">
+                        <div class="feature-icon">
+                            <img src="assets/images/quality.png" alt="100% Quality Checked Icon" class="img-fluid">
+                        </div>
+                        <div class="feature-text">
+                            <span>100% Quality Checked</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 col-12">
+                    <div class="feature-item">
+                        <div class="feature-icon">
+                            <img src="assets/images/price.png" alt="Lowest Prices Icon" class="img-fluid">
+                        </div>
+                        <div class="feature-text">
+                            <span>Lowest Prices</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Features Banner Section End -->
+
+<!-- Category Section Start -->
+<section class="category-showcase-section">
+    <div class="container-fluid">
+        <div class="category-showcase-wrapper">
+            <div class="row g-1">
+                <div class="col-6 col-sm-4 col-md-3 col-lg">
+                    <div class="category-showcase-item" (click)="selectCategory('jeans', $event)"
+                        style="cursor: pointer;">
+                        <div class="category-image-wrapper">
+                            <div class="category-image-bg"></div>
+                            <img src="assets/images/denim.png" alt="Denim Category" class="category-image">
+                        </div>
+                        <div class="category-label">
+                            <span>Denim</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-6 col-sm-4 col-md-3 col-lg">
+                    <div class="category-showcase-item" (click)="selectCategory('shirt', $event)"
+                        style="cursor: pointer;">
+                        <div class="category-image-wrapper">
+                            <div class="category-image-bg"></div>
+                            <img src="assets/images/T-shirt.png" alt="Men's Shirt Category" class="category-image">
+                        </div>
+                        <div class="category-label">
+                            <span>Shirt</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-6 col-sm-4 col-md-3 col-lg">
+                    <div class="category-showcase-item" (click)="selectCategory('t-shirts', $event)"
+                        style="cursor: pointer;">
+                        <div class="category-image-wrapper">
+                            <div class="category-image-bg"></div>
+                            <img src="assets/images/t-shirt-cat.png" alt="Men's Tees Category" class="category-image">
+                        </div>
+                        <div class="category-label">
+                            <span>Tees</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-6 col-sm-4 col-md-3 col-lg">
+                    <div class="category-showcase-item" (click)="selectCategory('sherwani-sets', $event)"
+                        style="cursor: pointer;">
+                        <div class="category-image-wrapper">
+                            <div class="category-image-bg"></div>
+                            <img src="assets/images/Sherwani.png" alt="Men's Sherwani Category" class="category-image">
+                        </div>
+                        <div class="category-label">
+                            <span>Sherwani</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-6 col-sm-4 col-md-3 col-lg">
+                    <div class="category-showcase-item" (click)="selectCategory('kurtas', $event)"
+                        style="cursor: pointer;">
+                        <div class="category-image-wrapper">
+                            <div class="category-image-bg"></div>
+                            <img src="assets/images/Kurta.png" alt="Men's Kurta Category" class="category-image">
+                        </div>
+                        <div class="category-label">
+                            <span>Kurta</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Category Section End -->
+
+<!-- Gold Promotional Banner Section Start -->
+<section class="gold-promotional-section">
+    <div class="container-fluid">
+        <div class="gold-promotional-wrapper">
+            <div class="gold-main-banner">
+                <div class="gold-banner-image">
+                    <img src="assets/images/gold-banner.png" alt="Shop Turn Life Gold Promotional Banner"
+                        class="img-fluid">
+                </div>
+                <!-- Categories Overlay - Top Right -->
+                <div class="gold-categories-overlay">
+                    <div class="gold-categories-grid">
+                        <div class="gold-category-card" (click)="selectCategory('ethnic-jackets', $event)"
+                            style="cursor: pointer;">
+                            <div class="gold-category-image-wrapper">
+                                <div class="gold-category-image-bg"></div>
+                                <img src="assets/images/ethnic-jacket.png" alt="Ethnic Jackets Collection"
+                                    class="gold-category-image">
+                            </div>
+                            <div class="gold-category-label">
+                                <span>Etchic Jackets</span>
+                            </div>
+                        </div>
+                        <div class="gold-category-card" (click)="selectCategory('lehenga-choli-sets', $event)"
+                            style="cursor: pointer;">
+                            <div class="gold-category-image-wrapper">
+                                <div class="gold-category-image-bg"></div>
+                                <img src="assets/images/img-3.png" alt="Sarees Collection" class="gold-category-image">
+                            </div>
+                            <div class="gold-category-label">
+                                <span>Sarees</span>
+                            </div>
+                        </div>
+                        <div class="gold-category-card" (click)="selectCategory('sherwani-sets', $event)"
+                            style="cursor: pointer;">
+                            <div class="gold-category-image-wrapper">
+                                <div class="gold-category-image-bg"></div>
+                                <img src="assets/images/img-2.png" alt="Wedding Wear Collection"
+                                    class="gold-category-image">
+                            </div>
+                            <div class="gold-category-label">
+                                <span>Wedding Wears</span>
+                            </div>
+                        </div>
+                        <div class="gold-category-card" (click)="selectCategory('lehenga-choli-sets', $event)"
+                            style="cursor: pointer;">
+                            <div class="gold-category-image-wrapper">
+                                <div class="gold-category-image-bg"></div>
+                                <img src="assets/images/img-5.png" alt="Lehenga Collection" class="gold-category-image">
+                            </div>
+                            <div class="gold-category-label">
+                                <span>Lehanga</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Gold Promotional Banner Section End -->
+
+<!-- SEO Content Section Start -->
+<section class="home-seo-section">
+    <div class="container-fluid">
+        <div class="row justify-content-center">
+            <div class="col-lg-10">
+                <div class="seo-content-box text-center">
+                    <h1 class="seo-title">Trending Fashion for Men and Women Online</h1>
+                    <p class="seo-description">
+                        Shop Turn Life is an online fashion store offering trendy clothing for men and women.
+                        Discover stylish outfits, casual wear, and modern fashion designed for everyday comfort.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- SEO Content Section End -->
+
+<!-- App Promotional Banner Section Start -->
+<section class="app-promotional-section">
+    <div class="container-fluid">
+        <div class="app-promotional-wrapper">
+            <div class="row g-0">
+                <!-- Left Side - Orange Discount Section -->
+                <div class="col-lg-4 col-md-12">
+                    <div class="app-discount-section">
+                        <div class="app-discount-content">
+                            <div class="app-discount-label">Up to</div>
+                            <div class="app-discount-amount">35% OFF</div>
+                            <div class="app-discount-subtext">on first order</div>
+                            <div class="app-discount-note">*Only on Shopturnlife.com</div>
+                            <button class="app-download-btn">Shop Now</button>
+                        </div>
+                    </div>
+                </div>
+                <!-- Right Side - Purple Categories Section -->
+                <div class="col-lg-8 col-md-12">
+                    <div class="app-categories-section">
+                        <div class="app-categories-grid">
+                            <!-- Women Jeans -->
+                            <div class="app-category-panel" (click)="selectCategory('women-s-jeans', $event)"
+                                style="cursor: pointer;">
+                                <div class="app-category-image-wrapper">
+                                    <img src="assets/images/women-jeans.png" alt="Women's Jeans Collection"
+                                        class="app-category-image">
+                                </div>
+                                <button class="app-category-btn">Women Jeans</button>
+                            </div>
+                            <!-- Winter Men -->
+                            <div class="app-category-panel" (click)="selectCategory('winter-essentials', $event)"
+                                style="cursor: pointer;">
+                                <div class="app-category-image-wrapper">
+                                    <img src="assets/images/winter-men.png" alt="Men's Winter Wear"
+                                        class="app-category-image">
+                                </div>
+                                <button class="app-category-btn">Winter Men</button>
+                            </div>
+                            <!-- Winter Main -->
+                            <div class="app-category-panel" (click)="selectCategory('winter-essentials', $event)"
+                                style="cursor: pointer;">
+                                <div class="app-category-image-wrapper">
+                                    <img src="assets/images/winter-main.png" alt="Women's Winter Collection"
+                                        class="app-category-image">
+                                </div>
+                                <button class="app-category-btn">Winter Women</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- App Promotional Banner Section End -->
+
+<!-- Collection Page Section with Filters Start -->
+<section class="section-b-space shop-section" id="filtered_products">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-custome-3">
+                <div class="left-box">
+                    <app-collection-sidebar [filter]="filter"></app-collection-sidebar>
+                </div>
+            </div>
+            <div class="col-custome-9">
+                <div class="collection-heading" style="text-align: left; margin-bottom: 20px;">
+                    <h2 style="font-weight: 700; color: inherit; margin: 0;">Products For You</h2>
+                </div>
+                <app-collection-products [filter]="filter"></app-collection-products>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Collection Page Section with Filters End -->
+
+<!-- Shop Trurn Life Banner End -->
+<!-- Category Section Start -->
+<section *ngIf="data?.content?.categories_icon_list?.status">
+    <div class="container-fluid">
+        <app-theme-categories [style]="'horizontal'" [theme]="'paris'" [sliderOption]="categorySlider"
+            [categoryIds]="data?.content?.categories_icon_list?.category_ids || []"
+            [image]="data?.content?.categories_icon_list?.image_url">
+        </app-theme-categories>
+    </div>
+</section>
+<!-- Category Section End -->

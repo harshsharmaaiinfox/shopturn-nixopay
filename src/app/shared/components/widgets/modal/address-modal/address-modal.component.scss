@@ -1,0 +1,385 @@
+// Brand Colors
+$primary-teal: #2B5F5E;
+$secondary-orange: #C77640;
+$teal-light: rgba(43, 95, 94, 0.1);
+$orange-light: rgba(199, 118, 64, 0.1);
+$teal-dark: #1f4544;
+$orange-dark: #a85d2a;
+
+.address-modal-wrapper {
+  background: white;
+  border-radius: 16px;
+  overflow: hidden;
+  max-width: 700px;
+  width: 100%;
+}
+
+.modal-header-custom {
+  background: linear-gradient(135deg, $primary-teal 0%, $teal-dark 100%);
+  padding: 1.5rem 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: white;
+
+  .header-content {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+
+    .header-icon {
+      width: 48px;
+      height: 48px;
+      background: rgba(255, 255, 255, 0.2);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      backdrop-filter: blur(10px);
+
+      i {
+        font-size: 1.5rem;
+        color: white;
+      }
+    }
+
+    .modal-title {
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin: 0;
+      color: white;
+    }
+  }
+
+  .btn-close-custom {
+    background: rgba(255, 255, 255, 0.2);
+    border: none;
+    color: white;
+    width: 40px;
+    height: 40px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    transition: all 0.3s ease;
+
+    &:hover {
+      background: rgba(255, 255, 255, 0.3);
+      transform: rotate(90deg);
+    }
+
+    i {
+      font-size: 1.5rem;
+      color: white !important;
+    }
+  }
+}
+
+.modal-body-custom {
+  padding: 2rem;
+  max-height: 70vh;
+  overflow-y: auto;
+
+  &::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 10px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: $primary-teal;
+    border-radius: 10px;
+
+    &:hover {
+      background: $teal-dark;
+    }
+  }
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+
+  &.full-width {
+    grid-column: 1 / -1;
+  }
+
+  .form-label {
+    font-weight: 600;
+    font-size: 0.95rem;
+    color: #333;
+    margin-bottom: 0.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+
+    i {
+      color: $primary-teal;
+      font-size: 1.1rem;
+    }
+  }
+
+  .form-control-custom {
+    width: 100%;
+    padding: 0.875rem 1rem;
+    border: 2px solid #e5e5e5;
+    border-radius: 10px;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    background: #fafafa;
+    font-family: inherit;
+
+    &:focus {
+      outline: none;
+      border-color: $primary-teal;
+      background: white;
+      box-shadow: 0 0 0 4px $teal-light;
+    }
+
+    &::placeholder {
+      color: #999;
+    }
+
+    &.is-invalid {
+      border-color: #ff4f4f;
+      background: #fff5f5;
+
+      &:focus {
+        box-shadow: 0 0 0 4px rgba(255, 79, 79, 0.1);
+      }
+    }
+
+    &[type="textarea"],
+    textarea {
+      resize: vertical;
+      min-height: 100px;
+    }
+  }
+
+  .invalid-feedback {
+    color: #ff4f4f;
+    font-size: 0.875rem;
+    margin-top: 0.25rem;
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+
+    &::before {
+      content: '⚠';
+      font-size: 0.875rem;
+    }
+  }
+}
+
+// Select2 Custom Styling with Visibility Wrapper
+.select2-visibility-wrapper {
+  width: 100%;
+  height: 50px;
+  background: #fafafa;
+  border: 2px solid #e5e5e5;
+  border-radius: 10px;
+  overflow: visible;
+  display: flex;
+  align-items: center;
+  transition: all 0.3s ease;
+  position: relative;
+
+  &:focus-within {
+    border-color: $primary-teal !important;
+    background: white !important;
+    box-shadow: 0 0 0 4px $teal-light !important;
+  }
+}
+
+::ng-deep {
+  .custom-select {
+    width: 100% !important;
+    display: block !important;
+
+    .select2-container {
+      width: 100% !important;
+      display: block !important;
+
+      .select2-selection {
+        width: 100% !important;
+        height: 46px !important; // Slightly less than wrapper to fit inside border
+        background: transparent !important;
+        border: none !important; // Remove internal select2 border
+        box-shadow: none !important;
+        display: flex !important;
+        align-items: center !important;
+        padding-left: 0.5rem !important;
+
+        .select2-selection__rendered {
+          color: #333 !important;
+          font-weight: 500 !important;
+          padding-left: 0 !important;
+        }
+
+        .select2-selection__placeholder {
+          color: #999 !important;
+        }
+
+        .select2-selection__arrow {
+          top: 50% !important;
+          transform: translateY(-50%) !important;
+        }
+      }
+
+      &.select2-container--disabled {
+        .select2-selection {
+          opacity: 0.7 !important;
+          cursor: not-allowed !important;
+        }
+      }
+    }
+  }
+}
+
+
+.modal-footer-custom {
+  padding: 1.5rem 2rem;
+  border-top: 2px solid #f0f0f0;
+  display: flex;
+  gap: 1rem;
+  justify-content: flex-end;
+  background: #fafafa;
+
+  .btn {
+    padding: 0.8rem 2.2rem;
+    border-radius: 12px;
+    font-weight: 600;
+    font-size: 1rem;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    border: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    min-width: 140px;
+
+    &.btn-cancel {
+      background: #fcecea !important; // Light Red/Pink background
+      color: #e74c3c !important;
+      border: 1px solid #fab1a0 !important;
+
+      &:hover {
+        background: #e74c3c !important;
+        color: white !important;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 15px rgba(231, 76, 60, 0.2);
+      }
+    }
+
+    &.btn-submit {
+      background: linear-gradient(135deg, $primary-teal 0%, $teal-dark 100%) !important;
+      color: white !important;
+      box-shadow: 0 8px 15px rgba(43, 95, 94, 0.25);
+
+      &:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 12px 20px rgba(43, 95, 94, 0.35);
+        background: linear-gradient(135deg, $teal-dark 0%, $primary-teal 100%) !important;
+      }
+
+      &:active {
+        transform: translateY(0);
+      }
+
+      i {
+        font-size: 1.2rem;
+        margin-right: 8px;
+      }
+    }
+  }
+
+  // High specificity for the custom button component inside the modal
+  ::ng-deep {
+    .modal-footer-custom {
+      .btn {
+
+        &.btn-cancel,
+        &.btn-submit {
+
+          // Force the background if the child button inside app-button is being stubborn
+          button {
+            background: inherit !important;
+            color: inherit !important;
+            border: inherit !important;
+            padding: inherit !important;
+            border-radius: inherit !important;
+          }
+        }
+      }
+    }
+  }
+
+  @media (max-width: 576px) {
+    flex-direction: column-reverse;
+    padding: 1.25rem 1.5rem;
+
+    .btn {
+      width: 100%;
+    }
+  }
+}
+
+// Modal backdrop styling
+::ng-deep .address-modal {
+  .modal-content {
+    border: none;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  }
+
+  .modal-dialog {
+    max-width: 700px;
+  }
+}
+
+// Responsive adjustments
+@media (max-width: 768px) {
+  .modal-header-custom {
+    padding: 1.25rem 1.5rem;
+
+    .header-content {
+      .header-icon {
+        width: 40px;
+        height: 40px;
+
+        i {
+          font-size: 1.25rem;
+        }
+      }
+
+      .modal-title {
+        font-size: 1.25rem;
+      }
+    }
+  }
+
+  .modal-body-custom {
+    padding: 1.5rem;
+    max-height: 65vh;
+  }
+
+  .form-grid {
+    gap: 1.25rem;
+  }
+}

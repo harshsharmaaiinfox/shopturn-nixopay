@@ -1,0 +1,53 @@
+<div class="modern-category-filter">
+    <!-- Search Box -->
+    <div class="modern-search-box">
+        <i class="ri-search-line search-icon"></i>
+        <input type="text" 
+               placeholder="Search" 
+               [(ngModel)]="searchText" 
+               class="modern-search-input">
+    </div>
+    
+    <!-- Category List -->
+    <ul class="modern-category-list" *ngIf="categories?.length">
+        <div *ngTemplateOutlet="recursiveCategories; context: { $implicit: categories }"></div>
+        <ng-template #recursiveCategories let-categories>
+            <ng-container *ngFor="let category of categories | filter: searchText:'subcategories'">
+                <li class="modern-category-item">
+                    <div class="modern-checkbox-wrapper">
+                        <input class="modern-checkbox" 
+                               type="checkbox" 
+                               id="category-{{category?.id}}"
+                               [value]="category?.slug"
+                               [checked]="checked(category?.slug!)"
+                               [disabled]="isCategoryDisabled(category?.name)"
+                               [attr.data-category-name]="category?.name"
+                               [style.opacity]="isCategoryDisabled(category?.name) ? '0.6' : '1'"
+                               (change)="applyFilter($event)">
+                        <label class="modern-checkbox-label" 
+                               [class.disabled]="isCategoryDisabled(category?.name)"
+                               [style.pointer-events]="isCategoryDisabled(category?.name) ? 'none' : 'auto'"
+                               for="category-{{category?.id}}">
+                            <span class="category-name">{{ category?.name }}</span>
+                        </label>
+                    </div>
+                    <ul class="modern-sub-category-list" *ngIf="category?.subcategories.length">
+                        <ng-container *ngTemplateOutlet="recursiveCategories; context: { $implicit: category.subcategories }"></ng-container>
+                    </ul>
+                </li>
+            </ng-container>
+        </ng-template>
+    </ul>
+    
+    <!-- No Results -->
+    <div *ngIf="(categories | filter: searchText:'subcategories').length === 0" class="modern-search-not-found">
+        <h5>No results found.</h5>
+    </div>
+    
+    <!-- No Data -->
+    <app-no-data
+      [class]="'no-data-added bg-light'"
+      [text]="'no_category_found'"
+      *ngIf="!categories?.length">
+    </app-no-data>
+</div>

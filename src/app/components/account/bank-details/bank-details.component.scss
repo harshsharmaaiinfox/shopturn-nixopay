@@ -1,0 +1,290 @@
+// Brand Colors
+$primary-teal: #2B5F5E;
+$secondary-orange: #C77640;
+$teal-light: rgba(43, 95, 94, 0.1);
+$orange-light: rgba(199, 118, 64, 0.1);
+$teal-dark: #1f4544;
+$orange-dark: #a85d2a;
+
+.bank-details-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem 2rem 1rem;
+  overflow-x: hidden;
+  width: 100%;
+  box-sizing: border-box;
+
+  @media (min-width: 768px) {
+    padding: 0 2rem 3rem 2rem;
+  }
+}
+
+.bank-details-header {
+  background: linear-gradient(135deg, $primary-teal 0%, $teal-dark 100%);
+  border-radius: 16px;
+  padding: 2.5rem 2rem;
+  margin-bottom: 2rem;
+  box-shadow: 0 8px 24px rgba(13, 164, 135, 0.2);
+  color: white;
+
+  .header-content {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+
+    .header-icon-wrapper {
+      width: 64px;
+      height: 64px;
+      background: rgba(255, 255, 255, 0.2);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      backdrop-filter: blur(10px);
+
+      i {
+        font-size: 2rem;
+        color: white;
+      }
+    }
+
+    .header-text {
+      flex: 1;
+
+      h2 {
+        font-size: 2rem;
+        font-weight: 700;
+        margin: 0 0 0.5rem 0;
+        color: white;
+      }
+
+      p {
+        font-size: 1rem;
+        margin: 0;
+        opacity: 0.9;
+        color: rgba(255, 255, 255, 0.95);
+      }
+    }
+  }
+
+  @media (max-width: 768px) {
+    padding: 1.5rem 1rem;
+
+    .header-content {
+      flex-direction: column;
+      text-align: center;
+      gap: 1rem;
+
+      .header-icon-wrapper {
+        width: 56px;
+        height: 56px;
+
+        i {
+          font-size: 1.5rem;
+        }
+      }
+
+      .header-text h2 {
+        font-size: 1.5rem;
+      }
+    }
+  }
+}
+
+.bank-details-content {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.payment-section {
+  background: white;
+  border-radius: 16px;
+  padding: 2rem;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+  border: 1px solid #f0f0f0;
+  transition: all 0.3s ease;
+
+  &:hover {
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.12);
+  }
+
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 2px solid #f5f5f5;
+
+    .section-icon {
+      width: 48px;
+      height: 48px;
+      background: linear-gradient(135deg, $teal-light 0%, rgba(13, 164, 135, 0.15) 100%);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      i {
+        font-size: 1.5rem;
+        color: $primary-teal;
+      }
+
+      &.paypal-icon {
+        background: linear-gradient(135deg, $orange-light 0%, rgba(217, 159, 70, 0.15) 100%);
+
+        i {
+          color: $secondary-orange;
+        }
+      }
+    }
+
+    h3 {
+      font-size: 1.5rem;
+      font-weight: 600;
+      margin: 0;
+      color: #222;
+    }
+  }
+}
+
+.bank-form {
+  overflow-x: hidden;
+  
+  .form-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+    width: 100%;
+    box-sizing: border-box;
+
+    @media (max-width: 768px) {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+
+    &.full-width {
+      grid-column: 1 / -1;
+    }
+
+    .form-label {
+      font-weight: 600;
+      font-size: 0.95rem;
+      color: #333;
+      margin-bottom: 0.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+
+      i {
+        color: $primary-teal;
+        font-size: 1.1rem;
+      }
+    }
+
+    .form-control {
+      width: 100%;
+      padding: 0.875rem 1rem;
+      border: 2px solid #e5e5e5;
+      border-radius: 10px;
+      font-size: 1rem;
+      transition: all 0.3s ease;
+      background: #fafafa;
+
+      &:focus {
+        outline: none;
+        border-color: $primary-teal;
+        background: white;
+        box-shadow: 0 0 0 4px $teal-light;
+      }
+
+      &::placeholder {
+        color: #999;
+      }
+
+      &.is-invalid {
+        border-color: #ff4f4f;
+        background: #fff5f5;
+
+        &:focus {
+          box-shadow: 0 0 0 4px rgba(255, 79, 79, 0.1);
+        }
+      }
+    }
+
+    .invalid-feedback {
+      color: #ff4f4f;
+      font-size: 0.875rem;
+      margin-top: 0.25rem;
+    }
+  }
+
+  .form-actions {
+    margin-top: 2rem;
+    padding-top: 2rem;
+    border-top: 2px solid #f5f5f5;
+    display: flex;
+    justify-content: flex-end;
+
+    .btn-save {
+      background: linear-gradient(135deg, $primary-teal 0%, $teal-dark 100%);
+      color: white;
+      border: none;
+      padding: 0.875rem 2rem;
+      border-radius: 10px;
+      font-weight: 600;
+      font-size: 1rem;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 12px rgba(13, 164, 135, 0.3);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+
+      &:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba(13, 164, 135, 0.4);
+        background: linear-gradient(135deg, $teal-dark 0%, $primary-teal 100%);
+      }
+
+      &:active {
+        transform: translateY(0);
+      }
+
+      i {
+        font-size: 1.1rem;
+      }
+    }
+  }
+}
+
+// Full width layout when sidebar is hidden
+:host-context(.bank-details-full-width) {
+  .bank-details-container {
+    padding-top: 0;
+  }
+}
+
+// Responsive adjustments
+@media (max-width: 576px) {
+  .bank-details-container {
+    padding: 1rem 0.5rem;
+  }
+
+  .payment-section {
+    padding: 1.5rem 1rem;
+  }
+
+  .bank-form .form-actions {
+    .btn-save {
+      width: 100%;
+      justify-content: center;
+    }
+  }
+}
+

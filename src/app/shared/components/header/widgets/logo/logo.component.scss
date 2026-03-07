@@ -1,0 +1,17 @@
+// Increase logo size
+.web-logo {
+  img {
+    width: calc(180px + (220 - 180) * ((100vw - 320px) / (1920 - 320))) !important;
+    height: auto !important;
+    max-width: 220px !important;
+    object-fit: contain;
+  }
+  
+  @media (max-width: 767px) {
+    img {
+      width: 150px !important;
+      max-width: 150px !important;
+    }
+  }
+}
+

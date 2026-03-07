@@ -1,0 +1,85 @@
+// Modern Price Filter Design
+.modern-price-filter {
+  width: 100%;
+
+  .price-filter-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+
+    .price-filter-btn {
+      width: 100%;
+      padding: 12px 16px;
+      background: #f5f5f5;
+      border: 1px solid #e0e0e0;
+      border-radius: 8px;
+      font-size: 14px;
+      font-weight: 500;
+      color: #555;
+      text-align: left;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      position: relative;
+      outline: none;
+
+      html.dark & {
+        background: #1d1d22;
+        border-color: #3a3d3d;
+        color: #ccc;
+      }
+
+      &:hover {
+        background: #eeeeee;
+        border-color: #d0d0d0;
+        transform: translateY(-1px);
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+
+        html.dark & {
+          background: #252525;
+          border-color: #4a4d4d;
+          box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+      }
+
+      &.active {
+        background: var(--theme-color);
+        border-color: var(--theme-color);
+        color: #ffffff;
+        font-weight: 600;
+        box-shadow: 0 2px 8px rgba(217, 159, 70, 0.3);
+
+        html.dark & {
+          box-shadow: 0 2px 8px rgba(217, 159, 70, 0.4);
+        }
+
+        &:hover {
+          background: rgba(217, 159, 70, 0.9);
+          transform: translateY(-1px);
+          box-shadow: 0 4px 12px rgba(217, 159, 70, 0.4);
+        }
+      }
+
+      &:focus {
+        outline: none;
+        box-shadow: 0 0 0 3px rgba(217, 159, 70, 0.1);
+      }
+
+      &:active {
+        transform: translateY(0);
+      }
+    }
+  }
+
+  // Responsive Design
+  @media (max-width: 575px) {
+    .price-filter-buttons {
+      gap: 8px;
+
+      .price-filter-btn {
+        padding: 10px 14px;
+        font-size: 13px;
+      }
+    }
+  }
+}

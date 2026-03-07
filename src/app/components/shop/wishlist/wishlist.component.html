@@ -1,0 +1,82 @@
+<!-- Breadcrumb Section -->
+<app-breadcrumb [breadcrumb]="breadcrumb"></app-breadcrumb>
+
+<!-- Wishlist Header Section -->
+<section class="wishlist-header-section">
+    <div class="container-fluid">
+        <div class="wishlist-header-content">
+            <div class="header-left">
+                <h1 class="wishlist-title">
+                    <i class="ri-heart-fill"></i>
+                    My Wishlist
+                </h1>
+                <p class="wishlist-subtitle" *ngIf="(wishlistItems$ | async)?.data?.length">
+                    You have {{ (wishlistItems$ | async)?.data?.length }} item(s) saved
+                </p>
+                <p class="wishlist-subtitle" *ngIf="!(wishlistItems$ | async)?.data?.length && !wishlistService.skeletonLoader">
+                    Start adding items you love to your wishlist
+                </p>
+            </div>
+            <div class="header-right" *ngIf="(wishlistItems$ | async)?.data?.length">
+                <div class="wishlist-stats">
+                    <div class="stat-item">
+                        <span class="stat-label">Total Items</span>
+                        <span class="stat-value">{{ (wishlistItems$ | async)?.data?.length }}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Wishlist Products Section -->
+<section class="wishlist-section section-b-space">
+    <div class="container-fluid">
+        <ng-container *ngIf="wishlistService?.skeletonLoader else productContent">
+            <div class="wishlist-grid">
+                <div class="wishlist-item-skeleton" *ngFor="let item of skeletonItems">
+                    <app-skeleton-product-box></app-skeleton-product-box>
+                </div>
+            </div>
+        </ng-container>
+        
+        <ng-template #productContent>
+            <div class="wishlist-grid" [ngClass]="{ 
+                'product_border': (themeOption$ | async)?.product?.full_border || (themeOption$ | async)?.product?.product_box_border,
+                'product_img_bg': (themeOption$ | async)?.product?.image_bg,
+                'full_bg': (themeOption$ | async)?.product?.product_box_bg }">
+                <div class="wishlist-item" *ngFor="let product of (wishlistItems$ | async)?.data">
+                    <div class="wishlist-item-wrapper">
+                        <app-product-box 
+                            [product]="product" 
+                            [close]="true" 
+                            [class]="'product-box-3'" 
+                            [style]="'horizontal'">
+                        </app-product-box>
+                    </div>
+                </div>
+            </div>
+        </ng-template>
+
+        <!-- Empty State -->
+        <div class="wishlist-empty-state" *ngIf="!(wishlistItems$ | async)?.data?.length && !wishlistService.skeletonLoader">
+            <div class="empty-state-content">
+                <div class="empty-state-icon">
+                    <div class="icon-wrapper">
+                        <i class="ri-heart-line"></i>
+                    </div>
+                </div>
+                <h2 class="empty-state-title">Your Wishlist is Empty</h2>
+                <p class="empty-state-description">
+                    Start adding items you love to your wishlist. Browse our collection and save your favorite products for later.
+                </p>
+                <div class="empty-state-actions">
+                    <a routerLink="/collections" class="btn-shop-now">
+                        <span>Explore Products</span>
+                        <i class="ri-arrow-right-line"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

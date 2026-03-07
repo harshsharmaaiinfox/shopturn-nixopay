@@ -1,0 +1,97 @@
+// Modern Product Action Styles
+$primary-teal: #2B5F5E;
+$primary-brown: #C77640;
+$teal-light: rgba(43, 95, 94, 0.1);
+$border-gray: #e8e8e8;
+$text-dark: #222;
+$text-medium: #666;
+
+.progress-sec {
+  margin-bottom: 1.5rem;
+  padding: 1rem;
+  background: linear-gradient(135deg, rgba(199, 118, 64, 0.05) 0%, rgba(43, 95, 94, 0.05) 100%);
+  border-radius: 12px;
+  border-left: 4px solid $primary-brown;
+
+  .left-progressbar {
+    h6 {
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: $text-dark;
+      margin-bottom: 0.75rem;
+    }
+
+    .progress {
+      height: 8px;
+      border-radius: 10px;
+      background: #e9ecef;
+      overflow: hidden;
+
+      &.danger-progress {
+        .progress-bar {
+          background: linear-gradient(90deg, #e74c3c 0%, #c0392b 100%);
+        }
+      }
+
+      &.warning-progress {
+        .progress-bar {
+          background: linear-gradient(90deg, #f39c12 0%, #e67e22 100%);
+        }
+      }
+
+      .progress-bar {
+        background: linear-gradient(90deg, $primary-teal 0%, $primary-brown 100%);
+        border-radius: 10px;
+        transition: width 0.6s ease;
+      }
+    }
+  }
+}
+
+.size-delivery-info {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+  padding: 1rem;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+
+  a {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: $text-medium;
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 500;
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+
+    &:hover {
+      color: $primary-teal;
+      background: $teal-light;
+      transform: translateY(-2px);
+    }
+
+    i {
+      font-size: 1.1rem;
+      color: $primary-teal;
+    }
+  }
+}
+
+// Responsive
+@media (max-width: 768px) {
+  .size-delivery-info {
+    flex-direction: column;
+
+    a {
+      width: 100%;
+      justify-content: center;
+    }
+  }
+}
+

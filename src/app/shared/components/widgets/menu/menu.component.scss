@@ -1,0 +1,189 @@
+    // Mobile accordion-style menu (max-width: 1199px)
+    @media (max-width: 1199px) {
+      .navbar-nav {
+
+        .nav-item.dropdown,
+        .nav-item.dropdown-mega {
+          .dropdown-menu {
+            position: static !important;
+            z-index: 9999 !important;
+            background-color: transparent !important;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15) !important;
+            border-radius: 12px !important;
+            min-width: 200px !important;
+            border: 1px solid rgba(203, 122, 67, 0.1) !important;
+            padding: 20px 0 !important;
+            margin-top: 10px !important;
+            margin-left: 0 !important;
+            margin-right: 0 !important;
+            width: 100% !important;
+            transform: none !important;
+
+            &.show {
+              display: block !important;
+              opacity: 1 !important;
+              visibility: visible !important;
+            }
+
+            &:not(.show) {
+              display: none !important;
+            }
+
+            &.dropdown-menu-2 {
+              min-width: 100% !important;
+              left: 0 !important;
+              padding: 17px !important;
+              top: 0 !important;
+              position: static !important;
+              transform: none !important;
+
+              &.show {
+                transform: none !important;
+              }
+            }
+          }
+        }
+
+        // Nested dropdown items styling for mobile
+        .dropdown-item {
+          padding: 0.75rem 1rem !important;
+          color: #666 !important;
+          font-size: 14px !important;
+          transition: all 0.3s ease !important;
+
+          &:hover {
+            background-color: #f8f9fa !important;
+            padding-left: 1.25rem !important;
+          }
+        }
+
+        // Parent menu items
+        .nav-link {
+          padding: 0.875rem 1rem !important;
+          color: #333 !important;
+          font-weight: 500 !important;
+          font-size: 15px !important;
+          opacity: 1 !important;
+
+          &.dropdown-toggle::after {
+            float: right !important;
+            margin-top: 0.5rem !important;
+          }
+        }
+
+        // Ensure all nav items have consistent styling
+        .nav-item {
+
+          .nav-link,
+          .dropdown-toggle {
+            color: #333 !important;
+            opacity: 1 !important;
+          }
+        }
+
+        // Subcategory headings (like "Western Wear", "Ethnic Wear")
+        .dropdown-column {
+          width: 100% !important;
+          padding: 0 !important;
+          margin: 0 !important;
+
+          h5,
+          .dropdown-header {
+            color: #ff6b6b !important;
+            font-size: 13px !important;
+            font-weight: 600 !important;
+            padding: 0.5rem 1rem !important;
+            margin: 0.5rem 0 0.25rem 0 !important;
+            border-bottom: 1px solid #f0f0f0 !important;
+          }
+        }
+      }
+
+      // Specific styling for offcanvas mobile menu
+      .offcanvas.offcanvas-collapse .offcanvas-body .navbar-nav .nav-item.dropdown .dropdown-menu {
+        background: #f8f9fa !important;
+        border: none !important;
+        border-radius: 12px !important;
+        padding: 10px !important;
+        margin-top: 8px !important;
+        margin-left: 0 !important;
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1) !important;
+        border-left: 0 !important;
+        padding-left: 23px !important;
+      }
+    }
+
+    // Desktop dropdown behavior (min-width: 1200px)
+    @media (min-width: 1200px) {
+      .navbar-nav {
+        .nav-item {
+          position: relative !important;
+
+          // Ensure all nav-link items have consistent color
+          .nav-link,
+          .dropdown-toggle {
+            color: #333 !important;
+            opacity: 1 !important;
+
+            &:hover {
+              color: var(--theme-color) !important;
+            }
+          }
+        }
+
+        .dropdown-menu {
+          position: absolute !important;
+          top: 100% !important;
+          left: 0 !important;
+          z-index: 9999 !important;
+          background-color: #fff !important;
+          box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1) !important;
+          border-radius: 10px !important;
+          margin-top: 0 !important;
+
+          &.show {
+            display: block !important;
+            opacity: 1 !important;
+            visibility: visible !important;
+            transform: translateY(0) !important;
+          }
+
+          &.dropdown-menu-2 {
+            left: 0 !important;
+            transform: none !important;
+
+            &.show {
+              transform: none !important;
+            }
+          }
+        }
+
+        .dropdown:hover {
+          >.dropdown-menu {
+            display: block !important;
+            opacity: 1 !important;
+            visibility: visible !important;
+            transform: translateY(0) !important;
+          }
+
+          >.dropdown-menu-2 {
+            display: block !important;
+            opacity: 1 !important;
+            visibility: visible !important;
+            transform: none !important;
+          }
+        }
+
+        // Disable hover behavior for specific menu items: Men Collection (169), Women Collection (170), Winter Essentials (222)
+        .nav-item[data-menu-id="169"]:hover .dropdown-menu,
+        .nav-item[data-menu-id="169"]:hover .dropdown-menu-2,
+        .nav-item[data-menu-id="170"]:hover .dropdown-menu,
+        .nav-item[data-menu-id="170"]:hover .dropdown-menu-2,
+        .nav-item[data-menu-id="222"]:hover .dropdown-menu,
+        .nav-item[data-menu-id="222"]:hover .dropdown-menu-2 {
+          display: none !important;
+          opacity: 0 !important;
+          visibility: hidden !important;
+        }
+      }
+    }

@@ -1,0 +1,80 @@
+<ng-container *ngIf="order$ | async as orderData">
+  <div class="orders-container pb-0">
+    <div class="orders-header" [class.has-no-orders]="!orderData?.data?.length">
+      <div class="header-content">
+        <div class="header-icon-wrapper">
+          <i class="ri-shopping-bag-line"></i>
+        </div>
+        <div class="header-text">
+          <h2>{{ 'My Orders' | translate }}</h2>
+          <p>{{ 'View and manage all your orders in one place' | translate }}</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="orders-content" *ngIf="orderData?.data?.length">
+      <div class="orders-table-card">
+        <div class="table-responsive">
+          <table class="orders-table">
+            <thead>
+              <tr>
+                <th>{{ 'Order Number' | translate }}</th>
+                <th>{{ 'Date' | translate }}</th>
+                <th>{{ 'Amount' | translate }}</th>
+                <th>{{ 'Payment Status' | translate }}</th>
+                <th>{{ 'Payment Method' | translate }}</th>
+                <th>{{ 'Action' | translate }}</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let order of orderData?.data; let i = index">
+                <td>
+                  <span class="order-number">#{{ order.order_number }}</span>
+                </td>
+                <td>
+                  <span class="order-date">{{ order?.created_at | date: 'dd MMM yyyy hh:mm:a' }}</span>
+                </td>
+                <td>
+                  <span class="order-amount">{{ order?.total | currencySymbol }}</span>
+                </td>
+                <td>
+                  <span class="status-badge status-{{ order?.payment_status?.toLowerCase() }}">
+                    {{ order?.payment_status | titleCase }}
+                  </span>
+                </td>
+                <td>
+                  <span class="payment-method">
+                    <span *ngIf="order?.payment_method === 'Shop Trurn Life_nabu'">Pay By UPI INTENT 3</span>
+                    <span *ngIf="order?.payment_method !== 'Shop Trurn Life_nabu'">{{
+                      order?.payment_method?.toUpperCase() }}</span>
+                  </span>
+                </td>
+                <td>
+                  <a [routerLink]="['/account/order/details', order.order_number]" class="view-btn"
+                    [title]="'View Details' | translate">
+                    <i class="ri-eye-line"></i>
+                    <span class="btn-text">{{ 'View' | translate }}</span>
+                  </a>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="pagination-wrapper">
+        <app-pagination [total]="orderData?.total || 0" [currentPage]="filter['page']" [pageSize]="filter['paginate']"
+          (setPage)="setPaginate($event)">
+        </app-pagination>
+      </div>
+    </div>
+
+    <div class="empty-orders-container" *ngIf="!orderData?.data?.length">
+      <div class="empty-image-wrapper">
+        <img src="assets/svg/empty-items.svg" alt="No Orders">
+      </div>
+      <h3>{{ 'No Orders Found' | translate }}</h3>
+      <p>{{ 'No Orders have yet' | translate }}</p>
+    </div>
+  </div>
+</ng-container>

@@ -1,0 +1,38 @@
+<ng-template #confirmationModal let-modal>
+  <div class="confirmation-modal-wrapper">
+    <div class="modal-header-custom">
+      <div class="header-content">
+        <div class="header-icon">
+          <i class="ri-question-line"></i>
+        </div>
+        <h3 class="modal-title">{{ 'Confirmation' | translate }}</h3>
+      </div>
+    </div>
+
+    <div class="modal-body-custom">
+      <div class="confirmation-content">
+        <div class="icon-wrapper">
+          <i class="ri-question-line"></i>
+        </div>
+        <h4 class="confirmation-title">{{ 'Are You Sure You Want To Proceed' | translate }}?</h4>
+        <p class="confirmation-message">{{ 'This action cannot be undone' | translate }}</p>
+      </div>
+    </div>
+
+    <div class="modal-footer-custom">
+      <app-button
+        [class]="'btn btn-no'"
+        [spinner]="false"
+        [id]="'confirm_no_btn'"
+        (click)="modal.dismiss('Cancel')">
+        {{ 'NO' | translate }}
+      </app-button>
+      <app-button
+        [class]="'btn btn-yes'"
+        [id]="'confirm_yes_btn'"
+        (click)="confirm()">
+        {{ 'YES' | translate }}
+      </app-button>
+    </div>
+  </div>
+</ng-template>

@@ -1,0 +1,47 @@
+<div class="shop-left-sidebar modern-sidebar">
+    <div class="back-button" (click)="closeCanvasMenu()">
+        <h3>
+            <a href="javascript:void(0)" class="text-title">
+                <i class="ri-close-fill"></i>
+                <span>{{ 'back' | translate }}</span>
+            </a>
+        </h3>
+    </div>
+    <ng-content></ng-content>
+    <div class="filter-category">
+        <app-collection-filter [filter]="filter"></app-collection-filter>
+    </div>
+    <app-skeleton-collection-sidebar *ngIf="attributeService.skeletonLoader else content"></app-skeleton-collection-sidebar>
+    <ng-template #content>
+        <div class="accordion custome-accordion modern-accordion" ngbAccordion>
+            <div class="accordion-item modern-accordion-item" ngbAccordionItem [collapsed]="false" *ngIf="!hideFilter?.includes('category')">
+                <h2 class="accordion-header" ngbAccordionHeader>
+                    <button class="accordion-button modern-accordion-button" type="button" ngbAccordionButton>
+            <i class="ri-list-check"></i>
+            <span>{{ 'categories' | translate }}</span>
+          </button>
+                </h2>
+                <div class="accordion-collapse collapse" ngbAccordionCollapse>
+                    <div class="accordion-body modern-accordion-body" ngbAccordionBody>
+                        <app-collection-category-filter [filter]="filter"></app-collection-category-filter>
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion-item modern-accordion-item" ngbAccordionItem [collapsed]="false" *ngIf="!hideFilter?.includes('price')">
+                <h2 class="accordion-header" ngbAccordionHeader>
+                    <button class="accordion-button modern-accordion-button" ngbAccordionButton>
+            <i class="ri-price-tag-3-line"></i>
+            <span>{{ 'price' | translate }}</span>
+          </button>
+                </h2>
+                <div ngbAccordionCollapse>
+                    <div class="accordion-body modern-accordion-body" ngbAccordionBody>
+                        <app-collection-price-filter [filter]="filter"></app-collection-price-filter>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </ng-template>
+</div>

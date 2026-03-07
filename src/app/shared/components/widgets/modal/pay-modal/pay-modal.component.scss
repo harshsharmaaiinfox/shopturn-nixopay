@@ -1,0 +1,323 @@
+// Brand Colors
+$primary-teal: #2B5F5E;
+$secondary-orange: #C77640;
+$teal-light: rgba(43, 95, 94, 0.1);
+$orange-light: rgba(199, 118, 64, 0.1);
+$teal-dark: #1f4544;
+$orange-dark: #a85d2a;
+
+.pay-modal-wrapper {
+  background: white;
+  border-radius: 16px;
+  overflow: hidden;
+  max-width: 600px;
+  width: 100%;
+}
+
+.modal-header-custom {
+  background: linear-gradient(135deg, $primary-teal 0%, $teal-dark 100%);
+  padding: 1.5rem 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: white;
+
+  .header-content {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+
+    .header-icon {
+      width: 48px;
+      height: 48px;
+      background: rgba(255, 255, 255, 0.2);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      backdrop-filter: blur(10px);
+
+      i {
+        font-size: 1.5rem;
+        color: white;
+      }
+    }
+
+    .modal-title {
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin: 0;
+      color: white;
+    }
+  }
+
+  .btn-close-custom {
+    background: rgba(255, 255, 255, 0.2);
+    border: none;
+    color: white;
+    width: 40px;
+    height: 40px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    transition: all 0.3s ease;
+
+    &:hover {
+      background: rgba(255, 255, 255, 0.3);
+      transform: rotate(90deg);
+    }
+
+    i {
+      font-size: 1.5rem;
+      color: white !important;
+    }
+  }
+}
+
+.modal-body-custom {
+  padding: 2rem;
+
+  .modal-description {
+    color: #666;
+    font-size: 0.95rem;
+    margin: 0 0 1.5rem 0;
+    text-align: center;
+  }
+}
+
+.payment-methods-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+  margin-bottom: 1rem;
+
+  @media (max-width: 576px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.payment-method-card {
+  border: 2px solid #e5e5e5;
+  border-radius: 12px;
+  transition: all 0.3s ease;
+  background: #fafafa;
+  overflow: hidden;
+
+  &:hover {
+    border-color: $primary-teal;
+    background: white;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(43, 95, 94, 0.1);
+  }
+
+  .form-check-custom {
+    margin: 0;
+    padding: 0;
+
+    .form-check-input-custom {
+      position: absolute;
+      opacity: 0;
+      cursor: pointer;
+      height: 0;
+      width: 0;
+
+      &:checked ~ .form-check-label-custom {
+        .payment-content {
+          background: linear-gradient(135deg, $teal-light 0%, rgba(43, 95, 94, 0.05) 100%);
+          border-color: $primary-teal;
+
+          .payment-icon-wrapper {
+            background: linear-gradient(135deg, $primary-teal 0%, $teal-dark 100%);
+            color: white;
+          }
+
+          .payment-name {
+            color: $primary-teal;
+            font-weight: 600;
+          }
+        }
+      }
+
+      &:focus ~ .form-check-label-custom {
+        .payment-content {
+          outline: 2px solid $primary-teal;
+          outline-offset: 2px;
+        }
+      }
+    }
+
+    .form-check-label-custom {
+      display: block;
+      cursor: pointer;
+      margin: 0;
+      padding: 0;
+
+      .payment-content {
+        padding: 1.25rem;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 0.75rem;
+        transition: all 0.3s ease;
+        border-radius: 12px;
+        border: 2px solid transparent;
+
+        .payment-icon-wrapper {
+          width: 56px;
+          height: 56px;
+          background: #f0f0f0;
+          border-radius: 12px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          transition: all 0.3s ease;
+
+          i {
+            font-size: 1.75rem;
+            color: #666;
+            transition: all 0.3s ease;
+          }
+        }
+
+        .payment-name {
+          font-size: 0.95rem;
+          font-weight: 500;
+          color: #333;
+          text-align: center;
+          transition: all 0.3s ease;
+          line-height: 1.4;
+        }
+      }
+    }
+  }
+}
+
+.error-message {
+  display: flex;
+  align-items: center;
+  color: #ff4f4f;
+  font-size: 0.875rem;
+  margin-top: 1rem;
+  padding: 0.75rem 1rem;
+  background: rgba(255, 79, 79, 0.1);
+  border-radius: 8px;
+  border-left: 3px solid #ff4f4f;
+
+  i {
+    font-size: 1.1rem;
+  }
+}
+
+.modal-footer-custom {
+  padding: 1.5rem 2rem;
+  border-top: 2px solid #f0f0f0;
+  display: flex;
+  gap: 1rem;
+  justify-content: flex-end;
+  background: #fafafa;
+
+  .btn {
+    padding: 0.75rem 2rem;
+    border-radius: 10px;
+    font-weight: 600;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    border: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+
+    &.btn-cancel {
+      background: white;
+      color: #666;
+      border: 2px solid #e5e5e5;
+
+      &:hover {
+        background: #f5f5f5;
+        border-color: #d0d0d0;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      }
+    }
+
+    &.btn-submit {
+      background: linear-gradient(135deg, $primary-teal 0%, $teal-dark 100%);
+      color: white;
+      box-shadow: 0 4px 12px rgba(43, 95, 94, 0.3);
+
+      &:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba(43, 95, 94, 0.4);
+        background: linear-gradient(135deg, $teal-dark 0%, $primary-teal 100%);
+      }
+
+      &:active {
+        transform: translateY(0);
+      }
+
+      i {
+        font-size: 1.1rem;
+      }
+    }
+  }
+
+  @media (max-width: 576px) {
+    flex-direction: column-reverse;
+
+    .btn {
+      width: 100%;
+    }
+  }
+}
+
+// Modal backdrop styling
+::ng-deep .pay-modal {
+  .modal-content {
+    border: none;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  }
+
+  .modal-dialog {
+    max-width: 600px;
+  }
+}
+
+// Responsive adjustments
+@media (max-width: 576px) {
+  .modal-header-custom {
+    padding: 1.25rem 1.5rem;
+
+    .header-content {
+      .header-icon {
+        width: 40px;
+        height: 40px;
+
+        i {
+          font-size: 1.25rem;
+        }
+      }
+
+      .modal-title {
+        font-size: 1.25rem;
+      }
+    }
+  }
+
+  .modal-body-custom {
+    padding: 1.5rem;
+
+    .modal-description {
+      font-size: 0.9rem;
+    }
+  }
+
+  .modal-footer-custom {
+    padding: 1.25rem 1.5rem;
+  }
+}
+

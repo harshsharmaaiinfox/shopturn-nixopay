@@ -1,0 +1,34 @@
+<div class="payment-options-modern" *ngIf="setting?.payment_methods?.length">
+    <div class="payment-grid">
+        <ng-container *ngFor="let payment of setting.payment_methods; let i = index; trackBy: trackByPaymentMethod">
+            <div class="payment-card-wrapper" *ngIf="payment?.status">
+                <div class="form-check payment-form-check">
+                    <input class="form-check-input payment-radio" 
+                           type="radio" 
+                           name="payment_method" 
+                           [id]="'payment_' + payment.name" 
+                           (change)="set(payment.name)">
+                    <label class="form-check-label payment-label" [attr.for]="'payment_' + payment.name">
+                        <div class="payment-card">
+                            <div class="payment-content">
+                                <div class="payment-info">
+                                    <span class="payment-title">{{ payment.title || payment.name }}</span>
+                                    <img *ngIf="payment.icon" 
+                                         [src]="payment.icon" 
+                                         [alt]="payment.name" 
+                                         class="payment-icon">
+                                </div>
+                                <div class="payment-check-indicator">
+                                    <i class="ri-check-line"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </label>
+                </div>
+            </div>
+        </ng-container>
+    </div>
+</div>
+<div *ngIf="!setting?.payment_methods?.length" class="empty-payment-methods">
+    <p>{{ 'No Payment Methods Available' | translate }}</p>
+</div>

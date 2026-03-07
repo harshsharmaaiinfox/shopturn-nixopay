@@ -1,0 +1,283 @@
+<div class="order-details-container" *ngIf="order">
+  <!-- Header Section -->
+  <div class="order-details-header">
+    <div class="header-content">
+      <div class="header-icon-wrapper">
+        <i class="ri-file-text-line"></i>
+      </div>
+      <div class="header-text">
+        <h2>{{ 'Order Number' | translate }}: #{{ order.order_number }}</h2>
+        <p>{{ 'Track your order status and view details' | translate }}</p>
+      </div>
+      <div class="header-actions">
+        <a href="javascript:void(0)" 
+           class="btn btn-pay"
+           *ngIf="(order?.payment_status === 'FAILED' || order?.payment_status === 'PENDING') 
+                  && (order?.order_status && order?.order_status?.slug != 'cancelled') 
+                  && order?.payment_method != 'cod'"
+           (click)="PayModal.openModal(order)">
+          <i class="ri-refresh-line me-2"></i>
+          {{ 'Pay Now' | translate }}
+        </a>
+        <a (click)="download(order.order_number)"
+           class="btn btn-invoice"
+           download="download"
+           *ngIf="order?.invoice_url && order?.payment_status && order?.payment_status === 'COMPLETED' && isLogin">
+          <i class="ri-download-2-fill me-2"></i>
+          {{ 'Invoice' | translate }}
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Order Tracking Section -->
+  <div class="order-tracking-section" *ngIf="order && !order?.sub_orders?.length">
+    <div class="tracking-card">
+      <h3 class="section-title">
+        <i class="ri-map-pin-line me-2"></i>
+        {{ 'Order Status' | translate }}
+      </h3>
+      <div class="tracking-progress">
+        <ul class="tracking-steps">
+          <ng-container *ngFor="let orderStatus of (orderStatus$ | async)?.data">
+            <li [class.active]="orderStatus?.sequence! <= order.order_status.sequence!"
+                [class.completed]="orderStatus?.sequence! < order.order_status.sequence!"
+                [ngClass]="{
+                  'd-none': (orderStatus?.sequence! >= order.order_status.sequence! 
+                  && (order.order_status && order.order_status.slug == 'cancelled')) ||
+                  orderStatus?.slug == 'cancelled' || 
+                  (order.is_digital_only && (orderStatus?.slug == 'shipped' || orderStatus?.slug == 'out-for-delivery'))
+                }">
+              <div class="step-content">
+                <div class="step-icon">
+                  <img src="assets/svg/tracking/{{orderStatus?.slug}}.svg" class="img-fluid" alt="order status tracking icon">
+                </div>
+                <div class="step-label">{{ orderStatus?.name | titleCase }}</div>
+              </div>
+            </li>
+          </ng-container>
+          <li class="active cancelled-box" *ngIf="order?.order_status && order?.order_status?.slug == 'cancelled'">
+            <div class="step-content" *ngIf="order?.order_status">
+              <div class="step-icon">
+                <img src="assets/svg/tracking/{{order.order_status.slug}}.svg" class="img-fluid" alt="order status tracking icon">
+              </div>
+              <div class="step-label">{{ order.order_status.name.replace('_', ' ')! | titlecase }}</div>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- Order Items Section -->
+  <div class="order-items-section" *ngIf="order?.products?.length">
+    <div class="items-card">
+      <h3 class="section-title">
+        <i class="ri-shopping-bag-line me-2"></i>
+        {{ 'Order Items' | translate }}
+      </h3>
+      <div class="table-responsive">
+        <table class="order-items-table">
+          <thead>
+            <tr>
+              <th>{{ 'Image' | translate }}</th>
+              <th>{{ 'Name' | translate }}</th>
+              <th>{{ 'Price' | translate }}</th>
+              <th>{{ 'Quantity' | translate }}</th>
+              <th>{{ 'Subtotal' | translate }}</th>
+              <th>{{ 'Refund Status' | translate }}</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let product of order.products">
+              <td class="product-image-cell">
+                <img [src]="product?.pivot?.variation && product?.pivot?.variation?.variation_image
+                        ? product?.pivot?.variation?.variation_image?.original_url
+                        : product?.product_thumbnail
+                        ? product?.product_thumbnail?.original_url
+                        : 'assets/images/product.png'" 
+                     class="product-img" 
+                     alt="product">
+              </td>
+              <td class="product-name-cell">
+                <h6>{{ product?.pivot?.variation ? product?.pivot?.variation?.name : product?.name }}</h6>
+              </td>
+              <td class="product-price-cell">
+                <span class="price">{{ product?.pivot?.single_price | currencySymbol }}</span>
+              </td>
+              <td class="product-quantity-cell">
+                <span class="quantity">{{ product?.pivot?.quantity }}</span>
+              </td>
+              <td class="product-subtotal-cell">
+                <span class="subtotal">{{ product?.pivot?.subtotal | currencySymbol }}</span>
+              </td>
+              <td class="product-refund-cell">
+                <a class="btn btn-refund" 
+                   href="javascript:void(0)"
+                   *ngIf="product?.is_return === 1 &&
+                          order?.payment_status && order?.payment_status === 'COMPLETED' 
+                          && order.order_status && order.order_status.slug == 'delivered' && 
+                          !product?.pivot?.refund_status;"
+                   (click)="RefundModal.openModal(product, order.id)">
+                  {{ 'Refund' | translate }}
+                </a>
+                <ng-container *ngIf="product.is_return === 0; else refundStatus">
+                  <span class="refund-badge non-refundable">Non Refundable</span>
+                </ng-container>
+                <ng-template #refundStatus>
+                  <div class="refund-badge status-{{product?.pivot?.refund_status?.toLowerCase()}}" 
+                       *ngIf="product?.pivot?.refund_status; else disabledRefund">
+                    <span>{{ product?.pivot?.refund_status | titleCase }}</span>
+                  </div>
+                  <ng-template #disabledRefund>
+                    <div placement="top" class="black-tooltip" ngbTooltip="Enable after delivery">
+                      <a class="btn btn-refund disabled" *ngIf="!product?.pivot?.refund_status">
+                        {{ 'Refund' | translate }}
+                      </a>
+                    </div>
+                  </ng-template>
+                </ng-template>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- Consumer Details and Summary Section -->
+  <div class="order-info-section">
+    <div class="info-grid">
+      <!-- Consumer Details -->
+      <div class="info-card consumer-details-card">
+        <h3 class="section-title">
+          <i class="ri-user-line me-2"></i>
+          {{ 'Consumer Details' | translate }}
+        </h3>
+        <div class="details-list">
+          <div class="detail-item" *ngIf="order?.billing_address">
+            <label>{{ 'Billing Address' | translate }}:</label>
+            <div class="detail-value" *ngIf="order?.billing_address?.state">
+              {{ order.billing_address.street }}
+              {{ order.billing_address.city }} {{ order.billing_address.state.name }} {{ order.billing_address.country.name }}
+              {{ order.billing_address.pincode }} <br>
+              {{ 'Phone' | translate }}: +{{ order.billing_address.country_code }} {{ order.billing_address.phone }}
+            </div>
+          </div>
+          <div class="detail-item" *ngIf="order?.shipping_address && !order?.is_digital_only">
+            <label>{{ 'Shipping Address' | translate }}:</label>
+            <div class="detail-value" *ngIf="order?.shipping_address?.state">
+              {{ order.shipping_address.street }}
+              {{ order.shipping_address.city }} {{ order.shipping_address.state.name }} {{ order.shipping_address.country.name }}
+              {{ order.shipping_address.pincode }} <br>
+              {{ 'Phone' | translate }}: +{{ order.shipping_address.country_code }} {{ order.shipping_address.phone }}
+            </div>
+          </div>
+          <div class="detail-item" *ngIf="order?.delivery_description && !order?.is_digital_only">
+            <label>{{ 'Delivery Slot' | translate }}:</label>
+            <div class="detail-value">Standard Delivery | Approx 10 to 15 Days</div>
+          </div>
+          <div class="detail-item" *ngIf="order?.payment_method">
+            <label>{{ 'Payment Mode' | translate }}:</label>
+            <div class="detail-value">
+              <span *ngIf="order?.payment_method === 'Shop Trurn Life_nabu'">Pay By UPI INTENT 3</span>
+              <span *ngIf="order?.payment_method !== 'Shop Trurn Life_nabu'">{{ order.payment_method | uppercase }}</span>
+            </div>
+          </div>
+          <div class="detail-item" *ngIf="order?.payment_status">
+            <label>{{ 'Payment Status' | translate }}:</label>
+            <div class="detail-value">
+              <span class="status-badge status-{{order?.payment_status?.toLowerCase()}}">
+                {{ order.payment_status | uppercase }}
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Summary -->
+      <div class="info-card summary-card">
+        <h3 class="section-title">
+          <i class="ri-file-list-3-line me-2"></i>
+          {{ 'Summary' | translate }}
+        </h3>
+        <div class="summary-list">
+          <div class="summary-item">
+            <span>{{ 'Subtotal' | translate }}</span>
+            <span class="summary-value">{{ (order.amount ? order.amount : 0) | currencySymbol }}</span>
+          </div>
+          <div class="summary-item" *ngIf="!order?.is_digital_only">
+            <span>{{ 'Shipping' | translate }}</span>
+            <span class="summary-value">{{ (order.shipping_total ? order.shipping_total : 0) | currencySymbol }}</span>
+          </div>
+          <div class="summary-item">
+            <span>{{ 'Tax' | translate }}</span>
+            <span class="summary-value">{{ (order.tax_total ? order.tax_total : 0) | currencySymbol }}</span>
+          </div>
+          <div class="summary-item highlight" *ngIf="order.points_amount != 0">
+            <span>{{ 'Points' | translate }}</span>
+            <span class="summary-value">{{ order.points_amount | currencySymbol }}</span>
+          </div>
+          <div class="summary-item highlight" *ngIf="order.wallet_balance != 0">
+            <span>{{ 'Wallet Balance' | translate }}</span>
+            <span class="summary-value">{{ order.wallet_balance | currencySymbol }}</span>
+          </div>
+          <div class="summary-item highlight" *ngIf="order.coupon_total_discount != 0">
+            <span>{{ 'Discount' | translate }}</span>
+            <span class="summary-value">{{ order.coupon_total_discount | currencySymbol }}</span>
+          </div>
+          <div class="summary-item total">
+            <span>{{ 'Total' | translate }}</span>
+            <span class="summary-value">{{ (order.total ? order.total : 0) | currencySymbol }}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Sub Orders Section -->
+  <div class="sub-orders-section" *ngIf="order?.sub_orders?.length">
+    <div class="sub-orders-card">
+      <h3 class="section-title">
+        <i class="ri-list-check me-2"></i>
+        {{ 'Sub Orders' | translate }}
+      </h3>
+      <div class="table-responsive">
+        <table class="sub-orders-table">
+          <thead>
+            <tr>
+              <th>{{ 'Order Number' | translate }}</th>
+              <th>{{ 'Order Date' | translate }}</th>
+              <th>{{ 'Total Amount' | translate }}</th>
+              <th>{{ 'Status' | translate }}</th>
+              <th>{{ 'Action' | translate }}</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let subOrder of order.sub_orders">
+              <td><span class="order-number">#{{ subOrder.order_number }}</span></td>
+              <td><span class="order-date">{{ subOrder.created_at | date: 'dd MMM yyyy hh:mm:a' }}</span></td>
+              <td><span class="order-amount">{{ subOrder.amount | currencySymbol }}</span></td>
+              <td>
+                <span class="status-badge status-{{subOrder.order_status.slug}}">
+                  {{ subOrder.order_status.name }}
+                </span>
+              </td>
+              <td>
+                <a href="javascript:void(0)" 
+                   [routerLink]="['/account/order/details', subOrder.order_number]"
+                   class="view-btn">
+                  <i class="ri-eye-line"></i>
+                  <span class="btn-text">{{ 'View' | translate }}</span>
+                </a>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<app-refund-modal #refundModal></app-refund-modal>
+<app-pay-modal #payModal></app-pay-modal>
