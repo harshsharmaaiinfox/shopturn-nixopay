@@ -13,7 +13,8 @@
         <div class="user-auth-box" *ngIf="!(isAuthenticated$ | async)">
             <h3 class="auth-title">{{ 'hello' | translate }}</h3>
             <p class="auth-subtitle">{{ 'To access your account' | translate }}</p>
-            <a [routerLink]="['/auth/register']" class="auth-signup-btn">{{ 'Sign Up' | translate }}</a>
+            <a [routerLink]="['/auth/register']" class="auth-signup-btn">{{ 'sign_up' | translate }}</a>
+            <a [routerLink]="['/auth/login']" class="auth-signin-link">{{ 'sign_in' | translate }}</a>
         </div>
         <div class="user-auth-box authenticated-box" *ngIf="(isAuthenticated$ | async)">
             <h3 class="auth-title">{{ 'hello' | translate }}</h3>

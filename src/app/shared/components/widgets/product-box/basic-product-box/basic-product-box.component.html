@@ -34,9 +34,16 @@
         </h5>
 
         <div class="add-to-cart-section">
-            <app-button [class]="'btn btn-add-to-cart'" [spinner]="false" (click)="openCartPopupModal()">
-                Add to Cart
-            </app-button>
+            <ng-container *ngIf="cartItem; else addToCartButton">
+                <app-button [class]="'btn btn-add-to-cart'" [spinner]="false" (click)="viewCart()">
+                    View Cart
+                </app-button>
+            </ng-container>
+            <ng-template #addToCartButton>
+                <app-button [class]="'btn btn-add-to-cart'" [spinner]="false" (click)="openCartPopupModal()">
+                    Add to Cart
+                </app-button>
+            </ng-template>
         </div>
     </div>
 </div>

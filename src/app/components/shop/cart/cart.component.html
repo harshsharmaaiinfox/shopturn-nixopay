@@ -53,6 +53,31 @@
                       <i class="ri-shopping-bag-line me-1"></i>
                       {{ 'Quantity' | translate }}: {{ item.quantity }} {{ 'pieces' | translate }}
                     </span>
+                    <div class="cart_qty qty-box product-qty item-qty-inline">
+                      <div class="input-group">
+                        <app-button
+                          [class]="'btn qty-left-minus'"
+                          [id]="'minus-cart-item'+item.id"
+                          [spinner]="false"
+                          [type]="'button'"
+                          (click)="updateQuantity(item, -1)">
+                          <i class="ri-subtract-fill"></i>
+                        </app-button>
+                        <input
+                          class="form-control input-number qty-input"
+                          type="text"
+                          [value]="item.quantity"
+                          readonly>
+                        <app-button
+                          [class]="'btn qty-left-minus'"
+                          [id]="'plus-cart-item'+item.id"
+                          [spinner]="false"
+                          [type]="'button'"
+                          (click)="updateQuantity(item, 1)">
+                          <i class="ri-add-line"></i>
+                        </app-button>
+                      </div>
+                    </div>
                   </div>
 
                   <div class="item-variation-info" *ngIf="item?.variation">
@@ -85,21 +110,6 @@
             </div>
 
             <div class="item-actions">
-              <div class="quantity-control">
-                <h5 class="control-label">{{ 'Quantity' | translate }}</h5>
-                <div class="qty-box">
-                  <app-button [class]="'btn qty-btn'" [id]="'minus_quantity'" [spinner]="false" [type]="'button'"
-                    (click)="updateQuantity(item, -1)">
-                    <i class="ri-subtract-line"></i>
-                  </app-button>
-                  <input class="qty-input" type="text" name="quantity" [value]="item.quantity" readonly>
-                  <app-button [class]="'btn qty-btn'" [id]="'plus_quantity'" [spinner]="false" [type]="'button'"
-                    (click)="updateQuantity(item, 1)">
-                    <i class="ri-add-line"></i>
-                  </app-button>
-                </div>
-              </div>
-
               <div class="item-total">
                 <h5 class="total-label">{{ 'Total' | translate }}</h5>
                 <h4 class="total-price">

@@ -148,6 +148,16 @@
         border: none;
         cursor: pointer;
         box-shadow: 0 2px 8px rgba(211, 142, 96, 0.25);
+        margin-bottom: 8px;
+      }
+
+      .auth-signin-link {
+        display: block;
+        width: 100%;
+        padding: 10px 24px 0;
+        font-size: 14px;
+        color: #6B7280;
+        text-decoration: underline;
       }
 
       &.authenticated-box {

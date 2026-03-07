@@ -2,6 +2,7 @@ import { ChangeDetectorRef, Component, Input, ViewChild, TemplateRef } from '@an
 import { Store, Select } from '@ngxs/store';
 import { NgbRatingConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Observable } from 'rxjs';
+import { Router } from '@angular/router';
 import { ProductDetailModalComponent } from '../../../widgets/modal/product-detail-modal/product-detail-modal.component';
 import { CartPopupModalComponent } from '../../../widgets/modal/cart-popup-modal/cart-popup-modal.component';
 import { Product } from '../../../../../shared/interface/product.interface';
@@ -37,7 +38,8 @@ export class BasicProductBoxComponent {
     private store: Store,
     config: NgbRatingConfig,
     private cdRef: ChangeDetectorRef,
-    private modalService: NgbModal
+    private modalService: NgbModal,
+    private router: Router
   ) {
 		config.max = 5;
 		config.readonly = true;
@@ -96,6 +98,7 @@ export class BasicProductBoxComponent {
     }
   }
 
-
-
+  viewCart() {
+    this.router.navigate(['/cart']);
+  }
 }
