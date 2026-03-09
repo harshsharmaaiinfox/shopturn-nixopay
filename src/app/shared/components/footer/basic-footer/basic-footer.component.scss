@@ -1,4 +1,4 @@
-﻿// Meesho Style Footer - Clean and Minimalist
+// Meesho Style Footer - Clean and Minimalist
 .meesho-style-footer {
     padding: 0;
     margin: 0;
@@ -154,6 +154,9 @@
             margin-bottom: 25px;
             border-bottom: 1px solid rgba(0, 0, 0, 0.08);
             padding-bottom: 20px;
+            display: block !important;
+            height: auto !important;
+            clear: both; // Add clear to prevent floating overlaps
 
             &:last-child {
                 border-bottom: none;
@@ -161,11 +164,17 @@
                 padding-bottom: 0;
             }
 
-            // Disable click on mobile - all sections always open
-            pointer-events: none;
+            // ALLOW clicks on mobile
+            pointer-events: auto !important;
 
             .footer-title {
-                pointer-events: none;
+                pointer-events: auto !important;
+                display: flex;
+                width: 100%;
+
+                // Ensure header doesn't overlap content
+                position: static !important;
+                margin-bottom: 15px !important;
 
                 // Hide toggle icons on mobile
                 .mobile-toggle-icon {
@@ -194,7 +203,7 @@
             padding: 12px 0;
             user-select: none;
             border-bottom: 1px solid rgba(0, 0, 0, 0.08);
-            pointer-events: none;
+            pointer-events: auto !important; // Restore events
         }
 
         h4 {
@@ -252,6 +261,8 @@
     // Footer Content
     .footer-contain {
         margin-top: 0;
+        position: relative;
+        display: block;
 
         @media (max-width: 767px) {
             max-height: none !important;
@@ -260,6 +271,10 @@
             visibility: visible !important;
             padding-bottom: 15px;
             display: block !important;
+            height: auto !important;
+            position: static !important; // Ensure it's in flow
+            width: 100% !important;
+            pointer-events: auto !important;
         }
 
         .footer-links {
