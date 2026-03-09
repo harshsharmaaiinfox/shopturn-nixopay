@@ -70,11 +70,23 @@
     </div>
 
     <div class="empty-orders-container" *ngIf="!orderData?.data?.length">
-      <div class="empty-image-wrapper">
-        <img src="assets/svg/empty-items.svg" alt="No Orders">
+      <div class="empty-content-card">
+        <div class="empty-image-wrapper">
+          <div class="image-bg-circle"></div>
+          <img src="assets/svg/empty-items.svg" alt="No Orders">
+        </div>
+        <div class="empty-text-wrapper">
+          <h3>{{ 'No Orders Found' | translate }}</h3>
+          <p>{{ "You haven't placed any orders yet. Explore our latest collections and start shopping today!" |
+            translate }}</p>
+        </div>
+        <div class="empty-actions">
+          <a routerLink="/collections" class="start-shopping-btn">
+            <i class="ri-shopping-cart-2-line"></i>
+            <span>{{ 'Start Shopping' | translate }}</span>
+          </a>
+        </div>
       </div>
-      <h3>{{ 'No Orders Found' | translate }}</h3>
-      <p>{{ 'No Orders have yet' | translate }}</p>
     </div>
   </div>
 </ng-container>

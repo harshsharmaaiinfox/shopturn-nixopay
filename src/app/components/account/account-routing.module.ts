@@ -55,6 +55,11 @@ const routes: Routes = [
         component: AddressesComponent
       },
       {
+        path: 'address',
+        redirectTo: 'addresses',
+        pathMatch: 'full'
+      },
+      {
         path: 'downloads',
         component: DownloadsComponent
       }

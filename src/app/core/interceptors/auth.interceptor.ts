@@ -7,6 +7,7 @@ import { NotificationService } from '../../shared/services/notification.service'
 import { Values } from '../../shared/interface/setting.interface';
 import { SettingState } from '../../shared/state/setting.state';
 import { AuthClear } from '../../shared/action/auth.action';
+import { HideButtonSpinnerAction, HideLoaderAction } from '../../shared/action/loader.action';
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
@@ -44,8 +45,13 @@ export class AuthInterceptor implements HttpInterceptor {
 
     return next.handle(req).pipe(
       catchError((error: HttpErrorResponse) => {
+        // Always hide the loader when any request fails, regardless of error type.
+        // Without this, the loader gets stuck because the LoaderInterceptor's
+        // tap(complete) never fires when an error is re-thrown here.
+        this.store.dispatch(new HideLoaderAction());
+        this.store.dispatch(new HideButtonSpinnerAction());
+
         if (error.status === 401) {
-          // this.notificationService.notification = false;
           this.store.dispatch(new AuthClear());
         }
         return throwError(() => error);

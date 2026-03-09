@@ -1,8 +1,9 @@
-import { Component, ViewChild } from '@angular/core';
-import { Select } from '@ngxs/store';
-import { Observable } from 'rxjs';
+import { Component, OnDestroy, ViewChild } from '@angular/core';
+import { Select, Store } from '@ngxs/store';
+import { Observable, Subscription } from 'rxjs';
 import { User, UserAddress } from '../../../shared/interface/user.interface';
 import { AccountState } from '../../../shared/state/account.state';
+import { GetUserDetails } from '../../../shared/action/account.action';
 import { EditProfileModalComponent } from '../../../shared/components/widgets/modal/edit-profile-modal/edit-profile-modal.component';
 import { ChangePasswordModalComponent } from '../../../shared/components/widgets/modal/change-password-modal/change-password-modal.component';
 
@@ -11,7 +12,7 @@ import { ChangePasswordModalComponent } from '../../../shared/components/widgets
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.scss']
 })
-export class DashboardComponent {
+export class DashboardComponent implements OnDestroy {
 
   @Select(AccountState.user) user$: Observable<User>;
 
@@ -19,11 +20,17 @@ export class DashboardComponent {
   @ViewChild("passwordModal") PasswordModal: ChangePasswordModalComponent;
 
   public address: UserAddress | null;
+  private sub: Subscription;
 
-  constructor() {
-    this.user$.subscribe(user => {
+  constructor(private store: Store) {
+    this.store.dispatch(new GetUserDetails());
+    this.sub = this.user$.subscribe(user => {
       this.address = user?.address?.length ? user?.address?.[0] : null;
     });
+  }
+
+  ngOnDestroy() {
+    this.sub?.unsubscribe();
   }
 
 }

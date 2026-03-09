@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Select, Store } from '@ngxs/store';
 import { Observable } from 'rxjs';
@@ -11,10 +11,10 @@ import { PaymentDetails } from '../../../shared/interface/payment-details.interf
   templateUrl: './bank-details.component.html',
   styleUrls: ['./bank-details.component.scss']
 })
-export class BankDetailsComponent {
+export class BankDetailsComponent implements OnInit {
 
   @Select(PaymentDetailsState.paymentDetails) paymentDetails$: Observable<PaymentDetails>;
-  
+
   public form: FormGroup;
   public active = 'bank';
 
@@ -36,16 +36,16 @@ export class BankDetailsComponent {
         bank_account_no: paymentDetails?.bank_account_no,
         bank_name: paymentDetails?.bank_name,
         bank_holder_name: paymentDetails?.bank_holder_name,
-        swift:paymentDetails?.swift,
+        swift: paymentDetails?.swift,
         ifsc: paymentDetails?.ifsc,
         paypal_email: paymentDetails?.paypal_email
       })
     });
   }
 
-  submit(){    
+  submit() {
     this.form.markAllAsTouched();
-    if(this.form.valid){
+    if (this.form.valid) {
       this.store.dispatch(new UpdatePaymentDetails(this.form.value))
     }
   }
@@ -53,7 +53,7 @@ export class BankDetailsComponent {
   // Input guards: shared helpers
   allowOnlyDigits(event: KeyboardEvent): void {
     const allowedControlKeys = [
-      'Backspace','Delete','Tab','Enter','Escape','ArrowLeft','ArrowRight','Home','End'
+      'Backspace', 'Delete', 'Tab', 'Enter', 'Escape', 'ArrowLeft', 'ArrowRight', 'Home', 'End'
     ];
     if (allowedControlKeys.includes(event.key)) return;
     if (event.ctrlKey || event.metaKey) return;
@@ -82,7 +82,7 @@ export class BankDetailsComponent {
 
   allowOnlyLetters(event: KeyboardEvent): void {
     const allowedControlKeys = [
-      'Backspace','Delete','Tab','Enter','Escape','ArrowLeft','ArrowRight','Home','End'
+      'Backspace', 'Delete', 'Tab', 'Enter', 'Escape', 'ArrowLeft', 'ArrowRight', 'Home', 'End'
     ];
     if (allowedControlKeys.includes(event.key)) return;
     if (/^[A-Za-z\s]$/.test(event.key)) return;

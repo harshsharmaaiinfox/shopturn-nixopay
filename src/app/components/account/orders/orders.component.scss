@@ -31,8 +31,8 @@ $orange-dark: #a85d2a;
 
   // Specific style when there are no orders to accommodate the overlap
   &.has-no-orders {
-    padding-bottom: 6rem; // Extra space for better overlap visual
-    margin-bottom: 3rem;
+    padding-bottom: 2rem;
+    margin-bottom: 4rem;
   }
 
   .header-content {
@@ -78,9 +78,6 @@ $orange-dark: #a85d2a;
   @media (max-width: 768px) {
     padding: 1.5rem 1rem;
 
-    &.has-no-orders {
-      padding-bottom: 4rem;
-    }
 
     .header-content {
       flex-direction: column;
@@ -268,55 +265,154 @@ $orange-dark: #a85d2a;
 }
 
 .empty-orders-container {
-  background: white;
-  border-radius: 16px;
-  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
-  border: 1px solid #f0f0f0;
-  text-align: center;
+  max-width: 800px;
+  margin: -3rem auto 0;
+  padding: 0 1rem;
   position: relative;
-  margin-top: -4rem; // Overlap with the header
-  z-index: 2;
-  padding: 3rem 2rem;
-  max-width: 900px;
-  margin-left: auto;
-  margin-right: auto;
+  z-index: 10;
 
-  .empty-image-wrapper {
-    margin-top: -6rem; // Pull visually up
-    margin-bottom: 2rem;
+  .empty-content-card {
+    background: white;
+    border-radius: 24px;
+    padding: 4rem 2rem;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.08);
+    border: 1px solid rgba(43, 95, 94, 0.05);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    transition: transform 0.3s ease;
 
-    img {
-      max-width: 300px;
-      width: 100%;
-      height: auto;
-      filter: drop-shadow(0 10px 15px rgba(0, 0, 0, 0.1));
+    &:hover {
+      transform: translateY(-5px);
     }
-  }
 
-  h3 {
-    font-size: 1.5rem;
-    font-weight: 700;
-    color: $primary-teal;
-    margin-bottom: 0.5rem;
-  }
+    .empty-image-wrapper {
+      position: relative;
+      margin-bottom: 2.5rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
 
-  p {
-    font-size: 1rem;
-    color: #666;
-    margin-bottom: 0;
+      .image-bg-circle {
+        position: absolute;
+        width: 180px;
+        height: 180px;
+        background: radial-gradient(circle, $teal-light 0%, transparent 70%);
+        border-radius: 50%;
+        z-index: 0;
+        animation: pulse 4s infinite ease-in-out;
+      }
+
+      img {
+        max-width: 280px;
+        width: 100%;
+        height: auto;
+        position: relative;
+        z-index: 1;
+        filter: drop-shadow(0 15px 25px rgba(0, 0, 0, 0.1));
+      }
+    }
+
+    .empty-text-wrapper {
+      margin-bottom: 2.5rem;
+      max-width: 500px;
+
+      h3 {
+        font-size: 1.8rem;
+        font-weight: 800;
+        color: $primary-teal;
+        margin-bottom: 1rem;
+        letter-spacing: -0.5px;
+      }
+
+      p {
+        font-size: 1.1rem;
+        color: #666;
+        line-height: 1.6;
+        margin: 0;
+      }
+    }
+
+    .empty-actions {
+      .start-shopping-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.75rem;
+        padding: 1rem 2.5rem;
+        background: linear-gradient(135deg, $primary-teal 0%, $teal-dark 100%);
+        color: white;
+        border-radius: 50px;
+        text-decoration: none;
+        font-size: 1.1rem;
+        font-weight: 600;
+        transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+        box-shadow: 0 8px 20px rgba(43, 95, 94, 0.3);
+
+        i {
+          font-size: 1.3rem;
+        }
+
+        &:hover {
+          transform: scale(1.05) translateY(-3px);
+          box-shadow: 0 12px 25px rgba(43, 95, 94, 0.4);
+          background: linear-gradient(135deg, $teal-dark 0%, $primary-teal 100%);
+        }
+      }
+    }
   }
 
   @media (max-width: 768px) {
-    margin-top: -3rem;
-    padding: 2rem 1rem;
+    margin-top: -2rem;
 
-    .empty-image-wrapper {
-      margin-top: -4rem;
+    .empty-content-card {
+      padding: 3rem 1.5rem;
 
-      img {
-        max-width: 200px;
+      .empty-image-wrapper {
+        margin-bottom: 2rem;
+
+        .image-bg-circle {
+          width: 140px;
+          height: 140px;
+        }
+
+        img {
+          max-width: 200px;
+        }
+      }
+
+      .empty-text-wrapper {
+        h3 {
+          font-size: 1.5rem;
+        }
+
+        p {
+          font-size: 1rem;
+        }
+      }
+
+      .empty-actions .start-shopping-btn {
+        padding: 0.8rem 2rem;
+        font-size: 1rem;
       }
     }
+  }
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(0.95);
+    opacity: 0.5;
+  }
+
+  50% {
+    transform: scale(1.05);
+    opacity: 0.8;
+  }
+
+  100% {
+    transform: scale(0.95);
+    opacity: 0.5;
   }
 }
 
