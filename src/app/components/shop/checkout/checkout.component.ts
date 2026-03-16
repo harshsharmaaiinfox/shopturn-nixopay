@@ -707,11 +707,36 @@ export class CheckoutComponent implements OnDestroy {
       furl: `${window.location.origin}/checkout?payment_status=failed&order_number=${order_result.order_number}`
     }).subscribe({
       next: (response) => {
+        // Log full response so txnid is visible in console even after redirect
+        console.log('PayU initiate-payment full response:', JSON.stringify(response));
+
         if (response?.success && response?.redirect_url) {
           sessionStorage.setItem('payment_uuid', uuid);
           sessionStorage.setItem('payment_method', payment_method);
           sessionStorage.setItem('payment_action', JSON.stringify(this.form.value));
           localStorage.setItem('order_id', JSON.stringify(order_result.order_number));
+
+          // --- Capture txnid (primary) ---
+          let txnid: string | null = response?.txnid || null;
+
+          // --- Fallback: extract txnid from redirect_url if not in response field ---
+          // e.g. "https://api.nixopay.com/payu/redirect/51d780bc999ca53853ea"
+          if (!txnid && response?.redirect_url) {
+            const urlParts = response.redirect_url.split('/');
+            const extracted = urlParts[urlParts.length - 1];
+            if (extracted && extracted.length > 5) {
+              txnid = extracted;
+              console.log('txnid extracted from redirect_url:', txnid);
+            }
+          }
+
+          if (txnid) {
+            localStorage.setItem('payu_txnid', txnid);
+            console.log('payu_txnid saved to localStorage:', txnid);
+          } else {
+            console.warn('Could not capture txnid from PayU response:', response);
+          }
+
           window.location.href = response.redirect_url;
         } else {
           console.error("Payment initiation failed:", response);
