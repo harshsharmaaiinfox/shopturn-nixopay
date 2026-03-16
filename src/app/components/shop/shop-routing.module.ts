@@ -30,6 +30,7 @@ import { BrandComponent } from './brand/brand.component';
 import { CategoryComponent } from './category/category.component';
 import { CategoryResolver } from '../../shared/resolvers/category.resolver';
 import { CheckoutSuccessComponent } from './checkout/checkout-success/checkout-success.component';
+import { PaymentSuccessComponent } from './checkout/payment-success/payment-success.component';
 
 const routes: Routes = [
   {
@@ -103,6 +104,10 @@ const routes: Routes = [
     path: 'order/checkout-success',
     component: CheckoutSuccessComponent,
     canActivate: [CheckoutGuard]
+  },
+  {
+    path: 'success',
+    component: PaymentSuccessComponent
   },
 ];
 

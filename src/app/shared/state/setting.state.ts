@@ -64,9 +64,15 @@ export class SettingState {
               },
               {
                 name: 'cash_free_1',
-                status: true,
+                status: false,
                 title: 'Cash Free',
                 icon: './assets/images/cash_free.jpg',
+              },
+              {
+                name: 'payu_shoplite',
+                status: true,
+                title: 'Pay by PayU',
+                // icon: './assets/images/payu.png',
               },
               {
                 name: 'zyaada_pay',

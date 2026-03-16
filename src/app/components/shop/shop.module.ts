@@ -101,6 +101,7 @@ import { CollectionBrandFilterComponent } from './collection/widgets/filter/coll
 import { BrandState } from '../../shared/state/brand.state';
 import { MyComponentWrapperComponent } from './checkout/my-react-component/MyReactComponentWrapper';
 import { CheckoutSuccessComponent } from './checkout/checkout-success/checkout-success.component';
+import { PaymentSuccessComponent } from './checkout/payment-success/payment-success.component';
 
 
 @NgModule({
@@ -185,7 +186,8 @@ import { CheckoutSuccessComponent } from './checkout/checkout-success/checkout-s
     BrandComponent,
     CategoryComponent,
     MyComponentWrapperComponent,
-    CheckoutSuccessComponent
+    CheckoutSuccessComponent,
+    PaymentSuccessComponent
   ],
   imports: [
     CommonModule,

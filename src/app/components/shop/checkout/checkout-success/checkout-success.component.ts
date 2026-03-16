@@ -87,6 +87,7 @@ export class CheckoutSuccessComponent {
 
   ngOnInit() {
     this.products();
+    sessionStorage.removeItem('pending_payment_cart');
   }
 
   products() {

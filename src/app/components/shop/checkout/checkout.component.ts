@@ -11,7 +11,7 @@ import { AccountState } from '../../../shared/state/account.state';
 import { CartState } from '../../../shared/state/cart.state';
 import { OrderState } from '../../../shared/state/order.state';
 import { Checkout, PlaceOrder } from '../../../shared/action/order.action';
-import { ClearCart } from '../../../shared/action/cart.action';
+import { ClearCart, SyncCart } from '../../../shared/action/cart.action';
 import { AddressModalComponent } from '../../../shared/components/widgets/modal/address-modal/address-modal.component';
 import { Cart } from '../../../shared/interface/cart.interface';
 import { SettingState } from '../../../shared/state/setting.state';
@@ -303,6 +303,20 @@ export class CheckoutComponent implements OnDestroy {
     this.checkout$.pipe(takeUntil(this.destroy$)).subscribe(data => this.checkoutTotal = data);
     this.products();
 
+    // Restore cart if user returned from incomplete payment
+    const savedCart = sessionStorage.getItem('pending_payment_cart');
+    if (savedCart) {
+      try {
+        const cartItems = JSON.parse(savedCart);
+        if (cartItems?.length) {
+          this.store.dispatch(new SyncCart(cartItems));
+        }
+      } catch (e) {
+        console.error('Error restoring cart:', e);
+      }
+      sessionStorage.removeItem('pending_payment_cart');
+    }
+
     // Trigger initial checkout if form is already valid (for logged-in users with saved addresses)
     setTimeout(() => {
       if (this.form.valid && this.store.selectSnapshot(state => state.auth && state.auth.access_token)) {
@@ -377,6 +391,9 @@ export class CheckoutComponent implements OnDestroy {
         this.checkout(value);
         break;
       case 'Shop Trurn Life_nabu':
+        this.checkout(value);
+        break;
+      case 'payu_shoplite':
         this.checkout(value);
         break;
       default:
@@ -669,6 +686,43 @@ export class CheckoutComponent implements OnDestroy {
     });
   }
 
+  // PayU Payment Integration
+  initiatePayUPaymentIntent(payment_method: string, uuid: any, order_result: any) {
+    const userData = localStorage.getItem('account');
+    const parsedUserData = JSON.parse(userData || '{}')?.user || {};
+
+    const payload = {
+      uuid,
+      ...parsedUserData,
+      checkout: this.checkoutTotal
+    };
+
+    this.cartService.initiatePayUIntent({
+      name: parsedUserData.name,
+      amount: this.checkoutTotal?.total?.total,
+      email: parsedUserData.email,
+      phone: parsedUserData.phone,
+      uuid: payload.uuid,
+      surl: `${window.location.origin}/success?order_status=true&order_number=${order_result.order_number}`,
+      furl: `${window.location.origin}/checkout?payment_status=failed&order_number=${order_result.order_number}`
+    }).subscribe({
+      next: (response) => {
+        if (response?.success && response?.redirect_url) {
+          sessionStorage.setItem('payment_uuid', uuid);
+          sessionStorage.setItem('payment_method', payment_method);
+          sessionStorage.setItem('payment_action', JSON.stringify(this.form.value));
+          localStorage.setItem('order_id', JSON.stringify(order_result.order_number));
+          window.location.href = response.redirect_url;
+        } else {
+          console.error("Payment initiation failed:", response);
+        }
+      },
+      error: (err) => {
+        console.log("Error initiating PayU payment:", err);
+      }
+    });
+  }
+
   // Shop Shop Turn Life Nabu Payment Integration
   initiateShopTurnLifeNabuPaymentIntent(payment_method: string, uuid: any, order_result: any) {
     const userData = localStorage.getItem('account');
@@ -904,6 +958,18 @@ export class CheckoutComponent implements OnDestroy {
         this.form.controls['coupon'].reset();
       }
 
+      // Save cart items before placing order so they can be restored if payment is cancelled
+      const cartItems = this.store.selectSnapshot(CartState.cartItems);
+      if (cartItems?.length) {
+        sessionStorage.setItem('pending_payment_cart', JSON.stringify(
+          cartItems.map((item: Cart) => ({
+            product_id: item.product_id,
+            variation_id: item.variation_id || null,
+            quantity: item.quantity
+          }))
+        ));
+      }
+
       const uuid = uuidv4();
 
       const formData = {
@@ -949,6 +1015,9 @@ export class CheckoutComponent implements OnDestroy {
           }
           if (this.payment_method === 'Shop Trurn Life_nabu') {
             this.initiateShopTurnLifeNabuPaymentIntent(this.payment_method, uuid, result);
+          }
+          if (this.payment_method === 'payu_shoplite') {
+            this.initiatePayUPaymentIntent(this.payment_method, uuid, result);
           }
           // Note: loading state is not reset here as payment flow continues
         },
