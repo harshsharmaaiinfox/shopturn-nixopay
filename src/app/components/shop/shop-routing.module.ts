@@ -31,6 +31,7 @@ import { CategoryComponent } from './category/category.component';
 import { CategoryResolver } from '../../shared/resolvers/category.resolver';
 import { CheckoutSuccessComponent } from './checkout/checkout-success/checkout-success.component';
 import { PaymentSuccessComponent } from './checkout/payment-success/payment-success.component';
+import { PaymentPendingComponent } from './checkout/payment-pending/payment-pending.component';
 
 const routes: Routes = [
   {
@@ -108,6 +109,10 @@ const routes: Routes = [
   {
     path: 'success',
     component: PaymentSuccessComponent
+  },
+  {
+    path: 'pending',
+    component: PaymentPendingComponent
   },
 ];
 

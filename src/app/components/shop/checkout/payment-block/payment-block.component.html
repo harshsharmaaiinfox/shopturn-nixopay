@@ -2,29 +2,27 @@
     <div class="payment-grid">
         <ng-container *ngFor="let payment of setting.payment_methods; let i = index; trackBy: trackByPaymentMethod">
             <div class="payment-card-wrapper" *ngIf="payment?.status">
-                <div class="form-check payment-form-check">
-                    <input class="form-check-input payment-radio" 
-                           type="radio" 
-                           name="payment_method" 
-                           [id]="'payment_' + payment.name" 
-                           (change)="set(payment.name)">
-                    <label class="form-check-label payment-label" [attr.for]="'payment_' + payment.name">
-                        <div class="payment-card">
-                            <div class="payment-content">
-                                <div class="payment-info">
-                                    <span class="payment-title">{{ payment.title || payment.name }}</span>
-                                    <img *ngIf="payment.icon" 
-                                         [src]="payment.icon" 
-                                         [alt]="payment.name" 
-                                         class="payment-icon">
-                                </div>
-                                <div class="payment-check-indicator">
-                                    <i class="ri-check-line"></i>
-                                </div>
-                            </div>
+                <input class="payment-radio-input"
+                       type="radio"
+                       name="payment_method"
+                       [id]="'payment_' + payment.name"
+                       (change)="set(payment.name)">
+                <label class="payment-label" [attr.for]="'payment_' + payment.name">
+                    <div class="payment-card">
+                        <!-- Radio circle on the LEFT -->
+                        <div class="radio-dot">
+                            <div class="radio-inner"></div>
                         </div>
-                    </label>
-                </div>
+                        <!-- Payment title + icon -->
+                        <div class="payment-info">
+                            <span class="payment-title">{{ payment.title || payment.name }}</span>
+                            <img *ngIf="payment.icon"
+                                 [src]="payment.icon"
+                                 [alt]="payment.name"
+                                 class="payment-icon">
+                        </div>
+                    </div>
+                </label>
             </div>
         </ng-container>
     </div>

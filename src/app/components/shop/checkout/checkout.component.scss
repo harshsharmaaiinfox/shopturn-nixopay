@@ -280,6 +280,7 @@
                         text-overflow: ellipsis;
                         display: -webkit-box;
                         -webkit-line-clamp: 2;
+                        line-clamp: 2;
                         -webkit-box-orient: vertical;
                     }
 
@@ -510,59 +511,40 @@
 
         // Place Order Button
         .btn-pay-now {
-            width: calc(100% - 4rem);
-            padding: 1.25rem 2.5rem;
-            margin: 1.5rem 2rem;
-            background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
-            color: #ffffff;
-            border: none;
-            border-radius: 16px;
-            font-size: 1.2rem;
-            font-weight: 700;
-            cursor: pointer;
-            box-shadow: 0 8px 24px rgba(40, 167, 69, 0.3);
-            transition: all 0.3s ease;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-
-            &:hover:not(:disabled) {
-                background: linear-gradient(135deg, #218838 0%, #1aa085 100%);
-                box-shadow: 0 12px 32px rgba(40, 167, 69, 0.4);
-                transform: translateY(-2px);
-            }
-
-            &:active:not(:disabled) {
-                transform: translateY(0);
-                box-shadow: 0 6px 16px rgba(40, 167, 69, 0.3);
-            }
-
-            &:disabled {
-                background: #6c757d;
-                box-shadow: none;
-                cursor: not-allowed;
-                transform: none;
-            }
-            transition: all 0.3s ease;
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 0.5rem;
-            box-shadow: 0 4px 12px rgba(39, 94, 94, 0.3);
+            gap: 0.75rem;
+            width: calc(100% - 4rem);
+            padding: 1.5rem 2rem;
+            margin: 1.5rem 2rem;
+            background: linear-gradient(135deg, var(--theme-color, #275E5E) 0%, rgba(39, 94, 94, 0.85) 100%);
+            color: #ffffff;
+            border: none;
+            border-radius: 16px;
+            font-size: 1.35rem;
+            font-weight: 700;
+            cursor: pointer;
+            letter-spacing: 0.75px;
+            text-transform: uppercase;
+            box-shadow: 0 8px 28px rgba(39, 94, 94, 0.35);
+            transition: all 0.3s ease;
             position: relative;
             overflow: hidden;
 
             i {
-                font-size: 1.1rem;
+                font-size: 1.4rem;
             }
 
             &:hover:not(:disabled) {
-                transform: translateY(-2px);
-                box-shadow: 0 6px 20px rgba(39, 94, 94, 0.4);
-                background: linear-gradient(135deg, rgba(39, 94, 94, 0.95) 0%, rgba(39, 94, 94, 0.85) 100%);
+                transform: translateY(-3px);
+                box-shadow: 0 12px 36px rgba(39, 94, 94, 0.45);
+                background: linear-gradient(135deg, rgba(39, 94, 94, 1) 0%, rgba(39, 94, 94, 0.9) 100%);
             }
 
             &:active:not(:disabled) {
                 transform: translateY(0);
+                box-shadow: 0 4px 16px rgba(39, 94, 94, 0.3);
             }
 
             &:disabled {
@@ -571,7 +553,8 @@
                 opacity: 0.8;
                 cursor: not-allowed;
                 box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-                
+                transform: none;
+
                 i {
                     opacity: 0.7;
                 }
@@ -591,7 +574,9 @@
         }
     }
 
+
     // Responsive Design
+
     @media (max-width: 1199px) {
         .checkout-summary-card {
             position: relative;
@@ -681,9 +666,10 @@
     }
     .loader-wrapper, .custom-loader-wrapper {
         position: absolute;
-        height: 500px
+        height: 500px;
     }
 }
+
 
 // Custom Select2 Styling
 ::ng-deep {

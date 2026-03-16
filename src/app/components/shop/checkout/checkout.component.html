@@ -253,10 +253,13 @@
 
                     <!-- Logged In User Checkout -->
                     <div class="checkout-detail-box-modern" *ngIf="(accessToken$ | async)">
-                        <div class="row g-3">
-                            <!-- Shipping Address Card -->
-                            <div class="col-md-6" *ngIf="!(cartDigital$ | async)">
-                                <div class="checkout-card h-100">
+                        <div class="row g-4">
+
+                            <!-- ===== LEFT COLUMN: Shipping / Billing / Delivery ===== -->
+                            <div class="col-lg-6 col-md-12">
+
+                                <!-- Shipping Address Card -->
+                                <div class="checkout-card mb-4" *ngIf="!(cartDigital$ | async)">
                                     <div class="checkout-card-header">
                                         <div class="card-icon">
                                             <i class="ri-map-pin-line"></i>
@@ -276,30 +279,9 @@
                                         </app-address-block>
                                     </div>
                                 </div>
-                            </div>
 
-                            <!-- Delivery Options Card -->
-                            <div class="col-md-6" *ngIf="!(cartDigital$ | async)">
-                                <div class="checkout-card h-100">
-                                    <div class="checkout-card-header">
-                                        <div class="card-icon">
-                                            <i class="ri-truck-line"></i>
-                                        </div>
-                                        <h3 class="card-title">{{ 'Delivery Options' | translate }}</h3>
-                                    </div>
-                                    <div class="checkout-card-body">
-                                        <app-delivery-block
-                                            *ngIf="(setting$ | async)?.delivery"
-                                            [setting]="(setting$ | async)!"
-                                            (selectDelivery)="selectDelivery($event)">
-                                        </app-delivery-block>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- Billing Address Card -->
-                            <div class="col-md-6" *ngIf="!(cartDigital$ | async)">
-                                <div class="checkout-card h-100">
+                                <!-- Billing Address Card -->
+                                <div class="checkout-card mb-4" *ngIf="!(cartDigital$ | async)">
                                     <div class="checkout-card-header">
                                         <div class="card-icon">
                                             <i class="ri-file-list-line"></i>
@@ -319,11 +301,32 @@
                                         </app-address-block>
                                     </div>
                                 </div>
-                            </div>
 
-                            <!-- Payment Options Card -->
-                            <div class="col-md-6" [class.col-md-12]="cartDigital$ | async">
-                                <div class="checkout-card h-100">
+                                <!-- Delivery Options Card -->
+                                <div class="checkout-card" *ngIf="!(cartDigital$ | async)">
+                                    <div class="checkout-card-header">
+                                        <div class="card-icon">
+                                            <i class="ri-truck-line"></i>
+                                        </div>
+                                        <h3 class="card-title">{{ 'Delivery Options' | translate }}</h3>
+                                    </div>
+                                    <div class="checkout-card-body">
+                                        <app-delivery-block
+                                            *ngIf="(setting$ | async)?.delivery"
+                                            [setting]="(setting$ | async)!"
+                                            (selectDelivery)="selectDelivery($event)">
+                                        </app-delivery-block>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <!-- ===== END LEFT COLUMN ===== -->
+
+                            <!-- ===== RIGHT COLUMN: Payment Options + Order Summary ===== -->
+                            <div class="col-lg-6 col-md-12">
+
+                                <!-- Payment Options Card -->
+                                <div class="checkout-card mb-4">
                                     <div class="checkout-card-header">
                                         <div class="card-icon">
                                             <i class="ri-bank-card-line"></i>
@@ -334,118 +337,117 @@
                                         <div class="empty-box" *ngIf="!(user$ | async)">
                                             <p>{{ 'No Payment Options Found' | translate }}</p>
                                         </div>
-                                        <app-payment-block 
+                                        <app-payment-block
                                             *ngIf="(accessToken$ | async)"
                                             [setting]="(setting$ | async)!"
                                             (selectPaymentMethod)="selectPaymentMethod($event)">
                                         </app-payment-block>
                                     </div>
                                 </div>
-                            </div>
-                        </div>
-                    </div>
 
-                    <!-- Order Summary - Bottom -->
-                    <div class="checkout-summary-card summary-bottom">
-                        <div class="summary-header">
-                            <h3 class="summary-title">
-                                <i class="ri-shopping-bag-3-line me-2"></i>
-                                {{ 'Order Summary' | translate }}
-                            </h3>
-                        </div>
-                        
-                        <div class="summary-products">
-                            <app-no-data
-                                [class]="'empty-cart'"
-                                [image]="'assets/svg/empty-items.svg'"
-                                [text]="'No Items Cart'"
-                                *ngIf="!(cartItem$ | async)?.length">
-                            </app-no-data>
-                            <div class="product-list" *ngIf="(cartItem$ | async)?.length">
-                                <div class="product-item" *ngFor="let item of cartItem$ | async; trackBy: trackByCartItem">
-                                    <div class="product-image">
-                                        <img [src]="item?.variation && item?.variation?.variation_image
-                                                    ? item?.variation?.variation_image?.original_url
-                                                    : item?.product?.product_thumbnail
-                                                    ? item?.product?.product_thumbnail?.original_url
-                                                    : 'assets/images/product.png'" 
-                                             class="img-fluid" 
-                                             alt="product">
+                                <!-- Order Summary Card -->
+                                <div class="checkout-summary-card summary-bottom">
+                                    <div class="summary-header">
+                                        <h3 class="summary-title">
+                                            <i class="ri-shopping-bag-3-line me-2"></i>
+                                            {{ 'Order Summary' | translate }}
+                                        </h3>
                                     </div>
-                                    <div class="product-info">
-                                        <h5 class="product-name">{{ item?.variation ? item?.variation?.name : item?.product?.name }}</h5>
-                                        <div class="product-meta">
-                                            <span class="product-price">
-                                                {{ (item?.variation ? item.variation.sale_price : item?.product && item?.wholesale_price ? item?.wholesale_price : item?.product?.sale_price)! | currencySymbol }} × {{ item.quantity }}
-                                            </span>
-                                        </div>
-                                    </div>
-                                    <div class="product-total">
-                                        <span class="price">
-                                            {{ (item?.variation ? item.variation.sale_price : item?.product && item?.wholesale_price ? item?.wholesale_price : item?.product?.sale_price)! * item.quantity | currencySymbol }}
-                                        </span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
 
-                        <ng-container *ngIf="(cartItem$ | async)?.length">
-                            <form [formGroup]="form" (ngSubmit)="placeorder()">
-                                <div class="custom-box-loader">
-                                    <div class="box-loader" *ngIf="loading">
-                                        <app-loader [loaderClass]="'custom-loader-wrapper blur-bg'"></app-loader>
-                                    </div>
-                                    
-                                    <div class="summary-breakdown">
-                                        <div class="breakdown-item">
-                                            <span class="breakdown-label">{{ 'Subtotal' | translate }}</span>
-                                            <span class="breakdown-value">
-                                                {{ (checkoutTotal ? checkoutTotal.total.sub_total : getCalculatedTotals().sub_total) | currencySymbol }}
-                                            </span>
-                                        </div>
-                                        <div class="breakdown-item" *ngIf="!(cartDigital$ | async)">
-                                            <span class="breakdown-label">{{ 'Shipping' | translate }}</span>
-                                            <span class="breakdown-value">
-                                                {{ (checkoutTotal ? checkoutTotal.total.shipping_total : getCalculatedTotals().shipping_total) | currencySymbol }}
-                                            </span>
-                                        </div>
-                                        <div class="breakdown-item">
-                                            <span class="breakdown-label">{{ 'Tax' | translate }}</span>
-                                            <span class="breakdown-value">
-                                                {{ (checkoutTotal ? checkoutTotal.total.tax_total : getCalculatedTotals().tax_total) | currencySymbol }}
-                                            </span>
-                                        </div>
-                                   
-                                        
-                                       
-                                        
-                                       
-                                        
-                                        <div class="breakdown-total">
-                                            <span class="total-label">{{ 'Total' | translate }}</span>
-                                            <span class="total-value">
-                                                {{ (checkoutTotal ? checkoutTotal.total.total : getCalculatedTotals().total) | currencySymbol }}
-                                            </span>
+                                    <div class="summary-products">
+                                        <app-no-data
+                                            [class]="'empty-cart'"
+                                            [image]="'assets/svg/empty-items.svg'"
+                                            [text]="'No Items Cart'"
+                                            *ngIf="!(cartItem$ | async)?.length">
+                                        </app-no-data>
+                                        <div class="product-list" *ngIf="(cartItem$ | async)?.length">
+                                            <div class="product-item" *ngFor="let item of cartItem$ | async; trackBy: trackByCartItem">
+                                                <div class="product-image">
+                                                    <img [src]="item?.variation && item?.variation?.variation_image
+                                                                ? item?.variation?.variation_image?.original_url
+                                                                : item?.product?.product_thumbnail
+                                                                ? item?.product?.product_thumbnail?.original_url
+                                                                : 'assets/images/product.png'"
+                                                         class="img-fluid"
+                                                         alt="product">
+                                                </div>
+                                                <div class="product-info">
+                                                    <h5 class="product-name">{{ item?.variation ? item?.variation?.name : item?.product?.name }}</h5>
+                                                    <div class="product-meta">
+                                                        <span class="product-price">
+                                                            {{ (item?.variation ? item.variation.sale_price : item?.product && item?.wholesale_price ? item?.wholesale_price : item?.product?.sale_price)! | currencySymbol }} × {{ item.quantity }}
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                                <div class="product-total">
+                                                    <span class="price">
+                                                        {{ (item?.variation ? item.variation.sale_price : item?.product && item?.wholesale_price ? item?.wholesale_price : item?.product?.sale_price)! * item.quantity | currencySymbol }}
+                                                    </span>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
-                                    
-                                    <app-button
-                                        [class]="'btn-pay-now pay-now-btn'"
-                                        [id]="'place_order'"
-                                        [disabled]="loading || !(form.valid && checkoutTotal)">
-                                        <i class="ri-shopping-bag-3-fill me-2"></i>
-                                        {{ 'Pay Now' | translate }}
-                                        <i class="ri-arrow-right-line ms-2"></i>
-                                    </app-button>
+
+                                    <ng-container *ngIf="(cartItem$ | async)?.length">
+                                        <form [formGroup]="form" (ngSubmit)="placeorder()">
+                                            <div class="custom-box-loader">
+                                                <div class="box-loader" *ngIf="loading">
+                                                    <app-loader [loaderClass]="'custom-loader-wrapper blur-bg'"></app-loader>
+                                                </div>
+
+                                                <div class="summary-breakdown">
+                                                    <div class="breakdown-item">
+                                                        <span class="breakdown-label">{{ 'Subtotal' | translate }}</span>
+                                                        <span class="breakdown-value">
+                                                            {{ (checkoutTotal ? checkoutTotal.total.sub_total : getCalculatedTotals().sub_total) | currencySymbol }}
+                                                        </span>
+                                                    </div>
+                                                    <div class="breakdown-item" *ngIf="!(cartDigital$ | async)">
+                                                        <span class="breakdown-label">{{ 'Shipping' | translate }}</span>
+                                                        <span class="breakdown-value">
+                                                            {{ (checkoutTotal ? checkoutTotal.total.shipping_total : getCalculatedTotals().shipping_total) | currencySymbol }}
+                                                        </span>
+                                                    </div>
+                                                    <div class="breakdown-item">
+                                                        <span class="breakdown-label">{{ 'Tax' | translate }}</span>
+                                                        <span class="breakdown-value">
+                                                            {{ (checkoutTotal ? checkoutTotal.total.tax_total : getCalculatedTotals().tax_total) | currencySymbol }}
+                                                        </span>
+                                                    </div>
+                                                    <div class="breakdown-total">
+                                                        <span class="total-label">{{ 'Total' | translate }}</span>
+                                                        <span class="total-value">
+                                                            {{ (checkoutTotal ? checkoutTotal.total.total : getCalculatedTotals().total) | currencySymbol }}
+                                                        </span>
+                                                    </div>
+                                                </div>
+
+                                                <app-button
+                                                    [class]="'btn-pay-now pay-now-btn'"
+                                                    [id]="'place_order'"
+                                                    [disabled]="loading || !(form.valid && checkoutTotal)">
+                                                    <i class="ri-shopping-bag-3-fill me-2"></i>
+                                                    {{ 'Pay Now' | translate }}
+                                                    <i class="ri-arrow-right-line ms-2"></i>
+                                                </app-button>
+                                            </div>
+                                        </form>
+                                    </ng-container>
                                 </div>
-                            </form>
-                        </ng-container>
-                    </div>
-                </div>
-    </div>
+
+                            </div>
+                             <!-- ===== END RIGHT COLUMN ===== -->
+
+                        </div><!-- end row g-4 -->
+                    </div><!-- end checkout-detail-box-modern -->
+                </div><!-- end checkout-forms-wrapper -->
+    </div><!-- end container-fluid -->
 </section>
 
+
 <address-modal #addressModal></address-modal>
+
 <div id="paymentContainer" style="visibility: hidden;"></div>
 <ng-template #payByQRModal let-data="data">
     <div class="dashboard-address p-5">

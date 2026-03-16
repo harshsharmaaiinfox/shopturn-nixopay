@@ -1,0 +1,40 @@
+<section class="payment-pending-section section-b-space">
+    <div class="container-fluid-lg">
+        <div class="row justify-content-center">
+            <div class="col-xxl-6 col-lg-8">
+                <div class="pending-card">
+                    <!-- Top Status Aesthetic -->
+                    <div class="status-visual">
+                        <div class="status-blob amber"></div>
+                        <div class="status-icon pulsate">
+                            <i class="ri-time-line"></i>
+                        </div>
+                    </div>
+
+                    <div class="pending-content text-center">
+                        <h2 class="title">{{ 'Payment Pending' | translate }}</h2>
+                        <p class="description">
+                            {{ 'We are currently processing your payment. This might take a few moments. Please do not close or refresh this page.' | translate }}
+                        </p>
+
+                        <div class="info-alert">
+                            <i class="ri-information-line"></i>
+                            <span>{{ 'You will receive an email confirmation once the payment is verified.' | translate }}</span>
+                        </div>
+
+                        <div class="action-buttons">
+                            <button class="btn btn-primary-gradient" (click)="goToHome()">
+                                <i class="ri-home-4-line me-2"></i> {{ 'Back to Home' | translate }}
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Subtle Loader -->
+                    <div class="mini-loader">
+                        <div class="bar"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

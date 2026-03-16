@@ -20,7 +20,7 @@ export class PaymentSuccessComponent implements OnInit, OnDestroy {
   public paymentSuccessStatus: 'pending' | 'success' | 'error' = 'pending';
 
   private countdownInterval: any;
-  private readonly PAYMENT_SUCCESS_API = 'https://api.nixopay.com/public/api/payment-success';
+  private readonly PAYMENT_SUCCESS_API = 'https://api.nixopay.com/public/api/payu-after-sucesss';
 
   constructor(
     private route: ActivatedRoute,
@@ -55,30 +55,30 @@ export class PaymentSuccessComponent implements OnInit, OnDestroy {
   }
 
   /**
-   * Resolves txnid using a 2-level priority chain:
-   *   1. URL query param ?txnid=... (PayU redirect)
-   *   2. localStorage 'payu_txnid' (saved before redirect in checkout.component.ts)
-   * Then POSTs { txnid } to the Nixopay payment-success API.
+   * Resolves txnid and POSTs it as FormData to the Nixopay payu-after-sucesss API.
    */
   callPaymentSuccessAPI(txnidFromUrl: string | null) {
     const txnid = txnidFromUrl || localStorage.getItem('payu_txnid') || null;
 
     if (!txnid) {
-      console.warn('txnid not found in URL params or localStorage. Skipping payment-success API call.');
+      console.warn('txnid not found. Skipping payu-after-sucesss API call.');
       return;
     }
 
-    const payload = { txnid };
-    console.log('Calling payment-success API:', this.PAYMENT_SUCCESS_API, 'Payload:', payload);
+    // Creating FormData as requested
+    const formData = new FormData();
+    formData.append('txnid', txnid);
 
-    this.http.post(this.PAYMENT_SUCCESS_API, payload).subscribe({
+    console.log('Calling payu-after-sucesss API:', this.PAYMENT_SUCCESS_API, 'with txnid:', txnid);
+
+    this.http.post(this.PAYMENT_SUCCESS_API, formData).subscribe({
       next: (response: any) => {
-        console.log('✅ payment-success API response:', response);
+        console.log('✅ payu-after-sucesss API response:', response);
         this.paymentSuccessStatus = 'success';
         localStorage.removeItem('payu_txnid');
       },
       error: (err) => {
-        console.error('❌ payment-success API error:', err);
+        console.error('❌ payu-after-sucesss API error:', err);
         this.paymentSuccessStatus = 'error';
         localStorage.removeItem('payu_txnid');
       }

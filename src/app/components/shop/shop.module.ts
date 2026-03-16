@@ -102,6 +102,7 @@ import { BrandState } from '../../shared/state/brand.state';
 import { MyComponentWrapperComponent } from './checkout/my-react-component/MyReactComponentWrapper';
 import { CheckoutSuccessComponent } from './checkout/checkout-success/checkout-success.component';
 import { PaymentSuccessComponent } from './checkout/payment-success/payment-success.component';
+import { PaymentPendingComponent } from './checkout/payment-pending/payment-pending.component';
 
 
 @NgModule({
@@ -187,7 +188,8 @@ import { PaymentSuccessComponent } from './checkout/payment-success/payment-succ
     CategoryComponent,
     MyComponentWrapperComponent,
     CheckoutSuccessComponent,
-    PaymentSuccessComponent
+    PaymentSuccessComponent,
+    PaymentPendingComponent
   ],
   imports: [
     CommonModule,
