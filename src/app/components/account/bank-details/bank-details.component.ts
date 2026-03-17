@@ -20,11 +20,11 @@ export class BankDetailsComponent implements OnInit {
 
   constructor(private store: Store) {
     this.form = new FormGroup({
-      bank_account_no: new FormControl('', [Validators.pattern(/^[0-9]*$/)]),
-      bank_name: new FormControl('', [Validators.pattern(/^[A-Za-z\s]*$/)]),
-      bank_holder_name: new FormControl('', [Validators.pattern(/^[A-Za-z\s]*$/)]),
-      swift: new FormControl(),
-      ifsc: new FormControl(),
+      bank_account_no: new FormControl('', [Validators.required, Validators.pattern(/^[0-9]+$/)]),
+      bank_name: new FormControl('', [Validators.required, Validators.pattern(/^[A-Za-z\s]+$/)]),
+      bank_holder_name: new FormControl('', [Validators.required, Validators.pattern(/^[A-Za-z\s]+$/)]),
+      swift: new FormControl(''),
+      ifsc: new FormControl('', [Validators.required]),
       paypal_email: new FormControl('', [Validators.email]),
     });
   }

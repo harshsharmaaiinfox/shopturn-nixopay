@@ -91,7 +91,7 @@ export class CartComponent {
   }
 
   navigateToCart() {
-    this.router.navigate(['/cart']);
+    this.cartToggle(true);
   }
 
 }

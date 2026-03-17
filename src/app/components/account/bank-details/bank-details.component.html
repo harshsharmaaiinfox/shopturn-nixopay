@@ -38,7 +38,10 @@
               (input)="sanitizeDigitsInput($event, 'bank_account_no')" 
               (paste)="sanitizeDigitsPaste($event)"
               [class.is-invalid]="form.get('bank_account_no')?.invalid && form.get('bank_account_no')?.touched">
-            <div class="invalid-feedback" *ngIf="form.get('bank_account_no')?.invalid && form.get('bank_account_no')?.touched">
+            <div class="invalid-feedback" *ngIf="form.get('bank_account_no')?.touched && form.get('bank_account_no')?.errors?.['required']">
+              {{ 'Account number is required' | translate }}
+            </div>
+            <div class="invalid-feedback" *ngIf="form.get('bank_account_no')?.touched && form.get('bank_account_no')?.errors?.['pattern']">
               {{ 'Please enter a valid account number' | translate }}
             </div>
           </div>
@@ -58,7 +61,10 @@
               (input)="sanitizeLettersInput($event, 'bank_name')" 
               (paste)="sanitizeLettersPaste($event)"
               [class.is-invalid]="form.get('bank_name')?.invalid && form.get('bank_name')?.touched">
-            <div class="invalid-feedback" *ngIf="form.get('bank_name')?.invalid && form.get('bank_name')?.touched">
+            <div class="invalid-feedback" *ngIf="form.get('bank_name')?.touched && form.get('bank_name')?.errors?.['required']">
+              {{ 'Bank name is required' | translate }}
+            </div>
+            <div class="invalid-feedback" *ngIf="form.get('bank_name')?.touched && form.get('bank_name')?.errors?.['pattern']">
               {{ 'Please enter a valid bank name' | translate }}
             </div>
           </div>
@@ -78,7 +84,10 @@
               (input)="sanitizeLettersInput($event, 'bank_holder_name')" 
               (paste)="sanitizeLettersPaste($event)"
               [class.is-invalid]="form.get('bank_holder_name')?.invalid && form.get('bank_holder_name')?.touched">
-            <div class="invalid-feedback" *ngIf="form.get('bank_holder_name')?.invalid && form.get('bank_holder_name')?.touched">
+            <div class="invalid-feedback" *ngIf="form.get('bank_holder_name')?.touched && form.get('bank_holder_name')?.errors?.['required']">
+              {{ 'Account holder name is required' | translate }}
+            </div>
+            <div class="invalid-feedback" *ngIf="form.get('bank_holder_name')?.touched && form.get('bank_holder_name')?.errors?.['pattern']">
               {{ 'Please enter a valid holder name' | translate }}
             </div>
           </div>
@@ -109,6 +118,9 @@
               placeholder="{{ 'Enter IFSC Code' | translate }}" 
               formControlName="ifsc"
               [class.is-invalid]="form.get('ifsc')?.invalid && form.get('ifsc')?.touched">
+            <div class="invalid-feedback" *ngIf="form.get('ifsc')?.touched && form.get('ifsc')?.errors?.['required']">
+              {{ 'IFSC code is required' | translate }}
+            </div>
           </div>
         </div>
       </form>

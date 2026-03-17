@@ -581,9 +581,10 @@ section.product-section.section-b-space {
 }
 
 button#place_order {
-    padding: 5px 10px;
+    padding: 10px 20px;
     margin-left: 30px;
-    background: #256260;
+    font-size: 20px;
+    background: linear-gradient(90deg, #E57A2F, #2E7D6B);
     color: #fff !important;
     border-radius: 5px;
     border: none !important;
@@ -821,4 +822,9 @@ select2#select2-1 {
 ul.policy-list {
     flex-direction: column;
     display: flex;
+}
+ul.tracking-steps {
+    z-index: 0;
+    position: relative;
+    padding-top: 10px !important;
 }

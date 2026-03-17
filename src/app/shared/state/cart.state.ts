@@ -141,7 +141,7 @@ export class CartState {
             }, 0);
 
             output.stickyCartOpen = true;
-            output.sidebarCartOpen = false; // Don't open sidebar, use popup modal instead
+            output.sidebarCartOpen = true;
             output.is_digital_only = result.is_digital_only;
             ctx.patchState(output);
 
@@ -242,7 +242,7 @@ export class CartState {
     }, 0);
 
     output.stickyCartOpen = true;
-    output.sidebarCartOpen = false; // Don't open sidebar, use popup modal instead
+    output.sidebarCartOpen = true;
     output.is_digital_only = output.items.map(item => item.product && item?.product?.product_type).every(item => item == 'digital');
 
     ctx.patchState(output);
