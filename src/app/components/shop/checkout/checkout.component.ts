@@ -12,6 +12,7 @@ import { CartState } from '../../../shared/state/cart.state';
 import { OrderState } from '../../../shared/state/order.state';
 import { Checkout, PlaceOrder } from '../../../shared/action/order.action';
 import { ClearCart, SyncCart } from '../../../shared/action/cart.action';
+import { Register } from '../../../shared/action/auth.action';
 import { AddressModalComponent } from '../../../shared/components/widgets/modal/address-modal/address-modal.component';
 import { Cart } from '../../../shared/interface/cart.interface';
 import { SettingState } from '../../../shared/state/setting.state';
@@ -81,6 +82,7 @@ export class CheckoutComponent implements OnDestroy {
   payByNeoKredIntentSaveData: any;
   payByNeoStep = 0;
   payment_method = '';
+  registerLoading = false;
 
   // Calculate cart totals with shipping and tax as zero (shown regardless of login)
   getCalculatedTotals() {
@@ -337,6 +339,66 @@ export class CheckoutComponent implements OnDestroy {
           })
         ));
     });
+  }
+
+  registerGuest() {
+    const nameCtrl = this.form.get('name');
+    const emailCtrl = this.form.get('email');
+    const phoneCtrl = this.form.get('phone');
+    const passwordCtrl = this.form.get('password');
+
+    nameCtrl?.setValidators([Validators.required]);
+    passwordCtrl?.setValidators([Validators.required]);
+    nameCtrl?.updateValueAndValidity();
+    passwordCtrl?.updateValueAndValidity();
+
+    nameCtrl?.markAsTouched();
+    emailCtrl?.markAsTouched();
+    phoneCtrl?.markAsTouched();
+    passwordCtrl?.markAsTouched();
+
+    if (nameCtrl?.invalid || emailCtrl?.invalid || phoneCtrl?.invalid || passwordCtrl?.invalid) {
+      return;
+    }
+
+    const payload = {
+      name: nameCtrl?.value,
+      email: emailCtrl?.value,
+      phone: Number(phoneCtrl?.value),
+      country_code: Number(this.form.get('country_code')?.value || 91),
+      password: passwordCtrl?.value,
+      password_confirmation: passwordCtrl?.value,
+    };
+
+    // Snapshot current guest cart so we can push it to server after register
+    const guestItems = this.store.selectSnapshot(state => state.cart?.items) || [];
+
+    this.registerLoading = true;
+    this.store.dispatch(new Register(payload)).subscribe({
+      next: () => {
+        const syncPayload = guestItems.map((item: Cart) => ({
+          product_id: item.product_id,
+          variation_id: item.variation_id || '',
+          quantity: item.quantity,
+        }));
+
+        if (syncPayload.length) {
+          this.store.dispatch(new SyncCart(syncPayload)).subscribe({
+            complete: () => {
+              this.router.navigate(['/checkout']).then(() => window.location.reload());
+            },
+            error: () => { this.registerLoading = false; }
+          });
+        } else {
+          this.router.navigate(['/checkout']).then(() => window.location.reload());
+        }
+      },
+      error: () => { this.registerLoading = false; }
+    });
+  }
+
+  goToLogin() {
+    this.router.navigate(['/auth/login'], { queryParams: { returnUrl: '/checkout' } });
   }
 
   // TrackBy function for performance optimization

@@ -5,6 +5,8 @@
         <div class="checkout-forms-wrapper">
                     <!-- Guest Checkout Forms -->
                     <div class="checkout-form-section" *ngIf="(setting$ | async)?.activation?.guest_checkout && !(accessToken$ | async)">
+                      <div class="row g-4">
+                        <div class="col-lg-8 col-md-12">
                         <!-- Account Details Card -->
                         <div class="checkout-card">
                             <div class="checkout-card-header">
@@ -53,21 +55,8 @@
                                             <div class="form-group-modern phone-field-modern">
                                                 <label class="form-label-modern" for="phoneno">{{ 'Phone Number' | translate }}</label>
                                                 <div class="phone-input-wrapper">
-                                                    <select2 class="custom-select intl-tel-input" 
-                                                            [templates]="template" 
-                                                            [data]="codes"
-                                                            formControlName="country_code">
-                                                        <ng-template #template let-data="data">
-                                                            <div class="country">
-                                                                <div class="flag-box">
-                                                                    <div class="iti-flag {{data?.class}}"></div>
-                                                                </div>
-                                                                <span class="dial-code">{{data.code}}</span>
-                                                            </div>
-                                                        </ng-template>
-                                                    </select2>
                                                     <input type="number"
-                                                           class="form-control-modern intl-input-padding"
+                                                           class="form-control-modern"
                                                            formControlName="phone"
                                                            placeholder="{{ 'enter_phone' | translate }}"
                                                            name="phone"
@@ -79,30 +68,34 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="col-12">
-                                            <div class="form-check-modern">
-                                                <input type="checkbox" 
-                                                       class="form-check-input checkbox_animated" 
-                                                       id="account" 
-                                                       formControlName="create_account">
-                                                <label class="form-check-label" for="account">
-                                                    {{ 'Create an Account?' | translate }}
-                                                </label>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6" *ngIf="form.controls['create_account'].value">
+                                        <div class="col-md-6">
                                             <div class="form-group-modern">
                                                 <label for="pass" class="form-label-modern">{{ 'Password' | translate }}</label>
-                                                <input type="password" 
-                                                       class="form-control-modern" 
-                                                       formControlName="password" 
-                                                       placeholder="{{ 'Enter Password' | translate }}" 
+                                                <input type="password"
+                                                       class="form-control-modern"
+                                                       formControlName="password"
+                                                       placeholder="{{ 'Enter Password' | translate }}"
                                                        id="pass">
                                                 <div class="invalid-feedback-modern"
                                                     *ngIf="form?.controls?.['password']?.touched && form.controls['password']?.errors?.['required']">
                                                     {{ 'Password is Required' | translate }}
                                                 </div>
                                             </div>
+                                        </div>
+                                        <div class="col-12 d-flex align-items-center justify-content-between flex-wrap gap-2 mt-2">
+                                            <button type="button"
+                                                    class="btn btn-animation btn-md fw-bold"
+                                                    [disabled]="registerLoading"
+                                                    (click)="registerGuest()">
+                                                <span *ngIf="registerLoading" class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>
+                                                {{ (registerLoading ? 'Please wait...' : 'Register & Continue') | translate }}
+                                            </button>
+                                            <span>
+                                                {{ 'Already have an account?' | translate }}
+                                                <a href="javascript:void(0)" (click)="goToLogin()" class="text-decoration-underline">
+                                                    {{ 'Login' | translate }}
+                                                </a>
+                                            </span>
                                         </div>
                                     </div>
                                 </form>
@@ -198,21 +191,8 @@
                                             <div class="form-group-modern phone-field-modern">
                                                 <label class="form-label-modern" for="sphone">{{ 'Phone Number' | translate }}</label>
                                                 <div class="phone-input-wrapper">
-                                                    <select2 class="custom-select intl-tel-input" 
-                                                            [templates]="template" 
-                                                            [data]="codes"
-                                                            formControlName="country_code">
-                                                        <ng-template #template let-data="data">
-                                                            <div class="country">
-                                                                <div class="flag-box">
-                                                                    <div class="iti-flag {{data?.class}}"></div>
-                                                                </div>
-                                                                <span class="dial-code">{{data.code}}</span>
-                                                            </div>
-                                                        </ng-template>
-                                                    </select2>
                                                     <input type="number"
-                                                           class="form-control-modern intl-input-padding"
+                                                           class="form-control-modern"
                                                            formControlName="phone"
                                                            placeholder="{{ 'Enter Phone' | translate }}"
                                                            name="phone"
@@ -229,9 +209,123 @@
                             </div>
                         </div>
 
+                        <!-- Billing Details Card -->
+                        <div class="checkout-card">
+                            <div class="checkout-card-header">
+                                <div class="card-icon">
+                                    <i class="ri-file-list-line"></i>
+                                </div>
+                                <h3 class="card-title">{{ 'Billing Details' | translate }}</h3>
+                            </div>
+                            <div class="checkout-card-body">
+                                <form [formGroup]="form" class="checkout-form-modern">
+                                    <div class="row g-3" formGroupName="billing_address">
+                                        <div class="col-12">
+                                            <div class="form-check-modern">
+                                                <input type="checkbox"
+                                                       class="form-check-input checkbox_animated"
+                                                       id="same_shipping"
+                                                       formControlName="same_shipping">
+                                                <label class="form-check-label" for="same_shipping">
+                                                    {{ 'Same As Shipping Address' | translate }}
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <div class="form-group-modern">
+                                                <label for="bname" class="form-label-modern">{{ 'Title' | translate }}</label>
+                                                <input type="text"
+                                                       class="form-control-modern"
+                                                       formControlName="title"
+                                                       id="bname"
+                                                       placeholder="{{ 'Enter Name' | translate }}">
+                                                <div class="invalid-feedback-modern"
+                                                     *ngIf="form.get('billing_address.title')?.touched && form.get('billing_address.title')?.errors?.['required']">
+                                                    {{ 'Title is Required' | translate }}
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-12">
+                                            <div class="form-group-modern">
+                                                <label for="baddress" class="form-label-modern">{{ 'Address' | translate }}</label>
+                                                <input type="text"
+                                                       class="form-control-modern"
+                                                       formControlName="street"
+                                                       id="baddress"
+                                                       placeholder="{{ 'Enter Address' | translate }}">
+                                                <div class="invalid-feedback-modern"
+                                                     *ngIf="form.get('billing_address.street')?.touched && form.get('billing_address.street')?.errors?.['required']">
+                                                    {{ 'Address is Required' | translate }}
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group-modern">
+                                                <label for="bcountry" class="form-label-modern">{{ 'Country' | translate }}</label>
+                                                <select2 class="custom-select"
+                                                        [data]="(countries$ | async) ? (countries$ | async)! : []"
+                                                        [placeholder]="'Select Country' | translate"
+                                                        (update)="billingCountryChange($event)"
+                                                        formControlName="country_id"
+                                                        resettable>
+                                                </select2>
+                                                <div class="invalid-feedback-modern"
+                                                     *ngIf="form.get('billing_address.country_id')?.touched && form.get('billing_address.country_id')?.errors?.['required']">
+                                                    {{ 'Country is Required' | translate }}
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group-modern">
+                                                <label for="bstate" class="form-label-modern">{{ 'State' | translate }}</label>
+                                                <select2 class="custom-select"
+                                                        [data]="(billingStates$ | async) ? (billingStates$ | async)! : []"
+                                                        [placeholder]="'Select State' | translate"
+                                                        formControlName="state_id">
+                                                </select2>
+                                                <div class="invalid-feedback-modern"
+                                                     *ngIf="form.get('billing_address.state_id')?.touched && form.get('billing_address.state_id')?.errors?.['required']">
+                                                    {{ 'State is Required' | translate }}
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group-modern">
+                                                <label for="bcity" class="form-label-modern">{{ 'City' | translate }}</label>
+                                                <input type="text"
+                                                       class="form-control-modern"
+                                                       formControlName="city"
+                                                       id="bcity"
+                                                       placeholder="{{ 'Enter City' | translate }}">
+                                                <div class="invalid-feedback-modern"
+                                                     *ngIf="form.get('billing_address.city')?.touched && form.get('billing_address.city')?.errors?.['required']">
+                                                    {{ 'City is Required' | translate }}
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group-modern phone-field-modern">
+                                                <label class="form-label-modern" for="bphone">{{ 'Phone Number' | translate }}</label>
+                                                <div class="phone-input-wrapper">
+                                                    <input type="number"
+                                                           class="form-control-modern"
+                                                           formControlName="phone"
+                                                           placeholder="{{ 'Enter Phone' | translate }}"
+                                                           name="phone">
+                                                </div>
+                                                <div class="invalid-feedback-modern"
+                                                     *ngIf="form.get('billing_address.phone')?.touched && form.get('billing_address.phone')?.errors?.['required']">
+                                                    {{ 'Phone is Required' | translate }}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
 
                         <!-- Payment Options Card -->
-                        <div class="checkout-card">
+                        <div class="checkout-card" *ngIf="(accessToken$ | async)">
                             <div class="checkout-card-header">
                                 <div class="card-icon">
                                     <i class="ri-bank-card-line"></i>
@@ -249,6 +343,86 @@
                                 </app-payment-block>
                             </div>
                         </div>
+                        </div>
+                        <!-- ===== END LEFT COLUMN ===== -->
+
+                        <!-- ===== RIGHT COLUMN: Order Summary ===== -->
+                        <div class="col-lg-4 col-md-12">
+                            <div class="checkout-summary-card summary-bottom">
+                                <div class="summary-header">
+                                    <h3 class="summary-title">
+                                        <i class="ri-shopping-bag-3-line me-2"></i>
+                                        {{ 'Order Summary' | translate }}
+                                    </h3>
+                                </div>
+
+                                <div class="summary-products">
+                                    <app-no-data
+                                        [class]="'empty-cart'"
+                                        [image]="'assets/svg/empty-items.svg'"
+                                        [text]="'No Items Cart'"
+                                        *ngIf="!(cartItem$ | async)?.length">
+                                    </app-no-data>
+                                    <div class="product-list" *ngIf="(cartItem$ | async)?.length">
+                                        <div class="product-item" *ngFor="let item of cartItem$ | async; trackBy: trackByCartItem">
+                                            <div class="product-image">
+                                                <img [src]="item?.variation && item?.variation?.variation_image
+                                                            ? item?.variation?.variation_image?.original_url
+                                                            : item?.product?.product_thumbnail
+                                                            ? item?.product?.product_thumbnail?.original_url
+                                                            : 'assets/images/product.png'"
+                                                     class="img-fluid"
+                                                     alt="product">
+                                            </div>
+                                            <div class="product-info">
+                                                <h5 class="product-name">{{ item?.variation ? item?.variation?.name : item?.product?.name }}</h5>
+                                                <div class="product-meta">
+                                                    <span class="product-price">
+                                                        {{ (item?.variation ? item.variation.sale_price : item?.product && item?.wholesale_price ? item?.wholesale_price : item?.product?.sale_price)! | currencySymbol }} × {{ item.quantity }}
+                                                    </span>
+                                                </div>
+                                            </div>
+                                            <div class="product-total">
+                                                <span class="price">
+                                                    {{ (item?.variation ? item.variation.sale_price : item?.product && item?.wholesale_price ? item?.wholesale_price : item?.product?.sale_price)! * item.quantity | currencySymbol }}
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <ng-container *ngIf="(cartItem$ | async)?.length">
+                                    <div class="summary-breakdown">
+                                        <div class="breakdown-item">
+                                            <span class="breakdown-label">{{ 'Subtotal' | translate }}</span>
+                                            <span class="breakdown-value">
+                                                {{ (checkoutTotal ? checkoutTotal.total.sub_total : getCalculatedTotals().sub_total) | currencySymbol }}
+                                            </span>
+                                        </div>
+                                        <div class="breakdown-item" *ngIf="!(cartDigital$ | async)">
+                                            <span class="breakdown-label">{{ 'Shipping' | translate }}</span>
+                                            <span class="breakdown-value">
+                                                {{ (checkoutTotal ? checkoutTotal.total.shipping_total : getCalculatedTotals().shipping_total) | currencySymbol }}
+                                            </span>
+                                        </div>
+                                        <div class="breakdown-item">
+                                            <span class="breakdown-label">{{ 'Tax' | translate }}</span>
+                                            <span class="breakdown-value">
+                                                {{ (checkoutTotal ? checkoutTotal.total.tax_total : getCalculatedTotals().tax_total) | currencySymbol }}
+                                            </span>
+                                        </div>
+                                        <div class="breakdown-total">
+                                            <span class="total-label">{{ 'Total' | translate }}</span>
+                                            <span class="total-value">
+                                                {{ (checkoutTotal ? checkoutTotal.total.total : getCalculatedTotals().total) | currencySymbol }}
+                                            </span>
+                                        </div>
+                                    </div>
+                                </ng-container>
+                            </div>
+                        </div>
+                        <!-- ===== END RIGHT COLUMN ===== -->
+                      </div><!-- end row g-4 -->
                     </div>
 
                     <!-- Logged In User Checkout -->

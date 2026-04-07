@@ -224,7 +224,6 @@ export class AuthState {
     });
     this.authService.redirectUrl = undefined;
     this.store.dispatch(new AccountClear());
-    this.store.dispatch(new ClearCart());
   }
 
 }
