@@ -696,7 +696,7 @@ button#place_order {
             &.dropdown-menu-2 {
                 min-width: 52vw !important;
                 padding: 30px 25px !important;
-                top: 28px !important;
+                top: 37px !important;
 
                 &.show {
                     display: block !important;
@@ -830,4 +830,9 @@ ul.tracking-steps {
 }
 .checkout-summary-card.summary-bottom {
     margin-top: 0 !important;
+}
+@media(max-width:1624px) {
+    .dropdown-menu-2 .row{
+    gap: 50px !important;
+}
 }

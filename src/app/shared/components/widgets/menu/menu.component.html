@@ -8,7 +8,9 @@
       <li
         [ngClass]="[menu.link_type == 'sub' && menu.child ? 'nav-item dropdown' : 'nav-item', menu.mega_menu ? 'dropdown-mega' : '']"
         [class.new-nav-item]="menu.badge_text"
-        [attr.data-menu-id]="menu.id">
+        [attr.data-menu-id]="menu.id"
+        (mouseenter)="onNavItemEnter(menu, menus)"
+        (mouseleave)="onNavItemLeave(menu)">
         <a class="nav-link dropdown-toggle" 
            *ngIf="menu.link_type === 'sub'" 
            [class.disabled]="isDisabled(menu)"
@@ -42,7 +44,9 @@
             *ngIf="menu.badge_text">{{ menu.badge_text | translate }}</label>
         </a>
         <div class="dropdown-menu dropdown-menu-2" [class.show]="menu.active"
-          *ngIf="menu.mega_menu === 1 && menu?.child?.length && menu.mega_menu_type !== 'link_with_image'">
+          *ngIf="menu.mega_menu === 1 && menu?.child?.length && menu.mega_menu_type !== 'link_with_image'"
+          (mouseenter)="onDropdownEnter(menu)"
+          (mouseleave)="onDropdownLeave(menu)">
           <div class="row">
             <div class="col-9" *ngIf="menu.mega_menu_type === 'side_banner'; else other">
               <div class="row">
@@ -110,7 +114,9 @@
           </div>
         </div>
         <div class="dropdown-menu dropdown-menu-2 dropdown-image" [class.show]="menu.active"
-          *ngIf="menu.mega_menu === 1 && menu.mega_menu_type === 'link_with_image' && menu?.child?.length">
+          *ngIf="menu.mega_menu === 1 && menu.mega_menu_type === 'link_with_image' && menu?.child?.length"
+          (mouseenter)="onDropdownEnter(menu)"
+          (mouseleave)="onDropdownLeave(menu)">
           <div class="dropdown-column">
             <a href="javascript:void(0)" class="dropdown-item text-center" *ngFor="let imageMenu of menu.child"
               (click)="redirect(imageMenu.path)">

@@ -1,4 +1,4 @@
-import { Component, ViewEncapsulation } from '@angular/core';
+import { Component, ViewEncapsulation, HostListener } from '@angular/core';
 import { Select, Store } from '@ngxs/store';
 import { Observable } from 'rxjs';
 import { Menu, MenuModel } from '../../../interface/menu.interface';
@@ -32,6 +32,8 @@ export class MenuComponent {
   public menu: Menu[] = [];
   public products: any[];
   public blogs: Blog[];
+  public activeHoverMenu: Menu | null = null;
+  private closeTimer: any = null;
 
   constructor(private store: Store, private router: Router, public menuService: MenuService) {
     this.menu$.subscribe(menu => {
@@ -77,6 +79,47 @@ export class MenuComponent {
     const category = slug || decodeURIComponent(path).trim().toLowerCase().replace(/\s+/g, '-');
 
     return `/collections?sortBy=asc&category=${category}&page=1`;
+  }
+
+  private closeAllMenus(menus: Menu[]) {
+    if (!menus) return;
+    menus.forEach(m => {
+      m.active = false;
+      if (m.child?.length) this.closeAllMenus(m.child);
+    });
+  }
+
+  onNavItemEnter(menu: Menu, allMenus: Menu[]) {
+    if (window.innerWidth < 1200) return;
+    if (!menu.mega_menu || !menu.child?.length) return;
+    if (this.closeTimer) { clearTimeout(this.closeTimer); this.closeTimer = null; }
+    // Close all other menus first
+    this.closeAllMenus(allMenus);
+    this.activeHoverMenu = menu;
+    menu.active = true;
+  }
+
+  onNavItemLeave(menu: Menu) {
+    if (window.innerWidth < 1200) return;
+    if (!menu.mega_menu || !menu.child?.length) return;
+    this.closeTimer = setTimeout(() => {
+      menu.active = false;
+      this.activeHoverMenu = null;
+    }, 100);
+  }
+
+  onDropdownEnter(menu: Menu) {
+    if (window.innerWidth < 1200) return;
+    if (this.closeTimer) { clearTimeout(this.closeTimer); this.closeTimer = null; }
+    menu.active = true;
+  }
+
+  onDropdownLeave(menu: Menu) {
+    if (window.innerWidth < 1200) return;
+    this.closeTimer = setTimeout(() => {
+      menu.active = false;
+      this.activeHoverMenu = null;
+    }, 100);
   }
 
   toggle(menu: Menu) {

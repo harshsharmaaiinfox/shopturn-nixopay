@@ -84,6 +84,9 @@
 }
 
 header {
+  position: relative;
+  z-index: 1060;
+
   &.active {
     .sticky-header {
       position: fixed;
@@ -93,7 +96,7 @@ header {
       background-color: $white;
       color: $title-color;
       box-shadow: 0 8px 10px rgba($title-color, 0.05);
-      z-index: 3;
+      z-index: 1060;
       padding: calc(15px + (24 - 15) * ((100vw - 320px) / (1920 - 320))) 0;
 
 
