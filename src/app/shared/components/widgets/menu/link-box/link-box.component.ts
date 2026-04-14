@@ -15,10 +15,22 @@ export class LinkBoxComponent {
   constructor( private router: Router){
   }
 
-  redirect(path:string){
+  redirect(path: string) {
     if (!this.isDisabled()) {
-      this.router.navigateByUrl(path)
+      this.router.navigateByUrl(this.convertMenuPath(path, this.menu?.slug));
     }
+  }
+
+  private convertMenuPath(path: string, slug?: string): string {
+    if (!path && !slug) return '/collections';
+
+    if (path?.startsWith('/')) {
+      return path;
+    }
+
+    const category = slug || decodeURIComponent(path).trim().toLowerCase().replace(/\s+/g, '-');
+
+    return `/collections?sortBy=asc&category=${category}&page=1`;
   }
 
   isDisabled(): boolean {

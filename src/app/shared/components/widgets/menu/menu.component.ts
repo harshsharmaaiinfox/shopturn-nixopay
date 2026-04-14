@@ -56,10 +56,8 @@ export class MenuComponent {
   }
 
   redirect(path: string, menu?: Menu) {
-    // Convert old URL format to new query parameter format
-    let newPath = this.convertMenuPath(path);
+    const newPath = this.convertMenuPath(path, menu?.slug);
 
-    // Check if link should open in new tab
     if (menu?.is_target_blank === 1) {
       window.open(newPath, '_blank');
     } else {
@@ -67,55 +65,18 @@ export class MenuComponent {
     }
   }
 
-  private convertMenuPath(path: string): string {
-    // If path already starts with /collections, return it as-is
-    if (path.startsWith('/collections')) {
+  private convertMenuPath(path: string, slug?: string): string {
+    if (!path && !slug) return '/collections';
+
+    // Already a proper URL path
+    if (path?.startsWith('/')) {
       return path;
     }
 
-    // Extract category from path - handle various formats
-    let category = '';
+    // Prefer the slug field (exact value from backend) over slugifying the path
+    const category = slug || decodeURIComponent(path).trim().toLowerCase().replace(/\s+/g, '-');
 
-    // Handle URL-encoded spaces and special characters
-    const decodedPath = decodeURIComponent(path);
-
-    // Common category mappings
-    const categoryMappings: { [key: string]: string } = {
-      'dress collection': 'dresses',
-      'dresses': 'dresses',
-      'jeans': 'jeans',
-      'shirts': 'shirts',
-      'shirt': 'shirts',
-      'tees': 't-shirts',
-      't-shirts': 't-shirts',
-      't shirt': 't-shirts',
-      'kurta': 'kurtas',
-      'kurtas': 'kurtas',
-      'sherwani': 'sherwani-sets',
-      'lehenga': 'lehenga-choli-sets',
-      'saree': 'lehenga-choli-sets',
-      'sarees': 'lehenga-choli-sets',
-      'winter': 'winter-essentials',
-      'women jeans': 'women-s-jeans'
-    };
-
-    // Try to find category in path
-    const lowerPath = decodedPath.toLowerCase();
-
-    for (const [key, value] of Object.entries(categoryMappings)) {
-      if (lowerPath.includes(key)) {
-        category = value;
-        break;
-      }
-    }
-
-    // If category found, return formatted URL
-    if (category) {
-      return `/?sortBy=asc&category=${category}&page=1`;
-    }
-
-    // If no conversion needed, return original path
-    return path;
+    return `/collections?sortBy=asc&category=${category}&page=1`;
   }
 
   toggle(menu: Menu) {

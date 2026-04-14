@@ -89,7 +89,7 @@ export const CategoryOption: any[] = [
                 "subcategories": [
                     {
                         "id": 89,
-                        "name": "Legging",
+                        "name": "Leggings",
                         "slug": "leggings",
                         "meta_title": null,
                         "meta_description": null,
@@ -107,7 +107,7 @@ export const CategoryOption: any[] = [
                         "deleted_at": null,
                         "is_allow_all_zone": 1,
                         "blogs_count": 0,
-                        "products_count": 20,
+                        "products_count": 107,
                         "category_image": null,
                         "category_meta_image": null,
                         "category_icon": null,
@@ -134,7 +134,7 @@ export const CategoryOption: any[] = [
                     },
                     {
                         "id": 90,
-                        "name": "Tank Top",
+                        "name": "Tank Tops",
                         "slug": "tank-tops",
                         "meta_title": null,
                         "meta_description": null,
@@ -152,7 +152,7 @@ export const CategoryOption: any[] = [
                         "deleted_at": null,
                         "is_allow_all_zone": 1,
                         "blogs_count": 0,
-                        "products_count": 19,
+                        "products_count": 87,
                         "category_image": null,
                         "category_meta_image": null,
                         "category_icon": null,
@@ -179,7 +179,7 @@ export const CategoryOption: any[] = [
                     },
                     {
                         "id": 91,
-                        "name": "Stringer",
+                        "name": "Stringers",
                         "slug": "stringers",
                         "meta_title": null,
                         "meta_description": null,
@@ -197,7 +197,7 @@ export const CategoryOption: any[] = [
                         "deleted_at": null,
                         "is_allow_all_zone": 1,
                         "blogs_count": 0,
-                        "products_count": 9,
+                        "products_count": 39,
                         "category_image": null,
                         "category_meta_image": null,
                         "category_icon": null,
@@ -224,7 +224,7 @@ export const CategoryOption: any[] = [
                     },
                     {
                         "id": 92,
-                        "name": "Compression Gear",
+                        "name": "Compression Wear",
                         "slug": "compression-wear",
                         "meta_title": null,
                         "meta_description": null,
@@ -242,7 +242,7 @@ export const CategoryOption: any[] = [
                         "deleted_at": null,
                         "is_allow_all_zone": 1,
                         "blogs_count": 0,
-                        "products_count": 19,
+                        "products_count": 74,
                         "category_image": null,
                         "category_meta_image": null,
                         "category_icon": null,
@@ -315,7 +315,7 @@ export const CategoryOption: any[] = [
                 "subcategories": [
                     {
                         "id": 94,
-                        "name": "Jersey",
+                        "name": "Jerseys",
                         "slug": "jerseys",
                         "meta_title": null,
                         "meta_description": null,
@@ -333,7 +333,7 @@ export const CategoryOption: any[] = [
                         "deleted_at": null,
                         "is_allow_all_zone": 1,
                         "blogs_count": 0,
-                        "products_count": 19,
+                        "products_count": 45,
                         "category_image": null,
                         "category_meta_image": null,
                         "category_icon": null,
@@ -360,7 +360,7 @@ export const CategoryOption: any[] = [
                     },
                     {
                         "id": 95,
-                        "name": "Tracksuit",
+                        "name": "Tracksuits",
                         "slug": "tracksuits",
                         "meta_title": null,
                         "meta_description": null,
@@ -378,7 +378,7 @@ export const CategoryOption: any[] = [
                         "deleted_at": null,
                         "is_allow_all_zone": 1,
                         "blogs_count": 0,
-                        "products_count": 16,
+                        "products_count": 114,
                         "category_image": null,
                         "category_meta_image": null,
                         "category_icon": null,
@@ -405,7 +405,7 @@ export const CategoryOption: any[] = [
                     },
                     {
                         "id": 96,
-                        "name": "Training Shorts",
+                        "name": "Gym Shorts",
                         "slug": "gym-shorts",
                         "meta_title": null,
                         "meta_description": null,
@@ -423,7 +423,7 @@ export const CategoryOption: any[] = [
                         "deleted_at": null,
                         "is_allow_all_zone": 1,
                         "blogs_count": 0,
-                        "products_count": 19,
+                        "products_count": 63,
                         "category_image": null,
                         "category_meta_image": null,
                         "category_icon": null,
@@ -455,7 +455,7 @@ export const CategoryOption: any[] = [
     },
     {
         "id": 66,
-        "name": "Men Collection",
+        "name": "Men's Collection",
         "slug": "men-s-collection",
         "meta_title": null,
         "meta_description": null,
@@ -478,20 +478,20 @@ export const CategoryOption: any[] = [
             "id": 2,
             "name": "mangal-fav",
             "disk": "public",
-            "mime_type": "image\/png",
+            "mime_type": "image/png",
             "file_name": "mangal-fav.png",
-            "asset_url": "\/storage\/2\/mangal-fav.png",
-            "original_url": "https:\/\/nixopay.com\/public\/storage\/2\/mangal-fav.png"
+            "asset_url": "/storage/2/mangal-fav.png",
+            "original_url": "https://api.nixopay.com/public/storage/2/mangal-fav.png"
         },
         "category_meta_image": null,
         "category_icon": {
             "id": 2,
             "name": "mangal-fav",
             "disk": "public",
-            "mime_type": "image\/png",
+            "mime_type": "image/png",
             "file_name": "mangal-fav.png",
-            "asset_url": "\/storage\/2\/mangal-fav.png",
-            "original_url": "https:\/\/nixopay.com\/public\/storage\/2\/mangal-fav.png"
+            "asset_url": "/storage/2/mangal-fav.png",
+            "original_url": "https://api.nixopay.com/public/storage/2/mangal-fav.png"
         },
         "zones": [
             {
@@ -515,7 +515,7 @@ export const CategoryOption: any[] = [
         "subcategories": [
             {
                 "id": 70,
-                "name": "Men Western Wear",
+                "name": "Men's Western Wear",
                 "slug": "men-s-western-wear",
                 "meta_title": null,
                 "meta_description": null,
@@ -577,7 +577,7 @@ export const CategoryOption: any[] = [
                         "deleted_at": null,
                         "is_allow_all_zone": 1,
                         "blogs_count": 0,
-                        "products_count": 20,
+                        "products_count": 221,
                         "category_image": null,
                         "category_meta_image": null,
                         "category_icon": null,
@@ -604,7 +604,7 @@ export const CategoryOption: any[] = [
                     },
                     {
                         "id": 72,
-                        "name": "Shirts",
+                        "name": "Shirt",
                         "slug": "shirt",
                         "meta_title": null,
                         "meta_description": null,
@@ -622,7 +622,7 @@ export const CategoryOption: any[] = [
                         "deleted_at": null,
                         "is_allow_all_zone": 1,
                         "blogs_count": 0,
-                        "products_count": 20,
+                        "products_count": 321,
                         "category_image": null,
                         "category_meta_image": null,
                         "category_icon": null,
@@ -649,7 +649,7 @@ export const CategoryOption: any[] = [
                     },
                     {
                         "id": 73,
-                        "name": "Short Pants",
+                        "name": "Shorts",
                         "slug": "shorts",
                         "meta_title": null,
                         "meta_description": null,
@@ -667,7 +667,7 @@ export const CategoryOption: any[] = [
                         "deleted_at": null,
                         "is_allow_all_zone": 1,
                         "blogs_count": 0,
-                        "products_count": 20,
+                        "products_count": 65,
                         "category_image": null,
                         "category_meta_image": null,
                         "category_icon": null,
@@ -694,7 +694,7 @@ export const CategoryOption: any[] = [
                     },
                     {
                         "id": 74,
-                        "name": "Formal Suits",
+                        "name": "Suit Sets",
                         "slug": "suit-sets",
                         "meta_title": null,
                         "meta_description": null,
@@ -712,7 +712,7 @@ export const CategoryOption: any[] = [
                         "deleted_at": null,
                         "is_allow_all_zone": 1,
                         "blogs_count": 0,
-                        "products_count": 20,
+                        "products_count": 93,
                         "category_image": null,
                         "category_meta_image": null,
                         "category_icon": null,
@@ -739,7 +739,7 @@ export const CategoryOption: any[] = [
                     },
                     {
                         "id": 75,
-                        "name": "Athletic Suits",
+                        "name": "Track Suits",
                         "slug": "track-suits",
                         "meta_title": null,
                         "meta_description": null,
@@ -757,7 +757,7 @@ export const CategoryOption: any[] = [
                         "deleted_at": null,
                         "is_allow_all_zone": 1,
                         "blogs_count": 0,
-                        "products_count": 21,
+                        "products_count": 130,
                         "category_image": null,
                         "category_meta_image": null,
                         "category_icon": null,
@@ -784,7 +784,7 @@ export const CategoryOption: any[] = [
                     },
                     {
                         "id": 76,
-                        "name": "Trousers",
+                        "name": "Pants",
                         "slug": "pants",
                         "meta_title": null,
                         "meta_description": null,
@@ -802,7 +802,7 @@ export const CategoryOption: any[] = [
                         "deleted_at": null,
                         "is_allow_all_zone": 1,
                         "blogs_count": 0,
-                        "products_count": 20,
+                        "products_count": 81,
                         "category_image": null,
                         "category_meta_image": null,
                         "category_icon": null,
@@ -829,7 +829,7 @@ export const CategoryOption: any[] = [
                     },
                     {
                         "id": 77,
-                        "name": "Tees",
+                        "name": "T-shirts",
                         "slug": "t-shirts",
                         "meta_title": null,
                         "meta_description": null,
@@ -847,7 +847,7 @@ export const CategoryOption: any[] = [
                         "deleted_at": null,
                         "is_allow_all_zone": 1,
                         "blogs_count": 0,
-                        "products_count": 20,
+                        "products_count": 241,
                         "category_image": null,
                         "category_meta_image": null,
                         "category_icon": null,
@@ -876,7 +876,7 @@ export const CategoryOption: any[] = [
             },
             {
                 "id": 78,
-                "name": "Men Ethnic Wear",
+                "name": "Men's Ethnic Wear",
                 "slug": "men-s-ethnic-wear",
                 "meta_title": null,
                 "meta_description": null,
@@ -894,7 +894,7 @@ export const CategoryOption: any[] = [
                 "deleted_at": null,
                 "is_allow_all_zone": 1,
                 "blogs_count": 0,
-                "products_count": 0,
+                "products_count": 1,
                 "category_image": null,
                 "category_meta_image": null,
                 "category_icon": null,
@@ -920,7 +920,7 @@ export const CategoryOption: any[] = [
                 "subcategories": [
                     {
                         "id": 79,
-                        "name": "Traditional Jackets",
+                        "name": "Ethnic Jackets",
                         "slug": "ethnic-jackets",
                         "meta_title": null,
                         "meta_description": null,
@@ -938,7 +938,7 @@ export const CategoryOption: any[] = [
                         "deleted_at": null,
                         "is_allow_all_zone": 1,
                         "blogs_count": 0,
-                        "products_count": 20,
+                        "products_count": 163,
                         "category_image": null,
                         "category_meta_image": null,
                         "category_icon": null,
@@ -965,7 +965,7 @@ export const CategoryOption: any[] = [
                     },
                     {
                         "id": 80,
-                        "name": "Sherwani",
+                        "name": "Sherwani Sets",
                         "slug": "sherwani-sets",
                         "meta_title": null,
                         "meta_description": null,
@@ -983,7 +983,7 @@ export const CategoryOption: any[] = [
                         "deleted_at": null,
                         "is_allow_all_zone": 1,
                         "blogs_count": 0,
-                        "products_count": 20,
+                        "products_count": 180,
                         "category_image": null,
                         "category_meta_image": null,
                         "category_icon": null,
@@ -1010,7 +1010,7 @@ export const CategoryOption: any[] = [
                     },
                     {
                         "id": 81,
-                        "name": "Kurta",
+                        "name": "Kurtas",
                         "slug": "kurtas",
                         "meta_title": null,
                         "meta_description": null,
@@ -1028,7 +1028,7 @@ export const CategoryOption: any[] = [
                         "deleted_at": null,
                         "is_allow_all_zone": 1,
                         "blogs_count": 0,
-                        "products_count": 22,
+                        "products_count": 202,
                         "category_image": null,
                         "category_meta_image": null,
                         "category_icon": null,
@@ -1055,7 +1055,7 @@ export const CategoryOption: any[] = [
                     },
                     {
                         "id": 82,
-                        "name": "Pyjamas Churidars",
+                        "name": "Pyjamas & Churidars",
                         "slug": "pyjamas-churidars",
                         "meta_title": null,
                         "meta_description": null,
@@ -1073,7 +1073,7 @@ export const CategoryOption: any[] = [
                         "deleted_at": null,
                         "is_allow_all_zone": 1,
                         "blogs_count": 0,
-                        "products_count": 20,
+                        "products_count": 124,
                         "category_image": null,
                         "category_meta_image": null,
                         "category_icon": null,
@@ -1100,7 +1100,7 @@ export const CategoryOption: any[] = [
                     },
                     {
                         "id": 83,
-                        "name": "Traditional Suits",
+                        "name": "Ethnic Suit Sets",
                         "slug": "ethnic-suit-sets",
                         "meta_title": null,
                         "meta_description": null,
@@ -1118,7 +1118,7 @@ export const CategoryOption: any[] = [
                         "deleted_at": null,
                         "is_allow_all_zone": 1,
                         "blogs_count": 0,
-                        "products_count": 19,
+                        "products_count": 110,
                         "category_image": null,
                         "category_meta_image": null,
                         "category_icon": null,
@@ -1147,7 +1147,7 @@ export const CategoryOption: any[] = [
             },
             {
                 "id": 84,
-                "name": "Men Innerwear",
+                "name": "Men's Innerwear",
                 "slug": "men-s-innerwear",
                 "meta_title": null,
                 "meta_description": null,
@@ -1191,7 +1191,7 @@ export const CategoryOption: any[] = [
                 "subcategories": [
                     {
                         "id": 85,
-                        "name": "Boxer Shorts",
+                        "name": "Boxers",
                         "slug": "boxers",
                         "meta_title": null,
                         "meta_description": null,
@@ -1209,7 +1209,7 @@ export const CategoryOption: any[] = [
                         "deleted_at": null,
                         "is_allow_all_zone": 1,
                         "blogs_count": 0,
-                        "products_count": 20,
+                        "products_count": 88,
                         "category_image": null,
                         "category_meta_image": null,
                         "category_icon": null,
@@ -1236,7 +1236,7 @@ export const CategoryOption: any[] = [
                     },
                     {
                         "id": 86,
-                        "name": "Brief Underwear",
+                        "name": "Briefs",
                         "slug": "briefs",
                         "meta_title": null,
                         "meta_description": null,
@@ -1254,7 +1254,7 @@ export const CategoryOption: any[] = [
                         "deleted_at": null,
                         "is_allow_all_zone": 1,
                         "blogs_count": 0,
-                        "products_count": 20,
+                        "products_count": 82,
                         "category_image": null,
                         "category_meta_image": null,
                         "category_icon": null,
@@ -1281,7 +1281,7 @@ export const CategoryOption: any[] = [
                     },
                     {
                         "id": 87,
-                        "name": "Trunk Underwear",
+                        "name": "Trunks",
                         "slug": "trunks",
                         "meta_title": null,
                         "meta_description": null,
@@ -1299,7 +1299,7 @@ export const CategoryOption: any[] = [
                         "deleted_at": null,
                         "is_allow_all_zone": 1,
                         "blogs_count": 0,
-                        "products_count": 20,
+                        "products_count": 102,
                         "category_image": null,
                         "category_meta_image": null,
                         "category_icon": null,
@@ -1330,13 +1330,13 @@ export const CategoryOption: any[] = [
         "parent": null
     },
     {
-        "id": 120,
-        "name": "Winter Essentials",
-        "slug": "winter-essentials",
+        "id": 121,
+        "name": "Summer Collection",
+        "slug": "summer-collection",
         "meta_title": null,
         "meta_description": null,
         "category_meta_image_id": null,
-        "description": null,
+        "description": "Summer Collection",
         "category_image_id": null,
         "category_icon_id": null,
         "status": 1,
@@ -1344,12 +1344,12 @@ export const CategoryOption: any[] = [
         "commission_rate": null,
         "parent_id": null,
         "created_by_id": 1,
-        "created_at": "2025-12-19T11:00:09.000000Z",
-        "updated_at": "2025-12-19T11:00:09.000000Z",
+        "created_at": "2026-04-08T07:33:56.000000Z",
+        "updated_at": "2026-04-08T07:33:56.000000Z",
         "deleted_at": null,
         "is_allow_all_zone": 1,
         "blogs_count": 0,
-        "products_count": 24,
+        "products_count": 129,
         "category_image": null,
         "category_meta_image": null,
         "category_icon": null,
@@ -1358,7 +1358,7 @@ export const CategoryOption: any[] = [
                 "id": 1,
                 "name": "India",
                 "pivot": {
-                    "category_id": 120,
+                    "category_id": 121,
                     "zone_id": 1
                 }
             },
@@ -1366,7 +1366,7 @@ export const CategoryOption: any[] = [
                 "id": 2,
                 "name": "Adajan",
                 "pivot": {
-                    "category_id": 120,
+                    "category_id": 121,
                     "zone_id": 2
                 }
             }
@@ -1375,1105 +1375,50 @@ export const CategoryOption: any[] = [
         "subcategories": [],
         "parent": null
     },
-    {
-        "id": 68,
-        "name": "Women Collection",
-        "slug": "women-s-collection",
-        "meta_title": null,
-        "meta_description": null,
-        "category_meta_image_id": null,
-        "description": null,
-        "category_image_id": 2,
-        "category_icon_id": 2,
-        "status": 1,
-        "type": "product",
-        "commission_rate": null,
-        "parent_id": null,
-        "created_by_id": 1,
-        "created_at": "2025-01-09T23:03:46.000000Z",
-        "updated_at": "2025-12-19T10:06:23.000000Z",
-        "deleted_at": null,
-        "is_allow_all_zone": 1,
-        "blogs_count": 0,
-        "products_count": 40,
-        "category_image": {
-            "id": 2,
-            "name": "mangal-fav",
-            "disk": "public",
-            "mime_type": "image\/png",
-            "file_name": "mangal-fav.png",
-            "asset_url": "\/storage\/2\/mangal-fav.png",
-            "original_url": "https:\/\/nixopay.com\/public\/storage\/2\/mangal-fav.png"
-        },
-        "category_meta_image": null,
-        "category_icon": {
-            "id": 2,
-            "name": "mangal-fav",
-            "disk": "public",
-            "mime_type": "image\/png",
-            "file_name": "mangal-fav.png",
-            "asset_url": "\/storage\/2\/mangal-fav.png",
-            "original_url": "https:\/\/nixopay.com\/public\/storage\/2\/mangal-fav.png"
-        },
-        "zones": [
-            {
-                "id": 1,
-                "name": "India",
-                "pivot": {
-                    "category_id": 68,
-                    "zone_id": 1
-                }
-            },
-            {
-                "id": 2,
-                "name": "Adajan",
-                "pivot": {
-                    "category_id": 68,
-                    "zone_id": 2
-                }
-            }
-        ],
-        "exclude_zones": [],
-        "subcategories": [
-            {
-                "id": 97,
-                "name": "Women Western Wear",
-                "slug": "women-s-western-wear",
-                "meta_title": null,
-                "meta_description": null,
-                "category_meta_image_id": null,
-                "description": null,
-                "category_image_id": null,
-                "category_icon_id": null,
-                "status": 1,
-                "type": "product",
-                "commission_rate": null,
-                "parent_id": 68,
-                "created_by_id": 1,
-                "created_at": "2025-12-19T10:49:43.000000Z",
-                "updated_at": "2025-12-19T10:49:43.000000Z",
-                "deleted_at": null,
-                "is_allow_all_zone": 1,
-                "blogs_count": 0,
-                "products_count": 0,
-                "category_image": null,
-                "category_meta_image": null,
-                "category_icon": null,
-                "zones": [
-                    {
-                        "id": 1,
-                        "name": "India",
-                        "pivot": {
-                            "category_id": 97,
-                            "zone_id": 1
-                        }
-                    },
-                    {
-                        "id": 2,
-                        "name": "Adajan",
-                        "pivot": {
-                            "category_id": 97,
-                            "zone_id": 2
-                        }
-                    }
-                ],
-                "exclude_zones": [],
-                "subcategories": [
-                    {
-                        "id": 100,
-                        "name": "Dress Collection",
-                        "slug": "dresses",
-                        "meta_title": null,
-                        "meta_description": null,
-                        "category_meta_image_id": null,
-                        "description": null,
-                        "category_image_id": null,
-                        "category_icon_id": null,
-                        "status": 1,
-                        "type": "product",
-                        "commission_rate": null,
-                        "parent_id": 97,
-                        "created_by_id": 1,
-                        "created_at": "2025-12-19T10:50:53.000000Z",
-                        "updated_at": "2025-12-19T10:50:53.000000Z",
-                        "deleted_at": null,
-                        "is_allow_all_zone": 1,
-                        "blogs_count": 0,
-                        "products_count": 18,
-                        "category_image": null,
-                        "category_meta_image": null,
-                        "category_icon": null,
-                        "zones": [
-                            {
-                                "id": 1,
-                                "name": "India",
-                                "pivot": {
-                                    "category_id": 100,
-                                    "zone_id": 1
-                                }
-                            },
-                            {
-                                "id": 2,
-                                "name": "Adajan",
-                                "pivot": {
-                                    "category_id": 100,
-                                    "zone_id": 2
-                                }
-                            }
-                        ],
-                        "exclude_zones": [],
-                        "subcategories": []
-                    },
-                    {
-                        "id": 101,
-                        "name": "Women Denim",
-                        "slug": "women-s-jeans",
-                        "meta_title": null,
-                        "meta_description": null,
-                        "category_meta_image_id": null,
-                        "description": null,
-                        "category_image_id": null,
-                        "category_icon_id": null,
-                        "status": 1,
-                        "type": "product",
-                        "commission_rate": null,
-                        "parent_id": 97,
-                        "created_by_id": 1,
-                        "created_at": "2025-12-19T10:51:26.000000Z",
-                        "updated_at": "2025-12-19T10:51:26.000000Z",
-                        "deleted_at": null,
-                        "is_allow_all_zone": 1,
-                        "blogs_count": 0,
-                        "products_count": 22,
-                        "category_image": null,
-                        "category_meta_image": null,
-                        "category_icon": null,
-                        "zones": [
-                            {
-                                "id": 1,
-                                "name": "India",
-                                "pivot": {
-                                    "category_id": 101,
-                                    "zone_id": 1
-                                }
-                            },
-                            {
-                                "id": 2,
-                                "name": "Adajan",
-                                "pivot": {
-                                    "category_id": 101,
-                                    "zone_id": 2
-                                }
-                            }
-                        ],
-                        "exclude_zones": [],
-                        "subcategories": []
-                    },
-                    {
-                        "id": 102,
-                        "name": "Top Collection",
-                        "slug": "tops",
-                        "meta_title": null,
-                        "meta_description": null,
-                        "category_meta_image_id": null,
-                        "description": null,
-                        "category_image_id": null,
-                        "category_icon_id": null,
-                        "status": 1,
-                        "type": "product",
-                        "commission_rate": null,
-                        "parent_id": 97,
-                        "created_by_id": 1,
-                        "created_at": "2025-12-19T10:51:40.000000Z",
-                        "updated_at": "2025-12-19T10:51:40.000000Z",
-                        "deleted_at": null,
-                        "is_allow_all_zone": 1,
-                        "blogs_count": 0,
-                        "products_count": 22,
-                        "category_image": null,
-                        "category_meta_image": null,
-                        "category_icon": null,
-                        "zones": [
-                            {
-                                "id": 1,
-                                "name": "India",
-                                "pivot": {
-                                    "category_id": 102,
-                                    "zone_id": 1
-                                }
-                            },
-                            {
-                                "id": 2,
-                                "name": "Adajan",
-                                "pivot": {
-                                    "category_id": 102,
-                                    "zone_id": 2
-                                }
-                            }
-                        ],
-                        "exclude_zones": [],
-                        "subcategories": []
-                    },
-                    {
-                        "id": 103,
-                        "name": "Trousers Pants",
-                        "slug": "trousers-pants",
-                        "meta_title": null,
-                        "meta_description": null,
-                        "category_meta_image_id": null,
-                        "description": null,
-                        "category_image_id": null,
-                        "category_icon_id": null,
-                        "status": 1,
-                        "type": "product",
-                        "commission_rate": null,
-                        "parent_id": 97,
-                        "created_by_id": 1,
-                        "created_at": "2025-12-19T10:51:54.000000Z",
-                        "updated_at": "2025-12-19T10:51:54.000000Z",
-                        "deleted_at": null,
-                        "is_allow_all_zone": 1,
-                        "blogs_count": 0,
-                        "products_count": 21,
-                        "category_image": null,
-                        "category_meta_image": null,
-                        "category_icon": null,
-                        "zones": [
-                            {
-                                "id": 1,
-                                "name": "India",
-                                "pivot": {
-                                    "category_id": 103,
-                                    "zone_id": 1
-                                }
-                            },
-                            {
-                                "id": 2,
-                                "name": "Adajan",
-                                "pivot": {
-                                    "category_id": 103,
-                                    "zone_id": 2
-                                }
-                            }
-                        ],
-                        "exclude_zones": [],
-                        "subcategories": []
-                    },
-                    {
-                        "id": 104,
-                        "name": "Women Tees",
-                        "slug": "women-s-t-shirts",
-                        "meta_title": null,
-                        "meta_description": null,
-                        "category_meta_image_id": null,
-                        "description": null,
-                        "category_image_id": null,
-                        "category_icon_id": null,
-                        "status": 1,
-                        "type": "product",
-                        "commission_rate": null,
-                        "parent_id": 97,
-                        "created_by_id": 1,
-                        "created_at": "2025-12-19T10:52:15.000000Z",
-                        "updated_at": "2025-12-19T10:52:15.000000Z",
-                        "deleted_at": null,
-                        "is_allow_all_zone": 1,
-                        "blogs_count": 0,
-                        "products_count": 19,
-                        "category_image": null,
-                        "category_meta_image": null,
-                        "category_icon": null,
-                        "zones": [
-                            {
-                                "id": 1,
-                                "name": "India",
-                                "pivot": {
-                                    "category_id": 104,
-                                    "zone_id": 1
-                                }
-                            },
-                            {
-                                "id": 2,
-                                "name": "Adajan",
-                                "pivot": {
-                                    "category_id": 104,
-                                    "zone_id": 2
-                                }
-                            }
-                        ],
-                        "exclude_zones": [],
-                        "subcategories": []
-                    },
-                    {
-                        "id": 105,
-                        "name": "Women Shirts",
-                        "slug": "women-s-shirts",
-                        "meta_title": null,
-                        "meta_description": null,
-                        "category_meta_image_id": null,
-                        "description": null,
-                        "category_image_id": null,
-                        "category_icon_id": null,
-                        "status": 1,
-                        "type": "product",
-                        "commission_rate": null,
-                        "parent_id": 97,
-                        "created_by_id": 1,
-                        "created_at": "2025-12-19T10:52:36.000000Z",
-                        "updated_at": "2025-12-19T10:52:36.000000Z",
-                        "deleted_at": null,
-                        "is_allow_all_zone": 1,
-                        "blogs_count": 0,
-                        "products_count": 19,
-                        "category_image": null,
-                        "category_meta_image": null,
-                        "category_icon": null,
-                        "zones": [
-                            {
-                                "id": 1,
-                                "name": "India",
-                                "pivot": {
-                                    "category_id": 105,
-                                    "zone_id": 1
-                                }
-                            },
-                            {
-                                "id": 2,
-                                "name": "Adajan",
-                                "pivot": {
-                                    "category_id": 105,
-                                    "zone_id": 2
-                                }
-                            }
-                        ],
-                        "exclude_zones": [],
-                        "subcategories": []
-                    },
-                    {
-                        "id": 106,
-                        "name": "Women Legging",
-                        "slug": "women-s-leggings",
-                        "meta_title": null,
-                        "meta_description": null,
-                        "category_meta_image_id": null,
-                        "description": null,
-                        "category_image_id": null,
-                        "category_icon_id": null,
-                        "status": 1,
-                        "type": "product",
-                        "commission_rate": null,
-                        "parent_id": 97,
-                        "created_by_id": 1,
-                        "created_at": "2025-12-19T10:53:08.000000Z",
-                        "updated_at": "2025-12-19T10:53:08.000000Z",
-                        "deleted_at": null,
-                        "is_allow_all_zone": 1,
-                        "blogs_count": 0,
-                        "products_count": 24,
-                        "category_image": null,
-                        "category_meta_image": null,
-                        "category_icon": null,
-                        "zones": [
-                            {
-                                "id": 1,
-                                "name": "India",
-                                "pivot": {
-                                    "category_id": 106,
-                                    "zone_id": 1
-                                }
-                            },
-                            {
-                                "id": 2,
-                                "name": "Adajan",
-                                "pivot": {
-                                    "category_id": 106,
-                                    "zone_id": 2
-                                }
-                            }
-                        ],
-                        "exclude_zones": [],
-                        "subcategories": []
-                    },
-                    {
-                        "id": 107,
-                        "name": "Coordinated Sets",
-                        "slug": "co-ord-sets",
-                        "meta_title": null,
-                        "meta_description": null,
-                        "category_meta_image_id": null,
-                        "description": null,
-                        "category_image_id": null,
-                        "category_icon_id": null,
-                        "status": 1,
-                        "type": "product",
-                        "commission_rate": null,
-                        "parent_id": 97,
-                        "created_by_id": 1,
-                        "created_at": "2025-12-19T10:53:23.000000Z",
-                        "updated_at": "2025-12-19T10:53:23.000000Z",
-                        "deleted_at": null,
-                        "is_allow_all_zone": 1,
-                        "blogs_count": 0,
-                        "products_count": 22,
-                        "category_image": null,
-                        "category_meta_image": null,
-                        "category_icon": null,
-                        "zones": [
-                            {
-                                "id": 1,
-                                "name": "India",
-                                "pivot": {
-                                    "category_id": 107,
-                                    "zone_id": 1
-                                }
-                            },
-                            {
-                                "id": 2,
-                                "name": "Adajan",
-                                "pivot": {
-                                    "category_id": 107,
-                                    "zone_id": 2
-                                }
-                            }
-                        ],
-                        "exclude_zones": [],
-                        "subcategories": []
-                    }
-                ]
-            },
-            {
-                "id": 98,
-                "name": "Women Ethnic Wear",
-                "slug": "women-s-ethnic-wear",
-                "meta_title": null,
-                "meta_description": null,
-                "category_meta_image_id": null,
-                "description": null,
-                "category_image_id": null,
-                "category_icon_id": null,
-                "status": 1,
-                "type": "product",
-                "commission_rate": null,
-                "parent_id": 68,
-                "created_by_id": 1,
-                "created_at": "2025-12-19T10:50:14.000000Z",
-                "updated_at": "2025-12-19T10:50:14.000000Z",
-                "deleted_at": null,
-                "is_allow_all_zone": 1,
-                "blogs_count": 0,
-                "products_count": 0,
-                "category_image": null,
-                "category_meta_image": null,
-                "category_icon": null,
-                "zones": [
-                    {
-                        "id": 1,
-                        "name": "India",
-                        "pivot": {
-                            "category_id": 98,
-                            "zone_id": 1
-                        }
-                    },
-                    {
-                        "id": 2,
-                        "name": "Adajan",
-                        "pivot": {
-                            "category_id": 98,
-                            "zone_id": 2
-                        }
-                    }
-                ],
-                "exclude_zones": [],
-                "subcategories": [
-                    {
-                        "id": 108,
-                        "name": "Dresses Gowns",
-                        "slug": "dresses-gowns",
-                        "meta_title": null,
-                        "meta_description": null,
-                        "category_meta_image_id": null,
-                        "description": null,
-                        "category_image_id": null,
-                        "category_icon_id": null,
-                        "status": 1,
-                        "type": "product",
-                        "commission_rate": null,
-                        "parent_id": 98,
-                        "created_by_id": 1,
-                        "created_at": "2025-12-19T10:53:40.000000Z",
-                        "updated_at": "2025-12-19T10:53:40.000000Z",
-                        "deleted_at": null,
-                        "is_allow_all_zone": 1,
-                        "blogs_count": 0,
-                        "products_count": 21,
-                        "category_image": null,
-                        "category_meta_image": null,
-                        "category_icon": null,
-                        "zones": [
-                            {
-                                "id": 1,
-                                "name": "India",
-                                "pivot": {
-                                    "category_id": 108,
-                                    "zone_id": 1
-                                }
-                            },
-                            {
-                                "id": 2,
-                                "name": "Adajan",
-                                "pivot": {
-                                    "category_id": 108,
-                                    "zone_id": 2
-                                }
-                            }
-                        ],
-                        "exclude_zones": [],
-                        "subcategories": []
-                    },
-                    {
-                        "id": 109,
-                        "name": "Kurta Suits",
-                        "slug": "kurta-suit-sets",
-                        "meta_title": null,
-                        "meta_description": null,
-                        "category_meta_image_id": null,
-                        "description": null,
-                        "category_image_id": null,
-                        "category_icon_id": null,
-                        "status": 1,
-                        "type": "product",
-                        "commission_rate": null,
-                        "parent_id": 98,
-                        "created_by_id": 1,
-                        "created_at": "2025-12-19T10:53:52.000000Z",
-                        "updated_at": "2025-12-19T10:53:52.000000Z",
-                        "deleted_at": null,
-                        "is_allow_all_zone": 1,
-                        "blogs_count": 0,
-                        "products_count": 22,
-                        "category_image": null,
-                        "category_meta_image": null,
-                        "category_icon": null,
-                        "zones": [
-                            {
-                                "id": 1,
-                                "name": "India",
-                                "pivot": {
-                                    "category_id": 109,
-                                    "zone_id": 1
-                                }
-                            },
-                            {
-                                "id": 2,
-                                "name": "Adajan",
-                                "pivot": {
-                                    "category_id": 109,
-                                    "zone_id": 2
-                                }
-                            }
-                        ],
-                        "exclude_zones": [],
-                        "subcategories": []
-                    },
-                    {
-                        "id": 110,
-                        "name": "Kurta Bottom Sets",
-                        "slug": "kurta-bottom-sets",
-                        "meta_title": null,
-                        "meta_description": null,
-                        "category_meta_image_id": null,
-                        "description": null,
-                        "category_image_id": null,
-                        "category_icon_id": null,
-                        "status": 1,
-                        "type": "product",
-                        "commission_rate": null,
-                        "parent_id": 98,
-                        "created_by_id": 1,
-                        "created_at": "2025-12-19T10:54:10.000000Z",
-                        "updated_at": "2025-12-19T10:54:10.000000Z",
-                        "deleted_at": null,
-                        "is_allow_all_zone": 1,
-                        "blogs_count": 0,
-                        "products_count": 20,
-                        "category_image": null,
-                        "category_meta_image": null,
-                        "category_icon": null,
-                        "zones": [
-                            {
-                                "id": 1,
-                                "name": "India",
-                                "pivot": {
-                                    "category_id": 110,
-                                    "zone_id": 1
-                                }
-                            },
-                            {
-                                "id": 2,
-                                "name": "Adajan",
-                                "pivot": {
-                                    "category_id": 110,
-                                    "zone_id": 2
-                                }
-                            }
-                        ],
-                        "exclude_zones": [],
-                        "subcategories": []
-                    },
-                    {
-                        "id": 111,
-                        "name": "Kurti",
-                        "slug": "kurtis",
-                        "meta_title": null,
-                        "meta_description": null,
-                        "category_meta_image_id": null,
-                        "description": null,
-                        "category_image_id": null,
-                        "category_icon_id": null,
-                        "status": 1,
-                        "type": "product",
-                        "commission_rate": null,
-                        "parent_id": 98,
-                        "created_by_id": 1,
-                        "created_at": "2025-12-19T10:54:21.000000Z",
-                        "updated_at": "2025-12-19T10:54:21.000000Z",
-                        "deleted_at": null,
-                        "is_allow_all_zone": 1,
-                        "blogs_count": 0,
-                        "products_count": 21,
-                        "category_image": null,
-                        "category_meta_image": null,
-                        "category_icon": null,
-                        "zones": [
-                            {
-                                "id": 1,
-                                "name": "India",
-                                "pivot": {
-                                    "category_id": 111,
-                                    "zone_id": 1
-                                }
-                            },
-                            {
-                                "id": 2,
-                                "name": "Adajan",
-                                "pivot": {
-                                    "category_id": 111,
-                                    "zone_id": 2
-                                }
-                            }
-                        ],
-                        "exclude_zones": [],
-                        "subcategories": []
-                    },
-                    {
-                        "id": 112,
-                        "name": "Lehenga Sets",
-                        "slug": "lehenga-choli-sets",
-                        "meta_title": null,
-                        "meta_description": null,
-                        "category_meta_image_id": null,
-                        "description": null,
-                        "category_image_id": null,
-                        "category_icon_id": null,
-                        "status": 1,
-                        "type": "product",
-                        "commission_rate": null,
-                        "parent_id": 98,
-                        "created_by_id": 1,
-                        "created_at": "2025-12-19T10:54:40.000000Z",
-                        "updated_at": "2025-12-19T10:56:34.000000Z",
-                        "deleted_at": null,
-                        "is_allow_all_zone": 1,
-                        "blogs_count": 0,
-                        "products_count": 20,
-                        "category_image": null,
-                        "category_meta_image": null,
-                        "category_icon": null,
-                        "zones": [
-                            {
-                                "id": 1,
-                                "name": "India",
-                                "pivot": {
-                                    "category_id": 112,
-                                    "zone_id": 1
-                                }
-                            },
-                            {
-                                "id": 2,
-                                "name": "Adajan",
-                                "pivot": {
-                                    "category_id": 112,
-                                    "zone_id": 2
-                                }
-                            }
-                        ],
-                        "exclude_zones": [],
-                        "subcategories": []
-                    },
-                    {
-                        "id": 113,
-                        "name": "Salwars Churidars",
-                        "slug": "salwars-churidars",
-                        "meta_title": null,
-                        "meta_description": null,
-                        "category_meta_image_id": null,
-                        "description": null,
-                        "category_image_id": null,
-                        "category_icon_id": null,
-                        "status": 1,
-                        "type": "product",
-                        "commission_rate": null,
-                        "parent_id": 98,
-                        "created_by_id": 1,
-                        "created_at": "2025-12-19T10:54:53.000000Z",
-                        "updated_at": "2025-12-19T10:54:53.000000Z",
-                        "deleted_at": null,
-                        "is_allow_all_zone": 1,
-                        "blogs_count": 0,
-                        "products_count": 20,
-                        "category_image": null,
-                        "category_meta_image": null,
-                        "category_icon": null,
-                        "zones": [
-                            {
-                                "id": 1,
-                                "name": "India",
-                                "pivot": {
-                                    "category_id": 113,
-                                    "zone_id": 1
-                                }
-                            },
-                            {
-                                "id": 2,
-                                "name": "Adajan",
-                                "pivot": {
-                                    "category_id": 113,
-                                    "zone_id": 2
-                                }
-                            }
-                        ],
-                        "exclude_zones": [],
-                        "subcategories": []
-                    },
-                    {
-                        "id": 114,
-                        "name": "Saree",
-                        "slug": "sarees",
-                        "meta_title": null,
-                        "meta_description": null,
-                        "category_meta_image_id": null,
-                        "description": null,
-                        "category_image_id": null,
-                        "category_icon_id": null,
-                        "status": 1,
-                        "type": "product",
-                        "commission_rate": null,
-                        "parent_id": 98,
-                        "created_by_id": 1,
-                        "created_at": "2025-12-19T10:55:08.000000Z",
-                        "updated_at": "2025-12-19T10:55:08.000000Z",
-                        "deleted_at": null,
-                        "is_allow_all_zone": 1,
-                        "blogs_count": 0,
-                        "products_count": 20,
-                        "category_image": null,
-                        "category_meta_image": null,
-                        "category_icon": null,
-                        "zones": [
-                            {
-                                "id": 1,
-                                "name": "India",
-                                "pivot": {
-                                    "category_id": 114,
-                                    "zone_id": 1
-                                }
-                            },
-                            {
-                                "id": 2,
-                                "name": "Adajan",
-                                "pivot": {
-                                    "category_id": 114,
-                                    "zone_id": 2
-                                }
-                            }
-                        ],
-                        "exclude_zones": [],
-                        "subcategories": []
-                    }
-                ]
-            },
-            {
-                "id": 99,
-                "name": "Women Innerwear",
-                "slug": "women-s-innerwear",
-                "meta_title": null,
-                "meta_description": null,
-                "category_meta_image_id": null,
-                "description": null,
-                "category_image_id": null,
-                "category_icon_id": null,
-                "status": 1,
-                "type": "product",
-                "commission_rate": null,
-                "parent_id": 68,
-                "created_by_id": 1,
-                "created_at": "2025-12-19T10:50:30.000000Z",
-                "updated_at": "2025-12-19T10:50:30.000000Z",
-                "deleted_at": null,
-                "is_allow_all_zone": 1,
-                "blogs_count": 0,
-                "products_count": 0,
-                "category_image": null,
-                "category_meta_image": null,
-                "category_icon": null,
-                "zones": [
-                    {
-                        "id": 1,
-                        "name": "India",
-                        "pivot": {
-                            "category_id": 99,
-                            "zone_id": 1
-                        }
-                    },
-                    {
-                        "id": 2,
-                        "name": "Adajan",
-                        "pivot": {
-                            "category_id": 99,
-                            "zone_id": 2
-                        }
-                    }
-                ],
-                "exclude_zones": [],
-                "subcategories": [
-                    {
-                        "id": 115,
-                        "name": "Bra",
-                        "slug": "bras",
-                        "meta_title": null,
-                        "meta_description": null,
-                        "category_meta_image_id": null,
-                        "description": null,
-                        "category_image_id": null,
-                        "category_icon_id": null,
-                        "status": 1,
-                        "type": "product",
-                        "commission_rate": null,
-                        "parent_id": 99,
-                        "created_by_id": 1,
-                        "created_at": "2025-12-19T10:55:23.000000Z",
-                        "updated_at": "2025-12-19T10:55:23.000000Z",
-                        "deleted_at": null,
-                        "is_allow_all_zone": 1,
-                        "blogs_count": 0,
-                        "products_count": 20,
-                        "category_image": null,
-                        "category_meta_image": null,
-                        "category_icon": null,
-                        "zones": [
-                            {
-                                "id": 1,
-                                "name": "India",
-                                "pivot": {
-                                    "category_id": 115,
-                                    "zone_id": 1
-                                }
-                            },
-                            {
-                                "id": 2,
-                                "name": "Adajan",
-                                "pivot": {
-                                    "category_id": 115,
-                                    "zone_id": 2
-                                }
-                            }
-                        ],
-                        "exclude_zones": [],
-                        "subcategories": []
-                    },
-                    {
-                        "id": 116,
-                        "name": "Nightwear",
-                        "slug": "night-shirts-nighties",
-                        "meta_title": null,
-                        "meta_description": null,
-                        "category_meta_image_id": null,
-                        "description": null,
-                        "category_image_id": null,
-                        "category_icon_id": null,
-                        "status": 1,
-                        "type": "product",
-                        "commission_rate": null,
-                        "parent_id": 99,
-                        "created_by_id": 1,
-                        "created_at": "2025-12-19T10:55:37.000000Z",
-                        "updated_at": "2025-12-19T10:55:37.000000Z",
-                        "deleted_at": null,
-                        "is_allow_all_zone": 1,
-                        "blogs_count": 0,
-                        "products_count": 20,
-                        "category_image": null,
-                        "category_meta_image": null,
-                        "category_icon": null,
-                        "zones": [
-                            {
-                                "id": 1,
-                                "name": "India",
-                                "pivot": {
-                                    "category_id": 116,
-                                    "zone_id": 1
-                                }
-                            },
-                            {
-                                "id": 2,
-                                "name": "Adajan",
-                                "pivot": {
-                                    "category_id": 116,
-                                    "zone_id": 2
-                                }
-                            }
-                        ],
-                        "exclude_zones": [],
-                        "subcategories": []
-                    },
-                    {
-                        "id": 117,
-                        "name": "Panty",
-                        "slug": "panties",
-                        "meta_title": null,
-                        "meta_description": null,
-                        "category_meta_image_id": null,
-                        "description": null,
-                        "category_image_id": null,
-                        "category_icon_id": null,
-                        "status": 1,
-                        "type": "product",
-                        "commission_rate": null,
-                        "parent_id": 99,
-                        "created_by_id": 1,
-                        "created_at": "2025-12-19T10:55:49.000000Z",
-                        "updated_at": "2025-12-19T10:55:49.000000Z",
-                        "deleted_at": null,
-                        "is_allow_all_zone": 1,
-                        "blogs_count": 0,
-                        "products_count": 20,
-                        "category_image": null,
-                        "category_meta_image": null,
-                        "category_icon": null,
-                        "zones": [
-                            {
-                                "id": 1,
-                                "name": "India",
-                                "pivot": {
-                                    "category_id": 117,
-                                    "zone_id": 1
-                                }
-                            },
-                            {
-                                "id": 2,
-                                "name": "Adajan",
-                                "pivot": {
-                                    "category_id": 117,
-                                    "zone_id": 2
-                                }
-                            }
-                        ],
-                        "exclude_zones": [],
-                        "subcategories": []
-                    },
-                    {
-                        "id": 118,
-                        "name": "Shape Wear",
-                        "slug": "shapewear",
-                        "meta_title": null,
-                        "meta_description": null,
-                        "category_meta_image_id": null,
-                        "description": null,
-                        "category_image_id": null,
-                        "category_icon_id": null,
-                        "status": 1,
-                        "type": "product",
-                        "commission_rate": null,
-                        "parent_id": 99,
-                        "created_by_id": 1,
-                        "created_at": "2025-12-19T10:56:01.000000Z",
-                        "updated_at": "2025-12-19T10:56:01.000000Z",
-                        "deleted_at": null,
-                        "is_allow_all_zone": 1,
-                        "blogs_count": 0,
-                        "products_count": 17,
-                        "category_image": null,
-                        "category_meta_image": null,
-                        "category_icon": null,
-                        "zones": [
-                            {
-                                "id": 1,
-                                "name": "India",
-                                "pivot": {
-                                    "category_id": 118,
-                                    "zone_id": 1
-                                }
-                            },
-                            {
-                                "id": 2,
-                                "name": "Adajan",
-                                "pivot": {
-                                    "category_id": 118,
-                                    "zone_id": 2
-                                }
-                            }
-                        ],
-                        "exclude_zones": [],
-                        "subcategories": []
-                    },
-                    {
-                        "id": 119,
-                        "name": "Pyjamas Shorts",
-                        "slug": "pyjamas-shorts",
-                        "meta_title": null,
-                        "meta_description": null,
-                        "category_meta_image_id": null,
-                        "description": null,
-                        "category_image_id": null,
-                        "category_icon_id": null,
-                        "status": 1,
-                        "type": "product",
-                        "commission_rate": null,
-                        "parent_id": 99,
-                        "created_by_id": 1,
-                        "created_at": "2025-12-19T10:56:13.000000Z",
-                        "updated_at": "2025-12-19T10:56:13.000000Z",
-                        "deleted_at": null,
-                        "is_allow_all_zone": 1,
-                        "blogs_count": 0,
-                        "products_count": 18,
-                        "category_image": null,
-                        "category_meta_image": null,
-                        "category_icon": null,
-                        "zones": [
-                            {
-                                "id": 1,
-                                "name": "India",
-                                "pivot": {
-                                    "category_id": 119,
-                                    "zone_id": 1
-                                }
-                            },
-                            {
-                                "id": 2,
-                                "name": "Adajan",
-                                "pivot": {
-                                    "category_id": 119,
-                                    "zone_id": 2
-                                }
-                            }
-                        ],
-                        "exclude_zones": [],
-                        "subcategories": []
-                    }
-                ]
-            }
-        ],
-        "parent": null
-    }
+    // {
+    //     "id": 120,
+    //     "name": "Winter Essentials",
+    //     "slug": "winter-essentials",
+    //     "meta_title": null,
+    //     "meta_description": null,
+    //     "category_meta_image_id": null,
+    //     "description": null,
+    //     "category_image_id": null,
+    //     "category_icon_id": null,
+    //     "status": 1,
+    //     "type": "product",
+    //     "commission_rate": null,
+    //     "parent_id": null,
+    //     "created_by_id": 1,
+    //     "created_at": "2025-12-19T11:00:09.000000Z",
+    //     "updated_at": "2025-12-19T11:00:09.000000Z",
+    //     "deleted_at": null,
+    //     "is_allow_all_zone": 1,
+    //     "blogs_count": 0,
+    //     "products_count": 121,
+    //     "category_image": null,
+    //     "category_meta_image": null,
+    //     "category_icon": null,
+    //     "zones": [
+    //         {
+    //             "id": 1,
+    //             "name": "India",
+    //             "pivot": {
+    //                 "category_id": 120,
+    //                 "zone_id": 1
+    //             }
+    //         },
+    //         {
+    //             "id": 2,
+    //             "name": "Adajan",
+    //             "pivot": {
+    //                 "category_id": 120,
+    //                 "zone_id": 2
+    //             }
+    //         }
+    //     ],
+    //     "exclude_zones": [],
+    //     "subcategories": [],
+    //     "parent": null
+    // }
 ]

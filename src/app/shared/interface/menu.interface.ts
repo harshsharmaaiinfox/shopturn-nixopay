@@ -27,6 +27,7 @@ export interface Menu {
     id?: number;
     title: string;
     link_type: string;
+    slug?: string;
     path: string;
     parent_id: number; 
     mega_menu: number | boolean;

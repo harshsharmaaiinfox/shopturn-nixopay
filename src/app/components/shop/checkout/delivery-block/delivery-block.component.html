@@ -34,22 +34,5 @@
                 </div>
             </div>
         </div> -->
-        <div class="col-12 future-box" [class.show]="deliveryType && deliveryType == 'same_day'"
-            *ngIf="setting?.delivery?.same_day_delivery">
-            <div class="future-option">
-                <div class="delivery-items">
-                    <div>
-                        <h4>{{ 'select_timing_slot' | translate }}:</h4>
-                        <ul>
-                            <li [class.active]="selectedIndex && (i + 1) == selectedIndex"
-                                *ngFor="let intervals of setting.delivery.same_day_intervals; let i = index"
-                                (click)="setDeliveryInterval(intervals.description!, (i + 1))">
-                                <a href="javascript:void(0)">{{intervals.description}}</a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
     </div>
 </div>
