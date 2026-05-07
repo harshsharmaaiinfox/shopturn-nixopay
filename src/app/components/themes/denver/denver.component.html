@@ -4,8 +4,8 @@
 <section class="hero-image-section pt-0">
     <div class="container-fluid">
         <div class="hero-image">
-            <img src="assets/images/web-banner.png" alt="Shop Turn Life Hero Banner" class="img-fluid w-100"
-                loading="lazy">
+            <img src="assets/images/banner-hero.png" alt="Shop Turn Life Hero Banner" class="img-fluid w-100"
+                loading="eager" fetchpriority="high" width="1600" height="400">
         </div>
     </div>
 </section>
@@ -20,7 +20,8 @@
                 <div class="col-md-4 col-12">
                     <div class="feature-item">
                         <div class="feature-icon">
-                            <img src="assets/images/trending.png" alt="Trending Fashion Styles Icon" class="img-fluid">
+                            <img src="assets/images/trending.png" alt="Trending Fashion Styles Icon" class="img-fluid"
+                                width="40" height="40">
                         </div>
                         <div class="feature-text">
                             <span>Trending Fashion Styles</span>
@@ -30,7 +31,8 @@
                 <div class="col-md-4 col-12">
                     <div class="feature-item">
                         <div class="feature-icon">
-                            <img src="assets/images/quality.png" alt="100% Quality Checked Icon" class="img-fluid">
+                            <img src="assets/images/quality.png" alt="100% Quality Checked Icon" class="img-fluid"
+                                width="40" height="40">
                         </div>
                         <div class="feature-text">
                             <span>100% Quality Checked</span>
@@ -40,7 +42,8 @@
                 <div class="col-md-4 col-12">
                     <div class="feature-item">
                         <div class="feature-icon">
-                            <img src="assets/images/price.png" alt="Lowest Prices Icon" class="img-fluid">
+                            <img src="assets/images/price.png" alt="Lowest Prices Icon" class="img-fluid" width="40"
+                                height="40">
                         </div>
                         <div class="feature-text">
                             <span>Lowest Prices</span>
@@ -63,7 +66,8 @@
                         style="cursor: pointer;">
                         <div class="category-image-wrapper">
                             <div class="category-image-bg"></div>
-                            <img src="assets/images/denim.png" alt="Denim Category" class="category-image">
+                            <img src="assets/images/denim.png" alt="Denim Category" class="category-image" width="100"
+                                height="100" loading="lazy">
                         </div>
                         <div class="category-label">
                             <span>Denim</span>
@@ -75,7 +79,8 @@
                         style="cursor: pointer;">
                         <div class="category-image-wrapper">
                             <div class="category-image-bg"></div>
-                            <img src="assets/images/T-shirt.png" alt="Men's Shirt Category" class="category-image">
+                            <img src="assets/images/T-shirt.png" alt="Men's Shirt Category" class="category-image"
+                                width="100" height="100" loading="lazy">
                         </div>
                         <div class="category-label">
                             <span>Shirt</span>
@@ -87,7 +92,8 @@
                         style="cursor: pointer;">
                         <div class="category-image-wrapper">
                             <div class="category-image-bg"></div>
-                            <img src="assets/images/t-shirt-cat.png" alt="Men's Tees Category" class="category-image">
+                            <img src="assets/images/t-shirt-cat.png" alt="Men's Tees Category" class="category-image"
+                                width="100" height="100" loading="lazy">
                         </div>
                         <div class="category-label">
                             <span>Tees</span>
@@ -99,7 +105,8 @@
                         style="cursor: pointer;">
                         <div class="category-image-wrapper">
                             <div class="category-image-bg"></div>
-                            <img src="assets/images/Sherwani.png" alt="Men's Sherwani Category" class="category-image">
+                            <img src="assets/images/Sherwani.png" alt="Men's Sherwani Category" class="category-image"
+                                width="100" height="100" loading="lazy">
                         </div>
                         <div class="category-label">
                             <span>Sherwani</span>
@@ -111,7 +118,8 @@
                         style="cursor: pointer;">
                         <div class="category-image-wrapper">
                             <div class="category-image-bg"></div>
-                            <img src="assets/images/Kurta.png" alt="Men's Kurta Category" class="category-image">
+                            <img src="assets/images/Kurta.png" alt="Men's Kurta Category" class="category-image"
+                                width="100" height="100" loading="lazy">
                         </div>
                         <div class="category-label">
                             <span>Kurta</span>
@@ -124,6 +132,21 @@
 </section>
 <!-- Category Section End -->
 
+<!-- Featured Product Section Start -->
+<section class="featured-product-section section-b-space">
+    <div class="container-fluid">
+        <div class="section-t-space">
+            <!-- <div class="collection-heading" style="text-align: left; margin-bottom: 20px;">
+                <h2 style="font-weight: 700; color: inherit; margin: 0;">Featured Collection</h2>
+            </div> -->
+            <app-theme-product [productIds]="[1359, 1358, 1398, 1537, 1562, 1628]" [style]="'horizontal'"
+                [showItem]="6">
+            </app-theme-product>
+        </div>
+    </div>
+</section>
+<!-- Featured Product Section End -->
+
 <!-- Gold Promotional Banner Section Start -->
 <section class="gold-promotional-section">
     <div class="container-fluid">
@@ -131,7 +154,7 @@
             <div class="gold-main-banner">
                 <div class="gold-banner-image">
                     <img src="assets/images/gold-banner.png" alt="Shop Turn Life Gold Promotional Banner"
-                        class="img-fluid">
+                        class="img-fluid" width="1200" height="400" loading="lazy">
                 </div>
                 <!-- Categories Overlay - Top Right -->
                 <div class="gold-categories-overlay">
@@ -141,7 +164,7 @@
                             <div class="gold-category-image-wrapper">
                                 <div class="gold-category-image-bg"></div>
                                 <img src="assets/images/ethnic-jacket.png" alt="Ethnic Jackets Collection"
-                                    class="gold-category-image">
+                                    class="gold-category-image" width="150" height="150" loading="lazy">
                             </div>
                             <div class="gold-category-label">
                                 <span>Etchic Jackets</span>
@@ -151,7 +174,8 @@
                             style="cursor: pointer;">
                             <div class="gold-category-image-wrapper">
                                 <div class="gold-category-image-bg"></div>
-                                <img src="assets/images/img-3.png" alt="Sarees Collection" class="gold-category-image">
+                                <img src="assets/images/img-3.png" alt="Sarees Collection" class="gold-category-image"
+                                    width="150" height="150" loading="lazy">
                             </div>
                             <div class="gold-category-label">
                                 <span>Sarees</span>
@@ -162,7 +186,7 @@
                             <div class="gold-category-image-wrapper">
                                 <div class="gold-category-image-bg"></div>
                                 <img src="assets/images/img-2.png" alt="Wedding Wear Collection"
-                                    class="gold-category-image">
+                                    class="gold-category-image" width="150" height="150" loading="lazy">
                             </div>
                             <div class="gold-category-label">
                                 <span>Wedding Wears</span>
@@ -172,7 +196,8 @@
                             style="cursor: pointer;">
                             <div class="gold-category-image-wrapper">
                                 <div class="gold-category-image-bg"></div>
-                                <img src="assets/images/img-5.png" alt="Lehenga Collection" class="gold-category-image">
+                                <img src="assets/images/img-5.png" alt="Lehenga Collection" class="gold-category-image"
+                                    width="150" height="150" loading="lazy">
                             </div>
                             <div class="gold-category-label">
                                 <span>Lehanga</span>
@@ -205,6 +230,21 @@
 </section>
 <!-- SEO Content Section End -->
 
+<!-- Featured Product Section Start -->
+<section class="featured-product-section section-b-space">
+    <div class="container-fluid">
+        <div class="section-t-space">
+            <div class="collection-heading" style="text-align: left; margin-bottom: 20px;">
+                <h2 style="font-weight: 700; color: inherit; margin: 0;">Featured Collection</h2>
+            </div>
+            <app-theme-product [productIds]="[1417, 1421, 1457, 1459, 1560, 1577]" [style]="'horizontal'"
+                [showItem]="6">
+            </app-theme-product>
+        </div>
+    </div>
+</section>
+<!-- Featured Product Section End -->
+
 <!-- App Promotional Banner Section Start -->
 <section class="app-promotional-section">
     <div class="container-fluid">
@@ -218,7 +258,7 @@
                             <div class="app-discount-amount">35% OFF</div>
                             <div class="app-discount-subtext">on first order</div>
                             <div class="app-discount-note">*Only on Shopturnlife.com</div>
-                            <button class="app-download-btn" [routerLink]="['/collections']" [queryParams]="{sortBy: 'asc', page: 1}">Shop Now</button>
+                            <button class="app-download-btn">Shop Now</button>
                         </div>
                     </div>
                 </div>
@@ -231,7 +271,7 @@
                                 style="cursor: pointer;">
                                 <div class="app-category-image-wrapper">
                                     <img src="assets/images/women-jeans.png" alt="Women's Jeans Collection"
-                                        class="app-category-image">
+                                        class="app-category-image" width="300" height="400" loading="lazy">
                                 </div>
                                 <button class="app-category-btn">Women Jeans</button>
                             </div>
@@ -240,7 +280,7 @@
                                 style="cursor: pointer;">
                                 <div class="app-category-image-wrapper">
                                     <img src="assets/images/winter-men.png" alt="Men's Winter Wear"
-                                        class="app-category-image">
+                                        class="app-category-image" width="300" height="400" loading="lazy">
                                 </div>
                                 <button class="app-category-btn">Winter Men</button>
                             </div>
@@ -249,7 +289,7 @@
                                 style="cursor: pointer;">
                                 <div class="app-category-image-wrapper">
                                     <img src="assets/images/winter-main.png" alt="Women's Winter Collection"
-                                        class="app-category-image">
+                                        class="app-category-image" width="300" height="400" loading="lazy">
                                 </div>
                                 <button class="app-category-btn">Winter Women</button>
                             </div>
@@ -282,7 +322,7 @@
 </section>
 <!-- Collection Page Section with Filters End -->
 
-<!-- Shop Trurn Life Banner End -->
+<!-- Shop Turn Life Banner End -->
 <!-- Category Section Start -->
 <section *ngIf="data?.content?.categories_icon_list?.status">
     <div class="container-fluid">

@@ -37,7 +37,7 @@ export class DenverComponent implements OnInit, AfterViewInit {
     'category': '',
     'tag': '',
     'sort': 'asc',
-    'sortBy': 'asc',
+    'sortBy': '',
     'rating': '',
     'attribute': ''
   };
@@ -53,10 +53,13 @@ export class DenverComponent implements OnInit, AfterViewInit {
 
   ngOnInit() {
     if (this.data?.slug == this.slug) {
+      const featuredProductIds = [1417, 1421, 1457, 1459, 1359, 1358, 1398, 1537, 1562, 1560, 1577, 1628];
+      const allProductIds = Array.from(new Set([...(this.data?.content?.products_ids || []), ...featuredProductIds]));
+
       const getProducts$ = this.store.dispatch(new GetProductByIds({
         status: 1,
-        paginate: this.data?.content?.products_ids.length,
-        ids: this.data?.content?.products_ids?.join(',')
+        paginate: allProductIds.length,
+        ids: allProductIds?.join(',')
       }));
       const getBrand$ = this.store.dispatch(new GetBrands({
         status: 1,
@@ -89,7 +92,7 @@ export class DenverComponent implements OnInit, AfterViewInit {
         'category': params['category'] ? params['category'] : '',
         'tag': params['tag'] ? params['tag'] : '',
         'sort': params['sort'] ? params['sort'] : 'asc',
-        'sortBy': params['sortBy'] ? params['sortBy'] : 'asc',
+        'sortBy': params['sortBy'] ? params['sortBy'] : '',
         'rating': params['rating'] ? params['rating'] : '',
         'attribute': params['attribute'] ? params['attribute'] : ''
       };
@@ -148,8 +151,7 @@ export class DenverComponent implements OnInit, AfterViewInit {
     this.router.navigate(['/collections'], {
       queryParams: {
         category: category,
-        page: 1,
-        sortBy: 'asc'
+        page: 1
       },
       queryParamsHandling: 'merge'
     });

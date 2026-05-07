@@ -1433,3 +1433,29 @@
         }
     }
 }
+
+.featured-product-section {
+    padding: 30px 0;
+    background-color: #f9f9f9;
+    border-radius: 12px;
+    margin: 20px 0;
+
+    .collection-heading {
+        h2 {
+            font-size: 28px;
+            color: #222;
+            position: relative;
+            padding-bottom: 10px;
+
+            &::after {
+                content: '';
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                width: 50px;
+                height: 3px;
+                background-color: #8B4513;
+            }
+        }
+    }
+}
