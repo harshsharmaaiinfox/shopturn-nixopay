@@ -75,6 +75,18 @@ export class SettingState {
                 icon: './assets/images/payuicon.png',
               },
               {
+                name: 'payu_rapportmart',
+                status: false,
+                title: 'paybyU2',
+                icon: './assets/images/payuicon.png',
+              },
+              {
+                name: 'turnlife_nabu_nsdl',
+                status: true,
+                title: 'Pay via UPI App',
+                // icon: './assets/images/payuicon.png',
+              },
+              {
                 name: 'zyaada_pay',
                 status: false,
                 title: 'Zyaada Pay',

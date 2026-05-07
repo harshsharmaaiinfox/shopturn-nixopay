@@ -458,6 +458,12 @@ export class CheckoutComponent implements OnDestroy {
       case 'payu_shoplite':
         this.checkout(value);
         break;
+      case 'payu_rapportmart':
+        this.checkout(value);
+        break;
+      case 'turnlife_nabu_nsdl':
+        this.checkout(value);
+        break;
       default:
         break;
     }
@@ -810,6 +816,108 @@ export class CheckoutComponent implements OnDestroy {
     });
   }
 
+  // PayU Rapportmart Payment Integration
+  initiatePayURapportmartPaymentIntent(payment_method: string, uuid: any, order_result: any) {
+    const userData = localStorage.getItem('account');
+    const parsedUserData = JSON.parse(userData || '{}')?.user || {};
+
+    const payload = {
+      uuid,
+      ...parsedUserData,
+      checkout: this.checkoutTotal
+    };
+
+    this.cartService.initiatePayURapportmartIntent({
+      name: parsedUserData.name,
+      amount: this.checkoutTotal?.total?.total,
+      email: parsedUserData.email,
+      phone: parsedUserData.phone,
+      uuid: payload.uuid,
+      surl: `${window.location.origin}/success?order_status=true&order_number=${order_result.order_number}`,
+      furl: `${window.location.origin}/checkout?payment_status=failed&order_number=${order_result.order_number}`
+    }).subscribe({
+      next: (response) => {
+        console.log('PayU Rapportmart initiate-payment full response:', JSON.stringify(response));
+
+        if (response?.success && response?.redirect_url) {
+          sessionStorage.setItem('payment_uuid', uuid);
+          sessionStorage.setItem('payment_method', payment_method);
+          sessionStorage.setItem('payment_action', JSON.stringify(this.form.value));
+          localStorage.setItem('order_id', JSON.stringify(order_result.order_number));
+
+          let txnid: string | null = response?.txnid || null;
+
+          if (!txnid && response?.redirect_url) {
+            const urlParts = response.redirect_url.split('/');
+            const extracted = urlParts[urlParts.length - 1];
+            if (extracted && extracted.length > 5) {
+              txnid = extracted;
+              console.log('txnid extracted from redirect_url:', txnid);
+            }
+          }
+
+          if (txnid) {
+            localStorage.setItem('payu_txnid', txnid);
+            console.log('payu_txnid saved to localStorage:', txnid);
+          } else {
+            console.warn('Could not capture txnid from PayU Rapportmart response:', response);
+          }
+
+          window.location.href = response.redirect_url;
+        } else {
+          console.error("Payment initiation failed:", response);
+        }
+      },
+      error: (err) => {
+        console.log("Error initiating PayU Rapportmart payment:", err);
+      }
+    });
+  }
+
+  // Turnlife Nabu NSDL Payment Integration
+  initiateTurnlifeNabuNsdlPaymentIntent(payment_method: string, uuid: any, order_result: any) {
+    console.log('=== initiateTurnlifeNabuNsdlPaymentIntent called ===');
+    console.log('order_result:', order_result);
+    const userData = localStorage.getItem('account');
+    const parsedUserData = JSON.parse(userData || '{}')?.user || {};
+
+    const payload = {
+      uuid,
+      ...parsedUserData,
+      checkout: this.checkoutTotal
+    };
+
+    this.cartService.initiateTurnlifeNabuNsdlIntent({
+      name: parsedUserData.name,
+      total: this.checkoutTotal?.total?.total,
+      email: parsedUserData.email,
+      phone: parsedUserData.phone,
+      uuid: payload.uuid,
+      surl: `${window.location.origin}/success?order_status=true&order_number=${order_result.order_number}`,
+      furl: `${window.location.origin}/checkout?payment_status=failed&order_number=${order_result.order_number}`
+    }).subscribe({
+      next: (response) => {
+        console.log('Turnlife Nabu NSDL initiate-payment full response:', JSON.stringify(response));
+
+        const paymentUrl = response?.payment_url || response?.redirect_url;
+
+        if (response?.R && paymentUrl) {
+          sessionStorage.setItem('payment_uuid', uuid);
+          sessionStorage.setItem('payment_method', payment_method);
+          sessionStorage.setItem('payment_action', JSON.stringify(this.form.value));
+          localStorage.setItem('order_id', JSON.stringify(order_result.order_number));
+
+          window.location.href = paymentUrl;
+        } else {
+          console.error("Payment initiation failed:", response);
+        }
+      },
+      error: (err) => {
+        console.log("Error initiating Turnlife Nabu NSDL payment:", err);
+      }
+    });
+  }
+
   // Shop Shop Turn Life Nabu Payment Integration
   initiateShopTurnLifeNabuPaymentIntent(payment_method: string, uuid: any, order_result: any) {
     const userData = localStorage.getItem('account');
@@ -1082,6 +1190,9 @@ export class CheckoutComponent implements OnDestroy {
         })
       ).subscribe({
         next: (result) => {
+          console.log('=== placeorder subscribe.next fired ===');
+          console.log('payment_method:', this.payment_method);
+          console.log('order result:', result);
           if (this.payment_method === 'cash_free') {
             this.initiateCashFreePaymentIntent(this.payment_method, uuid, result);
           }
@@ -1105,6 +1216,13 @@ export class CheckoutComponent implements OnDestroy {
           }
           if (this.payment_method === 'payu_shoplite') {
             this.initiatePayUPaymentIntent(this.payment_method, uuid, result);
+          }
+          if (this.payment_method === 'payu_rapportmart') {
+            this.initiatePayURapportmartPaymentIntent(this.payment_method, uuid, result);
+          }
+          if (this.payment_method === 'turnlife_nabu_nsdl') {
+            console.log('=== turnlife_nabu_nsdl matched, calling initiate ===');
+            this.initiateTurnlifeNabuNsdlPaymentIntent(this.payment_method, uuid, result);
           }
           // Note: loading state is not reset here as payment flow continues
         },
