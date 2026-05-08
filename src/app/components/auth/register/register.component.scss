@@ -532,3 +532,189 @@
     }
   }
 }
+
+// Email Verification Popup
+.email-verify-modal-wrapper {
+  background: white;
+  overflow: hidden;
+  width: 100%;
+}
+
+// Success Header
+.email-verify-header {
+  background: linear-gradient(135deg, #2B5F5E 0%, #1f4544 100%);
+  padding: 1.5rem 2rem;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+
+  .success-checkmark {
+    width: 52px;
+    height: 52px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    backdrop-filter: blur(10px);
+  }
+
+  .email-verify-title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: white;
+    margin: 0;
+  }
+}
+
+// Body
+.email-verify-body {
+  padding: 1.75rem 2rem;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.email-verify-icon {
+  width: 64px;
+  height: 64px;
+  background: linear-gradient(135deg, rgba(43, 95, 94, 0.08) 0%, rgba(43, 95, 94, 0.14) 100%);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid #2B5F5E;
+  color: #2B5F5E;
+}
+
+.email-verify-message {
+  font-size: 0.9rem;
+  color: #555;
+  margin: 0;
+  line-height: 1.6;
+  max-width: 340px;
+}
+
+// Open Mail Section
+.open-mail-section {
+  width: 100%;
+  margin-top: 0.25rem;
+
+  .open-mail-label {
+    font-size: 0.8rem;
+    color: #999;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 0.75rem;
+    font-weight: 600;
+  }
+
+  .mail-buttons {
+    display: flex;
+    gap: 0.75rem;
+    justify-content: center;
+
+    .mail-btn {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.6rem 1.25rem;
+      border-radius: 10px;
+      border: 2px solid #e8e8e8;
+      background: #fafafa;
+      text-decoration: none;
+      color: #333;
+      font-weight: 600;
+      font-size: 0.9rem;
+      transition: all 0.25s ease;
+      cursor: pointer;
+
+      img {
+        flex-shrink: 0;
+      }
+
+      &:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      }
+
+      &.gmail-btn:hover {
+        border-color: #ea4335;
+        background: #fff5f4;
+      }
+
+      &.outlook-btn:hover {
+        border-color: #0078d4;
+        background: #f0f7ff;
+      }
+    }
+  }
+}
+
+// Footer
+.email-verify-footer {
+  padding: 1.25rem 2rem;
+  border-top: 1px solid #f0f0f0;
+  text-align: center;
+  background: #fafafa;
+}
+
+.btn-ok {
+  padding: 0.7rem 2.5rem;
+  border-radius: 10px;
+  font-weight: 600;
+  font-size: 0.95rem;
+  border: none;
+  background: linear-gradient(135deg, #2B5F5E 0%, #1f4544 100%);
+  color: white;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(43, 95, 94, 0.3);
+  letter-spacing: 0.3px;
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(43, 95, 94, 0.4);
+  }
+}
+
+::ng-deep .email-verify-modal {
+  .modal-content {
+    border: none !important;
+    border-radius: 16px !important;
+    overflow: hidden !important;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15) !important;
+    padding: 0 !important;
+    background: white !important;
+  }
+
+  .modal-dialog {
+    max-width: 420px !important;
+  }
+}
+
+@media (max-width: 576px) {
+  .email-verify-header {
+    padding: 1.25rem 1.5rem;
+  }
+
+  .email-verify-body {
+    padding: 1.5rem;
+  }
+
+  .open-mail-section .mail-buttons {
+    flex-direction: column;
+
+    .mail-btn {
+      justify-content: center;
+    }
+  }
+
+  .email-verify-footer {
+    padding: 1rem 1.5rem;
+  }
+}

@@ -52,6 +52,8 @@ export class ProductDetailModalComponent {
     this.modalService.open(this.productDetailModal, {
       ariaLabelledBy: 'Product-Detail-Modal',
       centered: true,
+      backdrop: false,
+      scrollable: true,
       windowClass: 'theme-modal view-modal modal-lg'
     }).result.then((result) => {
       `Result ${result}`

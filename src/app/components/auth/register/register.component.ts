@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild, TemplateRef } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Store, Select } from '@ngxs/store';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Observable } from 'rxjs';
 import { CustomValidators } from '../../../shared/validator/password-match';
 import { Register } from '../../../shared/action/auth.action';
@@ -22,6 +23,7 @@ export class RegisterComponent {
 
   @Select(SettingState.setting) setting$: Observable<Values>;
   @Select(ThemeOptionState.themeOptions) themeOption$: Observable<Option>;
+  @ViewChild('emailVerifyModal', { static: false }) emailVerifyModal: TemplateRef<any>;
 
   public form: FormGroup;
   public breadcrumb: Breadcrumb = {
@@ -39,7 +41,8 @@ export class RegisterComponent {
     private store: Store,
     private router: Router,
     private formBuilder: FormBuilder,
-    private notificationService: NotificationService
+    private notificationService: NotificationService,
+    private modalService: NgbModal
   ) {
     this.form = this.formBuilder.group({
       name: new FormControl('', [Validators.required, Validators.pattern(/^[A-Za-z\s]*$/)]),
@@ -183,7 +186,14 @@ export class RegisterComponent {
     if(this.form.valid) {
       this.store.dispatch(new Register(this.form.value)).subscribe({
           complete: () => {
-            this.router.navigateByUrl('/account/dashboard');
+            this.modalService.open(this.emailVerifyModal, {
+              centered: true,
+              backdrop: false,
+              windowClass: 'email-verify-modal'
+            }).result.then(
+              () => this.router.navigateByUrl('/auth/login'),
+              () => this.router.navigateByUrl('/auth/login')
+            );
           }
         }
       );

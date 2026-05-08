@@ -580,6 +580,24 @@ section.product-section.section-b-space {
     max-width: 700px !important;
 }
 
+.theme-modal.view-modal .modal-dialog {
+    max-width: 900px !important;
+    max-height: 90vh !important;
+    margin: 5vh auto !important;
+}
+
+.theme-modal.view-modal .modal-dialog .modal-content {
+    max-height: 90vh !important;
+    overflow: hidden !important;
+    display: flex !important;
+    flex-direction: column !important;
+}
+
+.theme-modal.view-modal .modal-dialog .modal-content .modal-body {
+    overflow-y: auto !important;
+    flex: 1 1 auto !important;
+}
+
 button#place_order {
     padding: 10px 20px;
     margin-left: 30px;

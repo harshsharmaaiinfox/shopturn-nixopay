@@ -272,3 +272,49 @@
         </div>
     </div>
 </section>
+
+<!-- Email Verification Popup -->
+<ng-template #emailVerifyModal let-modal>
+  <div class="email-verify-modal-wrapper">
+    <!-- Success Header -->
+    <div class="email-verify-header">
+      <div class="success-checkmark">
+        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M20 6L9 17L4 12" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <h4 class="email-verify-title">{{ 'Registration Successful!' | translate }}</h4>
+    </div>
+
+    <!-- Body Content -->
+    <div class="email-verify-body">
+      <div class="email-verify-icon">
+        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="3" y="5" width="18" height="14" rx="2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M3 7L12 13L21 7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <p class="email-verify-message">{{ 'We have sent a verification link to your email. Please check your inbox and verify to continue.' | translate }}</p>
+
+      <!-- Open Mail Buttons -->
+      <div class="open-mail-section">
+        <p class="open-mail-label">{{ 'Open your email app' | translate }}</p>
+        <div class="mail-buttons">
+          <a href="https://mail.google.com" target="_blank" rel="noopener noreferrer" class="mail-btn gmail-btn">
+            <img src="https://www.gstatic.com/images/branding/product/1x/gmail_2020q4_32dp.png" alt="Gmail" width="24" height="24">
+            <span>{{ 'Gmail' | translate }}</span>
+          </a>
+          <a href="https://outlook.live.com/mail" target="_blank" rel="noopener noreferrer" class="mail-btn outlook-btn">
+            <img src="https://img.icons8.com/color/48/microsoft-outlook-2019--v2.png" alt="Outlook" width="24" height="24">
+            <span>{{ 'Outlook' | translate }}</span>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="email-verify-footer">
+      <button class="btn-ok" (click)="modal.close('ok')">{{ 'Go to Login' | translate }}</button>
+    </div>
+  </div>
+</ng-template>

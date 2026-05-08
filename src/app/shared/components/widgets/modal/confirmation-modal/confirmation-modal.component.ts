@@ -22,7 +22,8 @@ export class ConfirmationModalComponent {
     this.modalService.open(this.ConfirmationModal, {
       ariaLabelledBy: 'Confirmation-Modal',
       centered: true,
-      windowClass: 'theme-modal text-center'
+      windowClass: 'theme-modal text-center',
+      backdrop: false
     }).result.then((result) => {
       `Result ${result}`
     }, (reason) => {

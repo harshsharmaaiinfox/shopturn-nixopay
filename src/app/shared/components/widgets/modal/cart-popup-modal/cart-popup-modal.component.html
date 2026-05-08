@@ -33,23 +33,6 @@
                 <p class="product-description" *ngIf="product?.short_description"
                   [innerHTML]="product?.short_description"></p>
 
-                <div class="product-specs-box">
-                  <div class="spec-row" *ngIf="product?.sku">
-                    <span class="spec-label">SKU:</span>
-                    <span class="spec-value">{{ product?.sku }}</span>
-                  </div>
-                  <div class="spec-row">
-                    <span class="spec-label">Stock Status:</span>
-                    <span class="stock-status" [class.in-stock]="product?.stock_status === 'in_stock'"
-                      [class.out-of-stock]="product?.stock_status !== 'in_stock'">
-                      {{ product?.stock_status === 'in_stock' ? 'In Stock' : 'Out of Stock' }}
-                    </span>
-                  </div>
-                  <div class="spec-row" *ngIf="product?.quantity">
-                    <span class="spec-label">Quantity:</span>
-                    <span class="spec-value">{{ product?.quantity }} Items Left</span>
-                  </div>
-                </div>
 
               </div>
             </div>

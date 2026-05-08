@@ -268,6 +268,7 @@ export class AddressModalComponent {
     this.modalService.open(this.AddressModal, {
       ariaLabelledBy: 'address-add-Modal',
       centered: true,
+      backdrop: false,
       windowClass: 'theme-modal modal-lg address-modal'
     }).result.then((result) => {
       `Result ${result}`

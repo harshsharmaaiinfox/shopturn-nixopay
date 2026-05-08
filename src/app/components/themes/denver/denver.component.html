@@ -57,74 +57,56 @@
 <!-- Features Banner Section End -->
 
 <!-- Category Section Start -->
-<section class="category-showcase-section">
-    <div class="container-fluid">
-        <div class="category-showcase-wrapper">
-            <div class="row g-1">
-                <div class="col-6 col-sm-4 col-md-3 col-lg">
-                    <div class="category-showcase-item" (click)="selectCategory('jeans', $event)"
-                        style="cursor: pointer;">
-                        <div class="category-image-wrapper">
-                            <div class="category-image-bg"></div>
-                            <img src="assets/images/denim.png" alt="Denim Category" class="category-image" width="100"
-                                height="100" loading="lazy">
-                        </div>
-                        <div class="category-label">
-                            <span>Denim</span>
-                        </div>
-                    </div>
+<section class="cat-section">
+    <div class="container-fluid px-lg-5 px-3">
+        <div class="cat-header">
+            <h3 class="cat-title">Shop By Category</h3>
+            <p class="cat-subtitle">Explore our curated collections</p>
+        </div>
+        <div class="cat-grid">
+            <div class="cat-card" (click)="selectCategory('jeans', $event)">
+                <div class="cat-img-area">
+                    <img src="assets/images/Jeans.png" alt="Denim" loading="lazy">
                 </div>
-                <div class="col-6 col-sm-4 col-md-3 col-lg">
-                    <div class="category-showcase-item" (click)="selectCategory('shirt', $event)"
-                        style="cursor: pointer;">
-                        <div class="category-image-wrapper">
-                            <div class="category-image-bg"></div>
-                            <img src="assets/images/T-shirt.png" alt="Men's Shirt Category" class="category-image"
-                                width="100" height="100" loading="lazy">
-                        </div>
-                        <div class="category-label">
-                            <span>Shirt</span>
-                        </div>
-                    </div>
+                <div class="cat-label">
+                    <span class="cat-name">Denim</span>
+                    <span class="cat-shop-link">Shop Now <i class="ri-arrow-right-line"></i></span>
                 </div>
-                <div class="col-6 col-sm-4 col-md-3 col-lg">
-                    <div class="category-showcase-item" (click)="selectCategory('t-shirts', $event)"
-                        style="cursor: pointer;">
-                        <div class="category-image-wrapper">
-                            <div class="category-image-bg"></div>
-                            <img src="assets/images/t-shirt-cat.png" alt="Men's Tees Category" class="category-image"
-                                width="100" height="100" loading="lazy">
-                        </div>
-                        <div class="category-label">
-                            <span>Tees</span>
-                        </div>
-                    </div>
+            </div>
+            <div class="cat-card" (click)="selectCategory('shirt', $event)">
+                <div class="cat-img-area">
+                    <img src="assets/images/shirt.png" alt="Shirt" loading="lazy">
                 </div>
-                <div class="col-6 col-sm-4 col-md-3 col-lg">
-                    <div class="category-showcase-item" (click)="selectCategory('sherwani-sets', $event)"
-                        style="cursor: pointer;">
-                        <div class="category-image-wrapper">
-                            <div class="category-image-bg"></div>
-                            <img src="assets/images/Sherwani.png" alt="Men's Sherwani Category" class="category-image"
-                                width="100" height="100" loading="lazy">
-                        </div>
-                        <div class="category-label">
-                            <span>Sherwani</span>
-                        </div>
-                    </div>
+                <div class="cat-label">
+                    <span class="cat-name">Shirt</span>
+                    <span class="cat-shop-link">Shop Now <i class="ri-arrow-right-line"></i></span>
                 </div>
-                <div class="col-6 col-sm-4 col-md-3 col-lg">
-                    <div class="category-showcase-item" (click)="selectCategory('kurtas', $event)"
-                        style="cursor: pointer;">
-                        <div class="category-image-wrapper">
-                            <div class="category-image-bg"></div>
-                            <img src="assets/images/Kurta.png" alt="Men's Kurta Category" class="category-image"
-                                width="100" height="100" loading="lazy">
-                        </div>
-                        <div class="category-label">
-                            <span>Kurta</span>
-                        </div>
-                    </div>
+            </div>
+            <div class="cat-card" (click)="selectCategory('t-shirts', $event)">
+                <div class="cat-img-area">
+                    <img src="assets/images/tshirt.png" alt="Tees" loading="lazy">
+                </div>
+                <div class="cat-label">
+                    <span class="cat-name">Tees</span>
+                    <span class="cat-shop-link">Shop Now <i class="ri-arrow-right-line"></i></span>
+                </div>
+            </div>
+            <div class="cat-card" (click)="selectCategory('sherwani-sets', $event)">
+                <div class="cat-img-area">
+                    <img src="assets/images/sherwani.png" alt="Sherwani" loading="lazy">
+                </div>
+                <div class="cat-label">
+                    <span class="cat-name">Sherwani</span>
+                    <span class="cat-shop-link">Shop Now <i class="ri-arrow-right-line"></i></span>
+                </div>
+            </div>
+            <div class="cat-card" (click)="selectCategory('kurtas', $event)">
+                <div class="cat-img-area">
+                    <img src="assets/images/kurta.png" alt="Kurta" loading="lazy">
+                </div>
+                <div class="cat-label">
+                    <span class="cat-name">Kurta</span>
+                    <span class="cat-shop-link">Shop Now <i class="ri-arrow-right-line"></i></span>
                 </div>
             </div>
         </div>
@@ -139,8 +121,8 @@
             <!-- <div class="collection-heading" style="text-align: left; margin-bottom: 20px;">
                 <h2 style="font-weight: 700; color: inherit; margin: 0;">Featured Collection</h2>
             </div> -->
-            <app-theme-product [productIds]="[1359, 1358, 1398, 1537, 1562, 1628]" [style]="'horizontal'"
-                [showItem]="6">
+            <app-theme-product [productIds]="[1115, 1116, 1117, 1359, 1358, 1398, 1537, 1628]" [style]="'horizontal'"
+                [showItem]="4">
             </app-theme-product>
         </div>
     </div>
@@ -238,7 +220,7 @@
                 <h2 style="font-weight: 700; color: inherit; margin: 0;">Featured Collection</h2>
             </div>
             <app-theme-product [productIds]="[1417, 1421, 1457, 1459, 1560, 1577]" [style]="'horizontal'"
-                [showItem]="6">
+                [showItem]="4">
             </app-theme-product>
         </div>
     </div>

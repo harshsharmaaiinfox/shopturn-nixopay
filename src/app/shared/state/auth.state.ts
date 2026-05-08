@@ -66,13 +66,6 @@ export class AuthState {
   register(ctx: StateContext<AuthStateModel>, action: Register) {
     return this.authService.register(action.payload).pipe(
       tap({
-        next: result => {
-          const state = ctx.getState();
-          ctx.patchState({
-            ...state,
-            access_token: result.access_token,
-          });
-        },
         error: err => {
           throw new Error(err?.error?.message);
         }
