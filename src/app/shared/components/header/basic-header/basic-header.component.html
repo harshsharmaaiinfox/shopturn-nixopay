@@ -13,11 +13,6 @@
                           <div class="search-box">
                               <app-box-search></app-box-search>
                           </div>
-                          <div class="header-links">
-                              <a [routerLink]="['/become-a-supplier']" class="header-link">Become a Supplier</a>
-                              <span class="link-separator"></span>
-                              <a [routerLink]="['/investor-relations']" class="header-link">Investor Relations</a>
-                          </div>
                       </div>
                       <div class="rightside-box">
                           <ul class="right-side-menu">
@@ -52,14 +47,6 @@
                             </div>
                             <div class="offcanvas-body modern-menu-body">
                                 <app-menu></app-menu>
-                                <!-- Mobile Menu Footer Links -->
-                                <div class="mobile-menu-footer">
-                                    <div class="mobile-menu-links">
-                                        <a [routerLink]="['/become-a-supplier']" class="mobile-menu-link">Become a Supplier</a>
-                                        <span class="mobile-link-separator"></span>
-                                        <a [routerLink]="['/investor-relations']" class="mobile-menu-link">Investor Relations</a>
-                                    </div>
-                                </div>
                             </div>
                         </div>
                         <div class="offcanvas-backdrop fade" *ngIf="active" [class.show]="active" (click)="toggle(false)"></div>
