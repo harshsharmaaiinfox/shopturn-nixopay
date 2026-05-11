@@ -87,6 +87,16 @@ header {
   position: relative;
   z-index: 1060;
 
+  // When mobile menu is open, hide the header bar so the offcanvas
+  // is fully visible and the close button is accessible.
+  &.menu-open {
+    @media (max-width: 767px) {
+      .top-nav {
+        display: none;
+      }
+    }
+  }
+
   &.active {
     .sticky-header {
       position: fixed;

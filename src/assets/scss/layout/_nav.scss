@@ -922,11 +922,15 @@ header {
         @include mq-max(xl) {
           width: calc(300px + (320 - 300) * ((100vw - 320px) / (1199 - 320)));
           transform: translateX(-100%);
-          z-index: 7;
+          z-index: 1065;
 
           body.rtl & {
             transform: translateX(100%);
           }
+        }
+
+        @include mq-max(md) {
+          width: 100%;
         }
       }
     }
@@ -973,6 +977,10 @@ header {
 
     @include mq-max(xl) {
       padding: calc(13px + (20 - 13) * ((100vw - 320px) / (1200 - 320))) calc(16px + (24 - 16) * ((100vw - 320px) / (1200 - 320)));
+    }
+
+    @include mq-max(md) {
+      padding-bottom: 75px;
     }
 
     &::-webkit-scrollbar {
@@ -1484,14 +1492,14 @@ header {
       -webkit-box-flex: 1;
 
       @include mq-max(xl) {
-        z-index: 4;
+        z-index: 1065;
         -webkit-box-flex: 2;
       }
     }
   }
 
   .offcanvas-backdrop {
-    z-index: 6;
+    z-index: 1061;
   }
 
   @media (max-width: 1199px) {

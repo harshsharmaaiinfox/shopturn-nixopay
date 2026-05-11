@@ -1,4 +1,4 @@
-<header class="header-2 " [class.active]="stick && sticky" class="{{!stick && sticky ? class : ''}}">
+<header class="header-2 " [class.active]="stick && sticky" [class.menu-open]="active" class="{{!stick && sticky ? class : ''}}">
     <app-topbar [data]="data" *ngIf="data?.header?.page_top_bar_enable"></app-topbar>
     <div class="top-nav top-header sticky-header sticky-header-3">
         <div class="container-fluid">
