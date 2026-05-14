@@ -1,5 +1,5 @@
 <!-- My Account Basic Style -->
-<div *ngIf="style == 'basic'" class="profile-icon-wrapper">
+<div *ngIf="style == 'basic'" class="profile-icon-wrapper" [class.dropdown-hidden]="hideDropdown">
     <div class="delivery-login-box simple-icon-box">
         <div class="delivery-icon">
             <i class="ri-user-line" *ngIf="!(isAuthenticated$ | async) else profile"></i>
@@ -30,7 +30,7 @@
                     <a [routerLink]="['/account/dashboard']"><i class="ri-user-settings-line me-2"></i> {{ 'Profile' | translate }}</a>
                 </li>
                 <li class="product-box-contain">
-                    <a href="javascript:void(0)" (click)="confirmationModal.openModal()"><i class="ri-logout-circle-r-line me-2"></i> {{ 'Logout' | translate }}</a>
+                    <a href="javascript:void(0)" (click)="openLogoutConfirmation()"><i class="ri-logout-circle-r-line me-2"></i> {{ 'Logout' | translate }}</a>
                 </li>
             </ul>
         </div>
@@ -39,5 +39,6 @@
 
 <app-confirmation-modal
     #confirmationModal
-    (confirmed)="logout()">
+    (confirmed)="logout()"
+    (dismissed)="onModalDismissed()">
 </app-confirmation-modal>

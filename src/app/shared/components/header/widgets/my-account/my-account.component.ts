@@ -21,9 +21,21 @@ export class MyAccountComponent {
 
   @ViewChild("confirmationModal") ConfirmationModal: ConfirmationModalComponent;
 
+  hideDropdown = false;
+
   constructor(private store: Store) {}
 
+  openLogoutConfirmation() {
+    this.hideDropdown = true;
+    this.ConfirmationModal.openModal();
+  }
+
+  onModalDismissed() {
+    this.hideDropdown = false;
+  }
+
   logout() {
+    this.hideDropdown = false;
     this.store.dispatch(new Logout());
   }
 

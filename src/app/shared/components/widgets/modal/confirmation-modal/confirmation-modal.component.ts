@@ -14,6 +14,7 @@ export class ConfirmationModalComponent {
   @ViewChild("confirmationModal", { static: false }) ConfirmationModal: TemplateRef<any>;
 
   @Output() confirmed: EventEmitter<boolean> = new EventEmitter();
+  @Output() dismissed: EventEmitter<void> = new EventEmitter();
 
   constructor(private modalService: NgbModal) { }
 
@@ -23,11 +24,12 @@ export class ConfirmationModalComponent {
       ariaLabelledBy: 'Confirmation-Modal',
       centered: true,
       windowClass: 'theme-modal text-center',
-      backdrop: false
+      backdrop: 'static'
     }).result.then((result) => {
       `Result ${result}`
     }, (reason) => {
       this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+      this.dismissed.emit();
     });
   }
 
