@@ -413,8 +413,11 @@ export class CheckoutComponent implements OnDestroy {
       next: () => {
         this.checkoutOtpModalRef?.close();
         const syncPayload = this.pendingGuestItems.map((item: Cart) => ({
+          id: item.id || null,
+          product: item.product || null,
           product_id: item.product_id,
-          variation_id: item.variation_id || '',
+          variation: item.variation || null,
+          variation_id: item.variation_id || null,
           quantity: item.quantity,
         }));
         if (syncPayload.length) {
