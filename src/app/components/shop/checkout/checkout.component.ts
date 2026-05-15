@@ -1285,6 +1285,7 @@ export class CheckoutComponent implements OnDestroy {
   ngOnDestroy() {
     // Removed cart clearing on navigation - users should be able to go back to cart page
     // this.store.dispatch(new ClearCart());
+    this.modalService.dismissAll();
     this.form.reset();
     this.pollingSubscription && this.pollingSubscription.unsubscribe();
     this.destroy$.next();

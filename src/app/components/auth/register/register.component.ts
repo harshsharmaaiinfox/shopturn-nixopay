@@ -219,6 +219,6 @@ export class RegisterComponent implements OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.modalRef?.close();
+    this.modalService.dismissAll();
   }
 }
