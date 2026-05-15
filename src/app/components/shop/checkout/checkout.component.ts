@@ -1,4 +1,6 @@
 import { Component, ElementRef, TemplateRef, ViewChild, OnDestroy } from '@angular/core';
+import { AuthService } from '../../../shared/services/auth.service';
+import { NotificationService } from '../../../shared/services/notification.service';
 import { Store, Select } from '@ngxs/store';
 import { FormBuilder, FormControl, FormGroup, Validators, FormArray } from '@angular/forms';
 import { Select2Data, Select2UpdateEvent } from 'ng-select2-component';
@@ -58,6 +60,7 @@ export class CheckoutComponent implements OnDestroy {
   @ViewChild("addressModal") AddressModal: AddressModalComponent;
   @ViewChild('cpn', { static: false }) cpnRef: ElementRef<HTMLInputElement>;
   @ViewChild("payByQRModal") payByQRModal: TemplateRef<any>;
+  @ViewChild('checkoutOtpModal') checkoutOtpModal: TemplateRef<any>;
 
   public form: FormGroup;
   public coupon: boolean = true;
@@ -83,6 +86,10 @@ export class CheckoutComponent implements OnDestroy {
   payByNeoStep = 0;
   payment_method = '';
   registerLoading = false;
+  public otpForm: FormGroup;
+  public checkoutRegistrationEmail: string = '';
+  private checkoutOtpModalRef: any;
+  private pendingGuestItems: any[] = [];
 
   // Calculate cart totals with shipping and tax as zero (shown regardless of login)
   getCalculatedTotals() {
@@ -123,8 +130,13 @@ export class CheckoutComponent implements OnDestroy {
     private formBuilder: FormBuilder, public cartService: CartService,
     private modalService: NgbModal,
     private sanitizer: DomSanitizer,
-    private orderService: OrderService
+    private orderService: OrderService,
+    private authService: AuthService,
+    private notificationService: NotificationService
   ) {
+    this.otpForm = this.formBuilder.group({
+      otp: new FormControl('', [Validators.required, Validators.minLength(6)])
+    });
     this.store.dispatch(new GetSettingOption());
 
     this.form = this.formBuilder.group({
@@ -370,30 +382,54 @@ export class CheckoutComponent implements OnDestroy {
       password_confirmation: passwordCtrl?.value,
     };
 
-    // Snapshot current guest cart so we can push it to server after register
-    const guestItems = this.store.selectSnapshot(state => state.cart?.items) || [];
+    // Snapshot current guest cart so we can push it to server after OTP verify
+    this.pendingGuestItems = this.store.selectSnapshot(state => state.cart?.items) || [];
 
     this.registerLoading = true;
     this.store.dispatch(new Register(payload)).subscribe({
+      complete: () => {
+        this.registerLoading = false;
+        this.checkoutRegistrationEmail = payload.email;
+        this.otpForm.reset();
+        this.checkoutOtpModalRef = this.modalService.open(this.checkoutOtpModal, {
+          centered: true,
+          backdrop: false,
+          keyboard: false,
+          windowClass: 'otp-verify-modal'
+        });
+      },
+      error: () => { this.registerLoading = false; }
+    });
+  }
+
+  verifyCheckoutOtp() {
+    this.otpForm.markAllAsTouched();
+    if (this.otpForm.invalid) return;
+
+    this.authService.verifyRegistrationOtp({
+      email: this.checkoutRegistrationEmail,
+      otp: this.otpForm.value.otp
+    }).subscribe({
       next: () => {
-        const syncPayload = guestItems.map((item: Cart) => ({
+        this.checkoutOtpModalRef?.close();
+        const syncPayload = this.pendingGuestItems.map((item: Cart) => ({
           product_id: item.product_id,
           variation_id: item.variation_id || '',
           quantity: item.quantity,
         }));
-
         if (syncPayload.length) {
           this.store.dispatch(new SyncCart(syncPayload)).subscribe({
             complete: () => {
               this.router.navigate(['/checkout']).then(() => window.location.reload());
-            },
-            error: () => { this.registerLoading = false; }
+            }
           });
         } else {
           this.router.navigate(['/checkout']).then(() => window.location.reload());
         }
       },
-      error: () => { this.registerLoading = false; }
+      error: (err) => {
+        this.notificationService.showError(err?.error?.message || 'Invalid OTP. Please try again.');
+      }
     });
   }
 
