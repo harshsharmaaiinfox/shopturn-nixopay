@@ -11,6 +11,8 @@ export class AuthService {
 
   public redirectUrl: string | undefined;
   public otpType: string;
+  public registrationPhone: string = '';
+  public registrationCountryCode: string = '91';
 
   constructor(private http: HttpClient) {}
 
@@ -34,8 +36,16 @@ export class AuthService {
     return this.http.post(`${environment.URL}/verify-token`, payload);
   }
 
+  verifyRegistrationOtp(payload: { email: string; otp: string }): Observable<any> {
+    return this.http.post(`${environment.URL}/verify-registration-otp`, payload);
+  }
+
   verifyNumberOtp(payload: AuthVerifyNumberOTPState): Observable<AuthStateModal> {
     return this.http.post<AuthStateModal>(`${environment.URL}/verify-otp`, payload);
+  }
+
+  sendRegistrationOtp(payload: { phone: string; country_code: string }): Observable<any> {
+    return this.http.post(`${environment.URL}/send-otp`, payload);
   }
 
   updatePassword(payload: UpdatePasswordModel): Observable<any> {

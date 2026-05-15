@@ -1,720 +1,486 @@
-// Modern Register Page Styles
+// ─── Page Background ─────────────────────────────────────────────────────────
 .register-section {
-  padding: 40px 0;
-  min-height: auto;
+  padding: 32px 0;
+  background: #F8F6F3;
+}
+
+// ─── Card ─────────────────────────────────────────────────────────────────────
+.auth-card {
+  background: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 2px 16px rgba(0, 0, 0, 0.07), 0 1px 4px rgba(0, 0, 0, 0.04);
+  padding: 40px 36px 32px;
+
+  @media (max-width: 576px) {
+    padding: 32px 20px 28px;
+    border-radius: 12px;
+  }
+}
+
+// ─── Header ───────────────────────────────────────────────────────────────────
+.auth-card-header {
+  text-align: center;
+  margin-bottom: 28px;
+}
+
+.auth-icon {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: #FEF3EB;
   display: flex;
   align-items: center;
-  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-  position: relative;
-  overflow: hidden;
+  justify-content: center;
+  margin: 0 auto 16px;
 
-  &::before {
-    content: '';
-    position: absolute;
-    top: -50%;
-    right: -50%;
-    width: 200%;
-    height: 200%;
-    background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 1px, transparent 1px);
-    background-size: 50px 50px;
-    opacity: 0.3;
-    z-index: 0;
-  }
-
-  .container {
-    position: relative;
-    z-index: 1;
+  i {
+    font-size: 26px;
+    color: #D38E60;
   }
 }
 
-.register-container {
-  background: #ffffff;
-  border-radius: 24px;
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
-  padding: 32px 36px;
-  max-width: 800px;
-  margin: 0 auto;
-  transition: all 0.3s ease;
-
-  @media (max-width: 768px) {
-    padding: 24px 20px;
-    border-radius: 16px;
-  }
+.auth-title {
+  font-size: 22px;
+  font-weight: 700;
+  color: #111827;
+  margin: 0 0 6px;
+  letter-spacing: -0.3px;
 }
 
-// Header Section
-.register-header {
-  margin-bottom: 28px;
-
-  .register-icon {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 64px;
-    height: 64px;
-    background: #CB7A45;
-    border-radius: 16px;
-    color: #ffffff;
-    margin: 0 auto 12px;
-    box-shadow: 0 8px 24px rgba(223, 169, 134, 0.3);
-
-    svg {
-      width: 32px;
-      height: 32px;
-    }
-  }
-
-  .register-title {
-    font-size: 28px;
-    font-weight: 700;
-    color: #1a202c;
-    margin-bottom: 8px;
-    letter-spacing: -0.5px;
-
-    @media (max-width: 768px) {
-      font-size: 24px;
-    }
-  }
-
-  .register-subtitle {
-    font-size: 14px;
-    color: #718096;
-    line-height: 1.5;
-    margin: 0;
-    max-width: 500px;
-    margin-left: auto;
-    margin-right: auto;
-
-    @media (max-width: 768px) {
-      font-size: 13px;
-    }
-  }
+.auth-subtitle {
+  font-size: 14px;
+  color: #6B7280;
+  margin: 0;
+  line-height: 1.5;
 }
 
-// Form Wrapper
-.register-form-wrapper {
-  margin-top: 24px;
-}
-
-.register-form {
+// ─── Form ─────────────────────────────────────────────────────────────────────
+.auth-form {
   .row {
     margin: 0;
   }
 }
 
-// Modern Form Group
-.form-group-modern {
-  margin-bottom: 18px;
+.form-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
 
-  .form-label-modern {
-    display: flex;
-    align-items: center;
-    margin-bottom: 8px;
+.field-label {
+  font-size: 13px;
+  font-weight: 600;
+  color: #374151;
+
+  .required {
+    color: #EF4444;
+    margin-left: 2px;
+  }
+}
+
+// ─── Input ────────────────────────────────────────────────────────────────────
+.input-box {
+  position: relative;
+  display: flex;
+  align-items: center;
+
+  .field-icon {
+    position: absolute;
+    left: 14px;
+    font-size: 17px;
+    color: #9CA3AF;
+    pointer-events: none;
+    transition: color 0.2s;
+    z-index: 1;
+  }
+
+  input {
+    width: 100%;
+    height: 44px;
+    padding: 0 14px 0 42px;
     font-size: 14px;
+    color: #111827;
+    background: #FAFAFA;
+    border: 1.5px solid #E5E7EB;
+    border-radius: 8px;
+    outline: none;
+    transition: border-color 0.2s, box-shadow 0.2s, background 0.2s;
+
+    &::placeholder {
+      color: #C4C9D4;
+    }
+
+    &:focus {
+      background: #ffffff;
+      border-color: #D38E60;
+      box-shadow: 0 0 0 3px rgba(211, 142, 96, 0.12);
+
+      ~ .field-icon {
+        color: #D38E60;
+      }
+    }
+  }
+
+  &.invalid input {
+    border-color: #EF4444;
+    background: #FFF5F5;
+  }
+}
+
+// ─── Errors ───────────────────────────────────────────────────────────────────
+.field-error {
+  font-size: 12px;
+  color: #EF4444;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+
+  &::before {
+    content: '!';
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: #EF4444;
+    color: #fff;
+    font-size: 9px;
+    font-weight: 700;
+    flex-shrink: 0;
+  }
+}
+
+// ─── Terms ────────────────────────────────────────────────────────────────────
+.terms-row {
+  margin-top: 4px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.checkbox-label {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  cursor: pointer;
+  font-size: 13px;
+  color: #6B7280;
+  line-height: 1.6;
+  user-select: none;
+
+  &.error-state {
+    color: #EF4444;
+  }
+
+  .checkbox-input {
+    width: 16px;
+    height: 16px;
+    margin-top: 2px;
+    cursor: pointer;
+    accent-color: #D38E60;
+    flex-shrink: 0;
+  }
+
+  .terms-link {
+    color: #D38E60;
     font-weight: 600;
-    color: #2d3748;
+    text-decoration: none;
 
-    .label-text {
-      margin-right: 4px;
-    }
-
-    .required-indicator {
-      color: #e53e3e;
-      font-size: 16px;
-      line-height: 1;
-    }
-  }
-
-  .input-wrapper {
-    position: relative;
-    display: flex;
-    align-items: center;
-
-    .input-icon {
-      position: absolute;
-      left: 16px;
-      z-index: 2;
-      color: #718096;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      pointer-events: none;
-      transition: color 0.3s ease;
-
-      svg {
-        width: 20px;
-        height: 20px;
-        display: block;
-        flex-shrink: 0;
-      }
-    }
-
-    .form-input-modern {
-      width: 100%;
-      padding: 12px 14px 12px 44px;
-      font-size: 14px;
-      color: #2d3748;
-      background-color: #f7fafc;
-      border: 2px solid #e2e8f0;
-      border-radius: 10px;
-      transition: all 0.3s ease;
-      outline: none;
-
-      &::placeholder {
-        color: #a0aec0;
-      }
-
-      &:focus {
-        background-color: #ffffff;
-        border-color: #CB7A45;
-        box-shadow: 0 0 0 3px rgba(223, 169, 134, 0.1);
-
-        ~.input-icon {
-          color: #CB7A45;
-        }
-      }
-
-      &.is-invalid {
-        border-color: #e53e3e;
-        background-color: #fff5f5;
-
-        ~.input-icon {
-          color: #e53e3e;
-        }
-
-        &:focus {
-          box-shadow: 0 0 0 3px rgba(229, 62, 62, 0.1);
-        }
-      }
-    }
-
-    // Phone Input Wrapper
-    &.phone-input-wrapper {
-      display: flex;
-      gap: 8px;
-
-      .country-code-select {
-        flex-shrink: 0;
-        width: 110px;
-
-        .select2-container {
-          .select2-selection {
-            height: 44px;
-            border: 2px solid #e2e8f0;
-            border-radius: 10px;
-            background-color: #f7fafc;
-            transition: all 0.3s ease;
-
-            &:hover,
-            &.select2-selection--focus {
-              border-color: #CB7A45;
-              background-color: #ffffff;
-            }
-
-            .select2-selection__rendered {
-              padding: 0 12px;
-              line-height: 44px;
-              display: flex;
-              align-items: center;
-
-              .country-option {
-                display: flex;
-                align-items: center;
-                gap: 8px;
-
-                .flag-box {
-                  display: flex;
-                  align-items: center;
-
-                  .iti-flag {
-                    width: 20px;
-                    height: 15px;
-                    background-size: contain;
-                    background-repeat: no-repeat;
-                    background-position: center;
-                  }
-                }
-
-                .dial-code {
-                  font-size: 14px;
-                  font-weight: 600;
-                  color: #2d3748;
-                }
-              }
-            }
-
-            .select2-selection__arrow {
-              height: 44px;
-              right: 8px;
-
-              b {
-                border-color: #718096 transparent transparent transparent;
-              }
-            }
-          }
-        }
-      }
-
-      .phone-input {
-        flex: 1;
-        padding-left: 16px;
-      }
-    }
-  }
-
-  .error-message {
-    margin-top: 6px;
-    font-size: 13px;
-    color: #e53e3e;
-    display: flex;
-    align-items: center;
-    gap: 6px;
-
-    &::before {
-      content: '⚠';
-      font-size: 14px;
+    &:hover {
+      text-decoration: underline;
+      color: #be7d52;
     }
   }
 }
 
-// Terms Agreement
-.terms-agreement {
-  margin: 20px 0 16px;
-
-  .checkbox-wrapper {
-    display: flex;
-    align-items: flex-start;
-    gap: 12px;
-
-    .custom-checkbox {
-      width: 20px;
-      height: 20px;
-      margin-top: 2px;
-      cursor: pointer;
-      accent-color: #CB7A45;
-      flex-shrink: 0;
-    }
-
-    .checkbox-label {
-      flex: 1;
-      cursor: pointer;
-      font-size: 14px;
-      line-height: 1.6;
-      color: #4a5568;
-      margin: 0;
-
-      &.error-state {
-        color: #e53e3e;
-      }
-
-      .checkbox-text {
-        display: block;
-
-        .link-primary {
-          color: #CB7A45;
-          text-decoration: none;
-          font-weight: 600;
-          transition: color 0.3s ease;
-
-          &:hover {
-            color: #c8956f;
-            text-decoration: underline;
-          }
-        }
-      }
-    }
-  }
-
-  .error-message {
-    margin-top: 8px;
-    margin-left: 32px;
-  }
-}
-
-// reCAPTCHA Wrapper
-.recaptcha-wrapper {
-  margin: 16px 0;
+// ─── reCAPTCHA ────────────────────────────────────────────────────────────────
+.recaptcha-box {
   display: flex;
   flex-direction: column;
   align-items: center;
-
-  .error-message {
-    margin-top: 10px;
-  }
+  gap: 8px;
 }
 
-// Submit Button Wrapper
+// ─── Submit Button ────────────────────────────────────────────────────────────
 .submit-wrapper {
-  margin-top: 20px;
+  margin-top: 4px;
 
   app-button {
     width: 100%;
 
     ::ng-deep button {
       width: 100%;
-      padding: 14px 28px;
+      height: 46px;
       font-size: 15px;
       font-weight: 600;
-      border-radius: 10px;
-      background: #CB7A45;
+      border-radius: 8px;
+      background: #D38E60;
       border: none;
       color: #ffffff;
       cursor: pointer;
-      transition: all 0.3s ease;
-      box-shadow: 0 4px 15px rgba(223, 169, 134, 0.4);
+      letter-spacing: 0.2px;
+      transition: background 0.2s, box-shadow 0.2s;
+      box-shadow: 0 2px 8px rgba(211, 142, 96, 0.30);
 
       &:hover:not(:disabled) {
-        transform: translateY(-2px);
-        background: #c8956f;
-        box-shadow: 0 6px 20px rgba(223, 169, 134, 0.5);
-      }
-
-      &:active:not(:disabled) {
-        transform: translateY(0);
+        background: #be7d52;
+        box-shadow: 0 4px 14px rgba(211, 142, 96, 0.40);
       }
 
       &:disabled {
-        opacity: 0.6;
+        opacity: 0.55;
         cursor: not-allowed;
-        transform: none;
       }
     }
   }
 }
 
-// Divider Section
-.divider-section {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-  margin: 28px 0 16px;
-
-  .divider-line {
-    flex: 1;
-    height: 1px;
-    background: linear-gradient(to right, transparent, #e2e8f0, transparent);
-  }
-
-  .divider-text {
-    font-size: 14px;
-    color: #718096;
-    font-weight: 500;
-    white-space: nowrap;
-  }
-}
-
-// Login Redirect
-.login-redirect {
-  margin-top: 16px;
-
-  .redirect-text {
-    font-size: 15px;
-    color: #4a5568;
-    margin: 0;
-
-    .login-link {
-      color: #CB7A45;
-      text-decoration: none;
-      font-weight: 600;
-      margin-left: 4px;
-      transition: color 0.3s ease;
-
-      &:hover {
-        color: #c8956f;
-        text-decoration: underline;
-      }
-    }
-  }
-}
-
-// Responsive Design
-@media (max-width: 576px) {
-  .register-section {
-    padding: 40px 0;
-  }
-
-  .register-container {
-    padding: 24px 20px;
-  }
-
-  .register-header {
-    margin-bottom: 32px;
-
-    .register-icon {
-      width: 64px;
-      height: 64px;
-      border-radius: 16px;
-
-      svg {
-        width: 32px;
-        height: 32px;
-      }
-    }
-
-    .register-title {
-      font-size: 24px;
-    }
-  }
-
-  .form-group-modern {
-    margin-bottom: 20px;
-
-    .input-wrapper {
-      .form-input-modern {
-        padding: 12px 14px 12px 44px;
-        font-size: 14px;
-      }
-
-      &.phone-input-wrapper {
-        flex-direction: column;
-        gap: 12px;
-
-        .country-code-select {
-          width: 100%;
-        }
-      }
-    }
-  }
-
-  .submit-wrapper {
-    margin-top: 24px;
-
-    app-button {
-      ::ng-deep button {
-        padding: 14px 24px;
-        font-size: 15px;
-      }
-    }
-  }
-}
-
-// Dark Mode Support (if needed)
-@media (prefers-color-scheme: dark) {
-  .register-section {
-    background: linear-gradient(135deg, #1a202c 0%, #2d3748 100%);
-  }
-
-  .register-container {
-    background: #2d3748;
-  }
-
-  .register-header {
-    .register-title {
-      color: #f7fafc;
-    }
-
-    .register-subtitle {
-      color: #cbd5e0;
-    }
-  }
-
-  .form-group-modern {
-    .form-label-modern {
-      color: #e2e8f0;
-    }
-
-    .input-wrapper {
-      .form-input-modern {
-        background-color: #1a202c;
-        border-color: #4a5568;
-        color: #f7fafc;
-
-        &:focus {
-          background-color: #2d3748;
-        }
-      }
-    }
-  }
-
-  .login-redirect {
-    .redirect-text {
-      color: #cbd5e0;
-    }
-  }
-}
-
-// Email Verification Popup
-.email-verify-modal-wrapper {
-  background: white;
-  overflow: hidden;
-  width: 100%;
-}
-
-// Success Header
-.email-verify-header {
-  background: linear-gradient(135deg, #2B5F5E 0%, #1f4544 100%);
-  padding: 1.5rem 2rem;
+// ─── Footer ───────────────────────────────────────────────────────────────────
+.auth-footer-text {
   text-align: center;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0.75rem;
+  font-size: 14px;
+  color: #6B7280;
+  margin: 24px 0 0;
 
-  .success-checkmark {
-    width: 52px;
-    height: 52px;
-    background: rgba(255, 255, 255, 0.2);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    backdrop-filter: blur(10px);
-  }
-
-  .email-verify-title {
-    font-size: 1.25rem;
-    font-weight: 700;
-    color: white;
-    margin: 0;
-  }
-}
-
-// Body
-.email-verify-body {
-  padding: 1.75rem 2rem;
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 1rem;
-}
-
-.email-verify-icon {
-  width: 64px;
-  height: 64px;
-  background: linear-gradient(135deg, rgba(43, 95, 94, 0.08) 0%, rgba(43, 95, 94, 0.14) 100%);
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border: 2px solid #2B5F5E;
-  color: #2B5F5E;
-}
-
-.email-verify-message {
-  font-size: 0.9rem;
-  color: #555;
-  margin: 0;
-  line-height: 1.6;
-  max-width: 340px;
-}
-
-// Open Mail Section
-.open-mail-section {
-  width: 100%;
-  margin-top: 0.25rem;
-
-  .open-mail-label {
-    font-size: 0.8rem;
-    color: #999;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-    margin-bottom: 0.75rem;
+  .auth-link {
+    color: #D38E60;
     font-weight: 600;
-  }
+    text-decoration: none;
+    margin-left: 4px;
 
-  .mail-buttons {
-    display: flex;
-    gap: 0.75rem;
-    justify-content: center;
-
-    .mail-btn {
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      padding: 0.6rem 1.25rem;
-      border-radius: 10px;
-      border: 2px solid #e8e8e8;
-      background: #fafafa;
-      text-decoration: none;
-      color: #333;
-      font-weight: 600;
-      font-size: 0.9rem;
-      transition: all 0.25s ease;
-      cursor: pointer;
-
-      img {
-        flex-shrink: 0;
-      }
-
-      &:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-      }
-
-      &.gmail-btn:hover {
-        border-color: #ea4335;
-        background: #fff5f4;
-      }
-
-      &.outlook-btn:hover {
-        border-color: #0078d4;
-        background: #f0f7ff;
-      }
+    &:hover {
+      text-decoration: underline;
+      color: #be7d52;
     }
   }
 }
 
-// Footer
-.email-verify-footer {
-  padding: 1.25rem 2rem;
-  border-top: 1px solid #f0f0f0;
-  text-align: center;
-  background: #fafafa;
-}
-
-.btn-ok {
-  padding: 0.7rem 2.5rem;
-  border-radius: 10px;
-  font-weight: 600;
-  font-size: 0.95rem;
-  border: none;
-  background: linear-gradient(135deg, #2B5F5E 0%, #1f4544 100%);
-  color: white;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  box-shadow: 0 4px 12px rgba(43, 95, 94, 0.3);
-  letter-spacing: 0.3px;
-
-  &:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(43, 95, 94, 0.4);
-  }
-}
-
-::ng-deep .email-verify-modal {
+// ─── OTP Verification Modal ───────────────────────────────────────────────────
+::ng-deep .otp-verify-modal {
   .modal-content {
-    border: none !important;
-    border-radius: 16px !important;
-    overflow: hidden !important;
-    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15) !important;
+    border: 1.5px solid #E5E7EB !important;
+    border-radius: 20px !important;
+    box-shadow: 0 16px 48px rgba(0, 0, 0, 0.14) !important;
     padding: 0 !important;
-    background: white !important;
   }
 
   .modal-dialog {
-    max-width: 420px !important;
+    max-width: 380px !important;
   }
 }
 
-@media (max-width: 576px) {
-  .email-verify-header {
-    padding: 1.25rem 1.5rem;
+.otp-modal-wrapper {
+  background: #ffffff;
+  border-radius: 20px;
+  padding: 36px 28px 28px;
+  text-align: center;
+}
+
+.otp-modal-head {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 28px;
+}
+
+.otp-modal-icon {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: #FEF3EB;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 14px;
+
+  i {
+    font-size: 26px;
+    color: #D38E60;
   }
+}
 
-  .email-verify-body {
-    padding: 1.5rem;
+.otp-modal-title {
+  font-size: 20px;
+  font-weight: 700;
+  color: #111827;
+  margin: 0 0 8px;
+  letter-spacing: -0.3px;
+}
+
+.otp-modal-subtitle {
+  font-size: 13px;
+  color: #6B7280;
+  margin: 0;
+  line-height: 1.6;
+
+  strong {
+    color: #111827;
+    font-weight: 600;
+    word-break: break-all;
   }
+}
 
-  .open-mail-section .mail-buttons {
-    flex-direction: column;
+.otp-modal-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
 
-    .mail-btn {
-      justify-content: center;
+.otp-input-row {
+  width: 100%;
+
+  input {
+    width: 100%;
+    height: 56px;
+    padding: 0 16px;
+    font-size: 26px;
+    font-weight: 700;
+    letter-spacing: 14px;
+    color: #111827;
+    background: #F9FAFB;
+    border: 2px solid #E5E7EB;
+    border-radius: 12px;
+    outline: none;
+    text-align: center;
+    transition: border-color 0.2s, box-shadow 0.2s;
+
+    &::placeholder {
+      color: #D1D5DB;
+      letter-spacing: 10px;
+      font-size: 20px;
+      font-weight: 400;
+    }
+
+    &:focus {
+      background: #ffffff;
+      border-color: #D38E60;
+      box-shadow: 0 0 0 3px rgba(211, 142, 96, 0.12);
     }
   }
 
-  .email-verify-footer {
-    padding: 1rem 1.5rem;
+  &.invalid input {
+    border-color: #EF4444;
+    background: #FFF5F5;
   }
+}
+
+.otp-error {
+  font-size: 12px;
+  color: #EF4444;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  align-self: flex-start;
+
+  &::before {
+    content: '!';
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: #EF4444;
+    color: #fff;
+    font-size: 9px;
+    font-weight: 700;
+    flex-shrink: 0;
+  }
+}
+
+.otp-verify-btn {
+  width: 100%;
+  height: 46px;
+  margin-top: 4px;
+  background: #D38E60;
+  border: none;
+  border-radius: 10px;
+  font-size: 15px;
+  font-weight: 600;
+  color: #ffffff;
+  cursor: pointer;
+  transition: background 0.2s, box-shadow 0.2s;
+  box-shadow: 0 2px 8px rgba(211, 142, 96, 0.30);
+
+  &:hover:not(:disabled) {
+    background: #be7d52;
+    box-shadow: 0 4px 14px rgba(211, 142, 96, 0.40);
+  }
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+}
+
+.otp-resend-text {
+  font-size: 13px;
+  color: #6B7280;
+  margin: 4px 0 0;
+}
+
+.otp-resend-link {
+  color: #D38E60;
+  font-weight: 600;
+  text-decoration: none;
+  margin-left: 4px;
+
+  &:hover {
+    text-decoration: underline;
+    color: #be7d52;
+  }
+}
+
+// ─── Open Mail Clients ────────────────────────────────────────────────────────
+.otp-open-mail {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  padding-top: 12px;
+  border-top: 1px solid #F3F4F6;
+  margin-top: 4px;
+}
+
+.otp-open-mail-label {
+  font-size: 12px;
+  color: #9CA3AF;
+  letter-spacing: 0.2px;
+}
+
+.mail-client-row {
+  display: flex;
+  gap: 10px;
+}
+
+.mail-client-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 16px;
+  border-radius: 8px;
+  border: 1.5px solid #E5E7EB;
+  background: #FAFAFA;
+  font-size: 13px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: border-color 0.2s, background 0.2s, box-shadow 0.2s;
+
+  &:hover {
+    background: #ffffff;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.07);
+  }
+}
+
+.gmail-btn {
+  color: #EA4335;
+  &:hover { border-color: #EA4335; }
+}
+
+.outlook-btn {
+  color: #0078D4;
+  &:hover { border-color: #0078D4; }
 }

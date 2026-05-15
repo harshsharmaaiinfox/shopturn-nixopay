@@ -51,3 +51,7 @@ export class AuthClear {
   static readonly type = "[Auth] Clear";
 }
 
+export class SendRegistrationOtp {
+  static readonly type = "[Auth] Send Registration Otp";
+  constructor(public payload: { phone: string; country_code: string }) {}
+}

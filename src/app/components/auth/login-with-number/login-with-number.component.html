@@ -1,59 +1,132 @@
-<app-breadcrumb [breadcrumb]="breadcrumb"></app-breadcrumb>
-<section class="log-in-section section-b-space">
-    <div class="container-fluid w-100">
-        <div class="row">
-            <div class="col-xxl-6 col-xl-5 col-lg-6 d-lg-block d-none ms-auto">
-                <div class="image-contain">
-                    <img src="assets/images/inner-page/sign-up.png" class="img-fluid" alt="register">
-                </div>
-            </div>
-            <div class="col-xxl-4 col-xl-5 col-lg-6 col-sm-8 mx-auto">
+<section class="login-section">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-xl-5 col-lg-6 col-md-8 col-12">
                 <app-alert></app-alert>
-                <div class="log-in-box">
-                    <div class="log-in-title">
-                        <h3>Welcome To Shop Trurn Life</h3>
-                        <h4>{{ 'login_your_account' | translate }}</h4>
+                <div class="auth-card">
+
+                    <!-- Header -->
+                    <div class="auth-card-header">
+                        <div class="auth-icon">
+                            <i class="ri-smartphone-line"></i>
+                        </div>
+                        <h2 class="auth-title">{{ 'Login with OTP' | translate }}</h2>
+                        <p class="auth-subtitle">{{ 'Enter your phone number to receive a one-time password' | translate }}</p>
                     </div>
-                    <div class="input-box">
-                        <form class="row g-4" [formGroup]="form" (ngSubmit)="submit()">
-                            
-                            <div class="col-12 phone-field">
-                                <div class="form-floating log-in-form">
-                                    <input type="number" class="form-control" id="phone" id="phone" formControlName="phone" placeholder="{{ 'phone' | translate }}">
-                                    <label for="phone">{{ 'phone_number' | translate }}</label>
-                                    <div *ngIf="form.controls['phone'].touched && form.controls['phone'].errors?.['required']" class="invalid-feedback">{{ 'phone_number_is_required' | translate }}</div>
-                                    <select2 class="custom-select intl-tel-input"
-                                      [data]="codes"
-                                      [templates]="template"
-                                      formControlName="country_code">
-                                      <ng-template #template let-data="data">
-                                        <div class="country">
-                                          <div class="flag-box">
-                                            <div class="iti-flag {{data?.class}}"></div>
-                                          </div>
-                                          <span class="dial-code">{{data.code}}</span>
+
+                    <!-- Form -->
+                    <form [formGroup]="form" (ngSubmit)="submit()" class="auth-form">
+
+                        <!-- Phone Number -->
+                        <div class="form-field">
+                            <label class="field-label">
+                                {{ 'Phone Number' | translate }} <span class="required">*</span>
+                            </label>
+                            <div class="phone-input-box" [class.invalid]="form.controls['phone'].touched && form.controls['phone'].invalid">
+                                <select2
+                                    class="country-code-select"
+                                    [data]="codes"
+                                    [templates]="template"
+                                    formControlName="country_code">
+                                    <ng-template #template let-data="data">
+                                        <div class="country-option">
+                                            <div class="flag-box">
+                                                <div class="iti-flag {{ data?.class }}"></div>
+                                            </div>
+                                            <span class="dial-code">{{ data.code }}</span>
                                         </div>
-                                      </ng-template>
-                                    </select2>
-                                </div>
+                                    </ng-template>
+                                </select2>
+                                <div class="phone-divider"></div>
+                                <input
+                                    type="tel"
+                                    formControlName="phone"
+                                    placeholder="{{ 'Enter phone number' | translate }}"
+                                    maxlength="15">
                             </div>
-                            <div class="col-12">
-                                <app-button [id]="'send_otp_btn'">{{ 'Send Otp' | translate }}</app-button>
-                            </div>
-                        </form>
+                            <span *ngIf="form.controls['phone'].touched && form.controls['phone'].errors?.['required']" class="field-error">
+                                {{ 'Phone number is required' | translate }}
+                            </span>
+                            <span *ngIf="form.controls['phone'].touched && form.controls['phone'].errors?.['pattern']" class="field-error">
+                                {{ 'Please enter a valid phone number' | translate }}
+                            </span>
+                        </div>
+
+                        <!-- Submit -->
+                        <div class="submit-wrapper">
+                            <app-button [id]="'send_otp_btn'" [disabled]="form.invalid">
+                                <i class="ri-send-plane-line btn-icon"></i>
+                                {{ 'Send OTP' | translate }}
+                            </app-button>
+                        </div>
+
+                    </form>
+
+                    <!-- Divider -->
+                    <div class="auth-divider">
+                        <span>{{ 'or' | translate }}</span>
                     </div>
 
-                    <div class="other-log-in">
-                        <h6>{{ 'or' | translate }}</h6>
-                    </div>
+                    <!-- Footer -->
+                    <p class="auth-footer-text">
+                        {{ 'Prefer email login?' | translate }}
+                        <a [routerLink]="['/auth/login']" class="auth-link">{{ 'Sign in with Email' | translate }}</a>
+                    </p>
+                    <p class="auth-footer-text auth-footer-text--mt">
+                        {{ 'New to our store?' | translate }}
+                        <a [routerLink]="['/auth/register']" class="auth-link">{{ 'Create an account' | translate }}</a>
+                    </p>
 
-                    <div class="sign-up-box">
-                        <h4>{{ "don't_have_an_account"| translate}}?</h4>
-                        <a [routerLink]="['/auth/register']">{{ 'sign_up'| translate}}</a>
-                    </div>
                 </div>
             </div>
-            <div class="col-xxl-7 col-xl-6 col-lg-6"></div>
         </div>
     </div>
 </section>
+
+<!-- OTP Verification Modal -->
+<ng-template #otpModal let-modal>
+  <div class="otp-modal-wrapper">
+
+    <div class="otp-modal-head">
+      <div class="otp-modal-icon">
+        <i class="ri-smartphone-line"></i>
+      </div>
+      <h4 class="otp-modal-title">{{ 'Verify Your Phone' | translate }}</h4>
+      <p class="otp-modal-subtitle">
+        {{ 'Enter the 5-digit code sent to' | translate }}
+        <strong>+{{ form.value.country_code }} {{ form.value.phone }}</strong>
+      </p>
+    </div>
+
+    <form [formGroup]="otpForm" (ngSubmit)="verifyLoginOtp()" class="otp-modal-form">
+
+      <div class="otp-input-row" [class.invalid]="otpForm.controls['otp'].touched && otpForm.controls['otp'].invalid">
+        <input
+          type="text"
+          formControlName="otp"
+          maxlength="5"
+          placeholder="0  0  0  0  0"
+          oninput="this.value = this.value.replace(/[^0-9]/g, '');"
+          onkeypress="if(this.value.length==5) return false;"
+          autocomplete="one-time-code">
+      </div>
+      <span *ngIf="otpForm.controls['otp'].touched && otpForm.controls['otp'].errors?.['required']" class="otp-error">
+        {{ 'Please enter the verification code' | translate }}
+      </span>
+      <span *ngIf="otpForm.controls['otp'].touched && otpForm.controls['otp'].errors?.['minlength']" class="otp-error">
+        {{ 'Code must be 5 digits' | translate }}
+      </span>
+
+      <button type="submit" class="otp-verify-btn" [disabled]="otpForm.invalid">
+        {{ 'Verify & Sign In' | translate }}
+      </button>
+
+      <p class="otp-resend-text">
+        {{ "Didn't receive the code?" | translate }}
+        <a href="javascript:void(0)" class="otp-resend-link">{{ 'Resend' | translate }}</a>
+      </p>
+
+    </form>
+
+  </div>
+</ng-template>

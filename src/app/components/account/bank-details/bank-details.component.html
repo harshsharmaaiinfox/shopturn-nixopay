@@ -1,171 +1,67 @@
-<div class="bank-details-container">
-  <div class="bank-details-header">
-    <div class="header-content">
-      <div class="header-icon-wrapper">
-        <i class="ri-wallet-3-line"></i>
+<div class="refund-policy-container">
+
+  <!-- Header -->
+  <div class="refund-policy-header">
+    <div class="header-icon">
+      <i class="ri-refund-2-line"></i>
+    </div>
+    <div class="header-text">
+      <h2>{{ 'Refund Policy' | translate }}</h2>
+      <p>{{ 'How refunds are processed on ShopTurn Life' | translate }}</p>
+    </div>
+  </div>
+
+  <!-- Online Payments -->
+  <div class="policy-card">
+    <div class="policy-card-icon online">
+      <i class="ri-bank-card-line"></i>
+    </div>
+    <div class="policy-card-body">
+      <h4>{{ 'Online Payments' | translate }}</h4>
+      <p>
+        {{ 'Refunds for payments made via Credit Card, Debit Card, UPI, or Net Banking are automatically credited back to your original payment method.' | translate }}
+      </p>
+      <div class="policy-timeline">
+        <i class="ri-time-line"></i>
+        <span>{{ 'Processed within 5–7 business days' | translate }}</span>
       </div>
-      <div class="header-text">
-        <h2>{{ 'Bank Details' | translate }}</h2>
-        <p>{{ 'Manage your payment and banking information securely' | translate }}</p>
+      <div class="policy-note success">
+        <i class="ri-shield-check-line"></i>
+        {{ 'No action required from your side. Refunds are fully automated.' | translate }}
       </div>
     </div>
   </div>
 
-  <div class="bank-details-content">
-    <!-- Bank Information Section -->
-    <div class="payment-section">
-      <div class="section-header">
-        <div class="section-icon">
-          <i class="ri-bank-line"></i>
-        </div>
-        <h3>{{ 'Bank Information' | translate }}</h3>
-      </div>
-      
-      <form class="bank-form" [formGroup]="form" (ngSubmit)="submit()">
-        <div class="form-grid">
-          <div class="form-group">
-            <label for="bank_account_no" class="form-label">
-              <i class="ri-numbers-line"></i>
-              {{ 'Bank Account No.' | translate }}
-            </label>
-            <input 
-              type="text" 
-              class="form-control" 
-              id="bank_account_no" 
-              placeholder="{{ 'Enter bank Account Number' | translate }}" 
-              formControlName="bank_account_no" 
-              (keydown)="allowOnlyDigits($event)" 
-              (input)="sanitizeDigitsInput($event, 'bank_account_no')" 
-              (paste)="sanitizeDigitsPaste($event)"
-              [class.is-invalid]="form.get('bank_account_no')?.invalid && form.get('bank_account_no')?.touched">
-            <div class="invalid-feedback" *ngIf="form.get('bank_account_no')?.touched && form.get('bank_account_no')?.errors?.['required']">
-              {{ 'Account number is required' | translate }}
-            </div>
-            <div class="invalid-feedback" *ngIf="form.get('bank_account_no')?.touched && form.get('bank_account_no')?.errors?.['pattern']">
-              {{ 'Please enter a valid account number' | translate }}
-            </div>
-          </div>
-
-          <div class="form-group">
-            <label for="bank_name" class="form-label">
-              <i class="ri-building-line"></i>
-              {{ 'Bank Name' | translate }}
-            </label>
-            <input 
-              type="text" 
-              class="form-control" 
-              id="bank_name" 
-              placeholder="{{ 'Enter Bank Name' | translate }}" 
-              formControlName="bank_name" 
-              (keydown)="allowOnlyLetters($event)" 
-              (input)="sanitizeLettersInput($event, 'bank_name')" 
-              (paste)="sanitizeLettersPaste($event)"
-              [class.is-invalid]="form.get('bank_name')?.invalid && form.get('bank_name')?.touched">
-            <div class="invalid-feedback" *ngIf="form.get('bank_name')?.touched && form.get('bank_name')?.errors?.['required']">
-              {{ 'Bank name is required' | translate }}
-            </div>
-            <div class="invalid-feedback" *ngIf="form.get('bank_name')?.touched && form.get('bank_name')?.errors?.['pattern']">
-              {{ 'Please enter a valid bank name' | translate }}
-            </div>
-          </div>
-
-          <div class="form-group">
-            <label for="bank_holder_name" class="form-label">
-              <i class="ri-user-line"></i>
-              {{ 'Account Holder Name' | translate }}
-            </label>
-            <input 
-              type="text" 
-              class="form-control" 
-              id="bank_holder_name" 
-              placeholder="{{ 'Enter Account Holder Name' | translate }}" 
-              formControlName="bank_holder_name" 
-              (keydown)="allowOnlyLetters($event)" 
-              (input)="sanitizeLettersInput($event, 'bank_holder_name')" 
-              (paste)="sanitizeLettersPaste($event)"
-              [class.is-invalid]="form.get('bank_holder_name')?.invalid && form.get('bank_holder_name')?.touched">
-            <div class="invalid-feedback" *ngIf="form.get('bank_holder_name')?.touched && form.get('bank_holder_name')?.errors?.['required']">
-              {{ 'Account holder name is required' | translate }}
-            </div>
-            <div class="invalid-feedback" *ngIf="form.get('bank_holder_name')?.touched && form.get('bank_holder_name')?.errors?.['pattern']">
-              {{ 'Please enter a valid holder name' | translate }}
-            </div>
-          </div>
-
-          <div class="form-group">
-            <label for="swift" class="form-label">
-              <i class="ri-global-line"></i>
-              {{ 'SWIFT Code' | translate }}
-            </label>
-            <input 
-              type="text" 
-              class="form-control" 
-              id="swift" 
-              placeholder="{{ 'Enter SWIFT Code' | translate }}" 
-              formControlName="swift"
-              [class.is-invalid]="form.get('swift')?.invalid && form.get('swift')?.touched">
-          </div>
-
-          <div class="form-group">
-            <label for="ifsc" class="form-label">
-              <i class="ri-code-line"></i>
-              {{ 'IFSC Code' | translate }}
-            </label>
-            <input 
-              type="text" 
-              class="form-control" 
-              id="ifsc" 
-              placeholder="{{ 'Enter IFSC Code' | translate }}" 
-              formControlName="ifsc"
-              [class.is-invalid]="form.get('ifsc')?.invalid && form.get('ifsc')?.touched">
-            <div class="invalid-feedback" *ngIf="form.get('ifsc')?.touched && form.get('ifsc')?.errors?.['required']">
-              {{ 'IFSC code is required' | translate }}
-            </div>
-          </div>
-        </div>
-      </form>
+  <!-- COD Orders -->
+  <div class="policy-card">
+    <div class="policy-card-icon cod">
+      <i class="ri-hand-coin-line"></i>
     </div>
-
-    <!-- PayPal Information Section -->
-    <!-- <div class="payment-section">
-      <div class="section-header">
-        <div class="section-icon paypal-icon">
-          <i class="ri-paypal-line"></i>
-        </div>
-        <h3>{{ 'PayPal Details' | translate }}</h3>
+    <div class="policy-card-body">
+      <h4>{{ 'Cash on Delivery (COD) Orders' | translate }}</h4>
+      <p>
+        {{ 'For returns on COD orders, bank account details will be collected securely at the time of submitting your return request via a one-time secure link.' | translate }}
+      </p>
+      <div class="policy-note info">
+        <i class="ri-information-line"></i>
+        {{ 'Your bank details are only requested at the point of the return — never stored in advance.' | translate }}
       </div>
-      
-      <form class="bank-form" [formGroup]="form" (ngSubmit)="submit()">
-        <div class="form-grid">
-          <div class="form-group full-width">
-            <label for="paypal_email" class="form-label">
-              <i class="ri-mail-line"></i>
-              {{ 'PayPal Email' | translate }}
-            </label>
-            <input 
-              type="email" 
-              class="form-control" 
-              id="paypal_email" 
-              placeholder="{{ 'Enter PayPal Email' | translate }}" 
-              formControlName="paypal_email"
-              [class.is-invalid]="form.get('paypal_email')?.invalid && form.get('paypal_email')?.touched">
-            <div class="invalid-feedback" *ngIf="form.get('paypal_email')?.invalid && form.get('paypal_email')?.touched">
-              {{ 'Please enter a valid email address' | translate }}
-            </div>
-          </div>
-        </div>
-
-        <div class="form-actions">
-          <app-button 
-            [class]="'btn btn-save btn-animation btn-md'" 
-            [id]="'payout_btn'"
-            [type]="'submit'"
-            [spinner]="true">
-            <i class="ri-save-line me-2"></i>
-            {{ 'Save Changes' | translate }}
-          </app-button>
-        </div>
-      </form>
-    </div> -->
+    </div>
   </div>
+
+  <!-- RBI Compliance Notice -->
+  <div class="compliance-notice">
+    <i class="ri-government-line"></i>
+    <p>{{ 'In compliance with RBI guidelines, all prepaid refunds are processed back to the original source of payment. We do not collect or store sensitive financial information.' | translate }}</p>
+  </div>
+
+  <!-- Help -->
+  <div class="policy-help">
+    <i class="ri-customer-service-2-line"></i>
+    <div>
+      <span>{{ 'Need help with a refund?' | translate }}</span>
+      <a routerLink="/Contact-Us">{{ 'Contact our support team' | translate }}</a>
+    </div>
+  </div>
+
 </div>

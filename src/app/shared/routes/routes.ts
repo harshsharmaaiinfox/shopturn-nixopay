@@ -44,8 +44,8 @@ export const content: Routes = [
   },
   {
     path: "become-a-supplier",
-    loadComponent: () => import("../../become-a-supplier/become-a-supplier/become-a-supplier.component").then((m) => m.BecomeASupplierComponent),
-    title: 'Become a Supplier – Partner with Shop Trurn Life'
+    redirectTo: '',
+    pathMatch: 'full'
   },
   {
     path: "investor-relations",

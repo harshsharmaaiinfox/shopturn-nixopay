@@ -5,7 +5,7 @@ import { Router } from '@angular/router';
 import { tap } from "rxjs/operators";
 import { AccountClear } from "../action/account.action";
 import { AuthService } from "../services/auth.service";
-import { ForgotPassWord, Login, VerifyEmailOtp, UpdatePassword, Logout, AuthClear, Register, VerifyNumberOTP, LoginWithNumber } from "../action/auth.action";
+import { ForgotPassWord, Login, VerifyEmailOtp, UpdatePassword, Logout, AuthClear, Register, VerifyNumberOTP, LoginWithNumber, SendRegistrationOtp } from "../action/auth.action";
 import { NotificationService } from "../services/notification.service";
 import { ClearCart } from "../action/cart.action";
 import { AddToWishlist } from "../action/wishlist.action";
@@ -170,6 +170,17 @@ export class AuthState {
             permissions: [],
           });
         },
+        error: err => {
+          throw new Error(err?.error?.message);
+        }
+      })
+    );
+  }
+
+  @Action(SendRegistrationOtp)
+  sendRegistrationOtp(ctx: StateContext<AuthStateModel>, action: SendRegistrationOtp) {
+    return this.authService.sendRegistrationOtp(action.payload).pipe(
+      tap({
         error: err => {
           throw new Error(err?.error?.message);
         }

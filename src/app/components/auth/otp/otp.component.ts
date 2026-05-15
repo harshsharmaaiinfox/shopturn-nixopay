@@ -6,6 +6,7 @@ import { VerifyEmailOtp, VerifyNumberOTP } from '../../../shared/action/auth.act
 import { Breadcrumb } from '../../../shared/interface/breadcrumb';
 import { AuthNumberLoginState } from '../../../shared/interface/auth.interface';
 import { AuthService } from '../../../shared/services/auth.service';
+import { NotificationService } from '../../../shared/services/notification.service';
 
 @Component({
   selector: 'app-otp',
@@ -25,10 +26,11 @@ export class OtpComponent {
   }
 
   constructor(
-    public router: Router, 
-    public store: Store, 
+    public router: Router,
+    public store: Store,
     public authService: AuthService,
-    public formBuilder: FormBuilder
+    public formBuilder: FormBuilder,
+    private notificationService: NotificationService
   ) {
     this.form = this.formBuilder.group({
       otp: new FormControl('', [Validators.required, Validators.minLength(5)]),
@@ -40,15 +42,19 @@ export class OtpComponent {
     if(this.otpType === 'email'){
       this.email = this.store.selectSnapshot(state => state.auth.email);
       if(!this.email){
-        this.router.navigateByUrl('/auth/login'); 
+        this.router.navigateByUrl('/auth/login');
       }
     } else if(this.otpType === 'number'){
       this.number = this.store.selectSnapshot(state => state.auth.number);
       if(!this.number.phone){
-        this.router.navigateByUrl('/auth/login'); 
+        this.router.navigateByUrl('/auth/login');
+      }
+    } else if(this.otpType === 'registration'){
+      if(!this.authService.registrationPhone){
+        this.router.navigateByUrl('/auth/register');
       }
     } else {
-      this.router.navigateByUrl('/auth/login'); 
+      this.router.navigateByUrl('/auth/login');
     }
   }
 
@@ -56,34 +62,41 @@ export class OtpComponent {
   submit() {
     this.form.markAllAsTouched();
     if(this.form.valid){
-      var action;
-      var value;
+      var action: any;
+      var value: any;
+
       if(this.otpType === 'email') {
-        value = {
-          email: this.email,
-          token: this.form.value.otp
-        }
-        action = new VerifyEmailOtp(value)
+        value = { email: this.email, token: this.form.value.otp };
+        action = new VerifyEmailOtp(value);
       }
 
       if(this.otpType === 'number') {
+        value = { phone: this.number.phone, country_code: this.number.country_code, token: this.form.value.otp };
+        action = new VerifyNumberOTP(value);
+      }
+
+      if(this.otpType === 'registration') {
         value = {
-          phone: this.number.phone,
-          country_code: this.number.country_code,
+          phone: this.authService.registrationPhone,
+          country_code: this.authService.registrationCountryCode || '91',
           token: this.form.value.otp
-        }
-        action = new VerifyNumberOTP(value)
+        };
+        action = new VerifyNumberOTP(value);
       }
 
       this.store.dispatch(action).subscribe({
         complete: () => {
           if(this.otpType === 'email'){
-            this.router.navigateByUrl('/auth/update-password'); 
-          } else{
-            this.router.navigateByUrl('/account/dashboard'); 
+            this.router.navigateByUrl('/auth/update-password');
+          } else if(this.otpType === 'registration'){
+            this.notificationService.showSuccess('Mobile number verified! Welcome aboard.');
+            this.authService.registrationPhone = '';
+            this.router.navigateByUrl('/account/dashboard');
+          } else {
+            this.router.navigateByUrl('/account/dashboard');
           }
         }
-      })
+      });
     }
   }
 
