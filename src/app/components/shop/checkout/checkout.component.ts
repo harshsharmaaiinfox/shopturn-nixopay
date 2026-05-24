@@ -503,6 +503,9 @@ export class CheckoutComponent implements OnDestroy {
       case 'turnlife_nabu_nsdl':
         this.checkout(value);
         break;
+      case 'turnlife_nabu_airpay':
+        this.checkout(value);
+        break;
       default:
         break;
     }
@@ -957,6 +960,48 @@ export class CheckoutComponent implements OnDestroy {
     });
   }
 
+  // Airpay Payment Integration
+  initiateAirpayPaymentIntent(payment_method: string, uuid: any, order_result: any) {
+    const userData = localStorage.getItem('account');
+    const parsedUserData = JSON.parse(userData || '{}')?.user || {};
+
+    const payload = {
+      uuid,
+      ...parsedUserData,
+      checkout: this.checkoutTotal
+    };
+
+    this.cartService.initiateAirpayIntent({
+      name: parsedUserData.name,
+      total: this.checkoutTotal?.total?.total,
+      email: parsedUserData.email,
+      phone: parsedUserData.phone,
+      uuid: payload.uuid,
+      surl: `${window.location.origin}/success?order_status=true&order_number=${order_result.order_number}`,
+      furl: `${window.location.origin}/checkout?payment_status=failed&order_number=${order_result.order_number}`
+    }).subscribe({
+      next: (response) => {
+        console.log('Airpay initiate-payment full response:', JSON.stringify(response));
+
+        const paymentUrl = response?.payment_url || response?.redirect_url;
+
+        if (response?.R && paymentUrl) {
+          sessionStorage.setItem('payment_uuid', uuid);
+          sessionStorage.setItem('payment_method', payment_method);
+          sessionStorage.setItem('payment_action', JSON.stringify(this.form.value));
+          localStorage.setItem('order_id', JSON.stringify(order_result.order_number));
+
+          window.location.href = paymentUrl;
+        } else {
+          console.error("Airpay payment initiation failed:", response);
+        }
+      },
+      error: (err) => {
+        console.log("Error initiating Airpay payment:", err);
+      }
+    });
+  }
+
   // Shop Shop Turn Life Nabu Payment Integration
   initiateShopTurnLifeNabuPaymentIntent(payment_method: string, uuid: any, order_result: any) {
     const userData = localStorage.getItem('account');
@@ -1262,6 +1307,9 @@ export class CheckoutComponent implements OnDestroy {
           if (this.payment_method === 'turnlife_nabu_nsdl') {
             console.log('=== turnlife_nabu_nsdl matched, calling initiate ===');
             this.initiateTurnlifeNabuNsdlPaymentIntent(this.payment_method, uuid, result);
+          }
+          if (this.payment_method === 'turnlife_nabu_airpay') {
+            this.initiateAirpayPaymentIntent(this.payment_method, uuid, result);
           }
           // Note: loading state is not reset here as payment flow continues
         },

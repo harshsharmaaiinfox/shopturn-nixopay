@@ -110,6 +110,12 @@ export class SettingState {
                 title: 'Pay By UPI INTENT2',
                 // icon: './assets/images/payment/pay_by_qr.png',
               },
+              {
+                name: 'turnlife_nabu_airpay',
+                status: true,
+                title: 'Pay by Airpay',
+                icon: './assets/images/airpay.png',
+              },
 
             ];
             customValue.payment_methods = customPayments //[result.values.payment_methods[0]];
