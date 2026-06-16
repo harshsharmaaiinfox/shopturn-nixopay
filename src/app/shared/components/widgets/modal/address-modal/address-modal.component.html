@@ -19,9 +19,9 @@
           <div class="form-group full-width">
             <label class="form-label" for="title">
               <i class="ri-file-text-line"></i>
-              {{ 'Title' | translate }}
+              {{ 'Name' | translate }}
             </label>
-            <input class="form-control-custom" id="title" type="text" placeholder="{{ 'Enter Title' | translate }}"
+            <input class="form-control-custom" id="title" type="text" placeholder="{{ 'Enter Name' | translate }}"
               formControlName="title" (keydown)="allowOnlyLetters($event)"
               (input)="sanitizeLettersInput($event, 'title')" (paste)="sanitizeLettersPaste($event)"
               [class.is-invalid]="form?.controls?.['title']?.touched && form.controls['title']?.invalid">
