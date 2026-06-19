@@ -5,6 +5,7 @@ Allow: /
 Sitemap: https://shopturnlife.com/sitemap.xml
 
 # Disallow non-indexable areas
+Disallow: /seller/
 Disallow: /admin/
 Disallow: /api/
 Disallow: /cart

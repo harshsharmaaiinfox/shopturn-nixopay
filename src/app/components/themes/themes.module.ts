@@ -34,8 +34,6 @@ import { DealComponent } from './widgets/deal/deal.component';
 import { ServiceComponent } from './widgets/service/service.component';
 import { CategoryProductFilterComponent } from './widgets/category-product-filter/category-product-filter.component';
 import { BrandComponent } from './widgets/brand/brand.component';
-import { TopSellerComponent } from './widgets/top-seller/top-seller.component';
- 
 @NgModule({
   declarations: [
     ThemesComponent,
@@ -60,8 +58,7 @@ import { TopSellerComponent } from './widgets/top-seller/top-seller.component';
     CairoComponent,
     ServiceComponent,
     CategoryProductFilterComponent,
-    BrandComponent,
-    TopSellerComponent
+    BrandComponent
   ],
   imports: [
     CommonModule,

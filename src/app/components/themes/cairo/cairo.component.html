@@ -140,16 +140,7 @@
  </section>
  <!-- feature section end -->
 
- <!-- Top Seller start -->
- <ng-container *ngIf="data?.content?.seller?.status">
-     <section>
-         <div class="container-fluid">
-             <app-title [title]="data?.content?.seller?.title" [style]="'simple'"></app-title>
-             <app-top-seller [sellerIds]="data?.content?.seller?.store_ids || []"></app-top-seller>
-         </div>
-     </section>
- </ng-container>
- <!-- Top Seller End -->
+ <!-- Top Seller section removed: single-brand store, no third-party seller/marketplace content (compliance) -->
 
  <!-- Product Section Start -->
  <section class="product-section" *ngIf="data?.content?.categories_products?.status && data?.content?.categories_products?.category_ids?.length">

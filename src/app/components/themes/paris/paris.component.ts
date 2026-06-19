@@ -5,7 +5,6 @@ import { Observable, forkJoin } from 'rxjs';
 import { GetBlogs } from '../../../shared/action/blog.action';
 import { GetBrands } from '../../../shared/action/brand.action';
 import { GetProductByIds } from '../../../shared/action/product.action';
-import { GetStores } from '../../../shared/action/store.action';
 import * as data from '../../../shared/data/owl-carousel';
 import { Option } from '../../../shared/interface/theme-option.interface';
 import { Paris } from '../../../shared/interface/theme.interface';
@@ -43,10 +42,6 @@ export class ParisComponent {
         status: 1,
         ids: this.data?.content?.brands?.brand_ids?.join()
       }));
-      const getStore$ = this.store.dispatch(new GetStores({ 
-        status: 1,
-        ids: this.data?.content?.main_content?.seller?.store_ids?.join()
-      }));
       const getBlogs$ = this.store.dispatch(new GetBlogs({
         status: 1,
         ids: this.data?.content.main_content?.section9_featured_blogs?.blog_ids?.join(',')
@@ -55,7 +50,7 @@ export class ParisComponent {
       // Skeleton Loader
       document.body.classList.add('skeleton-body');
 
-      forkJoin([getProducts$, getBlogs$, getBrand$, getStore$]).subscribe({
+      forkJoin([getProducts$, getBlogs$, getBrand$]).subscribe({
         complete: () => {
           document.body.classList.remove('skeleton-body');
           this.themeOptionService.preloader = false;

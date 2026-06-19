@@ -30,8 +30,10 @@
                 <h5>{{ product.name }}</h5>
             </a>
             <div class="product-rating d-block">
-                <h6 *ngIf="product.store">{{ 'by' | translate }} <a [routerLink]="['/seller/store/', product.store.slug]"> {{ product.store.store_name }}</a>
-                    {{ 'in' | translate }} <a [routerLink]="['/collections/']" [queryParams]="{ category: product.categories[0].slug }" *ngIf="product.categories.length">{{ product.categories[0].name }}</a>
+                <h6 *ngIf="product.categories.length">{{ 'in' | translate }}
+                    <a [routerLink]="['/collections/']" [queryParams]="{ category: product.categories[0].slug }">
+                        {{ product.categories[0].name }}
+                    </a>
                 </h6>
                 <p>{{ product.short_description }}</p>
                 <ngb-rating [rate]="product.rating_count"></ngb-rating>

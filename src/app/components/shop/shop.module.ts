@@ -10,24 +10,6 @@ import { CartComponent } from './cart/cart.component';
 import { WishlistComponent } from './wishlist/wishlist.component';
 import { CompareComponent } from './compare/compare.component';
 
-// Seller
-import { SellerComponent } from './seller/seller.component';
-import { SellerStoreBasicComponent } from './seller/seller-store/seller-store-basic/seller-store-basic.component';
-import { SellerStoreComponent } from './seller/seller-store/seller-store.component';
-import { SkeletonSellerStoreComponent } from './seller/seller-store/skeleton-seller-store/skeleton-seller-store.component';
-import { SellerStoreClassicComponent } from './seller/seller-store/seller-store-classic/seller-store-classic.component';
-import { SellerDetailsComponent } from './seller/seller-details/seller-details.component';
-import { SellerDetailsBasicComponent } from './seller/seller-details/seller-details-basic/seller-details-basic.component';
-import { SellerDetailsClassicComponent } from './seller/seller-details/seller-details-classic/seller-details-classic.component';
-// Widgets
-import { SellerContactDetailsComponent } from './seller/widgets/seller-contact-details/seller-contact-details.component';
-import { SellerStoreLogoComponent } from './seller/widgets/seller-store-logo/seller-store-logo.component';
-import { SellerStoreProductsComponent } from './seller/widgets/seller-store-products/seller-store-products.component';
-import { SellerStoreRatingComponent } from './seller/widgets/seller-store-rating/seller-store-rating.component';
-import { SellerStoreProductCountsComponent } from './seller/widgets/seller-store-product-counts/seller-store-product-counts.component';
-import { SellerStoreNameComponent } from './seller/widgets/seller-store-name/seller-store-name.component';
-import { SellerStoreDescriptionComponent } from './seller/widgets/seller-store-description/seller-store-description.component';
-import { SellerStoreSocialLinksComponent } from './seller/widgets/seller-store-social-links/seller-store-social-links.component';
 
 // Product & Product Details
 import { ProductComponent } from './product/product.component';
@@ -43,7 +25,6 @@ import { BrandComponent } from './brand/brand.component';
 import { CategoryComponent } from './category/category.component';
 
 // Widgets
-import { StoreInformationComponent } from './product/product-details/widgets/store-information/store-information.component';
 import { TrendingProductsComponent } from './product/product-details/widgets/trending-products/trending-products.component';
 import { RelatedProductsComponent } from './product/product-details/widgets/related-products/related-products.component';
 import { PaymentOptionComponent } from './product/product-details/widgets/payment-option/payment-option.component';
@@ -82,8 +63,6 @@ import { CollectionFilterComponent } from './collection/widgets/filter/collectio
 import { CollectionAttributesComponent } from './collection/widgets/filter/collection-attributes-filter/collection-attributes-filter.component';
 import { BannerComponent } from './collection/widgets/banner/banner.component';
 import { SkeletonCollectionSidebarComponent } from './collection/widgets/skeleton-collection-sidebar/skeleton-collection-sidebar.component';
-import { DigitalProductContainComponent } from './product/product-details/widgets/digital-product-contain/digital-product-contain.component';
-import { VendorContainComponent } from './product/product-details/widgets/vendor-contain/vendor-contain.component';
 import { VideoPlayModalComponent } from './product/product-details/widgets/video-play-modal/video-play-modal.component';
 
 // Checkout
@@ -110,29 +89,12 @@ import { PaymentPendingComponent } from './checkout/payment-pending/payment-pend
     CartComponent,
     WishlistComponent,
     CompareComponent,
-    SellerComponent,
-    SellerStoreBasicComponent,
-    SellerStoreComponent,
-    SkeletonSellerStoreComponent,
-    SellerStoreClassicComponent,
-    SellerDetailsComponent,
-    SellerDetailsBasicComponent,
-    SellerDetailsClassicComponent,
-    SellerContactDetailsComponent,
-    SellerStoreLogoComponent,
-    SellerStoreProductsComponent,
-    SellerStoreRatingComponent,
-    SellerStoreProductCountsComponent,
-    SellerStoreNameComponent,
-    SellerStoreDescriptionComponent,
-    SellerStoreSocialLinksComponent,
     ProductComponent,
     ProductSidebarComponent,
     ProductThumbnailComponent,
     ProductImagesComponent,
     ProductSliderComponent,
     ProductStickyComponent,
-    StoreInformationComponent,
     TrendingProductsComponent,
     RelatedProductsComponent,
     PaymentOptionComponent,
@@ -166,7 +128,6 @@ import { PaymentPendingComponent } from './checkout/payment-pending/payment-pend
     CollectionRatingFilterComponent,
     CollectionFilterComponent,
     CollectionAttributesComponent,
-    SkeletonSellerStoreComponent,
     BannerComponent,
     SkeletonCollectionSidebarComponent,
     CheckoutComponent,
@@ -178,8 +139,6 @@ import { PaymentPendingComponent } from './checkout/payment-pending/payment-pend
     ProductDetailsAccordionComponent,
     CollectionNoSidebarComponent,
     ProductDigitalComponent,
-    DigitalProductContainComponent,
-    VendorContainComponent,
     VideoPlayModalComponent,
     OrderTrackingComponent,
     OrderDetailsComponent,

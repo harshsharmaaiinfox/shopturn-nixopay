@@ -21,8 +21,9 @@
   <script src="https://analytics.ahrefs.com/analytics.js" data-key="n5rAHG72KSZi3+qjVV8zIw" async></script>
 
 
-  <!-- Remove hardcoded canonical - let Angular handle it dynamically -->
-  <!-- <link rel="canonical" href="https://Shop Trurn Life.com/Contact-Us" /> -->
+  <!-- Default canonical for homepage; overridden dynamically by Angular on inner pages -->
+  <link rel="canonical" href="https://shopturnlife.com/" id="canonical-url">
+  <meta name="robots" content="index, follow">
 
 
   <!-- Google tag (gtag.js) -->
@@ -68,7 +69,8 @@
     {
       "@context": "https://schema.org",
       "@type": "Organization",
-      "name": "ShopTurnLife",
+      "name": "Shop Turn Life",
+      "legalName": "TURN LIFE RETAIL PRIVATE LIMITED",
       "url": "https://shopturnlife.com",
       "logo": "https://shopturnlife.com/assets/images/Web-site-logo.png",
       "alternateName": "Shop Turn Life",

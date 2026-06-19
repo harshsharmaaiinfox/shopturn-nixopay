@@ -243,7 +243,7 @@ export class SeoService {
         "itemCondition": "https://schema.org/NewCondition",
         "seller": {
           "@type": "Organization",
-          "name": "Shop Trurn Life"
+          "name": "TURN LIFE RETAIL PRIVATE LIMITED"
         }
       }
     };
@@ -266,18 +266,23 @@ export class SeoService {
     const structuredData = {
       "@context": "https://schema.org",
       "@type": "Organization",
-      "name": "Ecomus",
-      "url": "https://Shop Trurn Life.in",
-      "logo": "https://Shop Trurn Life.in/assets/images/logo.png",
+      "name": "Shop Turn Life",
+      "legalName": "TURN LIFE RETAIL PRIVATE LIMITED",
+      "url": "https://shopturnlife.com",
+      "logo": "https://shopturnlife.com/assets/images/Web-site-logo.png",
+      "email": "info@shopturnlife.com",
       "sameAs": [
-        "https://facebook.com/ecomus",
-        "https://twitter.com/ecomus",
-        "https://instagram.com/ecomus"
+        "https://www.instagram.com/shopturnlife/",
+        "https://www.facebook.com/profile.php?id=61588276312266",
+        "https://x.com/shopturnlife",
+        "https://www.youtube.com/@shopturnlife"
       ],
       "contactPoint": {
         "@type": "ContactPoint",
-        "telephone": "+1-555-123-4567",
-        "contactType": "customer service"
+        "telephone": "+917017761582",
+        "contactType": "customer service",
+        "areaServed": "IN",
+        "availableLanguage": "English"
       }
     };
 

@@ -97,18 +97,6 @@
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://shopturnlife.com/seller/stores</loc>
-    <lastmod>2026-03-03</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://shopturnlife.com/seller/become-seller</loc>
-    <lastmod>2026-03-03</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
     <loc>https://shopturnlife.com/category/active-style</loc>
     <lastmod>2026-03-03</lastmod>
     <changefreq>weekly</changefreq>

@@ -81,15 +81,7 @@
           </app-theme-product>
         </div>
 
-        <!-- Top Seller start -->
-        <ng-container *ngIf="data?.content?.main_content?.seller?.status">
-          <section>
-            <app-title [title]="data?.content?.main_content?.seller?.title">
-            </app-title>
-            <app-top-seller [sellerIds]="data?.content?.main_content?.seller?.store_ids || []"></app-top-seller>
-          </section>
-        </ng-container>
-        <!-- Top Seller End -->
+        <!-- Top Seller section removed: single-brand store, no third-party seller/marketplace content (compliance) -->
       </div>
       <!-- Product Section End-->
 

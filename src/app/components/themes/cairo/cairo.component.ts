@@ -6,7 +6,6 @@ import { GetCategoryProducts, GetProductByIds } from '../../../shared/action/pro
 import { Category } from '../../../shared/interface/category.interface';
 import * as data from  '../../../shared/data/owl-carousel';
 import { GetBrands } from '../../../shared/action/brand.action';
-import { GetStores } from '../../../shared/action/store.action';
 import { ThemeOptionState } from '../../../shared/state/theme-option.state';
 import { Option } from '../../../shared/interface/theme-option.interface';
 import { ActivatedRoute } from '@angular/router';
@@ -54,10 +53,6 @@ export class CairoComponent {
         status: 1,
         ids: this.data?.content?.brands?.brand_ids?.join()
       }));
-      const getStore$ = this.store.dispatch(new GetStores({ 
-        status: 1,
-        ids: this.data?.content?.seller?.store_ids?.join()
-      }));
       const getBlogs$ = this.store.dispatch(new GetBlogs({
         status: 1
       }));
@@ -69,7 +64,7 @@ export class CairoComponent {
       document.body.classList.add('skeleton-body');
       document.body.classList.add('cairo');
 
-      forkJoin([getProducts$, getBrand$, getStore$, getBlogs$, getCategoryProduct$]).subscribe({
+      forkJoin([getProducts$, getBrand$, getBlogs$, getCategoryProduct$]).subscribe({
         complete: () => {
           document.body.classList.remove('skeleton-body');
           this.themeOptionService.preloader = false;

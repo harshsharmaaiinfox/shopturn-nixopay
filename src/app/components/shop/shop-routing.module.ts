@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { ProductResolver } from '../../shared/resolvers/product.resolver';
-import { StoreResolver } from '../../shared/resolvers/store.resolver';
 import { BrandResolver } from '../../shared/resolvers/brand.resolver';
 
 import { AuthGuard } from "./../../core/guard/auth.guard";
@@ -10,11 +9,6 @@ import { CheckoutGuard } from "./../../core/guard/checkout.guard";
 import { CartComponent } from './cart/cart.component';
 import { WishlistComponent } from './wishlist/wishlist.component';
 import { CompareComponent } from './compare/compare.component';
-
-// Seller
-import { SellerComponent } from './seller/seller.component';
-import { SellerStoreComponent } from './seller/seller-store/seller-store.component';
-import { SellerDetailsComponent } from './seller/seller-details/seller-details.component';
 
 // Product
 import { ProductComponent } from './product/product.component';
@@ -59,21 +53,9 @@ const routes: Routes = [
     path: 'collections',
     component: CollectionComponent
   },
-  {
-    path: 'seller/become-seller',
-    component: SellerComponent
-  },
-  {
-    path: 'seller/stores',
-    component: SellerStoreComponent
-  },
-  {
-    path: 'seller/store/:slug',
-    component: SellerDetailsComponent,
-    resolve: {
-      data: StoreResolver
-    }
-  },
+  { path: 'seller/store/:slug', redirectTo: '/', pathMatch: 'full' },
+  { path: 'seller/stores',     redirectTo: '/', pathMatch: 'full' },
+  { path: 'seller/become-seller', redirectTo: '/', pathMatch: 'full' },
   {
     path: 'checkout',
     component: CheckoutComponent,
