@@ -671,22 +671,27 @@
 }
 
 
-// Custom Select2 Styling
-::ng-deep {
+// Custom Select2 Styling - matches .form-control-modern fields.
+// NOTE: ng-select2-component hardcodes `select2-container--focus` on the wrapper,
+// so we must NOT key the focused style off that class. The library uses
+// `.select2-focused` on the inner `<div class="selection">` for real focus state.
+::ng-deep .checkout-section-modern {
     .custom-select {
         .select2-container {
             .select2-selection {
-                border: 2px solid #e9ecef;
-                border-radius: 10px;
-                padding: 0.5rem;
+                border: 2px solid #e9ecef !important;
+                border-radius: 10px !important;
+                padding: 0.5rem 0.75rem !important;
                 min-height: 48px;
-                transition: all 0.3s ease;
+                background: #ffffff !important;
+                transition: border-color 0.3s ease, box-shadow 0.3s ease;
+                box-shadow: none !important;
+            }
 
-                &:focus,
-                &:focus-within {
-                    border-color: var(--theme-color, #0d6efd);
-                    box-shadow: 0 0 0 3px rgba(39, 94, 94, 0.1);
-                }
+            .selection.select2-focused .select2-selection,
+            &.select2-container--open .select2-selection {
+                border-color: var(--theme-color, #0d6efd) !important;
+                box-shadow: 0 0 0 3px rgba(39, 94, 94, 0.1) !important;
             }
         }
     }

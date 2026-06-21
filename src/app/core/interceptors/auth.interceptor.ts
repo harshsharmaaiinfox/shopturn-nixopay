@@ -51,7 +51,10 @@ export class AuthInterceptor implements HttpInterceptor {
         this.store.dispatch(new HideLoaderAction());
         this.store.dispatch(new HideButtonSpinnerAction());
 
-        if (error.status === 401) {
+        // Only treat 401 as a session-expiry if we actually sent a token.
+        // For guest users a 401 just means the endpoint requires auth — clearing
+        // auth/account/cart state here would wipe their guest cart unexpectedly.
+        if (error.status === 401 && token) {
           this.store.dispatch(new AuthClear());
         }
         return throwError(() => error);

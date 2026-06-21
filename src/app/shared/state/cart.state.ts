@@ -66,6 +66,22 @@ export class CartState {
   @Action(GetCartItems)
   getCartItems(ctx: StateContext<CartStateModel>) {
     if (!this.store.selectSnapshot(state => state.auth && state.auth.access_token)) {
+      // Guest user: explicitly restore cart from localStorage if NGXS state is empty
+      if (!ctx.getState().items?.length) {
+        try {
+          const stored = localStorage.getItem('cart');
+          if (stored) {
+            const cartData = JSON.parse(stored);
+            if (cartData?.items?.length) {
+              ctx.patchState({
+                items: cartData.items,
+                total: cartData.total || 0,
+                is_digital_only: cartData.is_digital_only ?? null,
+              });
+            }
+          }
+        } catch (e) {}
+      }
       return;
     }
     return this.cartService.getCartItems().pipe(

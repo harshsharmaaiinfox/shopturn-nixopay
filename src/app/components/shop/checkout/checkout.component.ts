@@ -13,7 +13,7 @@ import { AccountState } from '../../../shared/state/account.state';
 import { CartState } from '../../../shared/state/cart.state';
 import { OrderState } from '../../../shared/state/order.state';
 import { Checkout, PlaceOrder } from '../../../shared/action/order.action';
-import { ClearCart, SyncCart } from '../../../shared/action/cart.action';
+import { ClearCart, SyncCart, GetCartItems } from '../../../shared/action/cart.action';
 import { Register } from '../../../shared/action/auth.action';
 import { AddressModalComponent } from '../../../shared/components/widgets/modal/address-modal/address-modal.component';
 import { Cart } from '../../../shared/interface/cart.interface';
@@ -93,26 +93,17 @@ export class CheckoutComponent implements OnDestroy {
 
   // Calculate cart totals with shipping and tax as zero (shown regardless of login)
   getCalculatedTotals() {
-    let subTotal = 0;
-    let shippingTotal = 0; // Always zero as requested
-    let taxTotal = 0; // Always zero as requested
-
-    this.cartItem$.subscribe(items => {
-      if (items) {
-        subTotal = items.reduce((total, item) => {
-          const itemPrice = item.variation ? item.variation.sale_price : (item.wholesale_price || item.product?.sale_price || 0);
-          return total + (itemPrice * item.quantity);
-        }, 0);
-      }
-    });
-
-    const grandTotal = subTotal + shippingTotal + taxTotal;
+    const items = this.store.selectSnapshot(CartState.cartItems) || [];
+    const subTotal = items.reduce((total, item) => {
+      const itemPrice = item.variation ? item.variation.sale_price : (item.wholesale_price || item.product?.sale_price || 0);
+      return total + (itemPrice * item.quantity);
+    }, 0);
 
     return {
       sub_total: subTotal,
-      shipping_total: shippingTotal,
-      tax_total: taxTotal,
-      total: grandTotal
+      shipping_total: 0,
+      tax_total: 0,
+      total: subTotal
     };
   }
 
@@ -315,6 +306,11 @@ export class CheckoutComponent implements OnDestroy {
 
   ngOnInit() {
     this.checkout$.pipe(takeUntil(this.destroy$)).subscribe(data => this.checkoutTotal = data);
+
+    // Ensure cart is populated when entering checkout (guards against state being empty
+    // after page refresh or direct navigation before storage plugin hydration completes)
+    this.ensureCartLoaded();
+
     this.products();
 
     // Restore cart if user returned from incomplete payment
@@ -337,6 +333,40 @@ export class CheckoutComponent implements OnDestroy {
         this.checkout();
       }
     }, 500);
+  }
+
+  private ensureCartLoaded() {
+    const isAuth = !!this.store.selectSnapshot(state => state.auth?.access_token);
+
+    if (isAuth) {
+      this.store.dispatch(new GetCartItems());
+      return;
+    }
+
+    // Guest user: if NGXS state is empty but localStorage has a cart, sync it back into state
+    const stateItems = this.store.selectSnapshot(CartState.cartItems);
+    if (stateItems && stateItems.length) {
+      return;
+    }
+
+    try {
+      const stored = localStorage.getItem('cart');
+      if (!stored) return;
+      const cartData = JSON.parse(stored);
+      if (cartData?.items?.length) {
+        this.store.reset({
+          ...this.store.snapshot(),
+          cart: {
+            ...this.store.snapshot().cart,
+            items: cartData.items,
+            total: cartData.total || 0,
+            is_digital_only: cartData.is_digital_only ?? null,
+          }
+        });
+      }
+    } catch (e) {
+      console.warn('Cart restore from localStorage failed:', e);
+    }
   }
 
   products() {
