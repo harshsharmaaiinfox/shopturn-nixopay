@@ -88,51 +88,6 @@ export const CategoryOption: any[] = [
                 "exclude_zones": [],
                 "subcategories": [
                     {
-                        "id": 89,
-                        "name": "Leggings",
-                        "slug": "leggings",
-                        "meta_title": null,
-                        "meta_description": null,
-                        "category_meta_image_id": null,
-                        "description": null,
-                        "category_image_id": null,
-                        "category_icon_id": null,
-                        "status": 1,
-                        "type": "product",
-                        "commission_rate": null,
-                        "parent_id": 88,
-                        "created_by_id": 1,
-                        "created_at": "2025-12-19T10:26:58.000000Z",
-                        "updated_at": "2025-12-19T10:26:58.000000Z",
-                        "deleted_at": null,
-                        "is_allow_all_zone": 1,
-                        "blogs_count": 0,
-                        "products_count": 107,
-                        "category_image": null,
-                        "category_meta_image": null,
-                        "category_icon": null,
-                        "zones": [
-                            {
-                                "id": 1,
-                                "name": "India",
-                                "pivot": {
-                                    "category_id": 89,
-                                    "zone_id": 1
-                                }
-                            },
-                            {
-                                "id": 2,
-                                "name": "Adajan",
-                                "pivot": {
-                                    "category_id": 89,
-                                    "zone_id": 2
-                                }
-                            }
-                        ],
-                        "exclude_zones": [],
-                        "subcategories": []
-                    },
-                    {
                         "id": 90,
                         "name": "Tank Tops",
                         "slug": "tank-tops",
@@ -313,51 +268,6 @@ export const CategoryOption: any[] = [
                 ],
                 "exclude_zones": [],
                 "subcategories": [
-                    {
-                        "id": 94,
-                        "name": "Jerseys",
-                        "slug": "jerseys",
-                        "meta_title": null,
-                        "meta_description": null,
-                        "category_meta_image_id": null,
-                        "description": null,
-                        "category_image_id": null,
-                        "category_icon_id": null,
-                        "status": 1,
-                        "type": "product",
-                        "commission_rate": null,
-                        "parent_id": 93,
-                        "created_by_id": 1,
-                        "created_at": "2025-12-19T10:29:15.000000Z",
-                        "updated_at": "2025-12-19T10:30:26.000000Z",
-                        "deleted_at": null,
-                        "is_allow_all_zone": 1,
-                        "blogs_count": 0,
-                        "products_count": 45,
-                        "category_image": null,
-                        "category_meta_image": null,
-                        "category_icon": null,
-                        "zones": [
-                            {
-                                "id": 1,
-                                "name": "India",
-                                "pivot": {
-                                    "category_id": 94,
-                                    "zone_id": 1
-                                }
-                            },
-                            {
-                                "id": 2,
-                                "name": "Adajan",
-                                "pivot": {
-                                    "category_id": 94,
-                                    "zone_id": 2
-                                }
-                            }
-                        ],
-                        "exclude_zones": [],
-                        "subcategories": []
-                    },
                     {
                         "id": 95,
                         "name": "Tracksuits",
