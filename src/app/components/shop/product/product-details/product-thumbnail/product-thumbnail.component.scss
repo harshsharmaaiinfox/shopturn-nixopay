@@ -193,9 +193,11 @@ $radius-lg:    20px;
 
 // ─── Row spacing tweak ────────────────────────────────────────────────────────
 .row.g-4 {
-  // slight visual breathing room below image + info
-  > [class*='col-']:last-child {
-    margin-top: 0;
+  align-items: flex-start;
+
+  // image column must not stretch to match the taller right column
+  > .col-xl-6:first-child {
+    align-self: flex-start;
   }
 }
 
