@@ -509,7 +509,7 @@ a {
     border-radius: 2px;
 
     html.dark & {
-      background-color: #0da487;
+      background-color: #275E5E;
     }
   }
 
@@ -524,8 +524,8 @@ a {
   border: 1px solid #0d462c !important;
 
   html.dark & {
-    border-color: #0da487 !important;
-    color: #0da487 !important;
+    border-color: #275E5E !important;
+    color: #275E5E !important;
   }
 
   &::after {
@@ -539,7 +539,7 @@ a {
     border-radius: 2px;
 
     html.dark & {
-      background-color: #0da487;
+      background-color: #275E5E;
     }
 
     body.rtl & {
@@ -563,7 +563,7 @@ a {
     transform: translateY(-50%);
 
     html.dark & {
-      background-color: #0da487;
+      background-color: #275E5E;
     }
 
     body.rtl & {

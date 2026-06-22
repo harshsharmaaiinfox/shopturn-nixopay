@@ -3,7 +3,7 @@
 ==========================**/
 header {
   .main-nav {
-    padding: 20px 0;
+    padding: 0;
     display: flex;
     align-items: center;
 
@@ -33,11 +33,16 @@ header {
 
   .dropdown-header {
     display: block;
-    padding: 8px 20px;
-    margin-bottom: 0;
-    font-size: 14px;
-    color: var(--theme-color);
+    padding: 12px 20px 8px 20px;
+    margin-bottom: 12px;
+    font-size: 16px;
+    font-weight: 600;
+    color: #CB7A43;
     white-space: nowrap;
+    text-transform: capitalize;
+    border-bottom: 2px solid #CB7A43;
+    padding-bottom: 8px;
+    margin-top: 0;
 
     @include mq-max(xl) {
       padding-left: 0;
@@ -164,18 +169,19 @@ header {
     .dropdown-menu {
       min-width: 200px;
       margin: 0;
-      margin-top: -8px;
+      margin-top: 10px;
       background-color: $white;
-      box-shadow: -1px 0 10px 0 rgba($title-color, 0.7), 5px 20px 40px 0 rgba($title-color, 0.4);
-      border-color: transparent;
-      box-shadow: none;
-      border: 0;
-      position: absolute;
-      transition: all 0.5s ease;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.12);
+      border: 1px solid rgba(203, 122, 67, 0.1);
+      border-radius: 8px;
+      position: fixed;
+      transition: all 0.3s ease;
       opacity: 0;
       visibility: hidden;
       display: block !important;
-      transform: translateY(-15px);
+      transform: translateY(-10px);
+      z-index: 9999;
+      padding: 20px 0;
 
       @include mq-max(2xl) {
         left: -50%;
@@ -224,6 +230,7 @@ header {
             left: 113%;
             visibility: visible;
             opacity: 1;
+            z-index: 1051;
 
             @include mq-max(xl) {
               left: unset;
@@ -242,7 +249,7 @@ header {
         }
 
         .sub-menu {
-          position: absolute;
+          position: fixed;
           top: -19px;
           left: 123%;
           min-width: 200px;
@@ -257,6 +264,7 @@ header {
           visibility: hidden;
           opacity: 0;
           transition: all 0.3s ease-in-out;
+          z-index: 1051;
 
           body.rtl & {
             right: 123%;
@@ -310,16 +318,19 @@ header {
 
       &-2 {
         left: 50%;
-        transform: translateX(-50%) translateY(-15px);
+        transform: translateX(-50%) translateY(-10px);
         width: 52vw;
         min-width: unset;
-        padding: 22px !important;
+        padding: 30px 25px !important;
         align-items: center;
         justify-content: space-around;
         display: block;
-        overflow: hidden;
-        position: absolute;
-        z-index: 0;
+        overflow: visible;
+        position: fixed;
+        z-index: 1050;
+        border-radius: 12px;
+        box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+        border: 1px solid rgba(203, 122, 67, 0.1);
 
         @include mq-max(xl) {
           position: relative;
@@ -577,30 +588,9 @@ header {
               padding-left: 18px;
             }
 
+            // Hide dropdown chevron/caret icon
             &::before {
-              @include remixicon;
-              content: "\ea4e";
-              position: absolute;
-              right: -4px;
-              top: 50%;
-              transform: translateY(-50%);
-              font-size: 16px;
-              transition: all 0.15s ease-in-out;
-
-              body.rtl & {
-                right: unset;
-                left: -4px;
-              }
-
-              @include mq-max(xl) {
-                right: 0;
-                line-height: 1;
-
-                body.rtl & {
-                  right: unset;
-                  left: 0;
-                }
-              }
+              display: none !important;
             }
           }
         }
@@ -609,13 +599,19 @@ header {
       .nav-link {
         @include flex_common;
         font-size: 16px;
-        font-weight: normal;
+        font-weight: 500;
         position: relative;
         text-transform: capitalize;
         transition: all 0.15s ease-in-out;
+        color: #333;
+        padding: 10px 16px;
 
         &::after {
           content: none;
+        }
+
+        &:hover {
+          color: #CB7A43;
         }
 
         .icli {
@@ -738,7 +734,7 @@ header {
       flex-direction: row;
 
       .dropdown-menu {
-        position: absolute;
+        position: fixed;
         left: 26px;
         top: 30px;
         box-shadow: 0px 3px 4px rgba($black, 0.14);
@@ -926,11 +922,15 @@ header {
         @include mq-max(xl) {
           width: calc(300px + (320 - 300) * ((100vw - 320px) / (1199 - 320)));
           transform: translateX(-100%);
-          z-index: 7;
+          z-index: 1065;
 
           body.rtl & {
             transform: translateX(100%);
           }
+        }
+
+        @include mq-max(md) {
+          width: 100%;
         }
       }
     }
@@ -977,6 +977,10 @@ header {
 
     @include mq-max(xl) {
       padding: calc(13px + (20 - 13) * ((100vw - 320px) / (1200 - 320))) calc(16px + (24 - 16) * ((100vw - 320px) / (1200 - 320)));
+    }
+
+    @include mq-max(md) {
+      padding-bottom: 75px;
     }
 
     &::-webkit-scrollbar {
@@ -1220,51 +1224,45 @@ header {
         }
 
         .dropdown-item {
-          padding: 0;
-          margin: 12px 0 0 0;
+          padding: 8px 20px;
+          margin: 0;
           font-size: 15px;
           position: relative;
-          transition: all 0.3s ease-in-out;
+          transition: all 0.2s ease-in-out;
           z-index: 0;
           cursor: pointer;
+          color: #333;
+          display: block;
+          text-decoration: none;
+          border-radius: 4px;
 
           body.rtl & {
             text-align: right;
           }
 
           &:hover {
-            &::after {
-              width: 40%;
+            color: #CB7A43;
+            background-color: rgba(203, 122, 67, 0.05);
+            padding-left: 25px;
+
+            body.rtl & {
+              padding-left: 20px;
+              padding-right: 25px;
             }
           }
 
           &:active {
-            color: $black;
+            color: #CB7A43;
+            background-color: rgba(203, 122, 67, 0.1);
           }
 
           &::after {
-            @include pos;
-            @include pseudowh($width: 0, $height: 4px);
-            bottom: 2px;
-            left: 0;
-            background-color: var(--theme-color);
-            opacity: 0.3;
-            border-radius: 50px;
-            transition: all 0.3s ease-in-out;
-            z-index: -1;
-
-            body.rtl & {
-              left: unset;
-              right: 0;
-            }
+            display: none;
           }
 
           &:focus {
             background-color: transparent;
-          }
-
-          &:hover {
-            background-color: transparent;
+            color: #CB7A43;
           }
         }
 
@@ -1344,12 +1342,14 @@ header {
             visibility: visible;
             transform: translateY(0);
             display: block !important;
+            z-index: 1050;
           }
 
           .dropdown-menu-2 {
             transform: translateX(-50%) translateY(0);
             display: block !important;
             left: 50%;
+            z-index: 1050;
 
             @media (max-width: 1260px) {
               transform: translateX(-55%) translateY(0);
@@ -1401,31 +1401,25 @@ header {
 
         .dropdown-column {
           margin-top: 0;
+          padding: 0 15px;
 
           .dropdown-header {
-            padding: 0;
+            padding: 0 0 12px 0;
             font-size: 16px;
             font-weight: 600;
-            margin-bottom: 24px;
-            color: $title-color;
+            margin-bottom: 16px;
+            color: #CB7A43;
             position: relative;
+            text-transform: capitalize;
+            border-bottom: 2px solid #CB7A43;
+            padding-bottom: 10px;
 
             body.rtl & {
               text-align: right;
             }
 
             &::after {
-              @include pos;
-              bottom: -10px;
-              width: 36px;
-              height: 2px;
-              background-color: var(--theme-color);
-              left: 0;
-
-              body.rtl & {
-                left: unset;
-                right: 0;
-              }
+              display: none;
             }
           }
         }
@@ -1498,14 +1492,14 @@ header {
       -webkit-box-flex: 1;
 
       @include mq-max(xl) {
-        z-index: 4;
+        z-index: 1065;
         -webkit-box-flex: 2;
       }
     }
   }
 
   .offcanvas-backdrop {
-    z-index: 6;
+    z-index: 1061;
   }
 
   @media (max-width: 1199px) {
@@ -1606,11 +1600,17 @@ header {
         visibility: visible;
         display: none !important;
         transform: translateY(0);
+        z-index: 1050;
 
         &.show {
           position: relative;
           display: block !important;
           inset: unset;
+          opacity: 1;
+          visibility: visible;
+          transform: translateY(0);
+          box-shadow: none;
+          z-index: 1050;
 
           .nav-item {
             .nav-link {
@@ -1660,9 +1660,12 @@ header {
         .dropdown-column {
           .dropdown-header {
             padding-left: 10px;
-            font-size: 15px;
-            font-weight: 500;
-            color: rgba($title-color, 0.8);
+            font-size: 16px;
+            font-weight: 600;
+            color: #CB7A43;
+            margin-bottom: 12px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid #CB7A43;
 
             body.rtl & {
               padding-left: unset;
@@ -2043,4 +2046,16 @@ header {
       }
     }
   }
+}
+
+header .navbar.navbar-expand-xl .navbar-nav .nav-item>a {
+  color: #222222;
+}
+
+.navbar-nav .nav-item.dropdown .dropdown-menu.dropdown-menu-2,
+.navbar-nav .nav-item.dropdown-mega .dropdown-menu.dropdown-menu-2 {
+  min-width: 52vw !important;
+  left: 50% !important;
+  padding: 30px 25px !important;
+  top: 37px !important;
 }

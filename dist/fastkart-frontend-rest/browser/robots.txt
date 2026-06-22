@@ -2,22 +2,42 @@ User-agent: *
 Allow: /
 
 # Sitemap
-Sitemap: https://stylexio.in/sitemap.xml
+Sitemap: https://shopturnlife.com/sitemap.xml
 
-# Disallow admin and private areas
+# Disallow non-indexable areas
+Disallow: /seller/
 Disallow: /admin/
-Disallow: /private/
 Disallow: /api/
-Disallow: /_next/
-Disallow: /static/
+Disallow: /cart
+Disallow: /checkout
+Disallow: /order/checkout-success
+Disallow: /auth/
+Disallow: /account/
+Disallow: /wishlist
+Disallow: /compare
+Disallow: /404
+Disallow: /maintenance
+Disallow: /search
 
-# Allow important pages
+# Allow important public pages
 Allow: /about-us
 Allow: /contact-us
-Allow: /blog
-Allow: /products
-Allow: /categories
+Allow: /privacy-policy
+Allow: /term-condition
+Allow: /return-policy
+Allow: /refund-and-cancellation
+Allow: /shipping-policy
+Allow: /become-a-supplier
+Allow: /investor-relations
+Allow: /offers
+Allow: /blogs
+Allow: /blog/
+Allow: /faq
+Allow: /product/
+Allow: /collections
+Allow: /collections/
+Allow: /category/
+Allow: /order/tracking
 
-# Crawl delay (optional)
+# Crawl delay
 Crawl-delay: 1
-

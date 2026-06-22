@@ -2787,15 +2787,11 @@
   }
 
   .product-title {
-    padding: 26px 16px;
+    padding: 0;
     text-align: center;
-    background-color: var(--theme-color);
-    color: white;
-    border-radius: 8px 8px 0 0;
+    color: #222222;
+    border-radius: 0;
     border: 2px solid transparent;
-    background-size: contain;
-    background-clip: border-box;
-    background-position: 0 0;
     animation: shape 15s linear infinite;
 
     &.product-warning {
@@ -3707,9 +3703,9 @@
       }
 
       img {
-        height: calc(180px + (250 - 180) * ((100vw - 320px) / (1920 - 320)));
+        height: calc(180px + 70 * (100vw - 320px) / 1600);
         object-fit: cover;
-        margin-bottom: 20px;
+        margin-bottom: 0;
       }
     }
 
@@ -5103,9 +5099,9 @@
   .product-style-1,
   .product-style-2,
   .product-theme-box {
-    background: $light-gray;
+    background: #F8F8FF;
     border-radius: 5px;
-    padding: calc(10px + (14 - 10) * ((100vw - 320px) / (1920 - 320)));
+    padding: calc(10px + 4 * (100vw - 320px) / 1600);
     border: none;
 
     .add-to-cart-box {

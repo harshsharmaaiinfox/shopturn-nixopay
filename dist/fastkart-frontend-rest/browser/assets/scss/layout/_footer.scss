@@ -2,14 +2,14 @@
      Footer scss
 ==========================**/
 footer {
-  background-color: $light-gray;
+  background-color: #F8F8FF;
   position: relative;
   z-index: 0;
 
   &::after {
     @include pos;
     @include pseudowh($width: 30%, $height: 100%);
-    background-image: url(../../images/footer-shape.png);
+    // background-image: url(../../images/footer-shape.png);
     top: 0;
     left: 0;
     background-repeat: no-repeat;

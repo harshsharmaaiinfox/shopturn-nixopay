@@ -76,10 +76,12 @@
       padding: 0;
       gap: 0;
       z-index: 8;
-      align-items: flex-start;
+      display: flex;
+      align-items: center;
+      justify-content: center;
 
       > div {
-        padding-top: 30%;
+        padding-top: 0;
       }
     }
   }
