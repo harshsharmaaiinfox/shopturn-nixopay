@@ -149,10 +149,15 @@ $radius-lg:    20px;
   top: 90px;
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  gap: .625rem;
 
-  // Each direct child widget gets a card appearance
-  > * {
+  // Named widgets that always have content get card treatment
+  app-product-contain,
+  app-product-information,
+  app-product-delivery-information,
+  app-payment-option,
+  app-product-social-share {
+    display: block;
     background: $bg-card;
     border-radius: $radius-md;
     box-shadow: $shadow-sm;
@@ -160,21 +165,19 @@ $radius-lg:    20px;
     overflow: hidden;
   }
 
-  // product-contain hosts its own card via :host, so we just ensure gap
-  app-product-contain {
-    display: block;
-  }
-
-  // Utility divider pill between action links / info
+  // product-action may render empty — use display:contents so it takes zero space
   app-product-action {
-    display: block;
-  }
+    display: contents;
 
-  app-product-information,
-  app-product-delivery-information,
-  app-payment-option,
-  app-product-social-share {
-    display: block;
+    // when it does have content, its children get card treatment
+    .progress-sec,
+    .size-delivery-info {
+      background: $bg-card;
+      border-radius: $radius-md;
+      box-shadow: $shadow-sm;
+      border: 1px solid $border;
+      padding: 1rem 1.25rem;
+    }
   }
 }
 
