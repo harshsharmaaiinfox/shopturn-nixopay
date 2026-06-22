@@ -133,51 +133,6 @@ export const CategoryOption: any[] = [
                         "subcategories": []
                     },
                     {
-                        "id": 91,
-                        "name": "Stringers",
-                        "slug": "stringers",
-                        "meta_title": null,
-                        "meta_description": null,
-                        "category_meta_image_id": null,
-                        "description": null,
-                        "category_image_id": null,
-                        "category_icon_id": null,
-                        "status": 1,
-                        "type": "product",
-                        "commission_rate": null,
-                        "parent_id": 88,
-                        "created_by_id": 1,
-                        "created_at": "2025-12-19T10:27:22.000000Z",
-                        "updated_at": "2025-12-19T10:27:22.000000Z",
-                        "deleted_at": null,
-                        "is_allow_all_zone": 1,
-                        "blogs_count": 0,
-                        "products_count": 39,
-                        "category_image": null,
-                        "category_meta_image": null,
-                        "category_icon": null,
-                        "zones": [
-                            {
-                                "id": 1,
-                                "name": "India",
-                                "pivot": {
-                                    "category_id": 91,
-                                    "zone_id": 1
-                                }
-                            },
-                            {
-                                "id": 2,
-                                "name": "Adajan",
-                                "pivot": {
-                                    "category_id": 91,
-                                    "zone_id": 2
-                                }
-                            }
-                        ],
-                        "exclude_zones": [],
-                        "subcategories": []
-                    },
-                    {
                         "id": 92,
                         "name": "Compression Wear",
                         "slug": "compression-wear",
@@ -268,51 +223,6 @@ export const CategoryOption: any[] = [
                 ],
                 "exclude_zones": [],
                 "subcategories": [
-                    {
-                        "id": 95,
-                        "name": "Tracksuits",
-                        "slug": "tracksuits",
-                        "meta_title": null,
-                        "meta_description": null,
-                        "category_meta_image_id": null,
-                        "description": null,
-                        "category_image_id": null,
-                        "category_icon_id": null,
-                        "status": 1,
-                        "type": "product",
-                        "commission_rate": null,
-                        "parent_id": 93,
-                        "created_by_id": 1,
-                        "created_at": "2025-12-19T10:30:38.000000Z",
-                        "updated_at": "2025-12-19T10:30:38.000000Z",
-                        "deleted_at": null,
-                        "is_allow_all_zone": 1,
-                        "blogs_count": 0,
-                        "products_count": 114,
-                        "category_image": null,
-                        "category_meta_image": null,
-                        "category_icon": null,
-                        "zones": [
-                            {
-                                "id": 1,
-                                "name": "India",
-                                "pivot": {
-                                    "category_id": 95,
-                                    "zone_id": 1
-                                }
-                            },
-                            {
-                                "id": 2,
-                                "name": "Adajan",
-                                "pivot": {
-                                    "category_id": 95,
-                                    "zone_id": 2
-                                }
-                            }
-                        ],
-                        "exclude_zones": [],
-                        "subcategories": []
-                    },
                     {
                         "id": 96,
                         "name": "Gym Shorts",
