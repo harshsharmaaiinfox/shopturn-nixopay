@@ -1,40 +1,35 @@
-// Modern Delivery Information Styles
-$primary-teal: #2B5F5E;
-$primary-brown: #C77640;
-$teal-light: rgba(43, 95, 94, 0.1);
-$border-gray: #e8e8e8;
-$text-dark: #222;
-$text-medium: #666;
+$primary: #276267;
+$accent:  #CE7C49;
+$border:  #e8ecef;
+$text-dark: #1a1a2e;
+$text-mid:  #555f6d;
+
+:host { display: block; padding: 1.25rem 1.75rem; }
 
 .delivery-info {
-  background: white;
-  border-radius: 16px;
-  padding: 1.5rem;
-  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
-  border: 1px solid $border-gray;
-  margin-bottom: 1.5rem;
-
   .product-title {
-    margin-bottom: 1.25rem;
-    padding-bottom: 1rem;
-    border-bottom: 2px solid $border-gray;
-    position: relative;
+    display: flex;
+    align-items: center;
+    gap: .5rem;
+    margin-bottom: 1rem;
 
-    &::after {
+    &::before {
       content: '';
-      position: absolute;
-      bottom: -2px;
-      left: 0;
-      width: 60px;
-      height: 2px;
-      background: linear-gradient(90deg, $primary-teal 0%, $primary-brown 100%);
+      display: block;
+      width: 4px;
+      height: 18px;
+      background: linear-gradient(180deg, $primary, $accent);
+      border-radius: 4px;
+      flex-shrink: 0;
     }
 
     h4 {
-      font-size: 1.25rem;
+      margin: 0;
+      font-size: .9375rem;
       font-weight: 700;
       color: $text-dark;
-      margin: 0;
+      text-transform: uppercase;
+      letter-spacing: .6px;
     }
   }
 
@@ -44,46 +39,34 @@ $text-medium: #666;
     margin: 0;
     display: flex;
     flex-direction: column;
-    gap: 0.75rem;
+    gap: .5rem;
 
     li {
       display: flex;
       align-items: center;
-      gap: 0.75rem;
-      padding: 0.75rem;
-      background: #f8f9fa;
-      border-radius: 8px;
-      font-size: 0.95rem;
-      color: $text-dark;
-      transition: all 0.2s ease;
+      gap: .875rem;
+      padding: .875rem 1rem;
+      background: linear-gradient(135deg, rgba(39,98,103,.04) 0%, rgba(206,124,73,.04) 100%);
+      border: 1px solid $border;
+      border-radius: 10px;
+      font-size: .9rem;
+      color: $text-mid;
+      transition: all .2s;
 
       &:hover {
-        background: $teal-light;
-        transform: translateX(4px);
+        background: rgba(39,98,103,.08);
+        border-color: rgba(39,98,103,.2);
+        color: $text-dark;
+        transform: translateX(3px);
       }
 
       i {
         font-size: 1.25rem;
-        color: $primary-teal;
+        color: $primary;
+        width: 28px;
         flex-shrink: 0;
+        text-align: center;
       }
     }
   }
 }
-
-// Responsive
-@media (max-width: 768px) {
-  .delivery-info {
-    padding: 1.25rem;
-
-    .product-title h4 {
-      font-size: 1.1rem;
-    }
-
-    ul li {
-      font-size: 0.875rem;
-      padding: 0.625rem;
-    }
-  }
-}
-
