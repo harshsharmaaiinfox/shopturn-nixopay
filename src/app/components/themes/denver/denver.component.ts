@@ -52,7 +52,7 @@ export class DenverComponent implements OnInit, AfterViewInit {
 
   ngOnInit() {
     if (this.data?.slug == this.slug) {
-      const featuredProductIds = [1115, 1116, 1117, 1359, 1358, 1398, 1537, 1628, 1417, 1421, 1457, 1459];
+      const featuredProductIds = [1115, 1116, 1117, 1359, 1358, 1398, 1537, 1628, 1417, 1195, 1211, 1991];
       const allProductIds = Array.from(new Set([...(this.data?.content?.products_ids || []), ...featuredProductIds]));
 
       const getProducts$ = this.store.dispatch(new GetProductByIds({
