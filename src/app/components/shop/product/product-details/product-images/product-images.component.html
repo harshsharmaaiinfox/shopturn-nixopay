@@ -5,40 +5,43 @@
         <div class="product-image-section">
           <div class="product-badge" *ngIf="product?.is_sale_enable || product?.is_featured">
             <span class="badge-sale" *ngIf="product?.is_sale_enable">{{ 'sale' | translate }}</span>
-            <span class="badge-featured" *ngIf="product?.is_featured && !product?.is_sale_enable">{{ 'featured' | translate }}</span>
+            <span class="badge-featured" *ngIf="product?.is_featured && !product?.is_sale_enable">{{ 'featured' |
+              translate }}</span>
           </div>
           <div class="product-main-image">
             <div class="main-image-wrapper">
               <ng-container *ngIf="firstGalleryImage; else thumbnailImage">
-                <ng-container *ngIf="firstGalleryImage?.mime_type && videType.includes(firstGalleryImage.mime_type); else mainImg">
+                <ng-container
+                  *ngIf="firstGalleryImage?.mime_type && videType.includes(firstGalleryImage.mime_type); else mainImg">
                   <i class="ri-video-line video-icon"></i>
                   <video class="main-image" controls>
                     <source [src]="firstGalleryImage?.original_url || ''" [type]="firstGalleryImage?.mime_type || ''">
                   </video>
                 </ng-container>
                 <ng-template #mainImg>
-                  <img [src]="firstGalleryImage?.original_url || 'assets/images/product.png'" 
-                       class="main-image" [alt]="product?.name || 'product'">
+                  <img [src]="firstGalleryImage?.original_url || 'assets/images/product.png'" class="main-image"
+                    [alt]="product?.name || 'product'">
                 </ng-template>
               </ng-container>
               <ng-template #thumbnailImage>
-                <ng-container *ngIf="product?.product_thumbnail?.mime_type && videType.includes(product?.product_thumbnail?.mime_type || ''); else thumbImg">
+                <ng-container
+                  *ngIf="product?.product_thumbnail?.mime_type && videType.includes(product?.product_thumbnail?.mime_type || ''); else thumbImg">
                   <i class="ri-video-line video-icon"></i>
                   <video class="main-image" controls>
-                    <source [src]="product?.product_thumbnail?.original_url || ''" [type]="product?.product_thumbnail?.mime_type || ''">
+                    <source [src]="product?.product_thumbnail?.original_url || ''"
+                      [type]="product?.product_thumbnail?.mime_type || ''">
                   </video>
                 </ng-container>
                 <ng-template #thumbImg>
-                  <img [src]="product?.product_thumbnail?.original_url || 'assets/images/product.png'" 
-                       class="main-image" [alt]="product?.name || 'product'">
+                  <img [src]="product?.product_thumbnail?.original_url || 'assets/images/product.png'"
+                    class="main-image" [alt]="product?.name || 'product'">
                 </ng-template>
               </ng-template>
             </div>
           </div>
           <div class="product-gallery-thumbnails" *ngIf="hasMultipleImages && product?.product_galleries">
-            <div class="thumbnail-item" 
-                 *ngFor="let image of product.product_galleries; let i = index"
-                 [class.active]="i === 0">
+            <div class="thumbnail-item" *ngFor="let image of product.product_galleries; let i = index"
+              [class.active]="i === 0">
               <div class="thumbnail-wrapper">
                 <ng-container *ngIf="image?.mime_type && videType.includes(image.mime_type); else thumbAudio">
                   <i class="ri-video-line thumbnail-video-icon"></i>
@@ -47,8 +50,8 @@
                   </video>
                 </ng-container>
                 <ng-template #thumbImg>
-                  <img [src]="image?.original_url || 'assets/images/product.png'" 
-                       class="thumbnail-image" [alt]="product?.name || 'product'">
+                  <img [src]="image?.original_url || 'assets/images/product.png'" class="thumbnail-image"
+                    [alt]="product?.name || 'product'">
                 </ng-template>
                 <ng-template #thumbAudio>
                   <ng-container *ngIf="image?.mime_type && audioType.includes(image.mime_type); else thumbImg">
@@ -65,9 +68,9 @@
           <app-product-contain [product]="product" [option]="option"></app-product-contain>
           <app-product-action [product]="product"></app-product-action>
           <app-product-information [product]="product"></app-product-information>
-          <app-product-delivery-information [product]="product"></app-product-delivery-information>
+          <!-- <app-product-delivery-information [product]="product"></app-product-delivery-information>
           <app-payment-option [product]="product" [option]="option"></app-payment-option>
-          <app-product-social-share [product]="product" [option]="option"></app-product-social-share>
+          <app-product-social-share [product]="product" [option]="option"></app-product-social-share> -->
         </div>
       </div>
       <div class="col-12 related-product-2"

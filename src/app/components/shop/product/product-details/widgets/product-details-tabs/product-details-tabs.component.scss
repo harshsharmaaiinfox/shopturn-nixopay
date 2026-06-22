@@ -1,146 +1,121 @@
-$primary: #276267;
-$accent:  #CE7C49;
-$border:  #e8ecef;
-$text-dark: #1a1a2e;
-$text-mid:  #555f6d;
-
-:host { display: block; }
+// Product Details Tabs Styles
+$primary-brown: #CE7C49;
+$primary-teal: #276267;
+$teal-light: rgba(39, 98, 103, 0.1);
+$border-gray: #e8e8e8;
+$text-dark: #222;
+$text-medium: #666;
 
 .product-section-box {
-  background: #fff;
+  margin-top: 2rem;
+  background: white;
   border-radius: 16px;
-  border: 1px solid $border;
-  box-shadow: 0 2px 8px rgba(0,0,0,.06);
-  overflow: hidden;
+  padding: 2rem;
+  border: 1px solid $border-gray;
 
-  // ── Tab Nav ────────────────────────────────────────────────────────────────
-  .custom-nav.nav {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0;
-    padding: 0 1.75rem;
-    border-bottom: 2px solid $border;
-    background: #fafbfc;
-    margin: 0;
+  .custom-nav {
+    border-bottom: 2px solid $border-gray;
+    margin-bottom: 0;
 
     .nav-item {
-      margin-bottom: -2px;
-
-      a.nav-link {
-        display: flex;
-        align-items: center;
-        gap: .4rem;
+      .nav-link {
+        color: $text-medium;
+        font-size: 1rem;
+        font-weight: 500;
         padding: 1rem 1.5rem;
-        font-size: .9375rem;
-        font-weight: 600;
-        color: $text-mid;
         border: none;
-        border-bottom: 3px solid transparent;
-        background: transparent;
         border-radius: 0;
-        transition: color .2s, border-color .2s;
-        white-space: nowrap;
-        cursor: pointer;
+        position: relative;
+        transition: all 0.3s ease;
 
-        &:hover { color: $primary; }
+        &:hover {
+          color: $primary-teal;
+        }
 
         &.active {
-          color: $primary;
-          border-bottom-color: $primary;
+          color: $primary-teal;
+          font-weight: 700;
           background: transparent;
+          border: none;
+          border-bottom: 3px solid $primary-brown;
+          position: relative;
+
+          &::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, $primary-brown 0%, $primary-teal 100%);
+          }
         }
       }
     }
   }
 
-  // ── Tab Content ────────────────────────────────────────────────────────────
   .custom-tab {
-    padding: 2rem 1.75rem;
+    padding-top: 1.5rem;
 
     .product-description {
+      color: $text-dark;
+      line-height: 1.8;
+      font-size: 1rem;
+
       .nav-desh {
-        font-size: .9375rem;
-        line-height: 1.85;
         color: $text-dark;
+        line-height: 1.8;
 
-        // Headings
-        h1, h2, h3 { font-size: 1.15rem; font-weight: 700; margin: 1.5rem 0 .5rem; color: $text-dark; }
-        h4, h5, h6 { font-size: 1rem; font-weight: 600; margin: 1.25rem 0 .4rem; color: $text-dark; }
+        p {
+          margin-bottom: 1rem;
+          color: $text-dark;
+          line-height: 1.8;
+        }
 
-        // Paragraphs
-        p { margin: 0 0 .875rem; color: $text-mid; }
+        h1, h2, h3, h4, h5, h6 {
+          color: $text-dark;
+          font-weight: 600;
+          margin-bottom: 0.75rem;
+        }
 
-        // Lists
         ul, ol {
+          margin-bottom: 1rem;
           padding-left: 1.5rem;
-          margin: .5rem 0 1rem;
 
           li {
-            margin-bottom: .35rem;
-            color: $text-mid;
-            line-height: 1.7;
-
-            &::marker { color: $primary; }
-          }
-        }
-
-        // Bold key labels like "Product Details:", "Product Features:"
-        strong, b {
-          color: $text-dark;
-          font-weight: 700;
-        }
-
-        // Inline code / highlight
-        code {
-          background: rgba(39,98,103,.08);
-          color: $primary;
-          padding: .1rem .35rem;
-          border-radius: 4px;
-          font-size: .875rem;
-        }
-
-        // Horizontal rule
-        hr {
-          border: none;
-          border-top: 1.5px solid $border;
-          margin: 1.25rem 0;
-        }
-
-        // Tables
-        table {
-          width: 100%;
-          border-collapse: collapse;
-          margin: 1rem 0;
-          font-size: .9rem;
-
-          th {
-            background: rgba(39,98,103,.08);
+            margin-bottom: 0.5rem;
             color: $text-dark;
-            font-weight: 700;
-            padding: .625rem 1rem;
-            text-align: left;
-            border-bottom: 2px solid rgba(39,98,103,.2);
+            line-height: 1.8;
           }
-
-          td {
-            padding: .5625rem 1rem;
-            border-bottom: 1px solid $border;
-            color: $text-mid;
-          }
-
-          tr:last-child td { border-bottom: none; }
-          tr:hover td { background: rgba(39,98,103,.03); }
         }
+      }
+
+    }
+  }
+}
+
+// Responsive Design
+@media (max-width: 768px) {
+  .product-section-box {
+    padding: 1.5rem;
+    margin-top: 1.5rem;
+
+    .custom-nav {
+      .nav-item {
+        .nav-link {
+          padding: 0.875rem 1.25rem;
+          font-size: 0.95rem;
+        }
+      }
+    }
+
+    .custom-tab {
+      padding-top: 1.25rem;
+
+      .product-description {
+        font-size: 0.95rem;
       }
     }
   }
 }
 
-// ─── Responsive ───────────────────────────────────────────────────────────────
-@media (max-width: 767px) {
-  .product-section-box {
-    .custom-nav.nav { padding: 0 1rem; }
-    .custom-tab { padding: 1.5rem 1rem; }
-    .custom-nav.nav .nav-item a.nav-link { padding: .875rem 1rem; font-size: .875rem; }
-  }
-}
