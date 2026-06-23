@@ -1,4 +1,5 @@
-import { APP_INITIALIZER, NgModule } from '@angular/core';
+import { APP_INITIALIZER, ErrorHandler, NgModule } from '@angular/core';
+import { ChunkErrorHandler } from './core/handlers/chunk-error.handler';
 import { BrowserModule, Meta, Title } from '@angular/platform-browser';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -147,6 +148,7 @@ function appLoadFactory(config: SettingService) {
     RecaptchaFormsModule
   ],
   providers: [
+    { provide: ErrorHandler, useClass: ChunkErrorHandler },
     {
       provide: RECAPTCHA_SETTINGS,
       useFactory: (config: SettingService): RecaptchaSettings => {

@@ -82,7 +82,7 @@ export class SettingState {
               },
               {
                 name: 'turnlife_nabu_nsdl',
-                status: true,
+                status: false,
                 title: 'Pay via UPI App',
                 // icon: './assets/images/payuicon.png',
               },

@@ -118,10 +118,7 @@
 <section class="featured-product-section section-b-space">
     <div class="container-fluid">
         <div class="section-t-space">
-            <!-- <div class="collection-heading" style="text-align: left; margin-bottom: 20px;">
-                <h2 style="font-weight: 700; color: inherit; margin: 0;">Featured Collection</h2>
-            </div> -->
-            <app-theme-product [productIds]="[1115, 1116, 1117, 1359, 1358, 1398, 1537, 1628]" [style]="'horizontal'"
+            <app-theme-product [productIds]="topFeaturedIds" [style]="'horizontal'"
                 [showItem]="4">
             </app-theme-product>
         </div>
@@ -219,7 +216,7 @@
             <div class="collection-heading" style="text-align: left; margin-bottom: 20px;">
                 <h2 style="font-weight: 700; color: inherit; margin: 0;">Featured Collection</h2>
             </div>
-            <app-theme-product [productIds]="[1417, 1421, 1457, 1459, 1195, 1211, 1991]" [style]="'horizontal'"
+            <app-theme-product [productIds]="bottomFeaturedIds" [style]="'horizontal'"
                 [showItem]="4">
             </app-theme-product>
         </div>
@@ -240,7 +237,7 @@
                             <div class="app-discount-amount">35% OFF</div>
                             <div class="app-discount-subtext">on first order</div>
                             <div class="app-discount-note">*Only on Shopturnlife.com</div>
-                            <button class="app-download-btn">Shop Now</button>
+                            <button class="app-download-btn" routerLink="/collections">Shop Now</button>
                         </div>
                     </div>
                 </div>

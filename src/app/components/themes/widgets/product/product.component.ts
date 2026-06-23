@@ -3,7 +3,7 @@ import { Select } from '@ngxs/store';
 import { OwlOptions } from 'ngx-owl-carousel-o';
 import { Observable } from 'rxjs';
 import { ProductService } from '../../../../shared/services/product.service';
-import { Product } from '../../../../shared/interface/product.interface';
+import { Product, ProductModel } from '../../../../shared/interface/product.interface';
 import { ProductState } from '../../../../shared/state/product.state';
 import * as data from '../../../../shared/data/owl-carousel';
 import { ThemeOptionState } from '../../../../shared/state/theme-option.state';
@@ -24,12 +24,14 @@ export class ProductComponent {
   @Input() sliderOption: OwlOptions = data.productSlider;
   @Input() slider: boolean;
   @Input() showItem: number;
+  @Input() limit: number = 0;
 
   public products: Product[] = [];
 
   public skeletonItems = Array.from({ length: 6 }, (_, index) => index);
 
   @Select(ProductState.productByIds) product$: Observable<Product[]>;
+  @Select(ProductState.product) generalProduct$: Observable<ProductModel>;
   @Select(ThemeOptionState.themeOptions) themeOption$: Observable<Option>;
 
   constructor(public productService: ProductService) {
@@ -39,6 +41,10 @@ export class ProductComponent {
     if (Array.isArray(this.productIds) && this.productIds.length) {
       this.product$.subscribe(products => {
         this.products = products.filter(product => this.productIds?.includes(product.id));
+      });
+    } else if (this.limit > 0) {
+      this.generalProduct$.subscribe(productModel => {
+        this.products = (productModel?.data || []).slice(0, this.limit);
       });
     }
   }

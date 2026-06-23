@@ -26,6 +26,12 @@ export class DenverComponent implements OnInit, AfterViewInit {
   public categorySlider = data.categorySlider9;
   public productSlider6ItemMargin = data.productSlider6ItemMargin;
 
+  // ---- TOP FEATURED SECTION (Section 1 ~ line 117 in HTML) ----
+  public topFeaturedIds: number[] = [6832, 6834, 6851, 6835];
+
+  // ---- BOTTOM FEATURED COLLECTION (Section 2 ~ line 213 in HTML) ----
+  public bottomFeaturedIds: number[] = [1417, 1421, 1457, 1459];
+
   // Filter for collection page with sidebar
   public filter: Params = {
     'page': 1,
@@ -52,13 +58,11 @@ export class DenverComponent implements OnInit, AfterViewInit {
 
   ngOnInit() {
     if (this.data?.slug == this.slug) {
-      const featuredProductIds = [1115, 1116, 1117, 1359, 1358, 1398, 1537, 1628, 1417, 1421, 1457, 1459,1991,1211,1195];
-      const allProductIds = Array.from(new Set([...(this.data?.content?.products_ids || []), ...featuredProductIds]));
-
-      const getProducts$ = this.store.dispatch(new GetProductByIds({
+      const allFeaturedIds = [...new Set([...this.topFeaturedIds, ...this.bottomFeaturedIds])];
+      const getFeaturedProducts$ = this.store.dispatch(new GetProductByIds({
         status: 1,
-        paginate: allProductIds.length,
-        ids: allProductIds?.join(',')
+        paginate: allFeaturedIds.length,
+        ids: allFeaturedIds.join(',')
       }));
       const getBrand$ = this.store.dispatch(new GetBrands({
         status: 1,
@@ -67,7 +71,7 @@ export class DenverComponent implements OnInit, AfterViewInit {
       // Skeleton Loader
       document.body.classList.add('skeleton-body');
 
-      forkJoin([getProducts$, getBrand$]).subscribe({
+      forkJoin([getFeaturedProducts$, getBrand$]).subscribe({
         complete: () => {
           document.body.classList.remove('skeleton-body');
           this.themeOptionService.preloader = false;
