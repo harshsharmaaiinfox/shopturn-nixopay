@@ -7,16 +7,73 @@
                     <div class="checkout-form-section" *ngIf="(setting$ | async)?.activation?.guest_checkout && !(accessToken$ | async)">
                       <div class="row g-4">
                         <div class="col-lg-8 col-md-12">
-                        <!-- Account Details Card -->
+                        <!-- Account Details / Login Card -->
                         <div class="checkout-card">
                             <div class="checkout-card-header">
                                 <div class="card-icon">
                                     <i class="ri-user-line"></i>
                                 </div>
-                                <h3 class="card-title">{{ 'Account Details' | translate }}</h3>
+                                <h3 class="card-title">{{ (showLogin ? 'Login to Checkout' : 'Account Details') | translate }}</h3>
                             </div>
+                            
+                            <!-- Alert message when showLogin is true -->
+                            <div class="alert alert-info m-3 d-flex align-items-center gap-2" *ngIf="showLogin" style="background-color: rgba(229, 122, 47, 0.1); border: 1px solid rgba(229, 122, 47, 0.2); color: #E57A2F; border-radius: 5px; padding: 12px 16px;">
+                                <i class="ri-information-line fs-5"></i>
+                                <span class="fw-semibold">{{ 'You have to login to checkout' | translate }}</span>
+                            </div>
+
                             <div class="checkout-card-body">
-                                <form [formGroup]="form" class="checkout-form-modern">
+                                <!-- Login Form -->
+                                <form [formGroup]="loginForm" class="checkout-form-modern" *ngIf="showLogin">
+                                    <div class="row g-3">
+                                        <div class="col-md-6">
+                                            <div class="form-group-modern">
+                                                <label for="login_email" class="form-label-modern">{{ 'Email' | translate }}</label>
+                                                <input type="email" 
+                                                       class="form-control-modern" 
+                                                       placeholder="{{ 'Enter Email Address' | translate }}" 
+                                                       formControlName="email" 
+                                                       id="login_email">
+                                                <div class="invalid-feedback-modern"
+                                                     *ngIf="loginForm?.controls?.['email']?.touched && loginForm.controls['email']?.errors?.['required']">
+                                                    {{ 'Email is Required' | translate }}
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group-modern">
+                                                <label for="login_pass" class="form-label-modern">{{ 'Password' | translate }}</label>
+                                                <input type="password"
+                                                       class="form-control-modern"
+                                                       formControlName="password"
+                                                       placeholder="{{ 'Enter Password' | translate }}"
+                                                       id="login_pass">
+                                                <div class="invalid-feedback-modern"
+                                                     *ngIf="loginForm?.controls?.['password']?.touched && loginForm.controls['password']?.errors?.['required']">
+                                                    {{ 'Password is Required' | translate }}
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-12 d-flex align-items-center justify-content-between flex-wrap gap-2 mt-2">
+                                            <button type="button"
+                                                    class="btn btn-animation btn-md fw-bold"
+                                                    [disabled]="loading"
+                                                    (click)="checkoutLogin()">
+                                                <span *ngIf="loading" class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>
+                                                {{ (loading ? 'Please wait...' : 'Login') | translate }}
+                                            </button>
+                                            <span>
+                                                {{ "Don't have an account?" | translate }}
+                                                <a href="javascript:void(0)" (click)="showLogin = false" class="text-decoration-underline text-theme">
+                                                    {{ 'Register' | translate }}
+                                                </a>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </form>
+
+                                <!-- Register Form -->
+                                <form [formGroup]="form" class="checkout-form-modern" *ngIf="!showLogin">
                                     <div class="row g-3">
                                         <div class="col-md-4">
                                             <div class="form-group-modern">
@@ -92,232 +149,10 @@
                                             </button>
                                             <span>
                                                 {{ 'Already have an account?' | translate }}
-                                                <a href="javascript:void(0)" (click)="goToLogin()" class="text-decoration-underline">
+                                                <a href="javascript:void(0)" (click)="showLogin = true" class="text-decoration-underline text-theme">
                                                     {{ 'Login' | translate }}
                                                 </a>
                                             </span>
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-
-                        <!-- Shipping Details Card -->
-                        <div class="checkout-card">
-                            <div class="checkout-card-header">
-                                <div class="card-icon">
-                                    <i class="ri-truck-line"></i>
-                                </div>
-                                <h3 class="card-title">{{ 'Shipping Details' | translate }}</h3>
-                            </div>
-                            <div class="checkout-card-body">
-                                <form [formGroup]="form" class="checkout-form-modern">
-                                    <div class="row g-3" formGroupName="shipping_address">
-                                        <div class="col-md-12">
-                                            <div class="form-group-modern">
-                                                <label for="sname" class="form-label-modern">{{ 'Name' | translate }}</label>
-                                                <input type="text"
-                                                       class="form-control-modern"
-                                                       formControlName="title"
-                                                       id="sname"
-                                                       placeholder="{{ 'Enter Name' | translate }}"
-                                                       (input)="onTitleInput($event)">
-                                                <div class="invalid-feedback-modern" 
-                                                     *ngIf="form.get('shipping_address.title')?.touched && form.get('shipping_address.title')?.errors?.['required']">
-                                                    {{ 'Title is Required' | translate }}
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-12">
-                                            <div class="form-group-modern">
-                                                <label for="saddress" class="form-label-modern">{{ 'Address' | translate }}</label>
-                                                <input type="text" 
-                                                       class="form-control-modern" 
-                                                       formControlName="street" 
-                                                       id="saddress" 
-                                                       placeholder="{{ 'Enter Address' | translate }}">
-                                                <div class="invalid-feedback-modern" 
-                                                     *ngIf="form.get('shipping_address.street')?.touched && form.get('shipping_address.street')?.errors?.['required']">
-                                                    {{ 'Address is Required' | translate }}
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group-modern">
-                                                <label for="scountry" class="form-label-modern">{{ 'Country' | translate }}</label>
-                                                <select2 class="custom-select" 
-                                                        [data]="(countries$ | async) ? (countries$ | async)! : []"
-                                                        [placeholder]="'Select Country' | translate" 
-                                                        (update)="shippingCountryChange($event)"
-                                                        formControlName="country_id"
-                                                        resettable>
-                                                </select2>
-                                                <div class="invalid-feedback-modern" 
-                                                     *ngIf="form.get('shipping_address.country_id')?.touched && form.get('shipping_address.country_id')?.errors?.['required']">
-                                                    {{ 'Country is Required' | translate }}
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group-modern">
-                                                <label for="sstate" class="form-label-modern">{{ 'State' | translate }}</label>
-                                                <select2 class="custom-select" 
-                                                        [data]="(shippingStates$ | async) ? (shippingStates$ | async)! : []"
-                                                        [placeholder]="'Select State' | translate" 
-                                                        formControlName="state_id">
-                                                </select2>
-                                                <div class="invalid-feedback-modern" 
-                                                     *ngIf="form.get('shipping_address.state_id')?.touched && form.get('shipping_address.state_id')?.errors?.['required']">
-                                                    {{ 'State is Required' | translate }}
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group-modern">
-                                                <label for="scity" class="form-label-modern">{{ 'City' | translate }}</label>
-                                                <input type="text"
-                                                       class="form-control-modern"
-                                                       formControlName="city"
-                                                       id="scity"
-                                                       placeholder="{{ 'Enter City' | translate }}"
-                                                       (input)="onCityInput($event)">
-                                                <div class="invalid-feedback-modern" 
-                                                     *ngIf="form.get('shipping_address.city')?.touched && form.get('shipping_address.city')?.errors?.['required']">
-                                                    {{ 'City is Required' | translate }}
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-12">
-                                            <div class="form-group-modern phone-field-modern">
-                                                <label class="form-label-modern" for="sphone">{{ 'Phone Number' | translate }}</label>
-                                                <div class="phone-input-wrapper">
-                                                    <input type="number"
-                                                           class="form-control-modern"
-                                                           formControlName="phone"
-                                                           placeholder="{{ 'Enter Phone' | translate }}"
-                                                           name="phone"
-                                                           (input)="onShippingPhoneInput($event)">
-                                                </div>
-                                                <div class="invalid-feedback-modern" 
-                                                     *ngIf="form.get('shipping_address.phone')?.touched && form.get('shipping_address.phone')?.errors?.['required']">
-                                                    {{ 'Phone is Required' | translate }}
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-
-                        <!-- Billing Details Card -->
-                        <div class="checkout-card">
-                            <div class="checkout-card-header">
-                                <div class="card-icon">
-                                    <i class="ri-file-list-line"></i>
-                                </div>
-                                <h3 class="card-title">{{ 'Billing Details' | translate }}</h3>
-                            </div>
-                            <div class="checkout-card-body">
-                                <form [formGroup]="form" class="checkout-form-modern">
-                                    <div class="row g-3" formGroupName="billing_address">
-                                        <div class="col-12">
-                                            <div class="form-check-modern">
-                                                <input type="checkbox"
-                                                       class="form-check-input checkbox_animated"
-                                                       id="same_shipping"
-                                                       formControlName="same_shipping">
-                                                <label class="form-check-label" for="same_shipping">
-                                                    {{ 'Same As Shipping Address' | translate }}
-                                                </label>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-12">
-                                            <div class="form-group-modern">
-                                                <label for="bname" class="form-label-modern">{{ 'Name' | translate }}</label>
-                                                <input type="text"
-                                                       class="form-control-modern"
-                                                       formControlName="title"
-                                                       id="bname"
-                                                       placeholder="{{ 'Enter Name' | translate }}">
-                                                <div class="invalid-feedback-modern"
-                                                     *ngIf="form.get('billing_address.title')?.touched && form.get('billing_address.title')?.errors?.['required']">
-                                                    {{ 'Title is Required' | translate }}
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-12">
-                                            <div class="form-group-modern">
-                                                <label for="baddress" class="form-label-modern">{{ 'Address' | translate }}</label>
-                                                <input type="text"
-                                                       class="form-control-modern"
-                                                       formControlName="street"
-                                                       id="baddress"
-                                                       placeholder="{{ 'Enter Address' | translate }}">
-                                                <div class="invalid-feedback-modern"
-                                                     *ngIf="form.get('billing_address.street')?.touched && form.get('billing_address.street')?.errors?.['required']">
-                                                    {{ 'Address is Required' | translate }}
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group-modern">
-                                                <label for="bcountry" class="form-label-modern">{{ 'Country' | translate }}</label>
-                                                <select2 class="custom-select"
-                                                        [data]="(countries$ | async) ? (countries$ | async)! : []"
-                                                        [placeholder]="'Select Country' | translate"
-                                                        (update)="billingCountryChange($event)"
-                                                        formControlName="country_id"
-                                                        resettable>
-                                                </select2>
-                                                <div class="invalid-feedback-modern"
-                                                     *ngIf="form.get('billing_address.country_id')?.touched && form.get('billing_address.country_id')?.errors?.['required']">
-                                                    {{ 'Country is Required' | translate }}
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group-modern">
-                                                <label for="bstate" class="form-label-modern">{{ 'State' | translate }}</label>
-                                                <select2 class="custom-select"
-                                                        [data]="(billingStates$ | async) ? (billingStates$ | async)! : []"
-                                                        [placeholder]="'Select State' | translate"
-                                                        formControlName="state_id">
-                                                </select2>
-                                                <div class="invalid-feedback-modern"
-                                                     *ngIf="form.get('billing_address.state_id')?.touched && form.get('billing_address.state_id')?.errors?.['required']">
-                                                    {{ 'State is Required' | translate }}
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group-modern">
-                                                <label for="bcity" class="form-label-modern">{{ 'City' | translate }}</label>
-                                                <input type="text"
-                                                       class="form-control-modern"
-                                                       formControlName="city"
-                                                       id="bcity"
-                                                       placeholder="{{ 'Enter City' | translate }}">
-                                                <div class="invalid-feedback-modern"
-                                                     *ngIf="form.get('billing_address.city')?.touched && form.get('billing_address.city')?.errors?.['required']">
-                                                    {{ 'City is Required' | translate }}
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group-modern phone-field-modern">
-                                                <label class="form-label-modern" for="bphone">{{ 'Phone Number' | translate }}</label>
-                                                <div class="phone-input-wrapper">
-                                                    <input type="number"
-                                                           class="form-control-modern"
-                                                           formControlName="phone"
-                                                           placeholder="{{ 'Enter Phone' | translate }}"
-                                                           name="phone">
-                                                </div>
-                                                <div class="invalid-feedback-modern"
-                                                     *ngIf="form.get('billing_address.phone')?.touched && form.get('billing_address.phone')?.errors?.['required']">
-                                                    {{ 'Phone is Required' | translate }}
-                                                </div>
-                                            </div>
                                         </div>
                                     </div>
                                 </form>

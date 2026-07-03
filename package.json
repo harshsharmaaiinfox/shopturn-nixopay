@@ -41,6 +41,7 @@
     "bootstrap": "^5.2.3",
     "country-state-city": "^3.2.1",
     "express": "^4.21.2",
+    "fastkart-frontend-rest": "file:../mangalfashion",
     "feather-icons": "^4.29.0",
     "ng-recaptcha": "^13.2.1",
     "ng-select2-component": "^10.0.0",

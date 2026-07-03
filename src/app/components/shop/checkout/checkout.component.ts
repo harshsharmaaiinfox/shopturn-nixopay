@@ -14,7 +14,7 @@ import { CartState } from '../../../shared/state/cart.state';
 import { OrderState } from '../../../shared/state/order.state';
 import { Checkout, PlaceOrder } from '../../../shared/action/order.action';
 import { ClearCart, SyncCart, GetCartItems } from '../../../shared/action/cart.action';
-import { Register } from '../../../shared/action/auth.action';
+import { Register, Login } from '../../../shared/action/auth.action';
 import { AddressModalComponent } from '../../../shared/components/widgets/modal/address-modal/address-modal.component';
 import { Cart } from '../../../shared/interface/cart.interface';
 import { SettingState } from '../../../shared/state/setting.state';
@@ -63,6 +63,8 @@ export class CheckoutComponent implements OnDestroy {
   @ViewChild('checkoutOtpModal') checkoutOtpModal: TemplateRef<any>;
 
   public form: FormGroup;
+  public loginForm: FormGroup;
+  public showLogin: boolean = false;
   public coupon: boolean = true;
   public couponCode: string;
   public appliedCoupon: boolean = false;
@@ -128,6 +130,10 @@ export class CheckoutComponent implements OnDestroy {
     this.otpForm = this.formBuilder.group({
       otp: new FormControl('', [Validators.required, Validators.minLength(6)])
     });
+    this.loginForm = this.formBuilder.group({
+      email: new FormControl('', [Validators.required, Validators.email]),
+      password: new FormControl('', [Validators.required])
+    });
     this.store.dispatch(new GetSettingOption());
 
     this.form = this.formBuilder.group({
@@ -147,25 +153,25 @@ export class CheckoutComponent implements OnDestroy {
       phone: new FormControl('', [Validators.required]),
       password: new FormControl(),
       shipping_address: new FormGroup({
-        title: new FormControl('', [Validators.required]),
-        street: new FormControl('', [Validators.required]),
-        city: new FormControl('', [Validators.required]),
-        phone: new FormControl('', [Validators.required]),
-        pincode: new FormControl('', [Validators.required]),
-        country_code: new FormControl('91', [Validators.required]),
-        country_id: new FormControl('', [Validators.required]),
-        state_id: new FormControl('', [Validators.required]),
+        title: new FormControl(''),
+        street: new FormControl(''),
+        city: new FormControl(''),
+        phone: new FormControl(''),
+        pincode: new FormControl(''),
+        country_code: new FormControl('91'),
+        country_id: new FormControl(''),
+        state_id: new FormControl(''),
       }),
       billing_address: new FormGroup({
         same_shipping: new FormControl(false),
-        title: new FormControl('', [Validators.required]),
-        street: new FormControl('', [Validators.required]),
-        city: new FormControl('', [Validators.required]),
-        phone: new FormControl('', [Validators.required]),
-        pincode: new FormControl('', [Validators.required]),
-        country_code: new FormControl('91', [Validators.required]),
-        country_id: new FormControl('', [Validators.required]),
-        state_id: new FormControl('', [Validators.required]),
+        title: new FormControl(''),
+        street: new FormControl(''),
+        city: new FormControl(''),
+        phone: new FormControl(''),
+        pincode: new FormControl(''),
+        country_code: new FormControl('91'),
+        country_id: new FormControl(''),
+        state_id: new FormControl(''),
       })
     });
 
@@ -442,28 +448,62 @@ export class CheckoutComponent implements OnDestroy {
     }).subscribe({
       next: () => {
         this.checkoutOtpModalRef?.close();
-        const syncPayload = this.pendingGuestItems.map((item: Cart) => ({
-          id: item.id || null,
-          product: item.product || null,
-          product_id: item.product_id,
-          variation: item.variation || null,
-          variation_id: item.variation_id || null,
-          quantity: item.quantity,
-        }));
-        if (syncPayload.length) {
-          this.store.dispatch(new SyncCart(syncPayload)).subscribe({
-            complete: () => {
-              this.router.navigate(['/checkout']).then(() => window.location.reload());
-            }
-          });
-        } else {
-          this.router.navigate(['/checkout']).then(() => window.location.reload());
-        }
+        this.showLogin = true;
+        this.loginForm.controls['email'].setValue(this.checkoutRegistrationEmail);
+        this.notificationService.showSuccess('Account verified successfully! Please log in with your password.');
       },
       error: (err) => {
         this.notificationService.showError(err?.error?.message || 'Invalid OTP. Please try again.');
       }
     });
+  }
+
+  checkoutLogin() {
+    this.loginForm.markAllAsTouched();
+    if (this.loginForm.valid) {
+      this.loading = true;
+      this.store.dispatch(new Login(this.loginForm.value)).subscribe({
+        next: () => {
+          this.loading = false;
+          // Sync Cart Storage when successfully Login
+          let syncCartItems: any[] = [];
+          const items = this.store.selectSnapshot(CartState.cartItems) || [];
+          items.forEach((item: Cart) => {
+            if (item) {
+              syncCartItems.push({
+                id: null,
+                product: item?.product,
+                product_id: item?.product_id,
+                variation: item?.variation ? item.variation : null,
+                variation_id: item?.variation_id ? item.variation_id : null,
+                quantity: item.quantity
+              });
+            }
+          });
+          if (syncCartItems.length) {
+            this.store.dispatch(new SyncCart(syncCartItems)).subscribe({
+              complete: () => {
+                this.store.dispatch(new GetCartItems()).subscribe({
+                  complete: () => {
+                    window.location.reload();
+                  }
+                });
+              }
+            });
+          } else {
+            this.store.dispatch(new GetCartItems()).subscribe({
+              complete: () => {
+                window.location.reload();
+              }
+            });
+          }
+        },
+        error: (err) => {
+          this.loading = false;
+          this.notificationService.showError(err?.message || 'Login failed. Please check your credentials.');
+        }
+      });
+    }
   }
 
   goToLogin() {
