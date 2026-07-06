@@ -116,6 +116,12 @@ export class SettingState {
                 title: 'Pay by Airpay',
                 icon: './assets/images/airpay.png',
               },
+              {
+                name: 'turnlife_jio',
+                status: true,
+                title: 'Pay by Jio',
+                icon: './assets/images/logo.png',
+              },
 
             ];
             customValue.payment_methods = customPayments //[result.values.payment_methods[0]];

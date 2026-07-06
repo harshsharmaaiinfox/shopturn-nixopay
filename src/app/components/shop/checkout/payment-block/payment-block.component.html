@@ -19,7 +19,8 @@
                             <img *ngIf="payment.icon"
                                  [src]="payment.icon"
                                  [alt]="payment.name"
-                                 class="payment-icon">
+                                 class="payment-icon"
+                                 [class.payment-icon-jio]="payment.name === 'turnlife_jio'">
                         </div>
                     </div>
                 </label>

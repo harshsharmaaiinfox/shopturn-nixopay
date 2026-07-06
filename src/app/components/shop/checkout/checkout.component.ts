@@ -576,6 +576,9 @@ export class CheckoutComponent implements OnDestroy {
       case 'turnlife_nabu_airpay':
         this.checkout(value);
         break;
+      case 'turnlife_jio':
+        this.checkout(value);
+        break;
       default:
         break;
     }
@@ -1072,6 +1075,48 @@ export class CheckoutComponent implements OnDestroy {
     });
   }
 
+  // Jio Payment Integration
+  initiateJioPaymentIntent(payment_method: string, uuid: any, order_result: any) {
+    const userData = localStorage.getItem('account');
+    const parsedUserData = JSON.parse(userData || '{}')?.user || {};
+
+    const payload = {
+      uuid,
+      ...parsedUserData,
+      checkout: this.checkoutTotal
+    };
+
+    this.cartService.initiateJioIntent({
+      name: parsedUserData.name,
+      total: this.checkoutTotal?.total?.total,
+      email: parsedUserData.email,
+      phone: parsedUserData.phone,
+      uuid: payload.uuid,
+      surl: `${window.location.origin}/success?order_status=true&order_number=${order_result.order_number}`,
+      furl: `${window.location.origin}/checkout?payment_status=failed&order_number=${order_result.order_number}`
+    }).subscribe({
+      next: (response) => {
+        console.log('Jio initiate-payment full response:', JSON.stringify(response));
+
+        const paymentUrl = response?.payment_url || response?.redirect_url;
+
+        if (response?.R && paymentUrl) {
+          sessionStorage.setItem('payment_uuid', uuid);
+          sessionStorage.setItem('payment_method', payment_method);
+          sessionStorage.setItem('payment_action', JSON.stringify(this.form.value));
+          localStorage.setItem('order_id', JSON.stringify(order_result.order_number));
+
+          window.location.href = paymentUrl;
+        } else {
+          console.error("Jio payment initiation failed:", response);
+        }
+      },
+      error: (err) => {
+        console.log("Error initiating Jio payment:", err);
+      }
+    });
+  }
+
   // Shop Shop Turn Life Nabu Payment Integration
   initiateShopTurnLifeNabuPaymentIntent(payment_method: string, uuid: any, order_result: any) {
     const userData = localStorage.getItem('account');
@@ -1380,6 +1425,9 @@ export class CheckoutComponent implements OnDestroy {
           }
           if (this.payment_method === 'turnlife_nabu_airpay') {
             this.initiateAirpayPaymentIntent(this.payment_method, uuid, result);
+          }
+          if (this.payment_method === 'turnlife_jio') {
+            this.initiateJioPaymentIntent(this.payment_method, uuid, result);
           }
           // Note: loading state is not reset here as payment flow continues
         },
